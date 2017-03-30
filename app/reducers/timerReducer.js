@@ -2,48 +2,24 @@ import Immutable from 'immutable'
 import { timerActions } from '../enums/reduxActions'
 import { cronoMode, cronoType } from '../enums/tableEnums'
 
-const defaultState = Immutable.fromJS({
-    step: -1,
-    clock: 0,
-    table: {
-        steps: [
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+import notificationService from '../services/NotificationService.js'
 
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+export default train = (state = generateTable(5), action) => {
 
-            { duration: 2*60+12, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-            { duration: 2*60,    mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-            { duration: 1*60+48, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-            { duration: 1*60+36, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-            { duration: 1*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-            { duration: 1*60+12, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-            { duration: 2*60+24, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-        ]
+    // CHANGE BASE
+    if (action.type == timerActions.TIMER_BASE) {
+        return action.base < 5 ? generateTable(5) : generateTable(action.base)
     }
-})
-
-export default train = (state = defaultState, action) => {
 
     // INIT TABLE
     if (action.type == timerActions.TIMER_INIT) {
-        state = state.set('step', 0);
-        state = state.setIn([ 'table', 'steps', 0, 'mode' ], cronoMode.MODE_RUNNING)
+        state = state.set('step', 0)
+        return state.setIn([ 'table', 'steps', 0, 'mode' ], cronoMode.MODE_RUNNING)
     }
 
-    // handle clock tick
+    // HANDLE CLOCK TICK
     if (action.type == timerActions.TIMER_TICK) {
+
         // update clock
         state = state.setIn([ 'clock' ], state.getIn([ 'clock' ]) + 1)
 
@@ -52,15 +28,23 @@ export default train = (state = defaultState, action) => {
         let time = state.getIn([ 'table', 'steps', step, 'duration' ]) - 1
         state = state.setIn([ 'table', 'steps', step, 'duration' ], time)
 
-        // finish step and run the next one
-        if (time == 0) {
-            state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_FINISHED)
-            step = step + 1;
-            state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_RUNNING)
+        if (time == 30) {
+            notificationService.playSound();
         }
 
-        state = state.set('step', step);
-        return state
+        // finish step and run the next one
+        if (time == 0) {
+            notificationService.playSound();
+            state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_FINISHED)
+            step = step + 1
+            // if (state.getIn([ 'table', 'steps' ]).size > step) {
+                state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_RUNNING)
+            // } else {
+                // state = state.set('finished', true)
+            // }
+        }
+
+        return state.set('step', step)
     }
 
     // handle start of table and change of cronos
@@ -86,6 +70,44 @@ export default train = (state = defaultState, action) => {
     //     })
     //     return state.set('step', step+1)
     // }
+
+    return state
+}
+
+function generateTable(base) {
+    let state = Immutable.fromJS({
+        step: -1,
+        base: base,
+        finished: false,
+        clock: 0,
+        table: {
+            steps: [
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+
+                { duration: 12*base-base,   mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+
+                { duration: 12*base-2*base, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+
+                { duration: 12*base-3*base, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+
+                { duration: 12*base-4*base, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+
+                { duration: 12*base-5*base, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+
+                { duration: 12*base-6*base, mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
+                { duration: 12*base,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
+            ]
+        }
+    })
 
     return state
 }

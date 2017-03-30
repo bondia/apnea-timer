@@ -15,54 +15,34 @@ class TrainingTable extends Component {
         timer: ImmutablePropTypes.map.isRequired,
     }
 
-    handlePress() {
-        this.props.timerActions.startCrono()
-
-        // let { table } = this.state
-        // table.steps[0] = this.startCounter(table.steps[0], new Date())
-        // this.setState({ table, started: true })
+    componentWillMount() {
+        // if (this.props.timer.get('finished', true)) {
+        //     this.props.timerActions.stopCrono()
+        // }
     }
 
-    // startCounter(item, stamp) {
-    //     item.stamp = stamp
-    //     item.mode = 'run'
-    //     return item
-    // }
+    handleStart() {
+        this.props.timerActions.startCrono()
+    }
 
-    // finishCounter(item) {
-    //     item.mode = 'finished'
-    //     return item
-    // }
+    handleHard() {
+        this.props.timerActions.changeBase(this.props.timer.get('base') + 1)
+    }
 
-    // onFinish = (stamp) => {
-    //     let { table, step } = this.state
-
-    //     // set last counter finished
-    //     table.steps[step] = this.finishCounter(table.steps[step])
-
-    //     // decide next step
-    //     step = step+1
-
-    //     // stop when all steps done
-    //     if (step >= table.steps.length) {
-    //         return
-    //     }
-
-    //     // update new step
-    //     table.steps[step] = this.startCounter(table.steps[step], stamp)
-
-    //     this.setState({ step, table })
-    // }
+    handleEasy() {
+        this.props.timerActions.changeBase(this.props.timer.get('base') - 1)
+    }
 
     render() {
         const { timer } = this.props
         const ticks = timer.get('clock')
+        const base = timer.get('base')
         const step = timer.get('step')
 
         return (
             <View style={styles.container}>
                 <Text>
-                    -- {ticks} --
+                    -- {base} : {ticks} --
                 </Text>
 
                 {timer.getIn([ 'table', 'steps' ]).map((item, idx) => {
@@ -79,9 +59,25 @@ class TrainingTable extends Component {
 
                 {step < 0 &&
                     <Button style={styles.button}
-                        onPress={this.handlePress.bind(this)}
+                        onPress={this.handleStart.bind(this)}
                         title="Start"
                         accessibilityLabel="Start"
+                    />
+                }
+
+                {step < 0 &&
+                    <Button style={styles.button}
+                        onPress={this.handleHard.bind(this)}
+                        title="Hard"
+                        accessibilityLabel="Hard"
+                    />
+                }
+
+                {step < 0 &&
+                    <Button style={styles.button}
+                        onPress={this.handleEasy.bind(this)}
+                        title="Easy"
+                        accessibilityLabel="Easy"
                     />
                 }
             </View>
