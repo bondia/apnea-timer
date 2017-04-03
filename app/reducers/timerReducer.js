@@ -29,12 +29,16 @@ export default train = (state = generateTable(5), action) => {
         state = state.setIn([ 'table', 'steps', step, 'duration' ], time)
 
         if (time == 30) {
-            notificationService.playSound();
+            notificationService.playF2();
+        }
+
+        if (time == 15) {
+            notificationService.playA2();
         }
 
         // finish step and run the next one
         if (time == 0) {
-            notificationService.playSound();
+            notificationService.playC3();
             state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_FINISHED)
             step = step + 1
             // if (state.getIn([ 'table', 'steps' ]).size > step) {
