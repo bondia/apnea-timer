@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react'
-import { AppRegistry, StyleSheet, Text, View, Button } from 'react-native'
+import { AppRegistry, StyleSheet, Text, View, ScrollView, Button } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
@@ -40,6 +40,8 @@ class TrainingTable extends Component {
         const step = timer.get('step')
 
         return (
+            <ScrollView>
+
             <View style={styles.container}>
                 <Text>
                     -- {base} : {ticks} --
@@ -81,6 +83,7 @@ class TrainingTable extends Component {
                     />
                 }
             </View>
+            </ScrollView>
         )
     }
 }
@@ -104,7 +107,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#F5FCFF',
+        backgroundColor: 'skyblue',
     },
     button: {
         borderColor: 'red',

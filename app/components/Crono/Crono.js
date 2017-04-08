@@ -34,6 +34,7 @@ export default class Crono extends Component {
             clock: {
                 color: type == cronoType.TYPE_PREPARE ? 'green' : 'red',
                 fontSize: running ? 50 : 15,
+                fontFamily: 'futura',
                 textAlign: 'center',
                 margin: 5
             }
