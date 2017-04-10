@@ -1,0 +1,10 @@
+
+const routesEnum = {
+    ROOT: 'ROOT',
+    MAIN_SCENE: 'MAIN_SCENE',
+    CONFIGURE_SCENE: 'CONFIGURE_SCENE',
+    MY_TABLES_SCENE: 'MY_TABLES_SCENE',
+    HISTORY_SCENE: 'HISTORY_SCENE',
+}
+
+export { routesEnum }

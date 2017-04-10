@@ -1,34 +1,26 @@
 import React, { Component } from 'react'
 import { View, Text, Navigator, TouchableHighlight } from 'react-native'
 
-import TrainingTable from '../TrainingTable/TrainingTable.js'
+import TrainingTable from 'app/components/TrainingTable/TrainingTable'
+import MainScene, { mainSceneRoute } from './MainScene'
 
 export default class Navigation extends Component {
 
-    getRoutes() {
-        return [
-            { index: 0, getComponent: () => TrainingTable },
-            { index: 1, getComponent: () => TrainingTable },
-        ]
-    }
-
-    configureScene(route, routeStack) {
-        return Navigator.SceneConfigs.PushFromRight
-    }
-
     render() {
-        const routes = this.getRoutes()
-
         return (
             <Navigator
-                initialRoute={routes[0]}
-                initialRouteStack={routes}
+                initialRoute={mainSceneRoute}
+                // initialRouteStack={routes}
                 navigationBar={this.renderNavigationBar()}
                 configureScene={this.configureScene}
                 renderScene={this.renderScene.bind(this)}
                 />
         )
     }
+
+    //--------------------------------
+    //  NAVIGATION BAR
+    //--------------------------------
 
     renderNavigationBar() {
         return (
@@ -39,41 +31,53 @@ export default class Navigation extends Component {
                     RightButton: this.renderRightButton,
                 }}
                 style={{
-                    backgroundColor: 'powderblue'
-                }}
+                    backgroundColor: 'powderblue',
+             }}
                 />
         )
     }
 
     renderTitle(route, navigator, index, navState) {
-        return (<Text>Bon dia</Text>)
+        return (
+            <View style={{ paddingTop: 6 }}>
+                <Text style={{ fontFamily: 'futura', fontSize: 20 }}>
+                    {route.title}
+                </Text>
+            </View>
+        )
     }
 
     renderLeftButton(route, navigator, index, navState) {
-        if (route.index === 0) {
-            return null
-        } else {
-            return (
-                <TouchableHighlight onPress={() => navigator.pop()}>
-                    <Text>Back</Text>
-                </TouchableHighlight>
-            )
+        if (navigator.getCurrentRoutes().length <= 1) {
+            return null;
         }
+        return (
+            <TouchableHighlight style={{ paddingTop: 8 }}
+                                onPress={() => navigator.pop()}
+                                >
+                <Text>Back</Text>
+            </TouchableHighlight>
+        )
     }
 
     renderRightButton(route, navigator, index, navState) {
-        return (<Text>Done</Text>)
+        // return <View style={{ paddingTop: 12, paddingRight: 20 }}><Text>Done</Text></View>
+        return null;
+    }
+
+    //--------------------------------
+    //  SCENE
+    //--------------------------------
+
+    configureScene(route, routeStack) {
+        return Navigator.SceneConfigs.PushFromRight
     }
 
     renderScene(route, navigator) {
-        const routes = this.getRoutes()
-        const RouteComponent = route.getComponent()
+        const RouteComponent = route.component
         return (
-            <View style={{
-                    flex: 1,
-                    marginTop: 64
-                  }}>
-                <RouteComponent />
+            <View style={{ flex: 1, marginTop: 64 }}>
+                <RouteComponent navigator={navigator} />
             </View>
         )
                 // <TouchableHighlight

@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import { cronoMode } from '../../enums/tableEnums'
-import * as timerActions from '../../actions/timerActions.js'
-import Crono from '../Crono/Crono.js'
+import { cronoMode } from 'app/crono/enums/tableEnums'
+import * as timerActions from 'app/crono/redux/timerActions'
+import Crono from './Crono.js'
 
 class TrainingTable extends Component {
 
@@ -59,29 +59,31 @@ class TrainingTable extends Component {
                     )
                 })}
 
-                {step < 0 &&
-                    <Button style={styles.button}
-                        onPress={this.handleStart.bind(this)}
-                        title="Start"
-                        accessibilityLabel="Start"
-                    />
-                }
+                <View style={{ flex: 1, flexDirection: 'row'}}>
+                    {step < 0 &&
+                        <Button style={styles.button}
+                            onPress={this.handleStart.bind(this)}
+                            title="Start"
+                            accessibilityLabel="Start"
+                        />
+                    }
 
-                {step < 0 &&
-                    <Button style={styles.button}
-                        onPress={this.handleHard.bind(this)}
-                        title="Hard"
-                        accessibilityLabel="Hard"
-                    />
-                }
+                    {step < 0 &&
+                        <Button style={styles.button}
+                            onPress={this.handleHard.bind(this)}
+                            title="Hard"
+                            accessibilityLabel="Hard"
+                        />
+                    }
 
-                {step < 0 &&
-                    <Button style={styles.button}
-                        onPress={this.handleEasy.bind(this)}
-                        title="Easy"
-                        accessibilityLabel="Easy"
-                    />
-                }
+                    {step < 0 &&
+                        <Button style={styles.button}
+                            onPress={this.handleEasy.bind(this)}
+                            title="Easy"
+                            accessibilityLabel="Easy"
+                        />
+                    }
+                </View>
             </View>
             </ScrollView>
         )
@@ -105,11 +107,12 @@ export default connect(stateToProps, dispatchToProps)(TrainingTable)
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        marginTop: 64,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'skyblue',
     },
     button: {
+        flex: 3,
         borderColor: 'red',
         backgroundColor: '#fff',
         borderWidth: 1,

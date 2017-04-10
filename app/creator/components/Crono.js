@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
-import { cronoType } from '../../enums/tableEnums'
+import { cronoType } from 'app/crono/enums/tableEnums'
 
 export default class Crono extends Component {
 
