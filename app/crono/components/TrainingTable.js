@@ -1,52 +1,30 @@
 import React from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, ScrollView, Button } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
-import { Actions } from 'react-native-router-flux'
 
-import { routesEnum } from 'app/main/enums/routes'
 import { cronoMode } from 'app/crono/enums/tableEnums'
-
-import * as creatorActions from '../redux/creatorActions'
 import * as cronoActions from 'app/crono/redux/cronoActions'
-
-import Crono from './Crono'
+import Crono from 'app/creator/components/Crono'
 
 class TrainingTable extends React.PureComponent {
 
     static propTypes = {
-        creatorActions: React.PropTypes.object.isRequired,
         cronoActions: React.PropTypes.object.isRequired,
-        creator: ImmutablePropTypes.map.isRequired,
+        data: ImmutablePropTypes.map.isRequired,
     }
-
-    //--------------------------------
-    //  EVENT HANDLING
-    //--------------------------------
 
     handleStart() {
-        const { creator } = this.props;
-        Actions[routesEnum.CRONO_SCENE]({ creator: creator, fuck: 'fuck' })
+        const { data, cronoActions } = this.props;
+        cronoActions.startCrono(data)
     }
-
-    handleHard() {
-        this.props.creatorActions.changeBase(this.props.creator.get('base') + 1)
-    }
-
-    handleEasy() {
-        this.props.creatorActions.changeBase(this.props.creator.get('base') - 1)
-    }
-
-    //--------------------------------
-    //  RENDER
-    //--------------------------------
 
     render() {
-        const { creator } = this.props
-        const ticks = creator.get('clock')
-        const base = creator.get('base')
-        const step = creator.get('step')
+        const { data } = this.props
+        const ticks = data.get('clock')
+        const base = data.get('base')
+        const step = data.get('step')
 
         return (
             <View style={styles.container}>
@@ -54,7 +32,7 @@ class TrainingTable extends React.PureComponent {
                     -- {base} : {ticks} --
                 </Text>
 
-                {creator.getIn([ 'table', 'steps' ]).map((item, idx) => {
+                {data.getIn([ 'table', 'steps' ]).map((item, idx) => {
                     return (
                         <View key={idx}>
                             <Crono  running={item.get('mode') == cronoMode.MODE_RUNNING}
@@ -74,38 +52,21 @@ class TrainingTable extends React.PureComponent {
                                 accessibilityLabel="Start"
                                 />
                     }
-
-                    {step < 0 &&
-                        <Button style={styles.button}
-                                onPress={this.handleHard.bind(this)}
-                                title="Hard"
-                                accessibilityLabel="Hard"
-                                />
-                    }
-
-                    {step < 0 &&
-                        <Button style={styles.button}
-                                onPress={this.handleEasy.bind(this)}
-                                title="Easy"
-                                accessibilityLabel="Easy"
-                                />
-                    }
-
                 </View>
             </View>
         )
     }
+
 }
 
-const stateToProps = (state) => {
+const stateToProps = (state, ownProps) => {
     return {
-        creator: state.creator
+        data: state.crono ? state.crono : ownProps.creator
     }
 }
 
 const dispatchToProps = (dispatch) => {
     return {
-        creatorActions: bindActionCreators(creatorActions, dispatch),
         cronoActions: bindActionCreators(cronoActions, dispatch)
     }
 }

@@ -1,50 +1,12 @@
 import Immutable from 'immutable'
-import { timerActions } from '../enums/reduxActions'
-import { cronoMode, cronoType } from '../enums/tableEnums'
 
-import notificationService from '../services/NotificationService.js'
+import { timerActionsEnum } from './creatorActions'
+import { cronoMode, cronoType } from 'app/crono/enums/tableEnums'
 
 export default train = (state = generateTable(5), action) => {
 
-    // CHANGE BASE
-    if (action.type == timerActions.TIMER_BASE) {
+    if (action.type == timerActionsEnum.CREATOR_TIMER_BASE) {
         return action.base < 5 ? generateTable(5) : generateTable(action.base)
-    }
-
-    // INIT TABLE
-    if (action.type == timerActions.TIMER_INIT) {
-        state = state.set('step', 0)
-        return state.setIn([ 'table', 'steps', 0, 'mode' ], cronoMode.MODE_RUNNING)
-    }
-
-    // HANDLE CLOCK TICK
-    if (action.type == timerActions.TIMER_TICK) {
-
-        // update clock
-        state = state.setIn([ 'clock' ], state.getIn([ 'clock' ]) + 1)
-
-        // change step time
-        let step = state.get('step')
-        let time = state.getIn([ 'table', 'steps', step, 'duration' ]) - 1
-        state = state.setIn([ 'table', 'steps', step, 'duration' ], time)
-
-        if (time == 30) {
-            notificationService.playF2();
-        }
-
-        if (time == 15) {
-            notificationService.playA2();
-        }
-
-        // finish step and run the next one
-        if (time == 0) {
-            notificationService.playC3();
-            state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_FINISHED)
-            step = step + 1
-            state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_RUNNING)
-        }
-
-        return state.set('step', step)
     }
 
     return state

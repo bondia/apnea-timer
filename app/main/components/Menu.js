@@ -22,19 +22,19 @@ class Menu extends React.PureComponent {
                     <View style={rowStyles}>
 
                         <MenuItem   title="Training Table Creator"
-                                    type="CONFIGURE_SCENE"
+                                    type={routesEnum.CREATE_TABLE_SCENE}
                                     onPress={this.handleNavigate.bind(this)}
                                     style={{ backgroundColor: '#008EE6' }}
                                     />
 
                         <MenuItem   title="My Tables"
-                                    type="MY_TABLES_SCENE"
+                                    type={routesEnum.MY_TABLES_SCENE}
                                     onPress={this.handleNavigate.bind(this)}
                                     style={{ backgroundColor: '#0084D6' }}
                                     />
 
                         <MenuItem   title="History"
-                                    type="HISTORY_SCENE"
+                                    type={routesEnum.HISTORY_SCENE}
                                     onPress={this.handleNavigate.bind(this)}
                                     style={{ backgroundColor: '#0070B5' }}
                                     />

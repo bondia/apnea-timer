@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { cronoType } from 'app/crono/enums/tableEnums'
 
-export default class Crono extends Component {
+export default class Crono extends React.PureComponent {
 
     static defaultProps = {
         running: false,
