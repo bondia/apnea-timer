@@ -6,19 +6,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import { cronoMode } from 'app/crono/enums/tableEnums'
 import * as timerActions from 'app/crono/redux/timerActions'
-import Crono from './Crono.js'
+import Crono from './Crono'
 
 class TrainingTable extends Component {
 
     static propTypes = {
         timerActions: PropTypes.object.isRequired,
         timer: ImmutablePropTypes.map.isRequired,
-    }
-
-    componentWillMount() {
-        // if (this.props.timer.get('finished', true)) {
-        //     this.props.timerActions.stopCrono()
-        // }
     }
 
     handleStart() {
@@ -62,26 +56,34 @@ class TrainingTable extends Component {
                 <View style={{ flex: 1, flexDirection: 'row'}}>
                     {step < 0 &&
                         <Button style={styles.button}
-                            onPress={this.handleStart.bind(this)}
-                            title="Start"
-                            accessibilityLabel="Start"
-                        />
+                                onPress={this.handleStart.bind(this)}
+                                title="Start"
+                                accessibilityLabel="Start"
+                                />
                     }
 
                     {step < 0 &&
                         <Button style={styles.button}
-                            onPress={this.handleHard.bind(this)}
-                            title="Hard"
-                            accessibilityLabel="Hard"
-                        />
+                                onPress={this.handleHard.bind(this)}
+                                title="Hard"
+                                accessibilityLabel="Hard"
+                                />
                     }
 
                     {step < 0 &&
                         <Button style={styles.button}
-                            onPress={this.handleEasy.bind(this)}
-                            title="Easy"
-                            accessibilityLabel="Easy"
-                        />
+                                onPress={this.handleEasy.bind(this)}
+                                title="Easy"
+                                accessibilityLabel="Easy"
+                                />
+                    }
+
+                    {step < 0 &&
+                        <Button style={styles.button}
+                                onPress={this.handleEasy.bind(this)}
+                                title="Start"
+                                accessibilityLabel="Easy"
+                                />
                     }
                 </View>
             </View>

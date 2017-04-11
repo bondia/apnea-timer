@@ -41,39 +41,11 @@ export default train = (state = generateTable(5), action) => {
             notificationService.playC3();
             state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_FINISHED)
             step = step + 1
-            // if (state.getIn([ 'table', 'steps' ]).size > step) {
-                state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_RUNNING)
-            // } else {
-                // state = state.set('finished', true)
-            // }
+            state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_RUNNING)
         }
 
         return state.set('step', step)
     }
-
-    // handle start of table and change of cronos
-    // if (action.type == 'crono_start') {
-
-    //     const stamp = new Date()
-    //     const step = state.get('step')
-
-    //     // update steps
-    //     state = state.updateIn([ 'table', 'steps' ], steps => {
-    //         return steps.map((step, key) => {
-    //             if (key == step) {
-    //                 return step.set('mode', 'finished')
-    //             }
-
-    //             if (key == step+1) {
-    //                 step = step.set('stamp', stamp)
-    //                 return step.set('mode', 'run')
-    //             }
-
-    //             return step
-    //         })
-    //     })
-    //     return state.set('step', step+1)
-    // }
 
     return state
 }

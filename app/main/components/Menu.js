@@ -11,7 +11,7 @@ class Menu extends React.PureComponent {
 
     handleNavigate(type) {
         if (Actions[type]) {
-            Actions[type]();
+            Actions[type]()
         }
     }
 
@@ -21,7 +21,7 @@ class Menu extends React.PureComponent {
                 <ScrollView>
                     <View style={rowStyles}>
 
-                        <MenuItem   title="Create table"
+                        <MenuItem   title="Training Table Creator"
                                     type="CONFIGURE_SCENE"
                                     onPress={this.handleNavigate.bind(this)}
                                     style={{ backgroundColor: '#008EE6' }}
