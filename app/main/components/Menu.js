@@ -21,7 +21,7 @@ class Menu extends React.PureComponent {
                 <ScrollView>
                     <View style={rowStyles}>
 
-                        <MenuItem   title="Training Table Creator"
+                        <MenuItem   title="Training Table Editor"
                                     type={routesEnum.CREATE_TABLE_SCENE}
                                     onPress={this.handleNavigate.bind(this)}
                                     style={{ backgroundColor: '#008EE6' }}
