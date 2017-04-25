@@ -6,10 +6,11 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import { Actions } from 'react-native-router-flux'
 
 import { routesEnum } from 'app/main/enums/routes'
-import { cronoMode } from 'app/crono/enums/tableEnums'
+import { cronoType, cronoMode } from 'app/crono/enums/tableEnums'
 
 import * as creatorActions from '../redux/creatorActions'
-import * as cronoActions from 'app/crono/redux/cronoActions'
+import * as timeUtils from 'app/crono/services/TimeUtils'
+
 
 import Crono from './Crono'
 
@@ -17,7 +18,6 @@ class TrainingTable extends React.PureComponent {
 
     static propTypes = {
         creatorActions: React.PropTypes.object.isRequired,
-        cronoActions: React.PropTypes.object.isRequired,
         creator: ImmutablePropTypes.map.isRequired,
     }
 
@@ -44,53 +44,52 @@ class TrainingTable extends React.PureComponent {
 
     render() {
         const { creator } = this.props
-        const ticks = creator.get('clock')
-        const base = creator.get('base')
-        const step = creator.get('step')
-
+        const holdtime = creator.get('holdtime')
         return (
             <View style={styles.container}>
-                <Text>
-                    -- {base} : {ticks} --
+                <Text style={{ margin: 5, fontSize: 20 }}>
+                    Hold time
+                </Text>
+                <Text style={{ margin: 5, fontSize: 20 }}>
+                    {timeUtils.formatSeconds(holdtime)}
                 </Text>
 
-                {creator.getIn([ 'table', 'steps' ]).map((item, idx) => {
-                    return (
-                        <View key={idx}>
-                            <Crono  running={item.get('mode') == cronoMode.MODE_RUNNING}
-                                    type={item.get('type')}
-                                    duration={item.get('duration')}
-                                    />
+                <Text style={{ marginTop: 20, fontSize: 20 }}>
+                    Recover time
+                </Text>
+                <View style={styles.timers}>
+                    {creator.getIn([ 'table', 'steps' ]).map((item, idx) => {
+                        return item.get('type') != cronoType.TYPE_PREPARE ? null : (
+                            <View key={idx} style={styles.timer}>
+                                <Crono  index={idx}
+                                        running={item.get('mode') == cronoMode.MODE_RUNNING}
+                                        type={item.get('type')}
+                                        duration={item.get('duration')}
+                                        />
 
-                        </View>
-                    )
-                })}
+                            </View>
+                        )
+                    })}
+                </View>
 
                 <View style={{ flex: 1, flexDirection: 'row'}}>
-                    {step < 0 &&
-                        <Button style={styles.button}
-                                onPress={this.handleStart.bind(this)}
-                                title="Start"
-                                accessibilityLabel="Start"
-                                />
-                    }
+                    <Button style={styles.button}
+                            onPress={this.handleStart.bind(this)}
+                            title="Start"
+                            accessibilityLabel="Start"
+                            />
 
-                    {step < 0 &&
-                        <Button style={styles.button}
-                                onPress={this.handleHard.bind(this)}
-                                title="Hard"
-                                accessibilityLabel="Hard"
-                                />
-                    }
+                    <Button style={styles.button}
+                            onPress={this.handleHard.bind(this)}
+                            title="Hard"
+                            accessibilityLabel="Hard"
+                            />
 
-                    {step < 0 &&
-                        <Button style={styles.button}
-                                onPress={this.handleEasy.bind(this)}
-                                title="Easy"
-                                accessibilityLabel="Easy"
-                                />
-                    }
-
+                    <Button style={styles.button}
+                            onPress={this.handleEasy.bind(this)}
+                            title="Easy"
+                            accessibilityLabel="Easy"
+                            />
                 </View>
             </View>
         )
@@ -106,7 +105,6 @@ const stateToProps = (state) => {
 const dispatchToProps = (dispatch) => {
     return {
         creatorActions: bindActionCreators(creatorActions, dispatch),
-        cronoActions: bindActionCreators(cronoActions, dispatch)
     }
 }
 
@@ -116,16 +114,18 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: 64,
+        padding: 25,
         justifyContent: 'center',
         alignItems: 'center',
     },
+    timers: {
+        margin: 10
+
+    },
+    timer: {
+
+    },
     button: {
         flex: 3,
-        borderColor: 'red',
-        backgroundColor: '#fff',
-        borderWidth: 1,
-        padding: 10,
-        width: 100,
-        height: 100
     }
 })

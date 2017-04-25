@@ -3,10 +3,11 @@ import { StyleSheet, Text, View, ScrollView, Button } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import { Actions } from 'react-native-router-flux'
 
 import { cronoMode } from 'app/crono/enums/tableEnums'
 import * as cronoActions from 'app/crono/redux/cronoActions'
-import Crono from 'app/creator/components/Crono'
+import Crono from './Crono'
 
 class TrainingTable extends React.PureComponent {
 
@@ -16,8 +17,13 @@ class TrainingTable extends React.PureComponent {
     }
 
     handleStart() {
-        const { data, cronoActions } = this.props;
+        const { data, cronoActions } = this.props
         cronoActions.startCrono(data)
+    }
+
+    handleFinish() {
+        Actions.pop()
+        this.props.cronoActions.finishCrono()
     }
 
     render() {
@@ -52,6 +58,12 @@ class TrainingTable extends React.PureComponent {
                                 accessibilityLabel="Start"
                                 />
                     }
+
+                        <Button style={styles.button}
+                                onPress={this.handleFinish.bind(this)}
+                                title="Finish"
+                                accessibilityLabel="Finish"
+                                />
                 </View>
             </View>
         )

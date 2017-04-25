@@ -27,7 +27,8 @@ export default class AppRouter extends React.PureComponent {
                     <Scene  key={routesEnum.CRONO_SCENE}
                             component={CronoScene}
                             title="Training Table Creator"
-                            type={ActionConst.replace}
+                            type={ActionConst.REPLACE}
+                            hideNavBar
                             />
 
                 </Scene>

@@ -3,8 +3,6 @@ Sound.setCategory('Playback')
 
 class NotificationService {
 
-
-
     constructor() {
         this.a2 = new Sound('a2.mp3', Sound.MAIN_BUNDLE, (error) => { })
         this.f2 = new Sound('f2.mp3', Sound.MAIN_BUNDLE, (error) => { })

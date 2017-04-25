@@ -9,13 +9,18 @@ export default train = (state = generateTable(5), action) => {
         return action.base < 5 ? generateTable(5) : generateTable(action.base)
     }
 
+    if (action.type == timerActionsEnum.CREATOR_ITEM_CHANGE) {
+        return state.updateIn([ 'table', 'steps', action.key ], item => item.set('duration', item.get('duration') + action.amount ))
+    }
+
     return state
 }
 
 function generateTable(base) {
-    let state = Immutable.fromJS({
+    const state = Immutable.fromJS({
         step: -1,
         base: base,
+        holdtime: 12*base,
         finished: false,
         clock: 0,
         table: {

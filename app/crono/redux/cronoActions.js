@@ -16,6 +16,12 @@ function startCrono(data) {
     }
 }
 
+function finishCrono() {
+    clearInterval(timer);
+    timer = null;
+    return { type: cronoActionsEnum.TIMER_FINISHED }
+}
+
 function initTable(data) {
     return { type: cronoActionsEnum.TIMER_INIT, data }
 }
@@ -24,4 +30,4 @@ function handleTick(text) {
     return { type: cronoActionsEnum.TIMER_TICK }
 }
 
-export { cronoActionsEnum, startCrono }
+export { cronoActionsEnum, startCrono, finishCrono }

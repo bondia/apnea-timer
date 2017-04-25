@@ -43,5 +43,9 @@ export default train = (state = null, action) => {
         return state.set('step', step)
     }
 
+    if (action.type == cronoActionsEnum.TIMER_FINISHED) {
+        return null
+    }
+
     return state
 }
