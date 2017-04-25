@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -8,7 +8,7 @@ import * as editorActions from '../redux/editorActions'
 import { cronoType } from 'app/crono/enums/tableEnums'
 import * as timeUtils from 'app/crono/services/TimeUtils'
 
-class Crono extends React.PureComponent {
+class EditorTimerView extends React.PureComponent {
 
     static defaultProps = {
         editorActions: React.PropTypes.object.isRequired,
@@ -40,9 +40,6 @@ class Crono extends React.PureComponent {
                 textAlign: 'center',
                 margin: 5,
                 width: 90
-            },
-            button: {
-
             }
         })
 
@@ -75,5 +72,5 @@ const dispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(null, dispatchToProps)(Crono)
+export default connect(null, dispatchToProps)(EditorTimerView)
 
