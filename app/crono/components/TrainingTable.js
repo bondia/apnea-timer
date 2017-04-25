@@ -73,7 +73,7 @@ class TrainingTable extends React.PureComponent {
 
 const stateToProps = (state, ownProps) => {
     return {
-        data: state.crono ? state.crono : ownProps.creator
+        data: state.crono ? state.crono : ownProps.editor
     }
 }
 

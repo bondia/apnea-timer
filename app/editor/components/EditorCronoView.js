@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Button } from 'react-native'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import * as creatorActions from '../redux/creatorActions'
+import * as editorActions from '../redux/editorActions'
 
 import { cronoType } from 'app/crono/enums/tableEnums'
 import * as timeUtils from 'app/crono/services/TimeUtils'
@@ -11,20 +11,20 @@ import * as timeUtils from 'app/crono/services/TimeUtils'
 class Crono extends React.PureComponent {
 
     static defaultProps = {
-        creatorActions: React.PropTypes.object.isRequired,
+        editorActions: React.PropTypes.object.isRequired,
         running: false,
         duration: 0,
         type: 'prepare',
     }
 
     handleEasy() {
-        const { index, creatorActions } = this.props
-        creatorActions.changeItem(index, -5)
+        const { index, editorActions } = this.props
+        editorActions.changeItem(index, -5)
     }
 
     handleHard() {
-        const { index, creatorActions } = this.props
-        creatorActions.changeItem(index, 5)
+        const { index, editorActions } = this.props
+        editorActions.changeItem(index, 5)
     }
 
     render() {
@@ -53,15 +53,15 @@ class Crono extends React.PureComponent {
                 </Text>
 
                 <Button onPress={this.handleEasy.bind(this)}
-                        color="#841584"
                         title="-"
                         accessibilityLabel="-"
+                        color="grey"
                         />
 
                 <Button onPress={this.handleHard.bind(this)}
-                        color="#841584"
                         title="+"
                         accessibilityLabel="+"
+                        color="grey"
                         />
             </View>
         )
@@ -71,7 +71,7 @@ class Crono extends React.PureComponent {
 
 const dispatchToProps = (dispatch) => {
     return {
-        creatorActions: bindActionCreators(creatorActions, dispatch)
+        editorActions: bindActionCreators(editorActions, dispatch)
     }
 }
 

@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 
-import { timerActionsEnum } from './creatorActions'
+import { timerActionsEnum } from './editorActions'
 import { cronoMode, cronoType } from 'app/crono/enums/tableEnums'
 
 export default train = (state = generateTable(5), action) => {

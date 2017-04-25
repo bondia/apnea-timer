@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 
-import creatorReducer from 'app/creator/redux/creatorReducer'
+import editorReducer from 'app/editor/redux/editorReducer'
 import cronoReducer from 'app/crono/redux/cronoReducer'
 
 export default combineReducers({
-    creator: creatorReducer,
+    editor: editorReducer,
     crono: cronoReducer
 
 })

@@ -4,7 +4,7 @@ import { Router, Scene, ActionConst } from 'react-native-router-flux'
 import { routesEnum } from './main'
 
 import MainScene from './main/components/MainScene'
-import CreatorScene from './creator/components/CreatorScene'
+import EditorScene from './editor/components/EditorScene'
 import CronoScene from './crono/components/CronoScene'
 
 export default class AppRouter extends React.PureComponent {
@@ -20,7 +20,7 @@ export default class AppRouter extends React.PureComponent {
                             />
 
                     <Scene  key={routesEnum.CREATE_TABLE_SCENE}
-                            component={CreatorScene}
+                            component={EditorScene}
                             title="Training Table Creator"
                             />
 
