@@ -12,8 +12,10 @@ class MenuItem extends React.PureComponent {
     render() {
         const { title, type, onPress, style } = this.props
         return (
-            <TouchableHighlight onPress={() => onPress(type)}>
-                <Text style={{ ...style, ...baseStyles }}>
+            <TouchableHighlight onPress={() => onPress(type)}
+                                style={{ ...style, ...touchableStyles }}
+                                >
+                <Text style={ baseStyles }>
                     {title}
                 </Text>
             </TouchableHighlight>
@@ -21,9 +23,15 @@ class MenuItem extends React.PureComponent {
     }
 }
 
+const touchableStyles = {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width:'100%',
+    height: '100%'
+}
+
 const baseStyles = {
-    paddingTop: 60,
-    paddingBottom: 60,
     fontSize: 30,
     color: 'azure',
     textAlign: 'center',

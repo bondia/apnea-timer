@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, ScrollView } from 'react-native'
+import { View/*, ScrollView*/ } from 'react-native'
 
 import { routesEnum } from '../enums/routes'
 import { Actions } from 'react-native-router-flux'
@@ -18,7 +18,9 @@ class Menu extends React.PureComponent {
     render() {
         return (
             <View style={{ ...this.props.style, ...paneStyles }}>
+               {/*
                 <ScrollView>
+               */}
                     <View style={rowStyles}>
 
                         <MenuItem   title="Training Table Editor"
@@ -40,11 +42,15 @@ class Menu extends React.PureComponent {
                                     />
 
                     </View>
-                </ScrollView>
+               {
+               /*
+               </ScrollView>
+               */}
             </View>
         )
     }
 }
+
 const paneStyles = {
     flex: 1,
 }
