@@ -1,33 +1,38 @@
 import React from 'react'
 import { StyleSheet, Text, View, Button } from 'react-native'
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 
 import * as editorActions from '../redux/editorActions'
-
 import { cronoType } from 'app/crono/enums/tableEnums'
 import * as timeUtils from 'app/crono/services/TimeUtils'
+import LongTouchButton from 'app/common/components/LongTouchButton'
 
-class EditorTimerView extends React.PureComponent {
+export default class EditorTimerView extends React.PureComponent {
+
+    static propTypes = {
+        increaseAction: React.PropTypes.func.isRequired,
+        decreaseAction: React.PropTypes.func.isRequired,
+    };
 
     static defaultProps = {
-        editorActions: React.PropTypes.object.isRequired,
         running: false,
         duration: 0,
         type: 'prepare',
+        increaseAction: null,
+        decreaseAction: null
+    };
+
+    handleIncrease(amount) {
+        const { index, increaseAction } = this.props
+        increaseAction(index, amount)
     }
 
-    handleEasy() {
-        const { index, editorActions } = this.props
-        editorActions.changeItem(index, -5)
-    }
-
-    handleHard() {
-        const { index, editorActions } = this.props
-        editorActions.changeItem(index, 5)
+    handleDecrease(amount) {
+        const { index, decreaseAction } = this.props
+        decreaseAction(index, amount)
     }
 
     render() {
+        const self = this;
         const { running, duration, type } = this.props
         const styles = StyleSheet.create({
             container: {
@@ -49,28 +54,16 @@ class EditorTimerView extends React.PureComponent {
                     {timeUtils.formatSeconds(duration)}
                 </Text>
 
-                <Button onPress={this.handleEasy.bind(this)}
-                        title="-"
-                        accessibilityLabel="-"
-                        color="grey"
-                        />
+                <LongTouchButton    title="-"
+                                    onPress={() => self.handleDecrease(1) }
+                                    onPressLong={() => self.handleDecrease(5) }
+                                    />
 
-                <Button onPress={this.handleHard.bind(this)}
-                        title="+"
-                        accessibilityLabel="+"
-                        color="grey"
-                        />
+                <LongTouchButton    title="+"
+                                    onPress={() => self.handleIncrease(1) }
+                                    onPressLong={() => self.handleIncrease(5) }
+                                    />
             </View>
         )
     }
 }
-
-
-const dispatchToProps = (dispatch) => {
-    return {
-        editorActions: bindActionCreators(editorActions, dispatch)
-    }
-}
-
-export default connect(null, dispatchToProps)(EditorTimerView)
-

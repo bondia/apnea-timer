@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { Actions } from 'react-native-router-flux'
 
+import LongTouchButton from 'app/common/components/LongTouchButton'
+
 import { routesEnum } from 'app/main/enums/routes'
 
 import * as editorActions from '../redux/editorActions'
@@ -22,15 +24,23 @@ class EditorButtonSet extends React.PureComponent {
 
     handleStart() {
         const { editor } = this.props;
-        Actions[routesEnum.CRONO_SCENE]({ editor: editor, fuck: 'fuck' })
+        Actions[routesEnum.CRONO_SCENE]({ editor: editor })
     }
 
     handleHard() {
         this.props.editorActions.changeBase(this.props.editor.get('base') + 1)
     }
 
+    handleHardLong() {
+        this.props.editorActions.changeBase(this.props.editor.get('base') + 5)
+    }
+
     handleEasy() {
         this.props.editorActions.changeBase(this.props.editor.get('base') - 1)
+    }
+
+    handleEasyLong() {
+        this.props.editorActions.changeBase(this.props.editor.get('base') - 5)
     }
 
     //--------------------------------
@@ -59,6 +69,12 @@ class EditorButtonSet extends React.PureComponent {
                         title="Easy"
                         accessibilityLabel="Easy"
                         />
+{/*
+                <LongTouchButton
+                        onPress={this.handleHard.bind(this)}
+                        onPressLong={this.handleHardLong.bind(this)}
+                        />
+*/}
             </View>
         )
     }

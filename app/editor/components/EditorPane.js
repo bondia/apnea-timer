@@ -25,7 +25,7 @@ class EditorPane extends React.PureComponent {
                 <Text style={{ margin: 5, fontSize: 20 }}>
                     Hold time
                 </Text>
-                <Text style={{ margin: 5, fontSize: 20 }}>
+                <Text style={{ margin: 5, fontSize: 50 }}>
                     {timeUtils.formatSeconds(holdtime)}
                 </Text>
 
