@@ -50,10 +50,27 @@ function changeBase(state, value) {
 }
 
 function updateDurationAtKey(state, key, amount) {
-    state = state.updateIn([ 'table', 'steps' ], is => {
-        return is.map(i => i.get('pos') == key ? i.set('duration', i.get('duration') + amount) : i)
+    // find item
+    const item = state.getIn([ 'table', 'steps' ]).find(i => i.get('pos') === key);
+    if (!item) {
+        return state
+    }
+    // decide new duration
+    const duration = amount + item.get('duration')
+    // update all durations
+    state = state.updateIn([ 'table', 'steps' ], items => {
+        return items.map(i => decideSetDuration(i, key, duration))
     })
     return setTableDuration(state)
+}
+
+function decideSetDuration(item, key, duration) {
+    if (item.get('pos') < key && item.get('duration') < duration ||
+        item.get('pos') === key ||
+        item.get('pos') > key && item.get('duration') > duration) {
+        return item.set('duration', duration)
+    }
+    return item
 }
 
 function setTableDuration(data = null) {
