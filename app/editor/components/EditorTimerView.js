@@ -5,6 +5,7 @@ import * as editorActions from '../redux/editorActions'
 import { cronoType } from 'app/crono/enums/tableEnums'
 import * as timeUtils from 'app/crono/services/TimeUtils'
 import LongTouchButton from 'app/common/components/LongTouchButton'
+import TextComponent from 'app/main/components/TextComponent'
 
 export default class EditorTimerView extends React.PureComponent {
 
@@ -17,6 +18,7 @@ export default class EditorTimerView extends React.PureComponent {
         running: false,
         duration: 0,
         type: 'prepare',
+        setNumber: 0,
         increaseAction: null,
         decreaseAction: null
     };
@@ -33,36 +35,55 @@ export default class EditorTimerView extends React.PureComponent {
 
     render() {
         const self = this;
-        const { running, duration, type } = this.props
+        const { running, duration, type, setNumber } = this.props
+
         const styles = StyleSheet.create({
             container: {
+                flex: 1,
                 flexDirection: 'row',
+                width: '100%',
+            },
+            setNumber: {
+                flex: 1,
+                textAlign: 'center',
+                paddingTop: 20,
+            },
+            button: {
+                flex: 2,
             },
             clock: {
+                paddingTop: 20,
+                flex: 3,
                 color: type == cronoType.TYPE_PREPARE ? 'green' : 'red',
-                fontSize: running ? 50 : 15,
-                fontFamily: 'futura',
+                fontSize: running ? 50 : 30,
+                lineHeight: running ? 50 : 30,
                 textAlign: 'center',
-                margin: 5,
-                width: 90
             }
         })
 
         return (
             <View style={styles.container}>
-                <Text style={styles.clock}>
-                    {timeUtils.formatSeconds(duration)}
-                </Text>
+
+                <TextComponent style={styles.setNumber}>
+                    {setNumber}
+                </TextComponent>
 
                 <LongTouchButton    title="-"
                                     onPress={() => self.handleDecrease(1) }
                                     onPressLong={() => self.handleDecrease(5) }
+                                    style={styles.button}
                                     />
 
                 <LongTouchButton    title="+"
                                     onPress={() => self.handleIncrease(1) }
                                     onPressLong={() => self.handleIncrease(5) }
+                                    style={styles.button}
                                     />
+
+                <TextComponent style={styles.clock}>
+                    {timeUtils.formatSeconds(duration)}
+                </TextComponent>
+
             </View>
         )
     }

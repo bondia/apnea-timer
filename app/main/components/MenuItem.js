@@ -1,5 +1,7 @@
 import React from 'react'
-import { Text, TouchableHighlight } from 'react-native'
+import { View, TouchableHighlight, StyleSheet } from 'react-native'
+import TextComponent from './TextComponent'
+import { FONT_COLOR_LIGHT } from '../styles/commonStyles'
 
 class MenuItem extends React.PureComponent {
 
@@ -13,30 +15,32 @@ class MenuItem extends React.PureComponent {
         const { title, type, onPress, style } = this.props
         return (
             <TouchableHighlight onPress={() => onPress(type)}
-                                style={{ ...style, ...touchableStyles }}
+                                style={[ style, styles.touchableStyles ]}
                                 >
-                <Text style={ baseStyles }>
-                    {title}
-                </Text>
+                <View>
+                    <TextComponent style={ styles.baseStyles }>
+                        {title}
+                    </TextComponent>
+                </View>
             </TouchableHighlight>
         )
     }
 }
 
-const touchableStyles = {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    width:'100%',
-    height: '100%'
-}
+const styles = StyleSheet.create({
+    touchableStyles: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
 
-const baseStyles = {
-    fontSize: 30,
-    color: 'azure',
-    textAlign: 'center',
-    fontFamily: 'futura',
-    alignItems:'center'
-}
+    baseStyles: {
+        fontSize: 30,
+        color: FONT_COLOR_LIGHT,
+        textAlign: 'center',
+        alignItems:'center'
+    }
+})
+
 
 export default MenuItem

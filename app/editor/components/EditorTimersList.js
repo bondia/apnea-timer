@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, View, ScrollView } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -19,32 +19,25 @@ class EditorTimersList extends React.PureComponent {
     render() {
         const { steps, editorActions } = this.props
         return (
-            <View style={styles.timers}>
+            <ScrollView style={{ marginTop: 25, marginBottom: 0 }}>
                 {steps.map((item, idx) => {
                     return (
-                        <View key={idx} style={styles.timer}>
+                        <View key={idx} >
                             <EditorTimerView    index={ item.get('pos') }
                                                 running={ item.get('mode') == cronoMode.MODE_RUNNING }
                                                 type={ item.get('type') }
                                                 duration={ item.get('duration') }
+                                                setNumber={ idx+1 }
                                                 increaseAction={ editorActions.increaseTimeItem }
                                                 decreaseAction={ editorActions.decreaseTimeItem }
                                                 />
                         </View>
                     )
                 })}
-            </View>
+            </ScrollView>
         )
     }
 }
-
-const styles = StyleSheet.create({
-    timers: {
-        margin: 10
-    },
-    timer: {
-    }
-})
 
 const dispatchToProps = (dispatch) => {
     return {

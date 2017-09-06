@@ -1,8 +1,9 @@
 import React from 'react'
-import { View/*, ScrollView*/ } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 
 import { routesEnum } from '../enums/routes'
 import { Actions } from 'react-native-router-flux'
+import { COLOR_LIGHT, COLOR_NORMAL, COLOR_DARK } from 'app/main/styles/commonStyles'
 
 import MenuItem from './MenuItem'
 
@@ -16,48 +17,41 @@ class Menu extends React.PureComponent {
     }
 
     render() {
+        const { style } = this.props
         return (
-            <View style={{ ...this.props.style, ...paneStyles }}>
-               {/*
-                <ScrollView>
-               */}
-                    <View style={rowStyles}>
+            <View style={[ style, styles.mainStyles ]}>
 
-                        <MenuItem   title="Training Table Editor"
-                                    type={routesEnum.CREATE_TABLE_SCENE}
-                                    onPress={this.handleNavigate.bind(this)}
-                                    style={{ backgroundColor: '#008EE6' }}
-                                    />
+                <MenuItem   title="Training Table Editor"
+                            type={routesEnum.CREATE_TABLE_SCENE}
+                            onPress={this.handleNavigate.bind(this)}
+                            style={{ backgroundColor: COLOR_LIGHT }}
+                            />
 
-                        <MenuItem   title="My Tables"
-                                    type={routesEnum.MY_TABLES_SCENE}
-                                    onPress={this.handleNavigate.bind(this)}
-                                    style={{ backgroundColor: '#0084D6' }}
-                                    />
+                <MenuItem   title="My Tables"
+                            type={routesEnum.MY_TABLES_SCENE}
+                            onPress={this.handleNavigate.bind(this)}
+                            style={{ backgroundColor: COLOR_NORMAL }}
+                            />
 
-                        <MenuItem   title="History"
-                                    type={routesEnum.HISTORY_SCENE}
-                                    onPress={this.handleNavigate.bind(this)}
-                                    style={{ backgroundColor: '#0070B5' }}
-                                    />
+                <MenuItem   title="History"
+                            type={routesEnum.HISTORY_SCENE}
+                            onPress={this.handleNavigate.bind(this)}
+                            style={{ backgroundColor: COLOR_DARK }}
+                            />
 
-                    </View>
-               {
-               /*
-               </ScrollView>
-               */}
             </View>
         )
     }
 }
 
-const paneStyles = {
-    flex: 1,
-}
+const styles = StyleSheet.create({
+    mainStyles: {
+        flex: 1
+    },
 
-const rowStyles = {
-    flex: 1,
-    backgroundColor: 'red'
-}
+    rowStyles: {
+        flex: 1
+    }
+})
 
 export default Menu

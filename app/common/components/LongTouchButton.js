@@ -34,15 +34,18 @@ export default class LongTouchButton extends React.PureComponent {
     render() {
         const { title } = this.props
         return (
-            <View style={ styles.container }>
+            <View style={[ this.props.style, styles.container ]}>
+
                 <TouchableWithoutFeedback   onPressIn={this.handlePressIn.bind(this)}
                                             onPressOut={this.handlePressOut.bind(this)}
                                             >
+
                     <View style={styles.button}>
                         <Text style={styles.text}>
                             {title}
                         </Text>
                     </View>
+
                 </TouchableWithoutFeedback>
             </View>
         );
@@ -50,20 +53,18 @@ export default class LongTouchButton extends React.PureComponent {
 }
 
 var styles = StyleSheet.create({
-    container: {
-        // flex: 1,
-        // flexDirection: 'column',
-        // alignItems: 'center',
-        // justifyContent: 'center'
-    },
+    container: { },
     button: {
-        padding: 10,
-        // borderWidth: 1,
-        // borderColor: '#111'
+        padding: 20,
+        borderWidth: 1,
+        borderColor: '#111',
+        margin: 5
     },
     text: {
         backgroundColor: 'transparent',
-        color: '#111'
+        color: '#111',
+        textAlign: 'center',
+        fontSize: 20
     }
 });
 

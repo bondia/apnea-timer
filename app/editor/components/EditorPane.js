@@ -1,13 +1,16 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
+import { FONT_COLOR_GREY } from 'app/main/styles/commonStyles'
 import { cronoType } from 'app/crono/enums/tableEnums'
-import * as timeUtils from 'app/crono/services/TimeUtils'
 
+import TextComponent from 'app/main/components/TextComponent'
+
+import EditorPaneHeader from './EditorPaneHeader'
 import EditorTimersList from './EditorTimersList'
-import EditorButtonsSet from './EditorButtonsSet'
+import StartButton from './StartButton'
 
 class EditorPane extends React.PureComponent {
 
@@ -16,46 +19,54 @@ class EditorPane extends React.PureComponent {
     }
 
     render() {
-        const { editor } = this.props
-        const holdtime = editor.get('holdtime')
+        const { editor, style } = this.props
         const steps = editor.getIn([ 'table', 'steps' ]).filter(i => i.get('type') == cronoType.TYPE_PREPARE)
 
         return (
-            <View style={styles.container}>
-                <Text style={{ margin: 5, fontSize: 20 }}>
-                    Hold time
-                </Text>
-                <Text style={{ margin: 5, fontSize: 50 }}>
-                    {timeUtils.formatSeconds(holdtime)}
-                </Text>
+            <View style={[ style, baseStyles.main ]}>
 
-                <Text style={{ marginTop: 20, fontSize: 20 }}>
-                    Recover time
-                </Text>
+                <EditorPaneHeader editor={editor} />
 
-                <EditorTimersList steps={steps} />
+                <View style={baseStyles.setsListBlock}>
+                    <TextComponent style={baseStyles.label}>
+                        RECOVER TIME
+                    </TextComponent>
 
-                <EditorButtonsSet />
+                    <EditorTimersList steps={steps} />
+                </View>
+
+                <StartButton editor={editor} />
 
             </View>
         )
     }
 }
 
-const stateToProps = (state) => {
+const baseStyles = StyleSheet.create({
+
+    main: {
+        flex: 1,
+    },
+
+    label: {
+        marginTop: 25,
+        textAlign: 'center',
+        width: '100%',
+        color: FONT_COLOR_GREY
+
+    },
+
+    setsListBlock: {
+        flex: 4
+    }
+
+})
+
+
+const stateToProps = (state, props) => {
     return {
         editor: state.editor
     }
 }
 
 export default connect(stateToProps)(EditorPane)
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 64,
-        padding: 25,
-        justifyContent: 'center',
-        alignItems: 'center',
-    }
-})
