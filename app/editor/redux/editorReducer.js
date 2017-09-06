@@ -1,10 +1,10 @@
 import { timerActionsEnum } from './editorActions'
-import { createTable, updateDurationAtKey } from '../services/tableMutations'
+import { createTable, changeBase, updateDurationAtKey } from '../services/tableMutations'
 
 export default train = (state = createTable(120), action) => {
 
     if (action.type == timerActionsEnum.CREATOR_TIMER_BASE) {
-        return action.base < 5 ? createTable(5) : createTable(action.base)
+        return changeBase(state, action.base)
     }
 
     if (action.type == timerActionsEnum.CREATOR_ITEM_CHANGE) {

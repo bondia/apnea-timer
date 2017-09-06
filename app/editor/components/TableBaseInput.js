@@ -14,10 +14,6 @@ class TableBaseInput extends React.PureComponent {
         editor: ImmutablePropTypes.map.isRequired,
     }
 
-    //--------------------------------
-    //  EVENT HANDLING
-    //--------------------------------
-
     handleIncrease(amount) {
         this.props.editorActions.changeBase(this.props.editor.get('base') + amount)
     }
@@ -25,10 +21,6 @@ class TableBaseInput extends React.PureComponent {
     handleDecrease(amount) {
         this.props.editorActions.changeBase(this.props.editor.get('base') - amount)
     }
-
-    //--------------------------------
-    //  RENDER
-    //--------------------------------
 
     render() {
         const self = this
@@ -75,4 +67,3 @@ const dispatchToProps = (dispatch) => {
 }
 
 export default connect(stateToProps, dispatchToProps)(TableBaseInput)
-

@@ -7,7 +7,6 @@ import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
 import { cronoType } from 'app/crono/enums/tableEnums'
 
 import TextComponent from 'app/common/components/TextComponent'
-
 import EditorPaneHeader from './EditorPaneHeader'
 import EditorTimersList from './EditorTimersList'
 import StartButton from './StartButton'
@@ -53,7 +52,6 @@ const baseStyles = StyleSheet.create({
         textAlign: 'center',
         width: '100%',
         color: FONT_COLOR_GREY
-
     },
 
     setsListBlock: {

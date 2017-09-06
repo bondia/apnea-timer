@@ -41,6 +41,14 @@ function createTable(base = 1) {
     return setTableDuration(state)
 }
 
+function changeBase(state, value) {
+    const base = value < 5 ? 5 : value
+    state = state.set('base', base)
+    state = state.set('holdtime', base)
+    state = state.updateIn([ 'table', 'steps' ], s => s.map(s => s.get('type') == cronoType.TYPE_HOLD ? s.set('duration', base) : s))
+    return setTableDuration(state)
+}
+
 function updateDurationAtKey(state, key, amount) {
     state = state.updateIn([ 'table', 'steps' ], is => {
         return is.map(i => i.get('pos') == key ? i.set('duration', i.get('duration') + amount) : i)
@@ -56,4 +64,4 @@ function setTableDuration(data = null) {
     return data.set('duration', duration)
 }
 
-export { createTable, updateDurationAtKey, setTableDuration }
+export { createTable, changeBase, updateDurationAtKey, setTableDuration }
