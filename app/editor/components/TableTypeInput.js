@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
+import * as enums from '../enums'
 
 import * as editorActions from '../redux/editorActions'
 import LongTouchButton from 'app/common/components/LongTouchButton'
@@ -24,7 +25,8 @@ class TableTypeInput extends React.PureComponent {
 
     render() {
         const self = this
-        const { style } = this.props
+        const { editor, style } = this.props
+        const type = editor.get('type')
 
         return (
             <View style={[ this.props.style, baseStyles.container]}>
@@ -32,11 +34,12 @@ class TableTypeInput extends React.PureComponent {
                <LongTouchButton     title="O2"
                                     onPress={() => self.handleO2() }
                                     style={baseStyles.button}
-                                    active={true}
+                                    active={enums.TABLE_TYPE_CO2 === type}
                                     />
 
                 <LongTouchButton    title="CO2"
                                     onPress={() => self.handleCO2() }
+                                    active={enums.TABLE_TYPE_O2 === type}
                                     style={baseStyles.button}
                                     />
 

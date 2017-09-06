@@ -1,8 +1,10 @@
 import Immutable from 'immutable'
 import { cronoMode, cronoType } from 'app/crono/enums/tableEnums'
+import * as enums from '../enums'
 
-function createTable(base = 1) {
+function createTable(base = 1, type = enums.TABLE_TYPE_CO2) {
     const state = Immutable.fromJS({
+        type: type,
         step: -1,
         base: base,
         duration: 0,
