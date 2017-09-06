@@ -63,10 +63,16 @@ function updateDurationAtKey(state, key, amount) {
     state = state.updateIn([ 'table', 'steps' ], items => {
         return items.map(i => decideSetDuration(i, key, duration))
     })
+    // recalculate table duration
     return setTableDuration(state)
 }
 
 function decideSetDuration(item, key, duration) {
+    // prevent depending on type
+    if (item.get('type') === cronoType.TYPE_HOLD) {
+        return item
+    }
+    // set duration in case needed
     if (item.get('pos') < key && item.get('duration') < duration ||
         item.get('pos') === key ||
         item.get('pos') > key && item.get('duration') > duration) {
