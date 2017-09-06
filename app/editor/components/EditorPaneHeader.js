@@ -3,9 +3,9 @@ import { View, StyleSheet } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import * as timeUtils from 'app/crono/services/TimeUtils'
-import { FONT_COLOR_GREY, FONT_SIZE_L } from 'app/main/styles/commonStyles'
+import { FONT_COLOR_GREY, FONT_SIZE_L } from 'app/common/styles/commonStyles'
 
-import TextComponent from 'app/main/components/TextComponent'
+import TextComponent from 'app/common/components/TextComponent'
 import TableBaseInput from './TableBaseInput'
 
 export default class EditorPaneHeader extends React.PureComponent {

@@ -4,7 +4,7 @@ import { StyleSheet } from 'react-native'
 import { ScrollView } from 'react-native'
 import EditorPane from './EditorPane'
 
-import { HEADER_HEIGHT } from 'app/main/styles/commonStyles'
+import { HEADER_HEIGHT } from 'app/common/styles/commonStyles'
 
 export default class EditorScene extends React.PureComponent {
 

@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet } from 'react-native'
 
 import { routesEnum } from '../enums/routes'
-import { HEADER_HEIGHT } from '../styles/commonStyles'
+import { HEADER_HEIGHT } from 'app/common/styles/commonStyles'
 
 import Menu from './Menu'
 

@@ -3,10 +3,10 @@ import { View, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import { FONT_COLOR_GREY } from 'app/main/styles/commonStyles'
+import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
 import { cronoType } from 'app/crono/enums/tableEnums'
 
-import TextComponent from 'app/main/components/TextComponent'
+import TextComponent from 'app/common/components/TextComponent'
 
 import EditorPaneHeader from './EditorPaneHeader'
 import EditorTimersList from './EditorTimersList'

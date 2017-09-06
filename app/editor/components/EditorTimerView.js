@@ -5,7 +5,7 @@ import * as editorActions from '../redux/editorActions'
 import { cronoType } from 'app/crono/enums/tableEnums'
 import * as timeUtils from 'app/crono/services/TimeUtils'
 import LongTouchButton from 'app/common/components/LongTouchButton'
-import TextComponent from 'app/main/components/TextComponent'
+import TextComponent from 'app/common/components/TextComponent'
 
 export default class EditorTimerView extends React.PureComponent {
 

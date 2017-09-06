@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 
 import { routesEnum } from '../enums/routes'
 import { Actions } from 'react-native-router-flux'
-import { COLOR_LIGHT, COLOR_NORMAL, COLOR_DARK } from 'app/main/styles/commonStyles'
+import { COLOR_LIGHT, COLOR_NORMAL, COLOR_DARK } from 'app/common/styles/commonStyles'
 
 import MenuItem from './MenuItem'
 

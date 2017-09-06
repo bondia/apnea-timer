@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 
 import TrainingTable from './TrainingTable'
 
-import { HEADER_HEIGHT } from 'app/main/styles/commonStyles'
+import { HEADER_HEIGHT } from 'app/common/styles/commonStyles'
 
 export default class CreatorScene extends React.PureComponent {
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { View, TouchableHighlight, StyleSheet } from 'react-native'
-import TextComponent from './TextComponent'
-import { FONT_COLOR_LIGHT } from '../styles/commonStyles'
+import TextComponent from 'app/common/components/TextComponent'
+import { FONT_COLOR_LIGHT } from 'app/common/styles/commonStyles'
 
 class MenuItem extends React.PureComponent {
 
