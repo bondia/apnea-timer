@@ -6,6 +6,7 @@ import * as timeUtils from 'app/crono/services/TimeUtils'
 import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles'
 
 import TextComponent from 'app/common/components/TextComponent'
+import TableTypeInput from './TableTypeInput'
 import TableBaseInput from './TableBaseInput'
 
 export default class EditorPaneHeader extends React.PureComponent {
@@ -21,6 +22,9 @@ export default class EditorPaneHeader extends React.PureComponent {
 
         return (
             <View style={[ this.props.style, baseStyles.wrapper ]}>
+
+                <TableTypeInput />
+
                 <View style={baseStyles.header}>
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>
@@ -52,7 +56,7 @@ export default class EditorPaneHeader extends React.PureComponent {
 const baseStyles = StyleSheet.create({
 
     wrapper: {
-        flex: 2
+        flex: 3
     },
 
     // HEADER

@@ -1,16 +1,18 @@
 import React from 'react'
-import { StyleSheet, Animated, View, Text, TouchableWithoutFeedback } from 'react-native'
+import { StyleSheet, Animated, View, Text, TouchableHighlight } from 'react-native'
 
-import { FONT_CLOLR_GREY_LIGHT } from 'app/common/styles/commonStyles'
+import { FONT_CLOLR_GREY_LIGHT, COLOR_LIGHT } from 'app/common/styles/commonStyles'
 
 export default class LongTouchButton extends React.PureComponent {
 
     static propTypes = {
         title: React.PropTypes.string.isRequired,
+        active: React.PropTypes.bool,
     };
 
     static defaultProps = {
         title: 'Press Me',
+        active: false
     };
 
     componentWillMount() {
@@ -34,32 +36,31 @@ export default class LongTouchButton extends React.PureComponent {
     }
 
     render() {
-        const { title } = this.props
+        const { title, active } = this.props
         return (
-            <View style={[ this.props.style, styles.container ]}>
+            <View style={[ this.props.style, baseStyles.container ]}>
 
-                <TouchableWithoutFeedback   onPressIn={this.handlePressIn.bind(this)}
-                                            onPressOut={this.handlePressOut.bind(this)}
-                                            >
+                <TouchableHighlight onPressIn={this.handlePressIn.bind(this)}
+                                    onPressOut={this.handlePressOut.bind(this)}
+                                    underlayColor={FONT_CLOLR_GREY_LIGHT}
+                                    >
 
-                    <View style={styles.button}>
-                        <Text style={styles.text}>
+                    <View style={active ? [baseStyles.button, baseStyles.active] : baseStyles.button }>
+                        <Text style={baseStyles.text}>
                             {title}
                         </Text>
                     </View>
 
-                </TouchableWithoutFeedback>
+                </TouchableHighlight>
             </View>
         );
     }
 }
 
-var styles = StyleSheet.create({
+const baseStyles = StyleSheet.create({
     container: { },
     button: {
         padding: 20,
-        borderWidth: 1,
-        borderColor:  FONT_CLOLR_GREY_LIGHT,
         backgroundColor:  FONT_CLOLR_GREY_LIGHT,
         borderRadius: 3,
         margin: 5
@@ -68,6 +69,9 @@ var styles = StyleSheet.create({
         backgroundColor: 'transparent',
         textAlign: 'center',
         fontSize: 20
+    },
+    active: {
+        backgroundColor: COLOR_LIGHT
     }
 });
 
