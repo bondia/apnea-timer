@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import * as timeUtils from 'app/crono/services/TimeUtils'
-import { FONT_COLOR_GREY, FONT_SIZE_L } from 'app/common/styles/commonStyles'
+import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles'
 
 import TextComponent from 'app/common/components/TextComponent'
 import TableBaseInput from './TableBaseInput'
@@ -73,7 +73,9 @@ const baseStyles = StyleSheet.create({
 
     headerText: {
         textAlign: 'center',
-        fontSize: FONT_SIZE_L
+        fontSize: FONT_SIZE_L,
+        color: COLOR_LIGHT
+
     }
 
 })

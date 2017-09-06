@@ -29,7 +29,7 @@ class EditorPane extends React.PureComponent {
 
                 <View style={baseStyles.setsListBlock}>
                     <TextComponent style={baseStyles.label}>
-                        RECOVER TIME
+                        Recover Time
                     </TextComponent>
 
                     <EditorTimersList steps={steps} />
@@ -49,7 +49,7 @@ const baseStyles = StyleSheet.create({
     },
 
     label: {
-        marginTop: 25,
+        marginTop: 15,
         textAlign: 'center',
         width: '100%',
         color: FONT_COLOR_GREY

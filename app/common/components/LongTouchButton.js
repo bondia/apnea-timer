@@ -1,6 +1,8 @@
 import React from 'react'
 import { StyleSheet, Animated, View, Text, TouchableWithoutFeedback } from 'react-native'
 
+import { FONT_CLOLR_GREY_LIGHT } from 'app/common/styles/commonStyles'
+
 export default class LongTouchButton extends React.PureComponent {
 
     static propTypes = {
@@ -57,12 +59,13 @@ var styles = StyleSheet.create({
     button: {
         padding: 20,
         borderWidth: 1,
-        borderColor: '#111',
+        borderColor:  FONT_CLOLR_GREY_LIGHT,
+        backgroundColor:  FONT_CLOLR_GREY_LIGHT,
+        borderRadius: 3,
         margin: 5
     },
     text: {
         backgroundColor: 'transparent',
-        color: '#111',
         textAlign: 'center',
         fontSize: 20
     }

@@ -19,7 +19,7 @@ class EditorTimersList extends React.PureComponent {
     render() {
         const { steps, editorActions } = this.props
         return (
-            <ScrollView style={{ marginTop: 25, marginBottom: 0 }}>
+            <ScrollView style={{ marginTop: 10, marginBottom: 0 }}>
                 {steps.map((item, idx) => {
                     return (
                         <View key={idx} >

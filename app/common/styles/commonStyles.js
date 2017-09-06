@@ -10,6 +10,7 @@ export const FONT_SIZE_L = 30
 
 
 export const FONT_COLOR_GREY = '#a8a8a8'
+export const FONT_CLOLR_GREY_LIGHT = '#e6e6e6'
 
 // COLORS
 export const COLOR_LIGHT = '#008EE6'
