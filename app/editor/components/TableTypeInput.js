@@ -35,7 +35,12 @@ class TableTypeInput extends React.PureComponent {
     }
 
     handleFree() {
-
+        const { editor, editorActions } = this.props
+        const type = editor.get('type')
+        const base = editor.get('base')
+        if (type !== enums.TABLE_TYPE_FREE) {
+            editorActions.changeTableType(base, enums.TABLE_TYPE_FREE)
+        }
     }
 
     render() {
@@ -59,11 +64,9 @@ class TableTypeInput extends React.PureComponent {
 
                 <LongTouchButton    title="Free"
                                     onPress={() => self.handleFree() }
+                                    active={enums.TABLE_TYPE_FREE === type}
                                     style={baseStyles.button}
                                     />
-            {/*
-                                    active={enums.TABLE_TYPE_O2 === type}
-            */}
 
             </View>
         )

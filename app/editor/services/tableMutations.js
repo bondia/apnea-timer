@@ -126,7 +126,7 @@ function decideSetDuration(tableType, item, key, duration) {
         }
     }
 
-    // FREE MODE
+    // UPDATE FOR FREE TABLES
     return item.get('pos') === key ? item.set('duration', duration) : item
 }
 

@@ -23,10 +23,11 @@ export default class EditorPaneHeader extends React.PureComponent {
         const totalTime = editor.get('duration')
 
         return (
-            <View style={[ this.props.style, baseStyles.wrapper ]}>
+            <View style={[ this.props.style, baseStyles.wrapper, enums.TABLE_TYPE_FREE === type && baseStyles.wrapperSmall ]}>
 
                 <TableTypeInput />
 
+            { enums.TABLE_TYPE_FREE != type &&
                 <View style={baseStyles.header}>
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>
@@ -49,8 +50,12 @@ export default class EditorPaneHeader extends React.PureComponent {
                         </TextComponent>
                     </View>
                 </View>
+            }
 
+            { enums.TABLE_TYPE_FREE != type &&
                 <TableBaseInput />
+            }
+
             </View>
         )
     }
@@ -59,7 +64,12 @@ export default class EditorPaneHeader extends React.PureComponent {
 const baseStyles = StyleSheet.create({
 
     wrapper: {
-        flex: 3
+        flex: 3,
+    },
+
+    wrapperSmall: {
+        flex: 1,
+        maxHeight: 74
     },
 
     // HEADER

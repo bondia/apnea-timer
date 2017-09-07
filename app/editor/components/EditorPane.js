@@ -25,6 +25,7 @@ class EditorPane extends React.PureComponent {
             let valid = false
             valid = type === enums.TABLE_TYPE_CO2 && cronoType.TYPE_PREPARE === i.get('type') ? true : valid
             valid = type === enums.TABLE_TYPE_O2 && cronoType.TYPE_HOLD === i.get('type') ? true : valid
+            valid = type === enums.TABLE_TYPE_FREE ? true : valid
             return valid
         })
 
@@ -37,6 +38,7 @@ class EditorPane extends React.PureComponent {
                     <TextComponent style={baseStyles.label}>
                         {enums.TABLE_TYPE_CO2 === type ? 'Breath Up' : '' }
                         {enums.TABLE_TYPE_O2 === type ? 'Breath Hold' : '' }
+                        {enums.TABLE_TYPE_FREE === type ? 'Sets' : '' }
                     </TextComponent>
 
                     <EditorTimersList sets={sets} />

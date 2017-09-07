@@ -32,8 +32,10 @@ export default class StartButton extends React.PureComponent {
 const baseStyles = StyleSheet.create({
     container: {
         flex: 1,
+        maxHeight: 74,
         flexDirection: 'row'
     },
+
     button: {
         justifyContent: 'center',
         flex: 1,
