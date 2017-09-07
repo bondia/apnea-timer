@@ -81,30 +81,41 @@ function changeTableType(state, base, type) {
  */
 function updateDurationAtKey(state, key, amount) {
     // find item
-    const item = state.getIn([ 'table', 'sets' ]).find(i => i.get('pos') === key);
+    const item = state.getIn([ 'table', 'sets' ]).find(i => i.get('pos') === key)
     if (!item) {
         return state
     }
     // decide new duration
     const duration = amount + item.get('duration')
+    const tableType = state.get('type')
+
     // update all durations
     state = state.updateIn([ 'table', 'sets' ], items => {
-        return items.map(i => decideSetDuration(i, key, duration))
+        return items.map(i => decideSetDuration(tableType, i, key, duration))
     })
     // recalculate table duration
     return setTableDuration(state)
 }
 
-function decideSetDuration(item, key, duration) {
-    // prevent depending on type
-    if (item.get('type') === cronoType.TYPE_HOLD) {
-        return item
+function decideSetDuration(tableType, item, key, duration) {
+    const type = item.get('type')
+
+    // UPDATE FOR O2 TABLES
+    if (enums.TABLE_TYPE_O2 === tableType && cronoType.TYPE_HOLD === type) {
+        if (item.get('pos') < key && item.get('duration') > duration ||
+            item.get('pos') === key ||
+            item.get('pos') > key && item.get('duration') < duration) {
+            return item.set('duration', duration)
+        }
     }
-    // set duration in case needed
-    if (item.get('pos') < key && item.get('duration') < duration ||
-        item.get('pos') === key ||
-        item.get('pos') > key && item.get('duration') > duration) {
-        return item.set('duration', duration)
+
+    // UPDATE FOR CO2 TABLES
+    if (enums.TABLE_TYPE_CO2 === tableType && cronoType.TYPE_PREPARE === type) {
+        if (item.get('pos') < key && item.get('duration') < duration ||
+            item.get('pos') === key ||
+            item.get('pos') > key && item.get('duration') > duration) {
+            return item.set('duration', duration)
+        }
     }
     return item
 }
