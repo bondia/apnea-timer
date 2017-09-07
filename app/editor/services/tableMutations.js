@@ -55,9 +55,17 @@ function createGenericSets(table) {
  * @return Immutable
  */
 function changeTableBase(state, value) {
+    const tableType = state.get('type')
     const base = value < 5 ? 5 : value
     state = state.set('base', base)
-    state = state.updateIn([ 'table', 'sets' ], s => s.map(s => s.get('type') == cronoType.TYPE_HOLD ? s.set('duration', base) : s))
+    // update sets for co2
+    if (enums.TABLE_TYPE_CO2 === tableType) {
+        state = state.updateIn([ 'table', 'sets' ], s => s.map(s => s.get('type') == cronoType.TYPE_HOLD ? s.set('duration', base) : s))
+    }
+    // update sets for o2
+    if (enums.TABLE_TYPE_O2 === tableType) {
+        state = state.updateIn([ 'table', 'sets' ], s => s.map(s => s.get('type') == cronoType.TYPE_PREPARE ? s.set('duration', base) : s))
+    }
     return setTableDuration(state)
 }
 
@@ -117,7 +125,9 @@ function decideSetDuration(tableType, item, key, duration) {
             return item.set('duration', duration)
         }
     }
-    return item
+
+    // FREE MODE
+    return item.get('pos') === key ? item.set('duration', duration) : item
 }
 
 function setTableDuration(data = null) {
