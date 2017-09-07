@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -10,7 +11,7 @@ import LongTouchButton from 'app/common/components/LongTouchButton'
 class TableBaseInput extends React.PureComponent {
 
     static propTypes = {
-        editorActions: React.PropTypes.object.isRequired,
+        editorActions: PropTypes.object.isRequired,
         editor: ImmutablePropTypes.map.isRequired,
     }
 

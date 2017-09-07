@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
 import * as editorActions from '../redux/editorActions'
@@ -11,8 +12,8 @@ import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
 export default class EditorTimerView extends React.PureComponent {
 
     static propTypes = {
-        increaseAction: React.PropTypes.func.isRequired,
-        decreaseAction: React.PropTypes.func.isRequired,
+        increaseAction: PropTypes.func.isRequired,
+        decreaseAction: PropTypes.func.isRequired,
     };
 
     static defaultProps = {

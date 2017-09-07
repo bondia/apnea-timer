@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, Text, View, ScrollView, Button } from 'react-native'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
@@ -12,7 +13,7 @@ import Crono from './Crono'
 class TrainingTable extends React.PureComponent {
 
     static propTypes = {
-        cronoActions: React.PropTypes.object.isRequired,
+        cronoActions: PropTypes.object.isRequired,
         data: ImmutablePropTypes.map.isRequired,
     }
 

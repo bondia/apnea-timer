@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, Animated, View, Text, TouchableHighlight } from 'react-native'
 
 import { FONT_CLOLR_GREY_LIGHT, COLOR_LIGHT } from 'app/common/styles/commonStyles'
@@ -6,8 +7,8 @@ import { FONT_CLOLR_GREY_LIGHT, COLOR_LIGHT } from 'app/common/styles/commonStyl
 export default class LongTouchButton extends React.PureComponent {
 
     static propTypes = {
-        title: React.PropTypes.string.isRequired,
-        active: React.PropTypes.bool,
+        title: PropTypes.string.isRequired,
+        active: PropTypes.bool,
     };
 
     static defaultProps = {

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { StyleSheet, View, ScrollView } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { connect } from 'react-redux'
@@ -12,7 +13,7 @@ import EditorTimerView from './EditorTimerView'
 class EditorTimersList extends React.PureComponent {
 
     static propTypes = {
-        editorActions: React.PropTypes.object.isRequired,
+        editorActions: PropTypes.object.isRequired,
         sets: ImmutablePropTypes.list.isRequired,
     }
 
