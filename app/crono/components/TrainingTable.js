@@ -38,7 +38,7 @@ class TrainingTable extends React.PureComponent {
                     -- {base} : {ticks} --
                 </Text>
 
-                {data.getIn([ 'table', 'steps' ]).map((item, idx) => {
+                {data.getIn([ 'table', 'sets' ]).map((item, idx) => {
                     return (
                         <View key={idx}>
                             <Crono  running={item.get('mode') == cronoMode.MODE_RUNNING}

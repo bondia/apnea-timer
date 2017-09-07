@@ -5,6 +5,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
 import { cronoType } from 'app/crono/enums/tableEnums'
+import * as enums from '../enums'
 
 import TextComponent from 'app/common/components/TextComponent'
 import EditorPaneHeader from './EditorPaneHeader'
@@ -19,7 +20,13 @@ class EditorPane extends React.PureComponent {
 
     render() {
         const { editor, style } = this.props
-        const steps = editor.getIn([ 'table', 'steps' ]).filter(i => i.get('type') == cronoType.TYPE_PREPARE)
+        const type = editor.get('type')
+        const sets = editor.getIn([ 'table', 'sets' ]).filter(i => {
+            let valid = false
+            valid = type === enums.TABLE_TYPE_CO2 && cronoType.TYPE_PREPARE === i.get('type') ? true : valid
+            valid = type === enums.TABLE_TYPE_O2 && cronoType.TYPE_HOLD === i.get('type') ? true : valid
+            return valid
+        })
 
         return (
             <View style={[ style, baseStyles.main ]}>
@@ -28,10 +35,11 @@ class EditorPane extends React.PureComponent {
 
                 <View style={baseStyles.setsListBlock}>
                     <TextComponent style={baseStyles.label}>
-                        Recover Time
+                        {enums.TABLE_TYPE_CO2 === type ? 'Breath Up' : '' }
+                        {enums.TABLE_TYPE_O2 === type ? 'Breath Hold' : '' }
                     </TextComponent>
 
-                    <EditorTimersList steps={steps} />
+                    <EditorTimersList sets={sets} />
                 </View>
 
                 <StartButton editor={editor} />

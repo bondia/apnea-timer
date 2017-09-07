@@ -13,14 +13,14 @@ class EditorTimersList extends React.PureComponent {
 
     static propTypes = {
         editorActions: React.PropTypes.object.isRequired,
-        steps: ImmutablePropTypes.list.isRequired,
+        sets: ImmutablePropTypes.list.isRequired,
     }
 
     render() {
-        const { steps, editorActions } = this.props
+        const { sets, editorActions } = this.props
         return (
             <ScrollView style={{ marginTop: 10, marginBottom: 0 }}>
-                {steps.map((item, idx) => {
+                {sets.map((item, idx) => {
                     return (
                         <View key={idx} >
                             <EditorTimerView    index={ item.get('pos') }

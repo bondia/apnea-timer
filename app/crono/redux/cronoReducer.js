@@ -10,7 +10,7 @@ export default train = (state = null, action) => {
     if (action.type == cronoActionsEnum.TIMER_INIT) {
         state = action.data
         state = state.set('step', 0)
-        return state.setIn([ 'table', 'steps', 0, 'mode' ], cronoMode.MODE_RUNNING)
+        return state.setIn([ 'table', 'sets', 0, 'mode' ], cronoMode.MODE_RUNNING)
     }
 
     // HANDLE CLOCK TICK
@@ -21,8 +21,8 @@ export default train = (state = null, action) => {
 
         // change step time
         let step = state.get('step')
-        let time = state.getIn([ 'table', 'steps', step, 'duration' ]) - 1
-        state = state.setIn([ 'table', 'steps', step, 'duration' ], time)
+        let time = state.getIn([ 'table', 'sets', step, 'duration' ]) - 1
+        state = state.setIn([ 'table', 'sets', step, 'duration' ], time)
 
         if (time == 30) {
             notificationService.playF2();
@@ -35,9 +35,9 @@ export default train = (state = null, action) => {
         // finish step and run the next one
         if (time == 0) {
             notificationService.playC3();
-            state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_FINISHED)
+            state = state.setIn([ 'table', 'sets', step, 'mode' ], cronoMode.MODE_FINISHED)
             step = step + 1
-            state = state.setIn([ 'table', 'steps', step, 'mode' ], cronoMode.MODE_RUNNING)
+            state = state.setIn([ 'table', 'sets', step, 'mode' ], cronoMode.MODE_RUNNING)
         }
 
         return state.set('step', step)

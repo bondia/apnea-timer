@@ -18,8 +18,6 @@ export default class StartButton extends React.PureComponent {
     }
 
     render() {
-        const { editor } = this.props
-        const holdtime = editor.get('holdtime')
         return (
             <View style={baseStyles.container}>
                 <LongTouchButton    title="START"

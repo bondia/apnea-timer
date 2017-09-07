@@ -8,7 +8,6 @@ import LongTouchButton from 'app/common/components/LongTouchButton'
 import TextComponent from 'app/common/components/TextComponent'
 import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
 
-
 export default class EditorTimerView extends React.PureComponent {
 
     static propTypes = {

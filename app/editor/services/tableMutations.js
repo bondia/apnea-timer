@@ -2,65 +2,93 @@ import Immutable from 'immutable'
 import { cronoMode, cronoType } from 'app/crono/enums/tableEnums'
 import * as enums from '../enums'
 
-function createTable(base = 1, type = enums.TABLE_TYPE_CO2) {
-    const state = Immutable.fromJS({
+/**
+ * Table Creation
+ * @param  Integer base
+ * @param  String type
+ * @return Immutable
+ */
+function createTable(base, type) {
+    let state = createTableSkeleton(base, type)
+    state = createGenericSets(state)
+    return setTableDuration(state)
+}
+
+function createTableSkeleton(base = 1, type = enums.TABLE_TYPE_CO2) {
+    return Immutable.fromJS({
+        // Table type O2 or CO2
         type: type,
-        step: -1,
+        // base: represents hold time or recover time depending of the type of table
         base: base,
+        // total table duration time based on sets calculation
         duration: 0,
-        holdtime: base,
+        // flag to show that table is finished
         finished: false,
+        // represents the seconds spend since the table started
         clock: 0,
+        // table current step
+        step: -1,
         table: {
-            steps: [
-                { pos: 0, duration: 60*2,       mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-                { pos: 1, duration: base,       mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-                { pos: 2, duration: 60*2-10,    mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-                { pos: 3, duration: base,       mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-                { pos: 4, duration: 60*2-20,    mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-                { pos: 5, duration: base,       mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-                { pos: 6, duration: 60*2-30,    mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-                { pos: 7, duration: base,       mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-                { pos: 8, duration: 60*2-40,    mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-                { pos: 9, duration: base,       mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-                { pos: 10, duration: 60*2-50,   mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-                { pos: 11, duration: base,      mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-                { pos: 12, duration: 60,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-                { pos: 13, duration: base,      mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-
-                { pos: 14, duration: 50,        mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE },
-                { pos: 15, duration: base,      mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    },
-            ]
+            sets: [ ]
         }
     })
-
-    return setTableDuration(state)
 }
 
-function changeBase(state, value) {
+function createGenericSets(table) {
+    const base = table.get('base')
+    const type = table.get('type')
+    for (var i = 0; i < 16; i+=2) {
+        const prepareTime = type === enums.TABLE_TYPE_CO2 ? 120 - 10 * (i / 2) : base
+        const holdTime = type === enums.TABLE_TYPE_O2 ? 60 + 10 * (i / 2) : base
+        const preparationSet = Immutable.fromJS({ pos: i,     duration: prepareTime,  mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_PREPARE })
+        const holdSet = Immutable.fromJS({ pos: i+1,   duration: holdTime,     mode: cronoMode.MODE_INITIAL, type: cronoType.TYPE_HOLD    })
+        table = table.updateIn([ 'table', 'sets'], l =>  l.push(preparationSet))
+        table = table.updateIn([ 'table', 'sets'], l =>  l.push(holdSet))
+    }
+    return table
+}
+
+/**
+ * Change table base
+ * @param  Immutable state
+ * @param  Integer  value
+ * @return Immutable
+ */
+function changeTableBase(state, value) {
     const base = value < 5 ? 5 : value
     state = state.set('base', base)
-    state = state.set('holdtime', base)
-    state = state.updateIn([ 'table', 'steps' ], s => s.map(s => s.get('type') == cronoType.TYPE_HOLD ? s.set('duration', base) : s))
+    state = state.updateIn([ 'table', 'sets' ], s => s.map(s => s.get('type') == cronoType.TYPE_HOLD ? s.set('duration', base) : s))
     return setTableDuration(state)
 }
 
+/**
+ * Change table type
+ * @param  Immutable state
+ * @param  Integer base
+ * @param  String type
+ * @return Immutable
+ */
+function changeTableType(state, base, type) {
+    return createTable(base, type)
+}
+
+/**
+ * Update duration for a set
+ * @param  Immutable state
+ * @param  Integer key
+ * @param  Integer amount
+ * @return Immutable
+ */
 function updateDurationAtKey(state, key, amount) {
     // find item
-    const item = state.getIn([ 'table', 'steps' ]).find(i => i.get('pos') === key);
+    const item = state.getIn([ 'table', 'sets' ]).find(i => i.get('pos') === key);
     if (!item) {
         return state
     }
     // decide new duration
     const duration = amount + item.get('duration')
     // update all durations
-    state = state.updateIn([ 'table', 'steps' ], items => {
+    state = state.updateIn([ 'table', 'sets' ], items => {
         return items.map(i => decideSetDuration(i, key, duration))
     })
     // recalculate table duration
@@ -83,10 +111,10 @@ function decideSetDuration(item, key, duration) {
 
 function setTableDuration(data = null) {
     let duration = 0
-    data.getIn([ 'table', 'steps' ]).forEach((e) => {
+    data.getIn([ 'table', 'sets' ]).forEach((e) => {
         duration += e.get('duration')
     })
     return data.set('duration', duration)
 }
 
-export { createTable, changeBase, updateDurationAtKey, setTableDuration }
+export { createTable, changeTableBase, changeTableType, updateDurationAtKey, setTableDuration }

@@ -4,6 +4,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import * as timeUtils from 'app/crono/services/TimeUtils'
 import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles'
+import * as enums from '../enums'
 
 import TextComponent from 'app/common/components/TextComponent'
 import TableTypeInput from './TableTypeInput'
@@ -17,7 +18,8 @@ export default class EditorPaneHeader extends React.PureComponent {
 
     render() {
         const { editor, style } = this.props
-        const holdtime = editor.get('holdtime')
+        const base = editor.get('base')
+        const type = editor.get('type')
         const totalTime = editor.get('duration')
 
         return (
@@ -28,11 +30,12 @@ export default class EditorPaneHeader extends React.PureComponent {
                 <View style={baseStyles.header}>
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>
-                            Breath Hold
+                            {enums.TABLE_TYPE_CO2 === type ? 'Breath Hold' : '' }
+                            {enums.TABLE_TYPE_O2 === type ? 'Breath Up' : '' }
                         </TextComponent>
 
                         <TextComponent style={baseStyles.headerText}>
-                            {timeUtils.formatSeconds(holdtime)}
+                            {timeUtils.formatSeconds(base)}
                         </TextComponent>
                     </View>
 
