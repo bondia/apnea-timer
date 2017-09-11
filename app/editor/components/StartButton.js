@@ -14,7 +14,7 @@ export default class StartButton extends React.PureComponent {
 
     handleStart() {
         const { editor } = this.props;
-        Actions[routesEnum.CRONO_SCENE]({ editor: editor })
+        Actions[routesEnum.CRONO_SCENE]({ crono: editor })
     }
 
     render() {

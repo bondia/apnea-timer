@@ -8,7 +8,7 @@ import { bindActionCreators } from 'redux'
 import * as editorActions from '../redux/editorActions'
 
 import { cronoMode } from 'app/crono/enums/tableEnums'
-import EditorTimerView from './EditorTimerView'
+import EditorTimerInput from './EditorTimerInput'
 
 class EditorTimersList extends React.PureComponent {
 
@@ -24,7 +24,7 @@ class EditorTimersList extends React.PureComponent {
                 {sets.map((item, idx) => {
                     return (
                         <View key={idx} >
-                            <EditorTimerView    index={ item.get('pos') }
+                            <EditorTimerInput   index={ item.get('pos') }
                                                 running={ item.get('mode') == cronoMode.MODE_RUNNING }
                                                 type={ item.get('type') }
                                                 duration={ item.get('duration') }

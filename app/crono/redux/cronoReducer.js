@@ -2,7 +2,8 @@ import Immutable from 'immutable'
 import { cronoActionsEnum } from './cronoActions'
 import { cronoMode, cronoType } from '../enums/tableEnums'
 
-import notificationService from '../services/NotificationService.js'
+import notificationService from '../services/NotificationService'
+import { setTableDuration } from 'app/editor/services/tableMutations'
 
 export default train = (state = null, action) => {
 
@@ -40,7 +41,8 @@ export default train = (state = null, action) => {
             state = state.setIn([ 'table', 'sets', step, 'mode' ], cronoMode.MODE_RUNNING)
         }
 
-        return state.set('step', step)
+        state = state.set('step', step)
+        return setTableDuration(state)
     }
 
     if (action.type == cronoActionsEnum.TIMER_FINISHED) {

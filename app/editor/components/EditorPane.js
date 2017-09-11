@@ -67,7 +67,6 @@ const baseStyles = StyleSheet.create({
     setsListBlock: {
         flex: 4
     }
-
 })
 
 

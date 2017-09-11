@@ -96,7 +96,10 @@ function updateDurationAtKey(state, key, amount) {
     // decide new duration
     const duration = amount + item.get('duration')
     const tableType = state.get('type')
-
+    // avoid negative numbers
+    if (duration <= 0) {
+        return state
+    }
     // update all durations
     state = state.updateIn([ 'table', 'sets' ], items => {
         return items.map(i => decideSetDuration(tableType, i, key, duration))

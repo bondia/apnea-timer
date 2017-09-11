@@ -19,7 +19,7 @@ export default class EditorTimerView extends React.PureComponent {
     static defaultProps = {
         running: false,
         duration: 0,
-        type: 'prepare',
+        type: cronoType.TYPE_PREPARE,
         setNumber: 0,
         increaseAction: null,
         decreaseAction: null
@@ -37,7 +37,7 @@ export default class EditorTimerView extends React.PureComponent {
 
     render() {
         const self = this;
-        const { running, duration, type, setNumber } = this.props
+        const { duration, type, setNumber } = this.props
 
         const styles = StyleSheet.create({
             container: {
@@ -60,8 +60,8 @@ export default class EditorTimerView extends React.PureComponent {
                 paddingTop: 25,
                 flex: 3,
                 color: type == cronoType.TYPE_PREPARE ? 'green' : 'red',
-                fontSize: running ? 50 : 30,
-                lineHeight: running ? 50 : 30,
+                fontSize: 30,
+                lineHeight: 30,
                 textAlign: 'center',
             }
         })
