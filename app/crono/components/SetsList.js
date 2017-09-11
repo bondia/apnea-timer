@@ -15,7 +15,7 @@ export default class SetsList extends React.PureComponent {
     render() {
         const { crono } = this.props
         let sets = crono.getIn([ 'table', 'sets' ])
-        sets = sets.filter(s => s.get('mode') === enums.SET_MODE_INITIAL || s.get('mode') === enums.SET_MODE_RUNNING)
+        sets = sets.filter(s => s.get('mode') === enums.SET_MODE_INITIAL)
         return (
             <ScrollView>
                 {sets.map((item, idx) => {

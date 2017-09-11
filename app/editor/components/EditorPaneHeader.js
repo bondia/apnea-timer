@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import * as timeUtils from 'app/crono/services/TimeUtils'
+import * as timeUtils from 'app/crono/services/timeUtils'
 import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles'
 import * as enums from '../enums'
 

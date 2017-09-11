@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import * as enums from 'app/editor/enums'
-import * as timeUtils from 'app/crono/services/TimeUtils'
+import * as timeUtils from 'app/crono/services/timeUtils'
 
 import TextComponent from 'app/common/components/TextComponent'
 

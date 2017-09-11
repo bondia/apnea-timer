@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Button } from 'react-native'
 
 import * as editorActions from '../redux/editorActions'
 import * as enums from '../enums'
-import * as timeUtils from 'app/crono/services/TimeUtils'
+import * as timeUtils from 'app/crono/services/timeUtils'
 
 import LongTouchButton from 'app/common/components/LongTouchButton'
 import TextComponent from 'app/common/components/TextComponent'

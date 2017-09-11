@@ -20,4 +20,4 @@ function formatSeconds(seconds) {
     return `${getMinutesString(seconds)}:${getRestSecondsString(seconds)}`
 }
 
-export { formatSeconds, calculateMinutes, calculateRestSeconds, getMinutesString, getRestSecondsString }
+export { formatSeconds }
