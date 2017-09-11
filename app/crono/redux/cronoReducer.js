@@ -41,7 +41,7 @@ export default train = (state = null, action) => {
         // finish step and run the next one
         if (time == 0 || state.getIn([ 'table', 'sets', step, 'mode' ]) === enums.SET_MODE_SKIPED) {
             notificationService.playC3();
-            if (time = 0) {
+            if (time == 0) {
                 state = state.setIn([ 'table', 'sets', step, 'mode' ], enums.SET_MODE_FINISHED)
             }
             step = step + 1
