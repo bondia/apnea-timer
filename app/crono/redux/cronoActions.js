@@ -13,15 +13,19 @@ function startCrono(data) {
 function finishCrono() {
     clearInterval(timer);
     timer = null;
-    return { type: reduxActions.CRONO_TIMER_FINISHED }
+    return { type: reduxActions.CRONO_FINISH }
 }
 
 function initTable(data) {
-    return { type: reduxActions.CRONO_TIMER_INIT, data }
+    return { type: reduxActions.CRONO_INIT, data }
 }
 
 function handleTick(text) {
-    return { type: reduxActions.CRONO_TIMER_TICK }
+    return { type: reduxActions.CRONO_TICK_UP }
 }
 
-export { startCrono, finishCrono }
+function skipSet(key) {
+    return { type: reduxActions.CRONO_SET_SKIP, key }
+}
+
+export { startCrono, finishCrono, skipSet }

@@ -7,14 +7,20 @@ import { setTableDuration } from 'app/editor/services/tableMutations'
 export default train = (state = null, action) => {
 
     // INIT TABLE
-    if (action.type == reduxActions.CRONO_TIMER_INIT) {
+    if (action.type == reduxActions.CRONO_INIT) {
         state = action.data
         state = state.set('step', 0)
         return state.setIn([ 'table', 'sets', 0, 'mode' ], enums.SET_MODE_RUNNING)
     }
 
+    // SKIP SET
+    if (action.type == reduxActions.CRONO_SET_SKIP) {
+        const key = action.key
+        return state.updateIn([ 'table', 'sets' ], sets => sets.map(s => s.get('pos') === key ? s.set('mode', enums.SET_MODE_SKIPED) : s))
+    }
+
     // HANDLE CLOCK TICK
-    if (action.type == reduxActions.CRONO_TIMER_TICK) {
+    if (action.type == reduxActions.CRONO_TICK_UP) {
 
         // update clock
         state = state.setIn([ 'clock' ], state.getIn([ 'clock' ]) + 1)
@@ -33,9 +39,11 @@ export default train = (state = null, action) => {
         }
 
         // finish step and run the next one
-        if (time == 0) {
+        if (time == 0 || state.getIn([ 'table', 'sets', step, 'mode' ]) === enums.SET_MODE_SKIPED) {
             notificationService.playC3();
-            state = state.setIn([ 'table', 'sets', step, 'mode' ], enums.SET_MODE_FINISHED)
+            if (time = 0) {
+                state = state.setIn([ 'table', 'sets', step, 'mode' ], enums.SET_MODE_FINISHED)
+            }
             step = step + 1
             state = state.setIn([ 'table', 'sets', step, 'mode' ], enums.SET_MODE_RUNNING)
         }
@@ -44,7 +52,7 @@ export default train = (state = null, action) => {
         return setTableDuration(state)
     }
 
-    if (action.type == reduxActions.CRONO_TIMER_FINISHED) {
+    if (action.type == reduxActions.CRONO_FINISH) {
         return null
     }
 

@@ -135,7 +135,10 @@ function decideSetDuration(tableType, item, key, duration) {
 function setTableDuration(data = null) {
     let duration = 0
     data.getIn([ 'table', 'sets' ]).forEach((e) => {
-        duration += e.get('duration')
+        const mode = e.get('mode')
+        if (enums.SET_MODE_INITIAL == mode || enums.SET_MODE_RUNNING == mode) {
+            duration += e.get('duration')
+        }
     })
     return data.set('duration', duration)
 }

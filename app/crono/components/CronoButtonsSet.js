@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { StyleSheet, View } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { Actions } from 'react-native-router-flux'
+import * as enums from 'app/editor/enums'
 
 import LongTouchButton from 'app/common/components/LongTouchButton'
 
@@ -19,8 +20,11 @@ export default class StartButton extends React.PureComponent {
     }
 
     handleSkip() {
-        // Actions.pop()
-        // this.props.cronoActions.finishCrono()
+        const { crono, cronoActions } = this.props
+        const current = crono.getIn([ 'table', 'sets' ]).find(s => s.get('mode') === enums.SET_MODE_RUNNING)
+        if (current) {
+            cronoActions.skipSet(current.get('pos'))
+        }
     }
 
     handleFinish() {
