@@ -1,21 +1,20 @@
 import Immutable from 'immutable'
-import { cronoActionsEnum } from './cronoActions'
+import reduxActions from 'app/main/enums/reduxActions'
 import * as enums from 'app/editor/enums'
-
 import notificationService from '../services/NotificationService'
 import { setTableDuration } from 'app/editor/services/tableMutations'
 
 export default train = (state = null, action) => {
 
     // INIT TABLE
-    if (action.type == cronoActionsEnum.TIMER_INIT) {
+    if (action.type == reduxActions.CRONO_TIMER_INIT) {
         state = action.data
         state = state.set('step', 0)
         return state.setIn([ 'table', 'sets', 0, 'mode' ], enums.SET_MODE_RUNNING)
     }
 
     // HANDLE CLOCK TICK
-    if (action.type == cronoActionsEnum.TIMER_TICK) {
+    if (action.type == reduxActions.CRONO_TIMER_TICK) {
 
         // update clock
         state = state.setIn([ 'clock' ], state.getIn([ 'clock' ]) + 1)
@@ -45,7 +44,7 @@ export default train = (state = null, action) => {
         return setTableDuration(state)
     }
 
-    if (action.type == cronoActionsEnum.TIMER_FINISHED) {
+    if (action.type == reduxActions.CRONO_TIMER_FINISHED) {
         return null
     }
 

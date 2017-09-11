@@ -27,8 +27,9 @@ export default class EditorPaneHeader extends React.PureComponent {
 
                 <TableTypeInput />
 
-            { enums.TABLE_TYPE_FREE != type &&
                 <View style={baseStyles.header}>
+
+                { enums.TABLE_TYPE_FREE != type &&
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>
                             {enums.TABLE_TYPE_CO2 === type ? 'Breath Hold' : '' }
@@ -39,6 +40,7 @@ export default class EditorPaneHeader extends React.PureComponent {
                             {timeUtils.formatSeconds(base)}
                         </TextComponent>
                     </View>
+                }
 
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>
@@ -50,7 +52,6 @@ export default class EditorPaneHeader extends React.PureComponent {
                         </TextComponent>
                     </View>
                 </View>
-            }
 
             { enums.TABLE_TYPE_FREE != type &&
                 <TableBaseInput />
@@ -68,8 +69,8 @@ const baseStyles = StyleSheet.create({
     },
 
     wrapperSmall: {
-        flex: 1,
-        maxHeight: 74
+        flex: 2,
+        maxHeight: 148
     },
 
     // HEADER
