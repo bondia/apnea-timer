@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
 import * as editorActions from '../redux/editorActions'
-import { cronoType } from 'app/crono/enums/tableEnums'
+import * as enums from '../enums'
 import * as timeUtils from 'app/crono/services/TimeUtils'
+
 import LongTouchButton from 'app/common/components/LongTouchButton'
 import TextComponent from 'app/common/components/TextComponent'
 import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
@@ -19,7 +20,7 @@ export default class EditorTimerView extends React.PureComponent {
     static defaultProps = {
         running: false,
         duration: 0,
-        type: cronoType.TYPE_PREPARE,
+        type: enums.SET_TYPE_PREPARE,
         setNumber: 0,
         increaseAction: null,
         decreaseAction: null
@@ -59,7 +60,7 @@ export default class EditorTimerView extends React.PureComponent {
             clock: {
                 paddingTop: 25,
                 flex: 3,
-                color: type == cronoType.TYPE_PREPARE ? 'green' : 'red',
+                color: type == enums.SET_TYPE_PREPARE ? 'green' : 'red',
                 fontSize: 30,
                 lineHeight: 30,
                 textAlign: 'center',

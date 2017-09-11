@@ -1,6 +1,6 @@
 import Immutable from 'immutable'
 import { cronoActionsEnum } from './cronoActions'
-import { cronoMode, cronoType } from '../enums/tableEnums'
+import * as enums from 'app/editor/enums'
 
 import notificationService from '../services/NotificationService'
 import { setTableDuration } from 'app/editor/services/tableMutations'
@@ -11,7 +11,7 @@ export default train = (state = null, action) => {
     if (action.type == cronoActionsEnum.TIMER_INIT) {
         state = action.data
         state = state.set('step', 0)
-        return state.setIn([ 'table', 'sets', 0, 'mode' ], cronoMode.MODE_RUNNING)
+        return state.setIn([ 'table', 'sets', 0, 'mode' ], enums.SET_MODE_RUNNING)
     }
 
     // HANDLE CLOCK TICK
@@ -36,9 +36,9 @@ export default train = (state = null, action) => {
         // finish step and run the next one
         if (time == 0) {
             notificationService.playC3();
-            state = state.setIn([ 'table', 'sets', step, 'mode' ], cronoMode.MODE_FINISHED)
+            state = state.setIn([ 'table', 'sets', step, 'mode' ], enums.SET_MODE_FINISHED)
             step = step + 1
-            state = state.setIn([ 'table', 'sets', step, 'mode' ], cronoMode.MODE_RUNNING)
+            state = state.setIn([ 'table', 'sets', step, 'mode' ], enums.SET_MODE_RUNNING)
         }
 
         state = state.set('step', step)

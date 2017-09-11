@@ -1,15 +1,17 @@
 import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
-import TextComponent from 'app/common/components/TextComponent'
+
+import * as enums from 'app/editor/enums'
 import * as timeUtils from 'app/crono/services/TimeUtils'
-import { cronoType } from 'app/crono/enums/tableEnums'
+
+import TextComponent from 'app/common/components/TextComponent'
 
 export default class Crono extends React.PureComponent {
 
     static defaultProps = {
         running: false,
         duration: 0,
-        type: cronoType.TYPE_PREPARE
+        type: enums.SET_TYPE_PREPARE
     }
 
     render() {
@@ -17,7 +19,7 @@ export default class Crono extends React.PureComponent {
         const styles = StyleSheet.create({
             clock: {
                 paddingTop: 25,
-                color: type == cronoType.TYPE_PREPARE ? 'green' : 'red',
+                color: type == enums.SET_TYPE_PREPARE ? 'green' : 'red',
                 fontSize: 30,
                 lineHeight: 30,
                 textAlign: 'center',

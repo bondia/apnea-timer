@@ -5,7 +5,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 import * as timeUtils from 'app/crono/services/TimeUtils'
 import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles'
 import * as enums from 'app/editor/enums'
-import { cronoType, cronoMode } from 'app/crono/enums/tableEnums'
 
 import TextComponent from 'app/common/components/TextComponent'
 
@@ -19,19 +18,19 @@ export default class EditorPaneHeader extends React.PureComponent {
         const { crono, style } = this.props
         const totalTime = crono.get('duration')
         const sets = crono.getIn([ 'table', 'sets' ])
-        let current = sets.find(e => e.get('mode') === cronoMode.MODE_RUNNING)
+        let current = sets.find(e => e.get('mode') === enums.SET_MODE_RUNNING)
         current = !current ? sets.first() : current
 
         return (
             <View style={[ this.props.style, baseStyles.wrapper ]}>
 
                 <View style={baseStyles.header}>
-                    {current && current.get('mode') !== cronoMode.MODE_FINISHED &&
+                    {current && current.get('mode') !== enums.SET_MODE_FINISHED &&
                     <View style={baseStyles.headerBlock}>
 
                         <TextComponent style={baseStyles.headerLabel}>
-                            {cronoType.TYPE_HOLD === current.get('type') ? 'Breath Hold' : '' }
-                            {cronoType.TYPE_PREPARE === current.get('type') ? 'Breath Up' : '' }
+                            {enums.SET_TYPE_HOLD === current.get('type') ? 'Breath Hold' : '' }
+                            {enums.SET_TYPE_PREPARE === current.get('type') ? 'Breath Up' : '' }
                         </TextComponent>
 
                         <TextComponent style={baseStyles.headerText}>

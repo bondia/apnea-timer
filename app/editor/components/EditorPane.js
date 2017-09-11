@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
-import { cronoType } from 'app/crono/enums/tableEnums'
 import * as enums from '../enums'
 
 import TextComponent from 'app/common/components/TextComponent'
@@ -23,8 +22,8 @@ class EditorPane extends React.PureComponent {
         const type = editor.get('type')
         const sets = editor.getIn([ 'table', 'sets' ]).filter(i => {
             let valid = false
-            valid = type === enums.TABLE_TYPE_CO2 && cronoType.TYPE_PREPARE === i.get('type') ? true : valid
-            valid = type === enums.TABLE_TYPE_O2 && cronoType.TYPE_HOLD === i.get('type') ? true : valid
+            valid = type === enums.TABLE_TYPE_CO2 && enums.SET_TYPE_PREPARE === i.get('type') ? true : valid
+            valid = type === enums.TABLE_TYPE_O2 && enums.SET_TYPE_HOLD === i.get('type') ? true : valid
             valid = type === enums.TABLE_TYPE_FREE ? true : valid
             return valid
         })
