@@ -50,4 +50,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('timer', () => timer);
+AppRegistry.registerComponent('ApneaTimer', () => timer);
