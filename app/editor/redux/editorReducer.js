@@ -1,14 +1,17 @@
 import reduxActions from 'app/main/enums/reduxActions'
-import { createTable, changeTableBase, changeTableType, updateDurationAtKey } from '../services/tableMutations'
+import createEditorState from '../utils/mutations/createEditorState'
+import setTableBase from '../utils/mutations/setTableBase'
+import setTableType from '../utils/mutations/setTableType'
+import updateDurationAtKey from '../utils/mutations/updateDurationAtKey'
 
-export default train = (state = createTable(120), action) => {
+export default train = (state = createEditorState(120), action) => {
 
     if (action.type == reduxActions.EDITOR_BASE_CHANGE) {
-        return changeTableBase(state, action.base)
+        return setTableBase(state, action.base)
     }
 
     if (action.type == reduxActions.EDITOR_TYPE_CHANGE) {
-        return changeTableType(state, action.base, action.tableType)
+        return setTableType(state, action.base, action.tableType)
     }
 
     if (action.type == reduxActions.EDITOR_SET_DURATION_CHANGE) {

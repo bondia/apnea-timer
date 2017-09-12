@@ -3,8 +3,9 @@ import { StyleSheet, View } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 import { Actions } from 'react-native-router-flux'
 
-import LongTouchButton from 'app/common/components/LongTouchButton'
 import { routesEnum } from 'app/main/enums/routes'
+
+import LongTouchButton from 'app/common/components/LongTouchButton'
 
 export default class StartButton extends React.PureComponent {
 

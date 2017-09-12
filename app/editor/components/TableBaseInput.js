@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import * as editorActions from '../redux/editorActions'
+
 import LongTouchButton from 'app/common/components/LongTouchButton'
 
 class TableBaseInput extends React.PureComponent {
@@ -17,12 +18,12 @@ class TableBaseInput extends React.PureComponent {
 
     handleIncrease(amount) {
         const { editor, editorActions } = this.props
-        editorActions.changeTableBase(editor.get('base') + amount)
+        editorActions.changeTableBase(editor.getIn([ 'entity', 'base' ]) + amount)
     }
 
     handleDecrease(amount) {
         const { editor, editorActions } = this.props
-        editorActions.changeTableBase(editor.get('base') - amount)
+        editorActions.changeTableBase(editor.getIn([ 'entity', 'base' ]) - amount)
     }
 
     render() {

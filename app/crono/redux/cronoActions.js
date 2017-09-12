@@ -17,7 +17,7 @@ function finishCrono() {
 }
 
 function initTable(data) {
-    return { type: reduxActions.CRONO_INIT, data }
+    return { type: reduxActions.CRONO_START, data }
 }
 
 function handleTick(text) {

@@ -19,7 +19,7 @@ class EditorPane extends React.PureComponent {
 
     render() {
         const { editor, style } = this.props
-        const type = editor.get('type')
+        const type = editor.getIn([ 'entity', 'type' ])
         const sets = editor.getIn([ 'table', 'sets' ]).filter(i => {
             let valid = false
             valid = type === enums.TABLE_TYPE_CO2 && enums.SET_TYPE_PREPARE === i.get('type') ? true : valid

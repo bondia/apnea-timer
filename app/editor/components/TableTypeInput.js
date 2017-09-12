@@ -7,6 +7,7 @@ import ImmutablePropTypes from 'react-immutable-proptypes'
 
 import * as enums from '../enums'
 import * as editorActions from '../redux/editorActions'
+
 import LongTouchButton from 'app/common/components/LongTouchButton'
 
 class TableTypeInput extends React.PureComponent {
@@ -18,8 +19,8 @@ class TableTypeInput extends React.PureComponent {
 
     handleO2() {
         const { editor, editorActions } = this.props
-        const type = editor.get('type')
-        const base = editor.get('base')
+        const type = editor.getIn([ 'entity', 'type'])
+        const base = editor.getIn([ 'entity', 'base' ])
         if (type !== enums.TABLE_TYPE_O2) {
             editorActions.changeTableType(base, enums.TABLE_TYPE_O2)
         }
@@ -27,8 +28,8 @@ class TableTypeInput extends React.PureComponent {
 
     handleCO2() {
         const { editor, editorActions } = this.props
-        const type = editor.get('type')
-        const base = editor.get('base')
+        const type = editor.getIn([ 'entity', 'type'])
+        const base = editor.getIn([ 'entity', 'base' ])
         if (type !== enums.TABLE_TYPE_CO2) {
             editorActions.changeTableType(base, enums.TABLE_TYPE_CO2)
         }
@@ -36,8 +37,8 @@ class TableTypeInput extends React.PureComponent {
 
     handleFree() {
         const { editor, editorActions } = this.props
-        const type = editor.get('type')
-        const base = editor.get('base')
+        const type = editor.getIn([ 'entity', 'type'])
+        const base = editor.getIn([ 'entity', 'base' ])
         if (type !== enums.TABLE_TYPE_FREE) {
             editorActions.changeTableType(base, enums.TABLE_TYPE_FREE)
         }
@@ -46,7 +47,7 @@ class TableTypeInput extends React.PureComponent {
     render() {
         const self = this
         const { editor, style } = this.props
-        const type = editor.get('type')
+        const type = editor.getIn([ 'entity', 'type'])
         return (
             <View style={[ this.props.style, baseStyles.container]}>
 

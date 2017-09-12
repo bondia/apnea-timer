@@ -1,8 +1,9 @@
 import React from 'react'
 import { StyleSheet } from 'react-native'
 
-import EditorPane from './EditorPane'
 import { HEADER_HEIGHT } from 'app/common/styles/commonStyles'
+
+import EditorPane from './EditorPane'
 
 export default class EditorScene extends React.PureComponent {
 

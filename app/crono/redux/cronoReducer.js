@@ -1,15 +1,23 @@
 import Immutable from 'immutable'
 import reduxActions from 'app/main/enums/reduxActions'
 import * as enums from 'app/editor/enums'
-import notificationService from '../services/NotificationService'
-import { setTableDuration } from 'app/editor/services/tableMutations'
+import notificationService from 'app/editor/utils/NotificationService'
+import setTableDuration from 'app/editor/utils/mutations/setTableDuration'
 
 export default train = (state = null, action) => {
 
     // INIT TABLE
-    if (action.type == reduxActions.CRONO_INIT) {
+    if (action.type == reduxActions.CRONO_START) {
+        // state got from the editor
         state = action.data
-        state = state.set('step', 0)
+        // init live state
+        state = state.set('live', Immutable.fromJS({
+            // represents the seconds spend since the table started
+            clock: 0,
+            // table current step
+            step: 0
+        }))
+        // set first set as running
         return state.setIn([ 'table', 'sets', 0, 'mode' ], enums.SET_MODE_RUNNING)
     }
 
@@ -23,10 +31,10 @@ export default train = (state = null, action) => {
     if (action.type == reduxActions.CRONO_TICK_UP) {
 
         // update clock
-        state = state.setIn([ 'clock' ], state.getIn([ 'clock' ]) + 1)
+        state = state.setIn([ 'live', 'clock' ], state.getIn([ 'live', 'clock' ]) + 1)
 
         // change step time
-        let step = state.get('step')
+        let step = state.getIn([ 'live', 'step' ])
         let time = state.getIn([ 'table', 'sets', step, 'duration' ]) - 1
         state = state.setIn([ 'table', 'sets', step, 'duration' ], time)
 
@@ -48,7 +56,7 @@ export default train = (state = null, action) => {
             state = state.setIn([ 'table', 'sets', step, 'mode' ], enums.SET_MODE_RUNNING)
         }
 
-        state = state.set('step', step)
+        state = state.setIn([ 'live', 'step'], step)
         return setTableDuration(state)
     }
 

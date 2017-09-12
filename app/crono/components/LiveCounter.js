@@ -2,7 +2,7 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import * as timeUtils from 'app/crono/services/timeUtils'
+import secondsToTimeString from 'app/common/utils/time/secondsToTimeString'
 import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles'
 import * as enums from 'app/editor/enums'
 
@@ -16,7 +16,7 @@ export default class EditorPaneHeader extends React.PureComponent {
 
     render() {
         const { crono, style } = this.props
-        const totalTime = crono.get('duration')
+        const totalTime = crono.getIn([ 'entity', 'duration'])
         const sets = crono.getIn([ 'table', 'sets' ])
         let current = sets.find(e => e.get('mode') === enums.SET_MODE_RUNNING)
         current = !current ? sets.first() : current
@@ -34,7 +34,7 @@ export default class EditorPaneHeader extends React.PureComponent {
                         </TextComponent>
 
                         <TextComponent style={baseStyles.headerText}>
-                            {timeUtils.formatSeconds(current.get('duration'))}
+                            {secondsToTimeString(current.get('duration'))}
                         </TextComponent>
                     </View>
                     }
@@ -44,7 +44,7 @@ export default class EditorPaneHeader extends React.PureComponent {
                             Remaining Time
                         </TextComponent>
                         <TextComponent style={baseStyles.headerText}>
-                            {timeUtils.formatSeconds(totalTime)}
+                            {secondsToTimeString(totalTime)}
                         </TextComponent>
                     </View>
                 </View>

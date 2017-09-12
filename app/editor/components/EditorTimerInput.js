@@ -2,13 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { StyleSheet, Text, View, Button } from 'react-native'
 
-import * as editorActions from '../redux/editorActions'
 import * as enums from '../enums'
-import * as timeUtils from 'app/crono/services/timeUtils'
+import * as editorActions from '../redux/editorActions'
+import secondsToTimeString from 'app/common/utils/time/secondsToTimeString'
+import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
 
 import LongTouchButton from 'app/common/components/LongTouchButton'
 import TextComponent from 'app/common/components/TextComponent'
-import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
 
 export default class EditorTimerView extends React.PureComponent {
 
@@ -78,7 +78,7 @@ export default class EditorTimerView extends React.PureComponent {
 
 
                 <TextComponent style={styles.clock}>
-                    {timeUtils.formatSeconds(duration)}
+                    {secondsToTimeString(duration)}
                 </TextComponent>
 
                 <TextComponent style={styles.setNumber}>

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, View } from 'react-native'
 
 import * as enums from 'app/editor/enums'
-import * as timeUtils from 'app/crono/services/timeUtils'
+import secondsToTimeString from 'app/common/utils/time/secondsToTimeString'
 
 import TextComponent from 'app/common/components/TextComponent'
 
@@ -29,7 +29,7 @@ export default class Crono extends React.PureComponent {
         return (
             <View>
                 <TextComponent style={styles.clock}>
-                    {timeUtils.formatSeconds(duration)}
+                    {secondsToTimeString(duration)}
                 </TextComponent>
             </View>
         )

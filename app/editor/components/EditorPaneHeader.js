@@ -2,8 +2,8 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import ImmutablePropTypes from 'react-immutable-proptypes'
 
-import * as timeUtils from 'app/crono/services/timeUtils'
 import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles'
+import secondsToTimeString from 'app/common/utils/time/secondsToTimeString'
 import * as enums from '../enums'
 
 import TextComponent from 'app/common/components/TextComponent'
@@ -18,9 +18,9 @@ export default class EditorPaneHeader extends React.PureComponent {
 
     render() {
         const { editor, style } = this.props
-        const base = editor.get('base')
-        const type = editor.get('type')
-        const totalTime = editor.get('duration')
+        const base = editor.getIn([ 'entity', 'base' ])
+        const type = editor.getIn([ 'entity', 'type' ])
+        const totalTime = editor.getIn([ 'entity', 'duration' ])
 
         return (
             <View style={[ this.props.style, baseStyles.wrapper, enums.TABLE_TYPE_FREE === type && baseStyles.wrapperSmall ]}>
@@ -37,7 +37,7 @@ export default class EditorPaneHeader extends React.PureComponent {
                         </TextComponent>
 
                         <TextComponent style={baseStyles.headerText}>
-                            {timeUtils.formatSeconds(base)}
+                            {secondsToTimeString(base)}
                         </TextComponent>
                     </View>
                 }
@@ -48,7 +48,7 @@ export default class EditorPaneHeader extends React.PureComponent {
                         </TextComponent>
 
                         <TextComponent style={baseStyles.headerText}>
-                            {timeUtils.formatSeconds(totalTime)}
+                            {secondsToTimeString(totalTime)}
                         </TextComponent>
                     </View>
                 </View>
