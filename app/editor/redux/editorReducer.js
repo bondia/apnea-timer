@@ -1,8 +1,5 @@
 import reduxActions from 'app/main/enums/reduxActions'
-import createEditorState from '../utils/mutations/createEditorState'
-import setTableBase from '../utils/mutations/setTableBase'
-import setTableType from '../utils/mutations/setTableType'
-import updateDurationAtKey from '../utils/mutations/updateDurationAtKey'
+import { createEditorState, setTableBase, setTableType, updateDurationAtKey } from '../utils/mutations'
 
 export default train = (state = createEditorState(120), action) => {
 
