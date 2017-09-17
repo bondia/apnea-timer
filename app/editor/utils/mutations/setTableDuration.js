@@ -1,19 +1,19 @@
 import * as enums from '../../enums'
+import getRemainingTableDuration from './getRemainingTableDuration'
 
-export default function setTableDuration(data = null) {
-    if (!data) {
-        return data
+export default function setTableDuration(table = null) {
+    if (!table) {
+        return table
     }
 
-    // loop sets to calculate duration
-    let duration = 0
-    data.getIn([ 'table', 'sets' ]).forEach((e) => {
-        const mode = e.get('mode')
-        if (enums.SET_MODE_INITIAL == mode || enums.SET_MODE_RUNNING == mode) {
-            duration += e.get('duration')
-        }
-    })
+    const sets = table.getIn([ 'sets' ]);
+    const duration = getRemainingTableDuration(sets);
 
-    // set duration
-    return data.setIn([ 'entity', 'duration'], duration)
+    // update for runint table
+    if (table.getIn([ 'trainingTable', 'running' ])) {
+        return table.setIn([ 'trainingTable', 'running', 'countdown'], duration);
+    }
+
+    // update editor duration
+    return table.setIn([ 'trainingTable', 'duration'], duration);
 }

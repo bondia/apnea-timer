@@ -18,12 +18,12 @@ class TableBaseInput extends React.PureComponent {
 
     handleIncrease(amount) {
         const { editor, editorActions } = this.props
-        editorActions.changeTableBase(editor.getIn([ 'entity', 'base' ]) + amount)
+        editorActions.changeTableBase(editor.getIn([ 'trainingTable', 'base' ]) + amount)
     }
 
     handleDecrease(amount) {
         const { editor, editorActions } = this.props
-        editorActions.changeTableBase(editor.getIn([ 'entity', 'base' ]) - amount)
+        editorActions.changeTableBase(editor.getIn([ 'trainingTable', 'base' ]) - amount)
     }
 
     render() {

@@ -8,16 +8,16 @@ import setTableDuration from './setTableDuration'
  * @return Immutable
  */
 export default function setTableBase(state, value) {
-    const tableType = state.getIn([ 'entity', 'type' ])
+    const tableType = state.getIn([ 'trainingTable', 'type' ])
     const base = value < 5 ? 5 : value
-    state = state.setIn([ 'entity', 'base' ], base)
+    state = state.setIn([ 'trainingTable', 'base' ], base)
     // update sets for co2
     if (enums.TABLE_TYPE_CO2 === tableType) {
-        state = state.updateIn([ 'table', 'sets' ], s => s.map(s => s.get('type') == enums.SET_TYPE_HOLD ? s.set('duration', base) : s))
+        state = state.updateIn([ 'sets' ], s => s.map(s => s.get('type') == enums.SET_TYPE_HOLD ? s.set('duration', base) : s))
     }
     // update sets for o2
     if (enums.TABLE_TYPE_O2 === tableType) {
-        state = state.updateIn([ 'table', 'sets' ], s => s.map(s => s.get('type') == enums.SET_TYPE_PREPARE ? s.set('duration', base) : s))
+        state = state.updateIn([ 'sets' ], s => s.map(s => s.get('type') == enums.SET_TYPE_PREPARE ? s.set('duration', base) : s))
     }
     return setTableDuration(state)
 }

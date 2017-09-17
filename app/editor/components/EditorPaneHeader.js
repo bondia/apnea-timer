@@ -18,9 +18,9 @@ export default class EditorPaneHeader extends React.PureComponent {
 
     render() {
         const { editor, style } = this.props
-        const base = editor.getIn([ 'entity', 'base' ])
-        const type = editor.getIn([ 'entity', 'type' ])
-        const totalTime = editor.getIn([ 'entity', 'duration' ])
+        const base = editor.getIn([ 'trainingTable', 'base' ])
+        const type = editor.getIn([ 'trainingTable', 'type' ])
+        const totalTime = editor.getIn([ 'trainingTable', 'duration' ])
 
         return (
             <View style={[ this.props.style, baseStyles.wrapper, enums.TABLE_TYPE_FREE === type && baseStyles.wrapperSmall ]}>

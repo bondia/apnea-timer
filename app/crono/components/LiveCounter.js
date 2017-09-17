@@ -14,27 +14,38 @@ export default class EditorPaneHeader extends React.PureComponent {
         crono: ImmutablePropTypes.map.isRequired,
     }
 
+    getCurrentSet() {
+        const { crono } = this.props;
+        const sets = crono.getIn([ 'sets' ]);
+
+        let current = sets.find(e => e.getIn([ 'running' ,'mode']) === enums.SET_MODE_RUNNING)
+        return !current ? sets.first() : current
+    }
+
     render() {
-        const { crono, style } = this.props
-        const totalTime = crono.getIn([ 'entity', 'duration'])
-        const sets = crono.getIn([ 'table', 'sets' ])
-        let current = sets.find(e => e.get('mode') === enums.SET_MODE_RUNNING)
-        current = !current ? sets.first() : current
+        const { crono, style } = this.props;
+        const totalTime = crono.getIn([ 'trainingTable', 'running', 'countdown']);
+
+        // set data
+        const current = this.getCurrentSet();
+        const setType = current.get('type');
+        const mode = current.getIn([ 'running', 'mode' ]);
+        const countdown = current.getIn([ 'running', 'countdown' ]);
 
         return (
             <View style={[ this.props.style, baseStyles.wrapper ]}>
 
                 <View style={baseStyles.header}>
-                    {current && current.get('mode') !== enums.SET_MODE_FINISHED &&
+                    {current && mode !== enums.SET_MODE_FINISHED &&
                     <View style={baseStyles.headerBlock}>
 
                         <TextComponent style={baseStyles.headerLabel}>
-                            {enums.SET_TYPE_HOLD === current.get('type') ? 'Breath Hold' : '' }
-                            {enums.SET_TYPE_PREPARE === current.get('type') ? 'Breath Up' : '' }
+                            {enums.SET_TYPE_HOLD === setType ? 'Breath Hold' : '' }
+                            {enums.SET_TYPE_PREPARE === setType ? 'Breath Up' : '' }
                         </TextComponent>
 
                         <TextComponent style={baseStyles.headerText}>
-                            {secondsToTimeString(current.get('duration'))}
+                            {secondsToTimeString(countdown)}
                         </TextComponent>
                     </View>
                     }

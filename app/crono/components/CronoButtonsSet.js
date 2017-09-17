@@ -1,40 +1,41 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StyleSheet, View } from 'react-native'
-import ImmutablePropTypes from 'react-immutable-proptypes'
-import { Actions } from 'react-native-router-flux'
-import * as enums from 'app/editor/enums'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, View } from 'react-native';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+import { Actions } from 'react-native-router-flux';
+import * as enums from 'app/editor/enums';
 
-import LongTouchButton from 'app/common/components/LongTouchButton'
+import LongTouchButton from 'app/common/components/LongTouchButton';
 
 export default class StartButton extends React.PureComponent {
 
     static propTypes = {
         crono: ImmutablePropTypes.map.isRequired,
-        cronoActions: PropTypes.object.isRequired,
+        cronoActions: PropTypes.object.isRequired
     }
 
     handleStart() {
-        const { crono, cronoActions } = this.props
-        cronoActions.startCrono(crono)
+        const { crono, cronoActions } = this.props;
+        cronoActions.startCrono(crono);
     }
 
     handleSkip() {
-        const { crono, cronoActions } = this.props
-        const current = crono.getIn([ 'table', 'sets' ]).find(s => s.get('mode') === enums.SET_MODE_RUNNING)
+        const { crono, cronoActions } = this.props;
+        const current = crono.getIn([ 'sets' ])
+                            .find(s => s.getIn([ 'running', 'mode' ]) === enums.SET_MODE_RUNNING)
         if (current) {
-            cronoActions.skipSet(current.get('pos'))
+            cronoActions.skipSet(current.get('pos'));
         }
     }
 
     handleFinish() {
-        Actions.pop()
-        this.props.cronoActions.finishCrono()
+        Actions.pop();
+        this.props.cronoActions.finishCrono();
     }
 
     render() {
-        const { crono } = this.props
-        const step = crono.getIn([ 'live', 'step' ])
+        const { crono } = this.props;
+        const step = crono.getIn([ 'trainingTable', 'running', 'step' ]);
 
         return (
             <View style={baseStyles.container}>
@@ -72,4 +73,4 @@ const baseStyles = StyleSheet.create({
         justifyContent: 'center',
         flex: 1,
     }
-})
+});

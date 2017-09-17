@@ -9,13 +9,13 @@ const trainingTableSchema = {
 
         id: 'int',
 
-        // Table type O2 or CO2
+        // type O2,  CO2 or free
         type: 'string',
 
-        // base: represents hold time or recover time depending of the type of table
+        // represents hold time or recover time depending of the table type
         base: 'int',
 
-        // total table duration time based on sets calculation
+        // total table duration time based on sets
         duration: 'int',
 
     }
