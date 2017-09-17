@@ -19,7 +19,11 @@ export default train = (state = null, action) => {
     // SKIP SET
     if (action.type == reduxActions.CRONO_SET_SKIP) {
         const key = action.key
-        return state.updateIn([ 'sets' ], sets => sets.map(s => s.get('pos') === key ? s.setIn([ 'running', 'mode' ], enums.SET_MODE_SKIPED) : s))
+        state = state.updateIn([ 'sets' ], sets => sets.map(s => {
+            return s.get('pos') === key ? s.setIn([ 'running', 'mode' ], enums.SET_MODE_SKIPED) : s
+        }));
+        state = decideCurrentSet(state);
+        return state;
     }
 
     // HANDLE CLOCK TICK
