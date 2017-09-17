@@ -6,7 +6,7 @@ export default function startCrono(crono) {
     // set running data info
     crono = crono.setIn([ 'trainingTable', 'running' ], Immutable.fromJS({
         // represents the seconds spend since the table started
-        clock: 0,
+        clock: -1,
         // table current step
         step: 0
     }));

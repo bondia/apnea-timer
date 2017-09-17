@@ -4,7 +4,6 @@ import reduxActions from 'app/main/enums/reduxActions'
 let timer = null
 function startCrono(data) {
     return (dispatch) => {
-        dispatch(initTable(data))
         clearInterval(timer)
         timer = setInterval(() => dispatch(handleTick()), 1000)
     }
@@ -28,4 +27,4 @@ function skipSet(key) {
     return { type: reduxActions.CRONO_SET_SKIP, key }
 }
 
-export { startCrono, finishCrono, skipSet }
+export { initTable, startCrono, finishCrono, skipSet }

@@ -35,18 +35,18 @@ export default class StartButton extends React.PureComponent {
 
     render() {
         const { crono } = this.props;
-        const step = crono.getIn([ 'trainingTable', 'running', 'step' ]);
+        const clock = crono.getIn([ 'trainingTable', 'running', 'clock' ]);
 
         return (
             <View style={baseStyles.container}>
-            {step === undefined &&
+            {clock < 0 &&
                 <LongTouchButton    title="START"
                                     onPress={this.handleStart.bind(this)}
                                     style={baseStyles.button}
                                     />
             }
 
-            {step >= 0 &&
+            {clock >= 0 &&
                 <LongTouchButton    title="SKIP"
                                     onPress={this.handleSkip.bind(this)}
                                     style={baseStyles.button}

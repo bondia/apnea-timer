@@ -16,12 +16,23 @@ import LiveCounter from './LiveCounter'
 class CronoPane extends React.PureComponent {
 
     static propTypes = {
-        crono: ImmutablePropTypes.map.isRequired,
+        crono: ImmutablePropTypes.map,
+        editorData: ImmutablePropTypes.map.isRequired,
         cronoActions: PropTypes.object.isRequired,
+    }
+
+    componentWillMount() {
+        const { crono, editorData, cronoActions } = this.props;
+        if (crono === null) {
+            cronoActions.initTable(editorData);
+        }
     }
 
     render() {
         const { crono, cronoActions, style } = this.props
+        if (crono === null) {
+            return null;
+        }
 
         return (
             <View style={[ style, baseStyles.main ]}>
@@ -45,7 +56,8 @@ class CronoPane extends React.PureComponent {
 
 const stateToProps = (state, ownProps) => {
     return {
-        crono: state.crono ? state.crono : ownProps.crono
+        crono: state.crono ? state.crono : null,
+        editorData: ownProps.crono
     }
 }
 

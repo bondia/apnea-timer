@@ -11,7 +11,9 @@ export default train = (state = null, action) => {
 
     // INIT TABLE
     if (action.type == reduxActions.CRONO_START) {
-        return startCrono(action.data);
+        state = startCrono(action.data);
+        state = setTableDuration(state);
+        return state;
     }
 
     // SKIP SET
