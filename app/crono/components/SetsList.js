@@ -1,6 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Text, StyleSheet } from 'react-native';
-import PropTypes from 'prop-types';
+import { View, ScrollView, StyleSheet } from 'react-native';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import * as enums from 'app/editor/enums';
@@ -13,11 +12,8 @@ export default class SetsList extends React.PureComponent {
     }
 
     render() {
-        const { crono } = this.props
-        let sets = crono.getIn([ 'sets' ])
-        // sets = sets.filter(s => {
-        //     s.get('mode') === enums.SET_MODE_INITIAL
-        // })
+        const { crono } = this.props;
+        let sets = crono.getIn([ 'sets' ]);
 
         return (
             <ScrollView>
@@ -27,10 +23,10 @@ export default class SetsList extends React.PureComponent {
                         const type = item.get('type');
                         const mode = item.getIn([ 'running', 'mode' ]);
                         const countdown = item.getIn([ 'running', 'countdown']);
-
                         return (
                             <View key={idx} style={baseStyles.item}>
-                                <Crono  running={mode == enums.SET_MODE_RUNNING}
+                                <Crono  active={mode === enums.SET_MODE_RUNNING || mode === enums.SET_MODE_INITIAL}
+                                        running={mode === enums.SET_MODE_RUNNING}
                                         type={type}
                                         duration={countdown}
                                         />
@@ -39,7 +35,7 @@ export default class SetsList extends React.PureComponent {
                     })}
                 </View>
             </ScrollView>
-        )
+        );
     }
 }
 
