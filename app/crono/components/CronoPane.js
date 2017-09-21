@@ -1,17 +1,17 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StyleSheet, Text, View, ScrollView, Button } from 'react-native'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import ImmutablePropTypes from 'react-immutable-proptypes'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, View } from 'react-native';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import * as cronoActions from 'app/crono/redux/cronoActions'
-import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles'
+import * as cronoActions from 'app/crono/redux/cronoActions';
+import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles';
 
-import TextComponent from 'app/common/components/TextComponent'
-import SetsList from './SetsList'
-import CronoButtonsSet from './CronoButtonsSet'
-import LiveCounter from './LiveCounter'
+import TextComponent from 'app/common/components/TextComponent';
+import SetsList from './SetsList';
+import CronoButtonsSet from './CronoButtonsSet';
+import LiveCounter from './LiveCounter';
 
 class CronoPane extends React.PureComponent {
 
@@ -29,7 +29,7 @@ class CronoPane extends React.PureComponent {
     }
 
     render() {
-        const { crono, cronoActions, style } = this.props
+        const { crono, cronoActions, style } = this.props;
         if (crono === null) {
             return null;
         }
@@ -50,7 +50,7 @@ class CronoPane extends React.PureComponent {
                                     cronoActions={cronoActions}
                                     />
             </View>
-        )
+        );
     }
 }
 
@@ -58,16 +58,16 @@ const stateToProps = (state, ownProps) => {
     return {
         crono: state.crono ? state.crono : null,
         editorData: ownProps.crono
-    }
-}
+    };
+};
 
 const dispatchToProps = (dispatch) => {
     return {
         cronoActions: bindActionCreators(cronoActions, dispatch)
-    }
-}
+    };
+};
 
-export default connect(stateToProps, dispatchToProps)(CronoPane)
+export default connect(stateToProps, dispatchToProps)(CronoPane);
 
 const baseStyles = StyleSheet.create({
     main: {
@@ -82,4 +82,4 @@ const baseStyles = StyleSheet.create({
         width: '100%',
         color: FONT_COLOR_GREY
     },
-})
+});

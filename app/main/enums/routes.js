@@ -6,6 +6,6 @@ const routesEnum = {
     CRONO_SCENE: 'CRONO_SCENE',
     MY_TABLES_SCENE: 'MY_TABLES_SCENE',
     HISTORY_SCENE: 'HISTORY_SCENE',
-}
+};
 
-export { routesEnum }
+export { routesEnum };

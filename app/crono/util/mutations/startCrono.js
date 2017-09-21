@@ -8,7 +8,9 @@ export default function startCrono(crono) {
         // represents the seconds spend since the table started
         clock: -1,
         // table current step
-        step: 0
+        step: 0,
+        // cono mode
+        mode: enums.CRONO_MODE_AUTO
     }));
 
     // init sets

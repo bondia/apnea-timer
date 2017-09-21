@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StyleSheet, View } from 'react-native';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Actions } from 'react-native-router-flux';
-import * as enums from 'app/editor/enums';
+import * as tableEnums from 'app/editor/enums';
 
 import LongTouchButton from 'app/common/components/LongTouchButton';
 
@@ -14,15 +14,23 @@ export default class StartButton extends React.PureComponent {
         cronoActions: PropTypes.object.isRequired
     }
 
-    handleStart() {
-        const { crono, cronoActions } = this.props;
-        cronoActions.startCrono(crono);
+    handleStartAuto() {
+        this.handleStart(tableEnums.CRONO_MODE_AUTO);
+    }
+
+    handleStartCoach() {
+        this.handleStart(tableEnums.CRONO_MODE_COACH);
+    }
+
+    handleStart(mode) {
+        const { cronoActions } = this.props;
+        cronoActions.startCrono(mode);
     }
 
     handleSkip() {
         const { crono, cronoActions } = this.props;
         const current = crono.getIn([ 'sets' ])
-                            .find(s => s.getIn([ 'running', 'mode' ]) === enums.SET_MODE_RUNNING)
+                            .find(s => s.getIn([ 'running', 'mode' ]) === tableEnums.SET_MODE_RUNNING);
         if (current) {
             cronoActions.skipSet(current.get('pos'));
         }
@@ -36,29 +44,35 @@ export default class StartButton extends React.PureComponent {
     render() {
         const { crono } = this.props;
         const clock = crono.getIn([ 'trainingTable', 'running', 'clock' ]);
-
         return (
             <View style={baseStyles.container}>
             {clock < 0 &&
-                <LongTouchButton    title="START"
-                                    onPress={this.handleStart.bind(this)}
+                <LongTouchButton    title="Auto"
+                                    onPress={this.handleStartAuto.bind(this)}
+                                    style={baseStyles.button}
+                                    />
+            }
+
+            {clock < 0 &&
+                <LongTouchButton    title="Coach"
+                                    onPress={this.handleStartCoach.bind(this)}
                                     style={baseStyles.button}
                                     />
             }
 
             {clock >= 0 &&
-                <LongTouchButton    title="SKIP"
+                <LongTouchButton    title="Skip"
                                     onPress={this.handleSkip.bind(this)}
                                     style={baseStyles.button}
                                     />
             }
 
-                <LongTouchButton    title="FINISH"
+                <LongTouchButton    title="Finish"
                                     onPress={this.handleFinish.bind(this)}
                                     style={baseStyles.button}
                                     />
             </View>
-        )
+        );
     }
 }
 

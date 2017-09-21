@@ -1,25 +1,36 @@
-import * as enums from 'app/editor/enums'
-import notificationService from 'app/editor/utils/NotificationService'
+import * as enums from 'app/editor/enums';
+import notificationService from 'app/editor/utils/NotificationService';
 
 export default function decideCurrentSet(state) {
-    let step = state.getIn([ 'trainingTable', 'running', 'step' ]);
+    const step = state.getIn([ 'trainingTable', 'running', 'step' ]);
     const countdown = state.getIn([ 'sets', step, 'running', 'countdown' ]);
-    const mode = state.getIn([ 'sets', step, 'running', 'mode' ]);
+    const setMode = state.getIn([ 'sets', step, 'running', 'mode' ]);
 
     playNotificationSound(countdown);
 
+    // handle explicit skiped sets
+    if (enums.SET_MODE_SKIPED === setMode) {
+        return skipSet(state, step, setMode);
+
+    }
+
     // do not change current set if not skiped and stil countdown available
-    if (countdown > 0 && enums.SET_MODE_SKIPED !== mode) {
-        return state;
+    const cronoMode = state.getIn([ 'trainingTable', 'running', 'mode' ]);
+    if (countdown <= 0 && enums.CRONO_MODE_AUTO === cronoMode) {
+        return skipSet(state, step, setMode);
     }
 
-    if (enums.SET_MODE_SKIPED !== mode) {
-        state = state.setIn([ 'sets', step, 'running', 'mode' ], enums.SET_MODE_FINISHED)
+    return state;
+}
+
+function skipSet(state, step, setMode) {
+    if (enums.SET_MODE_SKIPED !== setMode) {
+        state = state.setIn([ 'sets', step, 'running', 'mode' ], enums.SET_MODE_FINISHED);
     }
 
-    step = step + 1
-    state = state.setIn([ 'sets', step, 'running', 'mode' ], enums.SET_MODE_RUNNING)
-    state = state.setIn([ 'trainingTable', 'running', 'step'], step)
+    step = step + 1;
+    state = state.setIn([ 'sets', step, 'running', 'mode' ], enums.SET_MODE_RUNNING);
+    state = state.setIn([ 'trainingTable', 'running', 'step'], step);
     return state;
 }
 

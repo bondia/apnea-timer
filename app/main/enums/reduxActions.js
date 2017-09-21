@@ -1,4 +1,4 @@
-export default reduxActions = {
+const reduxActions = {
 
     // EDITOR
     EDITOR_BASE_CHANGE: 'EDITOR_BASE_CHANGE',
@@ -7,8 +7,10 @@ export default reduxActions = {
 
     // CRONO
     CRONO_START: 'CRONO_START',
+    CRONO_SET_MODE: 'CRONO_SET_MODE',
     CRONO_FINISH: 'CRONO_FINISH',
     CRONO_SET_SKIP: 'CRONO_SET_SKIP',
     CRONO_TICK_UP: 'CRONO_TICK_UP',
+};
 
-}
+export default reduxActions;

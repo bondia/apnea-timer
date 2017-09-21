@@ -1,12 +1,12 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
+import React from 'react';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 
-import { initReducers } from './main/redux/reducers'
-import Router from './Router'
+import { initReducers } from './main/redux/reducers';
+import Router from './Router';
 
-const store = createStore(initReducers(), applyMiddleware(thunk))
+const store = createStore(initReducers(), applyMiddleware(thunk));
 
 export default class App extends React.PureComponent {
     render() {
@@ -14,6 +14,6 @@ export default class App extends React.PureComponent {
             <Provider store={store} >
                 <Router />
             </Provider>
-        )
+        );
     }
 }

@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-import { Router, Scene, ActionConst } from 'react-native-router-flux'
-import { routesEnum } from './main/enums/routes'
+import { Router, Scene, ActionConst } from 'react-native-router-flux';
+import { routesEnum } from './main/enums/routes';
 
-import MainScene from './main/components/MainScene'
-import EditorScene from './editor/components/EditorScene'
-import CronoScene from './crono/components/CronoScene'
+import MainScene from './main/components/MainScene';
+import EditorScene from './editor/components/EditorScene';
+import CronoScene from './crono/components/CronoScene';
 
 export default class AppRouter extends React.PureComponent {
     render() {
@@ -16,7 +16,7 @@ export default class AppRouter extends React.PureComponent {
                     <Scene  key={routesEnum.MAIN_SCENE}
                             component={MainScene}
                             title="My App"
-                            initial={true}
+                            initial
                             />
 
                     <Scene  key={routesEnum.CREATE_TABLE_SCENE}
@@ -33,6 +33,6 @@ export default class AppRouter extends React.PureComponent {
 
                 </Scene>
             </Router>
-        )
+        );
     }
 }
