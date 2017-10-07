@@ -1,16 +1,13 @@
-import React from 'react'
-import { StyleSheet } from 'react-native'
+import React from 'react';
+import { StyleSheet } from 'react-native';
 
-import { HEADER_HEIGHT } from 'app/common/styles/commonStyles'
+import { HEADER_HEIGHT } from 'app/common/styles/commonStyles';
 
-import EditorPane from './EditorPane'
+import EditorPane from './EditorPane';
 
 export default class EditorScene extends React.PureComponent {
-
     render() {
-        return (
-            <EditorPane style={styles.main} />
-        )
+        return <EditorPane style={styles.main} />;
     }
 }
 
@@ -20,4 +17,4 @@ const styles = StyleSheet.create({
         padding: 10,
         height: '100%'
     }
-})
+});

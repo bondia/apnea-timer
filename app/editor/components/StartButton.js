@@ -8,23 +8,19 @@ import { routesEnum } from 'app/main/enums/routes';
 import LongTouchButton from 'app/common/components/LongTouchButton';
 
 export default class StartButton extends React.PureComponent {
-
     static propTypes = {
-        editor: ImmutablePropTypes.map.isRequired,
-    }
+        data: ImmutablePropTypes.map.isRequired
+    };
 
     handleStart() {
-        const { editor } = this.props;
-        Actions[routesEnum.CRONO_SCENE]({ crono: editor });
+        const { data } = this.props;
+        Actions[routesEnum.CRONO_SCENE]({ crono: data });
     }
 
     render() {
         return (
             <View style={baseStyles.container}>
-                <LongTouchButton    title="Start"
-                                    onPress={this.handleStart.bind(this)}
-                                    style={baseStyles.button}
-                                    />
+                <LongTouchButton title="Start" onPress={this.handleStart.bind(this)} style={baseStyles.button} />
             </View>
         );
     }
@@ -39,6 +35,6 @@ const baseStyles = StyleSheet.create({
 
     button: {
         justifyContent: 'center',
-        flex: 1,
+        flex: 1
     }
 });

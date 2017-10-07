@@ -7,7 +7,7 @@ import * as tableEnums from 'app/editor/enums';
 
 import LongTouchButton from 'app/common/components/LongTouchButton';
 
-export default class StartButton extends React.PureComponent {
+export default class CronoButtonSet extends React.PureComponent {
 
     static propTypes = {
         crono: ImmutablePropTypes.map.isRequired,

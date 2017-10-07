@@ -1,14 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StyleSheet, Animated, View, Text, TouchableHighlight } from 'react-native'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StyleSheet, View, Text, TouchableHighlight } from 'react-native';
 
-import { FONT_CLOLR_GREY_LIGHT, COLOR_LIGHT } from 'app/common/styles/commonStyles'
+import { FONT_CLOLR_GREY_LIGHT, COLOR_LIGHT } from 'app/common/styles/commonStyles';
 
 export default class LongTouchButton extends React.PureComponent {
-
     static propTypes = {
         title: PropTypes.string.isRequired,
-        active: PropTypes.bool,
+        active: PropTypes.bool
     };
 
     static defaultProps = {
@@ -21,13 +20,13 @@ export default class LongTouchButton extends React.PureComponent {
     }
 
     handlePressIn() {
-        this.timer = setInterval(this.handleInterval.bind(this), 500)
+        this.timer = setInterval(this.handleInterval.bind(this), 500);
     }
 
     handleInterval() {
         this.props.onPressLong();
         clearInterval(this.timer);
-        this.timer = setInterval(this.handleInterval.bind(this), 200)
+        this.timer = setInterval(this.handleInterval.bind(this), 200);
     }
 
     handlePressOut() {
@@ -37,21 +36,17 @@ export default class LongTouchButton extends React.PureComponent {
     }
 
     render() {
-        const { title, active } = this.props
+        const { title, active } = this.props;
         return (
-            <View style={[ this.props.style, baseStyles.container ]}>
-
-                <TouchableHighlight onPressIn={this.handlePressIn.bind(this)}
-                                    onPressOut={this.handlePressOut.bind(this)}
-                                    underlayColor={FONT_CLOLR_GREY_LIGHT}
-                                    >
-
-                    <View style={active ? [baseStyles.button, baseStyles.active] : baseStyles.button }>
-                        <Text style={baseStyles.text}>
-                            {title}
-                        </Text>
+            <View style={[this.props.style, baseStyles.container]}>
+                <TouchableHighlight
+                    onPressIn={this.handlePressIn.bind(this)}
+                    onPressOut={this.handlePressOut.bind(this)}
+                    underlayColor={FONT_CLOLR_GREY_LIGHT}
+                >
+                    <View style={active ? [baseStyles.button, baseStyles.active] : baseStyles.button}>
+                        <Text style={baseStyles.text}>{title}</Text>
                     </View>
-
                 </TouchableHighlight>
             </View>
         );
@@ -59,10 +54,10 @@ export default class LongTouchButton extends React.PureComponent {
 }
 
 const baseStyles = StyleSheet.create({
-    container: { },
+    container: {},
     button: {
         padding: 20,
-        backgroundColor:  FONT_CLOLR_GREY_LIGHT,
+        backgroundColor: FONT_CLOLR_GREY_LIGHT,
         borderRadius: 3,
         margin: 5
     },
@@ -75,4 +70,3 @@ const baseStyles = StyleSheet.create({
         backgroundColor: COLOR_LIGHT
     }
 });
-

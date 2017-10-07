@@ -1,4 +1,4 @@
-import createEditorState from './createEditorState'
+import createEditorState from './createEditorState';
 
 /**
  * Change table type
@@ -8,5 +8,5 @@ import createEditorState from './createEditorState'
  * @return Immutable
  */
 export default function setTableType(state, base, type) {
-    return createEditorState(base, type)
+    return createEditorState(base, type);
 }

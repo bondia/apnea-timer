@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 
 import CronoPane from './CronoPane';
 
-export default class CreatorScene extends React.PureComponent {
+export default class CronoScene extends React.PureComponent {
 
     render() {
         const { crono } = this.props;

@@ -6,30 +6,29 @@ import * as enums from 'app/editor/enums';
 import Crono from './Crono';
 
 export default class SetsList extends React.PureComponent {
-
     static propTypes = {
-        crono: ImmutablePropTypes.map.isRequired,
-    }
+        crono: ImmutablePropTypes.map.isRequired
+    };
 
     render() {
         const { crono } = this.props;
-        let sets = crono.getIn([ 'sets' ]);
+        let sets = crono.getIn(['sets']);
 
         return (
             <ScrollView>
                 <View style={baseStyles.setsWrapper}>
-
                     {sets.map((item, idx) => {
                         const type = item.get('type');
-                        const mode = item.getIn([ 'running', 'mode' ]);
-                        const countdown = item.getIn([ 'running', 'countdown']);
+                        const mode = item.getIn(['running', 'mode']);
+                        const countdown = item.getIn(['running', 'countdown']);
                         return (
                             <View key={idx} style={baseStyles.item}>
-                                <Crono  active={mode === enums.SET_MODE_RUNNING || mode === enums.SET_MODE_INITIAL}
-                                        running={mode === enums.SET_MODE_RUNNING}
-                                        type={type}
-                                        duration={countdown}
-                                        />
+                                <Crono
+                                    active={mode === enums.SET_MODE_RUNNING || mode === enums.SET_MODE_INITIAL}
+                                    running={mode === enums.SET_MODE_RUNNING}
+                                    type={type}
+                                    duration={countdown}
+                                />
                             </View>
                         );
                     })}
@@ -40,7 +39,6 @@ export default class SetsList extends React.PureComponent {
 }
 
 const baseStyles = StyleSheet.create({
-
     setsWrapper: {
         flex: 1,
         flexDirection: 'row',
@@ -50,5 +48,4 @@ const baseStyles = StyleSheet.create({
     item: {
         width: '33%'
     }
-
 });

@@ -14,12 +14,11 @@ import CronoButtonsSet from './CronoButtonsSet';
 import LiveCounter from './LiveCounter';
 
 class CronoPane extends React.PureComponent {
-
     static propTypes = {
         crono: ImmutablePropTypes.map,
         editorData: ImmutablePropTypes.map.isRequired,
-        cronoActions: PropTypes.object.isRequired,
-    }
+        cronoActions: PropTypes.object.isRequired
+    };
 
     componentWillMount() {
         const { crono, editorData, cronoActions } = this.props;
@@ -30,25 +29,20 @@ class CronoPane extends React.PureComponent {
 
     render() {
         const { crono, cronoActions, style } = this.props;
-        if (crono === null) {
+        if (crono === null || crono.get('sets').size <= 0) {
             return null;
         }
 
         return (
-            <View style={[ style, baseStyles.main ]}>
-
+            <View style={[style, baseStyles.main]}>
                 <LiveCounter crono={crono} />
 
                 <View style={baseStyles.setsTable}>
-                    <TextComponent style={baseStyles.label}>
-                        Sets
-                    </TextComponent>
+                    <TextComponent style={baseStyles.label}>Sets</TextComponent>
                     <SetsList crono={crono} />
                 </View>
 
-                <CronoButtonsSet    crono={crono}
-                                    cronoActions={cronoActions}
-                                    />
+                <CronoButtonsSet crono={crono} cronoActions={cronoActions} />
             </View>
         );
     }
@@ -61,7 +55,7 @@ const stateToProps = (state, ownProps) => {
     };
 };
 
-const dispatchToProps = (dispatch) => {
+const dispatchToProps = dispatch => {
     return {
         cronoActions: bindActionCreators(cronoActions, dispatch)
     };
@@ -71,7 +65,7 @@ export default connect(stateToProps, dispatchToProps)(CronoPane);
 
 const baseStyles = StyleSheet.create({
     main: {
-        flex: 1,
+        flex: 1
     },
 
     setsTable: { flex: 4 },
@@ -81,5 +75,5 @@ const baseStyles = StyleSheet.create({
         textAlign: 'center',
         width: '100%',
         color: FONT_COLOR_GREY
-    },
+    }
 });

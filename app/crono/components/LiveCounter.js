@@ -1,85 +1,77 @@
-import React from 'react'
-import { View, StyleSheet } from 'react-native'
-import ImmutablePropTypes from 'react-immutable-proptypes'
+import React from 'react';
+import { View, StyleSheet } from 'react-native';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import secondsToTimeString from 'app/common/utils/time/secondsToTimeString'
-import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles'
-import * as enums from 'app/editor/enums'
+import secondsToTimeString from 'app/common/utils/time/secondsToTimeString';
+import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles';
+import * as enums from 'app/editor/enums';
 
-import TextComponent from 'app/common/components/TextComponent'
+import TextComponent from 'app/common/components/TextComponent';
 
-export default class EditorPaneHeader extends React.PureComponent {
-
+export default class LiveCounter extends React.PureComponent {
     static propTypes = {
-        crono: ImmutablePropTypes.map.isRequired,
-    }
+        crono: ImmutablePropTypes.map.isRequired
+    };
 
     getCurrentSet() {
         const { crono } = this.props;
-        const sets = crono.getIn([ 'sets' ]);
+        const sets = crono.getIn(['sets']);
 
-        let current = sets.find(e => e.getIn([ 'running' ,'mode']) === enums.SET_MODE_RUNNING)
-        return !current ? sets.first() : current
+        let current = sets.find(e => e.getIn(['running', 'mode']) === enums.SET_MODE_RUNNING);
+        return !current ? sets.first() : current;
     }
 
     render() {
-        const { crono, style } = this.props;
-        const totalTime = crono.getIn([ 'trainingTable', 'running', 'countdown']);
+        const { crono } = this.props;
+        const totalTime = crono.getIn(['trainingTable', 'running', 'countdown']);
 
         // set data
         const current = this.getCurrentSet();
         const setType = current.get('type');
-        const mode = current.getIn([ 'running', 'mode' ]);
-        const countdown = current.getIn([ 'running', 'countdown' ]);
+        const mode = current.getIn(['running', 'mode']);
+        const countdown = current.getIn(['running', 'countdown']);
 
         return (
-            <View style={[ this.props.style, baseStyles.wrapper ]}>
-
+            <View style={[this.props.style, baseStyles.wrapper]}>
                 <View style={baseStyles.header}>
-                    {current && mode !== enums.SET_MODE_FINISHED &&
+                    {current &&
+                        mode !== enums.SET_MODE_FINISHED && (
+                            <View style={baseStyles.headerBlock}>
+                                <TextComponent style={baseStyles.headerLabel}>
+                                    {enums.SET_TYPE_HOLD === setType ? 'Breath Hold' : ''}
+                                    {enums.SET_TYPE_PREPARE === setType ? 'Breath Up' : ''}
+                                </TextComponent>
+
+                                <TextComponent style={baseStyles.headerText}>
+                                    {secondsToTimeString(countdown)}
+                                </TextComponent>
+                            </View>
+                        )}
+
                     <View style={baseStyles.headerBlock}>
-
-                        <TextComponent style={baseStyles.headerLabel}>
-                            {enums.SET_TYPE_HOLD === setType ? 'Breath Hold' : '' }
-                            {enums.SET_TYPE_PREPARE === setType ? 'Breath Up' : '' }
-                        </TextComponent>
-
-                        <TextComponent style={baseStyles.headerText}>
-                            {secondsToTimeString(countdown)}
-                        </TextComponent>
-                    </View>
-                    }
-
-                    <View style={baseStyles.headerBlock}>
-                        <TextComponent style={baseStyles.headerLabel}>
-                            Remaining Time
-                        </TextComponent>
-                        <TextComponent style={baseStyles.headerText}>
-                            {secondsToTimeString(totalTime)}
-                        </TextComponent>
+                        <TextComponent style={baseStyles.headerLabel}>Remaining Time</TextComponent>
+                        <TextComponent style={baseStyles.headerText}>{secondsToTimeString(totalTime)}</TextComponent>
                     </View>
                 </View>
-
             </View>
-        )
+        );
     }
 }
 
 const baseStyles = StyleSheet.create({
-
     wrapper: {
-        flex: 2,
+        flex: 2
     },
 
     // HEADER
     header: {
         flex: 1,
-        flexDirection: 'row',
+        flexDirection: 'row'
     },
 
     headerBlock: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'center'
     },
 
     headerLabel: {
@@ -92,4 +84,4 @@ const baseStyles = StyleSheet.create({
         fontSize: FONT_SIZE_L,
         color: COLOR_LIGHT
     }
-})
+});

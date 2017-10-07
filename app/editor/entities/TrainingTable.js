@@ -1,12 +1,9 @@
-
 const trainingTableSchema = {
-
     name: 'TrainingTable',
 
     primaryKey: 'id',
 
     properties: {
-
         id: 'int',
 
         // type O2,  CO2 or free
@@ -16,9 +13,8 @@ const trainingTableSchema = {
         base: 'int',
 
         // total table duration time based on sets
-        duration: 'int',
-
+        duration: 'int'
     }
 };
 
-export { trainingTableSchema }
+export { trainingTableSchema };

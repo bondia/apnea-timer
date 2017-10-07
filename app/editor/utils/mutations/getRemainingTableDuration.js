@@ -1,4 +1,4 @@
-import * as enums from '../../enums'
+import * as enums from '../../enums';
 
 export default function getRemainingTableDuration(sets = null) {
     if (!sets) {
@@ -6,7 +6,7 @@ export default function getRemainingTableDuration(sets = null) {
     }
 
     let duration = 0;
-    sets.forEach((e) => duration += getSingleSetDuration(e))
+    sets.forEach(e => (duration += getSingleSetDuration(e)));
     return duration;
 }
 
@@ -15,7 +15,11 @@ function getSingleSetDuration(set) {
     // it means the table is running
     const running = set.get('running');
     if (running) {
-        return running.get('mode') !== enums.SET_MODE_SKIPED ? running.get('countdown') : 0;
+        const countdown = running.get('countdown');
+        return running.get('mode') !== enums.SET_MODE_SKIPED && countdown > 0 ? countdown : 0;
     }
-    return set.get('duration');
+
+    // do not include zombie sets
+    const zombie = set.get('zombie');
+    return zombie === true ? 0 : set.get('duration');
 }
