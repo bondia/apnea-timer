@@ -17,22 +17,41 @@ export default class LongTouchButton extends React.PureComponent {
 
     componentWillMount() {
         this.timer = null;
+        this.countCallback = null;
     }
 
     handlePressIn() {
-        this.timer = setInterval(this.handleInterval.bind(this), 500);
+        // count
+        if (this.countCallback !== null) {
+            this.countCallback();
+        }
+        this.countCallback = this.props.onPress;
     }
 
-    handleInterval() {
-        this.props.onPressLong();
+    handleLongPress() {
+        // count
+        if (this.countCallback !== null && this.timer !== null) {
+            this.countCallback();
+        }
+
+        // clear interval
         clearInterval(this.timer);
-        this.timer = setInterval(this.handleInterval.bind(this), 200);
+        this.timer = null;
+
+        // create new interval
+        this.countCallback = this.props.onPressLong;
+        this.timer = setInterval(this.handleLongPress.bind(this), 200);
     }
 
     handlePressOut() {
+        // count
+        if (this.countCallback !== null) {
+            this.countCallback();
+        }
+
+        // clear interval
         clearInterval(this.timer);
         this.timer = null;
-        this.props.onPress();
     }
 
     render() {
@@ -41,6 +60,7 @@ export default class LongTouchButton extends React.PureComponent {
             <View style={[this.props.style, baseStyles.container]}>
                 <TouchableHighlight
                     onPressIn={this.handlePressIn.bind(this)}
+                    onLongPress={this.handleLongPress.bind(this)}
                     onPressOut={this.handlePressOut.bind(this)}
                     underlayColor={FONT_CLOLR_GREY_LIGHT}
                 >
