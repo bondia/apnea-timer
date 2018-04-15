@@ -47,6 +47,7 @@ export default class LongTouchButton extends React.PureComponent {
         // count
         if (this.countCallback !== null) {
             this.countCallback();
+            this.countCallback = null;
         }
 
         // clear interval
