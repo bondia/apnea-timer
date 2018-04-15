@@ -29,6 +29,11 @@ public class MainApplication extends Application implements ReactApplication {
             new RNSoundPackage()
       );
     }
+
+    @Override
+    protected String getJSMainModuleName() {
+      return "index";
+    }
   };
 
   @Override
