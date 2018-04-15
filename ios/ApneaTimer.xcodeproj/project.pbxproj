@@ -582,6 +582,7 @@
 				00E356EF1AD99517003FC87E /* ApneaTimerTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				297FF759EA124C75892E1F1D /* Frameworks */,
+				C23D9A181FBCEF64003D3519 /* Recovered References */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -606,6 +607,15 @@
 				298CBEEB1F67E99A00A9CB62 /* libRCTBlob-tvOS.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		C23D9A181FBCEF64003D3519 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				DC01B26753604EFB9574E931 /* libRNSound.a */,
+				EBC677D9DC544DD5B8E358D5 /* libRealmReact.a */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -698,6 +708,11 @@
 					};
 					13B07F861A680F5B00A75B9A = {
 						DevelopmentTeam = 9AN44NK765;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 0;
+							};
+						};
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
