@@ -17,39 +17,21 @@ export default class LongTouchButton extends React.PureComponent {
 
     componentWillMount() {
         this.timer = null;
-        this.countCallback = null;
     }
 
     handlePressIn() {
-        // count
-        if (this.countCallback !== null) {
-            this.countCallback();
-        }
-        this.countCallback = this.props.onPress;
+        this.props.onPress();
     }
 
     handleLongPress() {
-        // count
-        if (this.countCallback !== null && this.timer !== null) {
-            this.countCallback();
-        }
-
-        // clear interval
+        // handle press
+        this.props.onPressLong();
+        // init new interval
         clearInterval(this.timer);
-        this.timer = null;
-
-        // create new interval
-        this.countCallback = this.props.onPressLong;
-        this.timer = setInterval(this.handleLongPress.bind(this), 200);
+        this.timer = setInterval(this.handleLongPress.bind(this), 150);
     }
 
     handlePressOut() {
-        // count
-        if (this.countCallback !== null) {
-            this.countCallback();
-            this.countCallback = null;
-        }
-
         // clear interval
         clearInterval(this.timer);
         this.timer = null;
