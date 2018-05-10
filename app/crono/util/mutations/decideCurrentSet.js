@@ -36,9 +36,11 @@ function skipSet(state, step, setMode) {
 function playNotificationSound(countdown) {
     switch (countdown) {
         case 30:
+        case 20:
             notificationService.playF2();
             break;
-        case 15:
+        case 10:
+        case 5:
             notificationService.playA2();
             break;
         case 0:
