@@ -1,5 +1,5 @@
 import * as enums from 'app/editor/enums';
-import notificationService from 'app/editor/utils/NotificationService';
+import playSound, { A2, F2, C3 } from 'app/editor/utils/playSound';
 
 export default function decideCurrentSet(state) {
     const step = state.getIn(['trainingTable', 'running', 'step']);
@@ -37,14 +37,14 @@ function playNotificationSound(countdown) {
     switch (countdown) {
         case 30:
         case 20:
-            notificationService.playF2();
+            playSound(F2);
             break;
         case 10:
         case 5:
-            notificationService.playA2();
+            playSound(A2);
             break;
         case 0:
-            notificationService.playC3();
+            playSound(C3);
             break;
     }
 }
