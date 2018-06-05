@@ -19,7 +19,7 @@ export default function editorReducer(state=createEditorState(120), action) {
     }
 
     // set sets
-    if (action.type == reduxActions.EDITOR_SET_SETS) {
+    if (action.type == reduxActions.EDITOR_REPLACE_SETS) {
         return state.setIn(['sets'], action.sets);
     }
 

@@ -1,15 +1,32 @@
 import reduxActions from 'app/main/enums/reduxActions';
-import { setTableBase, setTableType, updateDurationAtKey } from '../utils/mutations';
+import * as enums from '../enums';
+import { setTableType, updateDurationAtKey, getRemainingTableDuration } from '../utils/mutations';
 
 /**
  * Change table base action
  * TODO: Refactor that
  */
-function changeTableBase(base) {
+function changeTableBase(value) {
     return (dispatch, getState) => {
         const { editor } = getState();
-        const newState = setTableBase(editor, base);
-        dispatch(replaceState(newState));
+        // decide base and set it
+        const base = value < 5 ? 5 : value;
+        dispatch(setTableBase(value));
+        // update sets with new base
+        const tableType = editor.getIn(['trainingTable', 'type']);
+        let sets = editor.get('sets');
+        // update sets for co2
+        if (enums.TABLE_TYPE_CO2 === tableType) {
+            sets = sets.map(s => (s.get('type') == enums.SET_TYPE_HOLD ? s.set('duration', base) : s));
+        }
+        // update sets for o2
+        if (enums.TABLE_TYPE_O2 === tableType) {
+            sets = sets.map(s => (s.get('type') == enums.SET_TYPE_PREPARE ? s.set('duration', base) : s));
+        }
+        dispatch(replaceSets(sets));
+        // recalculate duration
+        const duration = getRemainingTableDuration(sets);
+        dispatch(setTableDuration(duration));
     };
 }
 
@@ -43,6 +60,20 @@ function changeTimeItem(key, amount) {
         const newState = updateDurationAtKey(editor, key, amount);
         dispatch(replaceState(newState));
     };
+}
+
+/** BASIC ACTIONS */
+
+function setTableBase(base) {
+    return { type: reduxActions.EDITOR_SET_TABLE_BASE, base };
+}
+
+function setTableDuration(duration) {
+    return { type: reduxActions.EDITOR_SET_TABLE_DURATION, duration };
+}
+
+function replaceSets(sets) {
+    return { type: reduxActions.EDITOR_REPLACE_SETS, sets };
 }
 
 // TODO: remove that
