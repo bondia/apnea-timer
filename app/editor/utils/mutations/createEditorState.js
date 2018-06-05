@@ -9,20 +9,19 @@ import setTableDuration from './setTableDuration';
  * @return Immutable
  */
 export default function createEditorState(base, type) {
-    let state = createEditroSkeleton(base, type);
+    let state = createEditorSkeleton(base, type);
     state = createInitialSets(state);
     state = setTableDuration(state);
     return state;
 }
 
-function createEditroSkeleton(base = 1, type = enums.TABLE_TYPE_CO2) {
+function createEditorSkeleton(base = 1, type = enums.TABLE_TYPE_CO2) {
     return Immutable.fromJS({
         trainingTable: {
             base: base,
             type: type,
             duration: 0
         },
-
         sets: []
     });
 }
@@ -37,7 +36,7 @@ function createInitialSets(table) {
     const base = table.getIn(['trainingTable', 'base']);
     const type = table.getIn(['trainingTable', 'type']);
     for (var i = 0; i < 16; i += 2) {
-        const prepTime = type === enums.TABLE_TYPE_CO2 ? 120 - 10 * (i / 2) : base;
+        const prepTime = type === enums.TABLE_TYPE_CO2 ? 150 - 15 * (i / 2) : base;
         const holdTime = type === enums.TABLE_TYPE_O2 ? 60 + 10 * (i / 2) : base;
         const prepSet = Immutable.fromJS({ duration: prepTime, type: enums.SET_TYPE_PREPARE, pos: i });
         const holdSet = Immutable.fromJS({ duration: holdTime, type: enums.SET_TYPE_HOLD, pos: i + 1 });
