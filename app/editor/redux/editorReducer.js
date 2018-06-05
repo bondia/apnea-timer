@@ -1,17 +1,32 @@
 import reduxActions from 'app/main/enums/reduxActions';
-import { createEditorState, setTableBase, setTableType, updateDurationAtKey } from '../utils/mutations';
+import { createEditorState } from '../utils/mutations';
 
-export default function editorReducer(state = createEditorState(120), action) {
-    if (action.type == reduxActions.EDITOR_BASE_CHANGE) {
-        return setTableBase(state, action.base);
+export default function editorReducer(state=createEditorState(120), action) {
+
+    // set base
+    if (action.type == reduxActions.EDITOR_SET_TABLE_BASE) {
+        return state.setIn(['trainingTable', 'base'], action.base);
     }
 
-    if (action.type == reduxActions.EDITOR_TYPE_CHANGE) {
-        return setTableType(state, action.base, action.tableType);
+    // set type
+    if (action.type == reduxActions.EDITOR_SET_TABLE_TYPE) {
+        return state.setIn(['trainingTable', 'type'], action.type);
     }
 
-    if (action.type == reduxActions.EDITOR_SET_DURATION_CHANGE) {
-        return updateDurationAtKey(state, action.key, action.amount);
+    // set duration
+    if (action.type == reduxActions.EDITOR_SET_TABLE_DURATION) {
+        return state.setIn(['trainingTable', 'duration'], action.duration);
+    }
+
+    // set sets
+    if (action.type == reduxActions.EDITOR_SET_SETS) {
+        return state.setIn(['sets'], action.sets);
+    }
+
+    // TODO: REFACTORING - This shoudl be gone
+
+    if (action.type == reduxActions.EDITOR_REPLACE_STATE) {
+        return action.state;
     }
 
     return state;
