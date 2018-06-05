@@ -16,7 +16,6 @@ export default function updateDurationAtKey(state, key, amount) {
     }
 
     // decide new duration
-    console.info(amount, item.get('duration'));
     const duration = amount + item.get('duration');
     const tableType = state.getIn(['trainingTable', 'type']);
 
