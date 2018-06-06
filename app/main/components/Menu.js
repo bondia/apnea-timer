@@ -20,7 +20,7 @@ class Menu extends React.PureComponent {
         return (
             <View style={[style, styles.mainStyles]}>
                 <MenuItem
-                    title="Training Table Editor"
+                    title="Create Table"
                     type={routesEnum.CREATE_TABLE_SCENE}
                     onPress={this.handleNavigate.bind(this)}
                     style={{ backgroundColor: COLOR_LIGHT }}

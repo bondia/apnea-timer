@@ -15,13 +15,13 @@ export default class AppRouter extends React.PureComponent {
 
                     <Scene  key={routesEnum.MAIN_SCENE}
                             component={MainScene}
-                            title="My App"
+                            title="Apnea"
                             initial
                             />
 
                     <Scene  key={routesEnum.CREATE_TABLE_SCENE}
                             component={EditorScene}
-                            title="Training Table Editor"
+                            title="Crate Table"
                             />
 
                     <Scene  key={routesEnum.CRONO_SCENE}

@@ -1,5 +1,5 @@
 import * as enums from 'app/editor/enums';
-import playSound, { A2, F2, C3 } from 'app/editor/utils/playSound';
+import playSound, { A2, F2, C3 } from 'app/common/utils/playSound';
 
 export default function decideCurrentSet(state) {
     const step = state.getIn(['trainingTable', 'running', 'step']);
