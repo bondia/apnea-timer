@@ -1,6 +1,9 @@
 import Immutable from 'immutable';
+
 import * as enums from '../../enums';
+
 import setTableDuration from './setTableDuration';
+import createInitialSets from '../../pure/sets/createInitialSets';
 
 /**
  * Table Creation
@@ -9,8 +12,12 @@ import setTableDuration from './setTableDuration';
  * @return Immutable
  */
 export default function createEditorState(base, type) {
+    // skeleton
     let state = createEditorSkeleton(base, type);
-    state = createInitialSets(state);
+    // sets
+    const sets = createInitialSets(base, type);
+    state = state.set('sets', sets);
+    // calculate table duration
     state = setTableDuration(state);
     return state;
 }
@@ -24,24 +31,4 @@ function createEditorSkeleton(base = 1, type = enums.TABLE_TYPE_CO2) {
         },
         sets: []
     });
-}
-
-/**
- * CREATE SETS
- * - pos: Position inside the table
- * - duration: Set duration
- * - type: Hold set or breath up set
- */
-function createInitialSets(table) {
-    const base = table.getIn(['trainingTable', 'base']);
-    const type = table.getIn(['trainingTable', 'type']);
-    for (var i = 0; i < 16; i += 2) {
-        const prepTime = type === enums.TABLE_TYPE_CO2 ? 150 - 15 * (i / 2) : base;
-        const holdTime = type === enums.TABLE_TYPE_O2 ? 60 + 10 * (i / 2) : base;
-        const prepSet = Immutable.fromJS({ duration: prepTime, type: enums.SET_TYPE_PREPARE, pos: i });
-        const holdSet = Immutable.fromJS({ duration: holdTime, type: enums.SET_TYPE_HOLD, pos: i + 1 });
-        table = table.updateIn(['sets'], l => l.push(prepSet));
-        table = table.updateIn(['sets'], l => l.push(holdSet));
-    }
-    return table;
 }
