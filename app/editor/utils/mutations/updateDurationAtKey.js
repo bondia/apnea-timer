@@ -64,8 +64,7 @@ function decideSetDuration(tableType, item, key, duration) {
 
     // UPDATE FOR O2 TABLES
     if (enums.TABLE_TYPE_O2 === tableType && enums.SET_TYPE_HOLD === type) {
-        if (
-            (item.get('pos') < key && item.get('duration') > duration) ||
+        if ((item.get('pos') < key && item.get('duration') > duration) ||
             item.get('pos') === key ||
             (item.get('pos') > key && item.get('duration') < duration)
         ) {
@@ -75,8 +74,7 @@ function decideSetDuration(tableType, item, key, duration) {
 
     // UPDATE FOR CO2 TABLES
     if (enums.TABLE_TYPE_CO2 === tableType && enums.SET_TYPE_PREPARE === type) {
-        if (
-            (item.get('pos') < key && item.get('duration') < duration) ||
+        if ((item.get('pos') < key && item.get('duration') < duration) ||
             item.get('pos') === key ||
             (item.get('pos') > key && item.get('duration') > duration)
         ) {
