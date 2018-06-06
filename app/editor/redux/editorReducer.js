@@ -1,7 +1,12 @@
 import reduxActions from 'app/main/enums/reduxActions';
-import { createEditorState } from '../utils/mutations';
+import createTable from '../pure/createTable';
 
-export default function editorReducer(state=createEditorState(120), action) {
+export default function editorReducer(state=createTable(120), action) {
+
+    // set initial state
+    if (action.type == reduxActions.EDITOR_SET_INITIAL_STATE) {
+        return action.state;
+    }
 
     // set base
     if (action.type == reduxActions.EDITOR_SET_TABLE_BASE) {
@@ -21,12 +26,6 @@ export default function editorReducer(state=createEditorState(120), action) {
     // set sets
     if (action.type == reduxActions.EDITOR_REPLACE_SETS) {
         return state.setIn(['sets'], action.sets);
-    }
-
-    // TODO: REFACTORING - This shoudl be gone
-
-    if (action.type == reduxActions.EDITOR_REPLACE_STATE) {
-        return action.state;
     }
 
     return state;

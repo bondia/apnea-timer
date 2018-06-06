@@ -1,9 +1,9 @@
 import Immutable from 'immutable';
 
-import * as enums from '../../enums';
+import * as enums from '../enums';
 
-import setTableDuration from './setTableDuration';
-import createInitialSets from '../../pure/sets/createInitialSets';
+import setTableDuration from '../utils/mutations/setTableDuration';
+import createInitialSets from './sets/createInitialSets';
 
 /**
  * Table Creation
@@ -11,7 +11,7 @@ import createInitialSets from '../../pure/sets/createInitialSets';
  * @param  String type
  * @return Immutable
  */
-export default function createEditorState(base, type) {
+export default function createTable(base, type) {
     // skeleton
     let state = createEditorSkeleton(base, type);
     // sets
@@ -22,7 +22,7 @@ export default function createEditorState(base, type) {
     return state;
 }
 
-function createEditorSkeleton(base = 1, type = enums.TABLE_TYPE_CO2) {
+function createEditorSkeleton(base=1, type=enums.TABLE_TYPE_CO2) {
     return Immutable.fromJS({
         trainingTable: {
             base: base,
