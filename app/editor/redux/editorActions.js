@@ -67,6 +67,11 @@ function changeTimeItem(key, amount) {
     };
 }
 
+/**
+ * Due some sets, calculatetable duration and update it
+ * @param  {[type]} sets [description]
+ * @return {[type]}      [description]
+ */
 function updateTableDurationBySets(sets) {
     const duration = calculateSetsDuration(sets);
     return setTableDuration(duration);
