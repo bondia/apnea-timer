@@ -59,7 +59,7 @@ function changeTimeItem(key, amount) {
         // decide new duration
         const duration = amount + item.get('duration');
         const tableType = editor.getIn(['trainingTable', 'type']);
-        const sets = updateDurationAtKey(editor.get('sets'), tableType, key, duration);
+        const sets = updateSetDurationForKey(editor.get('sets'), tableType, key, duration);
         dispatch(replaceSets(sets));
 
         // update table duration
