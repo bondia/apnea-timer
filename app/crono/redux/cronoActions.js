@@ -1,6 +1,8 @@
 import reduxActions from 'app/main/enums/reduxActions';
+import * as enums from 'app/editor/enums';
 
 import editorToCrono from '../pure/editorToCrono';
+import decideCurrentSet from '../pure/decideCurrentSet';
 import calculateSetsDuration from 'app/editor/pure/sets/calculateSetsDuration';
 
 /**
@@ -34,6 +36,46 @@ export function startCrono(mode) {
 }
 
 /**
+ * Skips a single set
+ * TODO: clear interval and start it again
+ * @param  {[type]} key [description]
+ * @return {[type]}     [description]
+ */
+export function skipSet(key) {
+    return (dispatch, getState) => {
+        // clear interval
+        clearInterval(timer);
+
+        // disable set by key
+        let { crono } = getState();
+        crono = crono.updateIn(['sets'], sets =>
+            sets.map(s => {
+                return s.get('pos') === key ? s.setIn(['running', 'mode'], enums.SET_MODE_SKIPED) : s;
+            })
+        );
+
+        // activate new set
+        const newCrono = decideCurrentSet(crono);
+        dispatch(setInitialState(newCrono));
+
+        // recalculate table duration
+        dispatch(updateTableDurationBySets(crono.get('sets')));
+
+        // start interval again
+        timer = setInterval(() => dispatch(handleTick()), 1000);
+    };
+}
+
+/**
+ * Finish Crono
+ */
+export function finishCrono() {
+    clearInterval(timer);
+    timer = null;
+    return { type: reduxActions.CRONO_SET_INITIAL_STATE, state: null };
+}
+
+/**
  * Due some sets, calculatetable duration and update it
  * @param  {[type]} sets [description]
  * @return {[type]}      [description]
@@ -57,19 +99,13 @@ function setTableDuration(duration) {
     return { type: reduxActions.CRONO_SET_TABLE_DURATION, duration };
 }
 
+function replaceSets(sets) {
+    return { type: reduxActions.CRONO_REPLACE_SETS, sets };
+}
+
 /** TODO REFACTORING */
 
 
-export function finishCrono() {
-    clearInterval(timer);
-    timer = null;
-    return { type: reduxActions.CRONO_FINISH };
-}
-
 function handleTick() {
     return { type: reduxActions.CRONO_TICK_UP };
-}
-
-export function skipSet(key) {
-    return { type: reduxActions.CRONO_SET_SKIP, key };
 }
