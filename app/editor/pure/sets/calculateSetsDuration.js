@@ -1,6 +1,6 @@
 import * as enums from '../../enums';
 
-export default function getRemainingTableDuration(sets=null) {
+export default function calculateTableDuration(sets=null) {
     if (!sets) {
         return 0;
     }

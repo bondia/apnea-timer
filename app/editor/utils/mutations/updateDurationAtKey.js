@@ -1,5 +1,6 @@
 import * as enums from '../../enums';
-import setTableDuration from './setTableDuration';
+
+import calculateSetsDuration from '../../pure/sets/calculateSetsDuration';
 
 /**
  * Update duration for a set
@@ -23,7 +24,10 @@ export default function updateDurationAtKey(state, key, amount) {
     state = state.updateIn(['sets'], items => decideSetsDurations(items, tableType, key, duration));
 
     // recalculate table duration
-    return setTableDuration(state);
+    const sets = state.get('sets');
+    const tableDuration = calculateSetsDuration(sets);
+    state = state.setIn(['trainingTable', 'duration'], tableDuration);
+    return state;
 }
 
 function decideSetsDurations(sets, tableType, key, newDuration) {

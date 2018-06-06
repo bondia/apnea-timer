@@ -2,8 +2,8 @@ import Immutable from 'immutable';
 
 import * as enums from '../enums';
 
-import setTableDuration from '../utils/mutations/setTableDuration';
 import createInitialSets from './sets/createInitialSets';
+import calculateSetsDuration from './sets/calculateSetsDuration';
 
 /**
  * Table Creation
@@ -18,7 +18,8 @@ export default function createTable(base, type) {
     const sets = createInitialSets(base, type);
     state = state.set('sets', sets);
     // calculate table duration
-    state = setTableDuration(state);
+    const duration = calculateSetsDuration(sets);
+    state = state.setIn(['trainingTable', 'duration'], duration);
     return state;
 }
 

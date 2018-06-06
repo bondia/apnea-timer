@@ -1,4 +1,4 @@
-import getRemainingTableDuration from './getRemainingTableDuration';
+import calculateSetsDuration from '../../pure/sets/calculateSetsDuration';
 
 export default function setTableDuration(table = null) {
     if (!table) {
@@ -6,9 +6,9 @@ export default function setTableDuration(table = null) {
     }
 
     const sets = table.getIn(['sets']);
-    const duration = getRemainingTableDuration(sets);
+    const duration = calculateSetsDuration(sets);
 
-    // update for runint table
+    // update for running table
     if (table.getIn(['trainingTable', 'running'])) {
         return table.setIn(['trainingTable', 'running', 'countdown'], duration);
     }

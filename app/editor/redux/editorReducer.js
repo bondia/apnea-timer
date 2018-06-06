@@ -8,14 +8,14 @@ export default function editorReducer(state=createTable(120), action) {
         return action.state;
     }
 
-    // set base
-    if (action.type == reduxActions.EDITOR_SET_TABLE_BASE) {
-        return state.setIn(['trainingTable', 'base'], action.base);
-    }
-
     // set type
     if (action.type == reduxActions.EDITOR_SET_TABLE_TYPE) {
         return state.setIn(['trainingTable', 'type'], action.type);
+    }
+
+    // set base
+    if (action.type == reduxActions.EDITOR_SET_TABLE_BASE) {
+        return state.setIn(['trainingTable', 'base'], action.base);
     }
 
     // set duration

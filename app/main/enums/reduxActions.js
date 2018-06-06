@@ -1,6 +1,5 @@
 const reduxActions = {
 
-
     // EDITOR
     EDITOR_SET_INITIAL_STATE: 'EDITOR_SET_INITIAL_STATE',
     EDITOR_SET_TABLE_BASE: 'EDITOR_SET_TABLE_BASE',
@@ -14,6 +13,7 @@ const reduxActions = {
     CRONO_FINISH: 'CRONO_FINISH',
     CRONO_SET_SKIP: 'CRONO_SET_SKIP',
     CRONO_TICK_UP: 'CRONO_TICK_UP',
+
 };
 
 export default reduxActions;

@@ -2,8 +2,17 @@ import reduxActions from 'app/main/enums/reduxActions';
 
 import createTable from '../pure/createTable';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
+import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 
-import { updateDurationAtKey, getRemainingTableDuration } from '../utils/mutations';
+import { updateDurationAtKey } from '../utils/mutations';
+
+/**
+ * Change table type action
+ */
+export function changeTableType(base, tableType) {
+    const newState = createTable(base, tableType);
+    return setInitialState(newState);
+}
 
 /**
  * Change table base action
@@ -23,17 +32,9 @@ export function changeTableBase(value) {
         dispatch(replaceSets(sets));
 
         // recalculate duration
-        const duration = getRemainingTableDuration(sets);
+        const duration = calculateSetsDuration(sets);
         dispatch(setTableDuration(duration));
     };
-}
-
-/**
- * Change table type action
- */
-export function changeTableType(base, tableType) {
-    const newState = createTable(base, tableType);
-    return setInitialState(newState);
 }
 
 /**
