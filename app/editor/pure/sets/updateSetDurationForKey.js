@@ -1,36 +1,6 @@
 import * as enums from '../../enums';
 
-import calculateSetsDuration from '../../pure/sets/calculateSetsDuration';
-
-/**
- * Update duration for a set
- * @param  Immutable state
- * @param  Integer key
- * @param  Integer amount
- * @return Immutable
- */
-export default function updateDurationAtKey(state, key, amount) {
-    // find item
-    const item = state.getIn(['sets']).find(i => i.get('pos') === key);
-    if (!item) {
-        return state;
-    }
-
-    // decide new duration
-    const duration = amount + item.get('duration');
-    const tableType = state.getIn(['trainingTable', 'type']);
-
-    // update all durations
-    state = state.updateIn(['sets'], items => decideSetsDurations(items, tableType, key, duration));
-
-    // recalculate table duration
-    const sets = state.get('sets');
-    const tableDuration = calculateSetsDuration(sets);
-    state = state.setIn(['trainingTable', 'duration'], tableDuration);
-    return state;
-}
-
-function decideSetsDurations(sets, tableType, key, newDuration) {
+export default function updateSetDurationForKey(sets, tableType, key, newDuration) {
     sets = sets.map(i => decideSetDuration(tableType, i, key, newDuration));
     sets.forEach((item, key) => {
         const duration = item.get('duration');

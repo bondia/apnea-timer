@@ -3,8 +3,7 @@ import reduxActions from 'app/main/enums/reduxActions';
 import createTable from '../pure/createTable';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
-
-import { updateDurationAtKey } from '../utils/mutations';
+import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 
 /**
  * Change table type action
@@ -31,9 +30,8 @@ export function changeTableBase(value) {
         sets = updateSetsForTableType(sets, base, tableType);
         dispatch(replaceSets(sets));
 
-        // recalculate duration
-        const duration = calculateSetsDuration(sets);
-        dispatch(setTableDuration(duration));
+        // update table duration
+        dispatch(updateTableDurationBySets(sets));
     };
 }
 
@@ -48,13 +46,30 @@ export function decreaseTimeItem(key, amount) {
     return changeTimeItem(key, -amount);
 }
 
-// TODO: Refactor that
 function changeTimeItem(key, amount) {
     return (dispatch, getState) => {
         const { editor } = getState();
-        const newState = updateDurationAtKey(editor, key, amount);
-        dispatch(setInitialState(newState));
+
+        // find item
+        const item = editor.getIn(['sets']).find(i => i.get('pos') === key);
+        if (!item) {
+            return;
+        }
+
+        // decide new duration
+        const duration = amount + item.get('duration');
+        const tableType = editor.getIn(['trainingTable', 'type']);
+        const sets = updateDurationAtKey(editor.get('sets'), tableType, key, duration);
+        dispatch(replaceSets(sets));
+
+        // update table duration
+        dispatch(updateTableDurationBySets(sets));
     };
+}
+
+function updateTableDurationBySets(sets) {
+    const duration = calculateSetsDuration(sets);
+    return setTableDuration(duration);
 }
 
 /** BASIC ACTIONS */
