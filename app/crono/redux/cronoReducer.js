@@ -12,17 +12,17 @@ function cronoReducer(state = null, action) {
         return action.state;
     }
 
+    // set crono mode [ auto, coach ]
+    if (action.type == reduxActions.CRONO_SET_MODE) {
+        return state.setIn(['trainingTable', 'running', 'mode'], action.mode);
+    }
+
     // set duration
     if (action.type == reduxActions.CRONO_SET_TABLE_DURATION) {
         return state.setIn(['trainingTable', 'running', 'countdown'], action.duration);
     }
 
     /** TODO: REFACTORING */
-
-    // SET MODE
-    if (action.type == reduxActions.CRONO_SET_MODE) {
-        return state.setIn(['trainingTable', 'running', 'mode'], action.mode);
-    }
 
     // SKIP SET
     if (action.type == reduxActions.CRONO_SET_SKIP) {
