@@ -1,9 +1,9 @@
 import Immutable from 'immutable';
 import * as enums from 'app/editor/enums';
 
-export default function startCrono(crono) {
+export default function editorToCrono(editor) {
     // set running data info
-    crono = crono.setIn(
+    let crono = editor.setIn(
         ['trainingTable', 'running'],
         Immutable.fromJS({
             // represents the seconds spend since the table started

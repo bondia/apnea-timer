@@ -1,8 +1,7 @@
 import reduxActions from 'app/main/enums/reduxActions';
 import createTable from '../pure/createTable';
 
-export default function editorReducer(state=createTable(120), action) {
-
+export default function editorReducer(state = createTable(120), action) {
     // set initial state
     if (action.type == reduxActions.EDITOR_SET_INITIAL_STATE) {
         return action.state;
