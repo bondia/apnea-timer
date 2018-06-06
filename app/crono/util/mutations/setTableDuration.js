@@ -1,4 +1,4 @@
-import calculateSetsDuration from '../../pure/sets/calculateSetsDuration';
+import calculateSetsDuration from 'app/editor/pure/sets/calculateSetsDuration';
 
 export default function setTableDuration(table = null) {
     if (!table) {

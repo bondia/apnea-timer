@@ -1,11 +1,11 @@
 import reduxActions from 'app/main/enums/reduxActions';
 import * as enums from 'app/editor/enums';
-import setTableDuration from 'app/editor/utils/mutations/setTableDuration';
 
 import startCrono from '../util/mutations/startCrono';
 import addClockTick from '../util/mutations/addClockTick';
 import addCurrentSetTick from '../util/mutations/addCurrentSetTick';
 import decideCurrentSet from '../util/mutations/decideCurrentSet';
+import setTableDuration from '../util/mutations/setTableDuration';
 
 function cronoReducer(state = null, action) {
 
