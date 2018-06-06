@@ -2,25 +2,7 @@ import * as enums from '../../enums';
 
 export default function updateSetDurationForKey(sets, tableType, key, newDuration) {
     sets = sets.map(i => decideSetDuration(tableType, i, key, newDuration));
-    sets.forEach((item, key) => {
-        const duration = item.get('duration');
-        const type = item.get('type');
-
-        let relationKey = null;
-        let isZombie = duration <= 0;
-
-        if (enums.SET_TYPE_PREPARE === type) {
-            relationKey = key + 1;
-        }
-
-        if (enums.SET_TYPE_HOLD === type) {
-            relationKey = key - 1;
-            isZombie = isZombie || sets.getIn([relationKey, 'zombie']) === true;
-        }
-
-        sets = sets.setIn([key, 'zombie'], isZombie);
-        sets = sets.setIn([relationKey, 'zombie'], isZombie);
-    });
+    sets = findZombies(sets);
     return sets;
 }
 
@@ -54,4 +36,27 @@ function decideSetDuration(tableType, item, key, duration) {
 
     // UPDATE FOR FREE TABLES
     return item.get('pos') === key ? item.set('duration', duration) : item;
+}
+
+function findZombies(sets) {
+    sets.forEach((item, key) => {
+        const duration = item.get('duration');
+        const type = item.get('type');
+
+        let relationKey = null;
+        let isZombie = duration <= 0;
+
+        if (enums.SET_TYPE_PREPARE === type) {
+            relationKey = key + 1;
+        }
+
+        if (enums.SET_TYPE_HOLD === type) {
+            relationKey = key - 1;
+            isZombie = isZombie || sets.getIn([relationKey, 'zombie']) === true;
+        }
+
+        sets = sets.setIn([key, 'zombie'], isZombie);
+        sets = sets.setIn([relationKey, 'zombie'], isZombie);
+    });
+    return sets;
 }
