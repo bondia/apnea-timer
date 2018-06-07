@@ -79,6 +79,10 @@ function handleTick() {
 
         // decide current set
         crono = decideCurrentSet(crono);
+        if (crono.getIn(['trainingTable', 'running', 'step']) < 0) {
+            clearInterval(timer);
+            timer = null;
+        }
         dispatch(setInitialState(crono));
 
         // recalculate table duration
@@ -87,12 +91,10 @@ function handleTick() {
 }
 
 /**
- * Finish Crono
+ * Clean state
  */
-export function finishCrono() {
-    clearInterval(timer);
-    timer = null;
-    return { type: reduxActions.CRONO_SET_INITIAL_STATE, state: null };
+export function clearCrono() {
+    return setInitialState(null);
 }
 
 /**

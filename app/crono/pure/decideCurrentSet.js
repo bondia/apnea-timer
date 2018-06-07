@@ -1,7 +1,7 @@
 import * as enums from 'app/editor/enums';
 import playSound, { A2, F2, C3 } from 'app/common/utils/playSound';
 
-// TODO: This is tight cupled with the state.
+// TODO: This is tight coupled with the state.
 export default function decideCurrentSet(state) {
     const step = state.getIn(['trainingTable', 'running', 'step']);
     const countdown = state.getIn(['sets', step, 'running', 'countdown']);
@@ -24,13 +24,20 @@ export default function decideCurrentSet(state) {
 }
 
 function skipSet(state, step, setMode) {
+    // change set mode
     if (enums.SET_MODE_SKIPED !== setMode) {
         state = state.setIn(['sets', step, 'running', 'mode'], enums.SET_MODE_FINISHED);
     }
 
-    step = step + 1;
-    state = state.setIn(['sets', step, 'running', 'mode'], enums.SET_MODE_RUNNING);
+    // decide next step
+    step = step >= state.get('sets').size - 1 ? -1 : step + 1;
     state = state.setIn(['trainingTable', 'running', 'step'], step);
+
+    // update next set
+    if (step >= 0) {
+        state = state.setIn(['sets', step, 'running', 'mode'], enums.SET_MODE_RUNNING);
+    }
+
     return state;
 }
 

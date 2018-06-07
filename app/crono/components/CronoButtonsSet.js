@@ -38,7 +38,7 @@ export default class CronoButtonSet extends React.PureComponent {
 
     handleFinish() {
         Actions.pop();
-        this.props.cronoActions.finishCrono();
+        this.props.cronoActions.clearCrono();
     }
 
     render() {

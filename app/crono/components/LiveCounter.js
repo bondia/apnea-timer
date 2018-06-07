@@ -18,7 +18,7 @@ export default class LiveCounter extends React.PureComponent {
         const sets = crono.getIn(['sets']);
 
         let current = sets.find(e => e.getIn(['running', 'mode']) === enums.SET_MODE_RUNNING);
-        return !current ? sets.first() : current;
+        return current ? current : null;
     }
 
     render() {
@@ -27,26 +27,26 @@ export default class LiveCounter extends React.PureComponent {
 
         // set data
         const current = this.getCurrentSet();
-        const setType = current.get('type');
-        const mode = current.getIn(['running', 'mode']);
-        const countdown = current.getIn(['running', 'countdown']);
+        const setType = current ? current.get('type') : null;
+        const mode = current ? current.getIn(['running', 'mode']) : null;
+        const countdown = current ? current.getIn(['running', 'countdown']) : null;
 
         return (
             <View style={[this.props.style, baseStyles.wrapper]}>
                 <View style={baseStyles.header}>
                     {current &&
-                        mode !== enums.SET_MODE_FINISHED && (
-                            <View style={baseStyles.headerBlock}>
-                                <TextComponent style={baseStyles.headerLabel}>
-                                    {enums.SET_TYPE_HOLD === setType ? 'Breath Hold' : ''}
-                                    {enums.SET_TYPE_PREPARE === setType ? 'Breath Up' : ''}
-                                </TextComponent>
+                    mode !== enums.SET_MODE_FINISHED && (
+                        <View style={baseStyles.headerBlock}>
+                            <TextComponent style={baseStyles.headerLabel}>
+                                {enums.SET_TYPE_HOLD === setType ? 'Breath Hold' : ''}
+                                {enums.SET_TYPE_PREPARE === setType ? 'Breath Up' : ''}
+                            </TextComponent>
 
-                                <TextComponent style={baseStyles.headerText}>
-                                    {secondsToTimeString(countdown)}
-                                </TextComponent>
-                            </View>
-                        )}
+                            <TextComponent style={baseStyles.headerText}>
+                                {secondsToTimeString(countdown)}
+                            </TextComponent>
+                        </View>
+                    )}
 
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>Remaining Time</TextComponent>
