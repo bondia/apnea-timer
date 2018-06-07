@@ -37,7 +37,6 @@ export function startCrono(mode) {
 
 /**
  * Skips a single set
- * TODO: clear interval and start it again
  * @param  {[type]} key [description]
  * @return {[type]}     [description]
  */
@@ -66,6 +65,24 @@ export function skipSet(key) {
     };
 }
 
+function handleTick() {
+    return (dispatch, getState) => {
+        let { crono } = getState();
+        // add clock tick
+        const clock = crono.getIn(['trainingTable', 'running', 'clock']) + 1;
+        crono = crono.setIn(['trainingTable', 'running', 'clock'], clock);
+        // add current set tick
+        const step = crono.getIn(['trainingTable', 'running', 'step']);
+        const time = crono.getIn(['sets', step, 'running', 'countdown']) - 1;
+        crono = crono.setIn(['sets', step, 'running', 'countdown'], time);
+        // decide current set
+        crono = decideCurrentSet(crono);
+        dispatch(setInitialState(crono));
+        // recalculate table duration
+        dispatch(updateTableDurationBySets(crono.get('sets')));
+    };
+}
+
 /**
  * Finish Crono
  */
@@ -76,7 +93,7 @@ export function finishCrono() {
 }
 
 /**
- * Due some sets, calculatetable duration and update it
+ * Due some sets, calculate table duration and update it
  * @param  {[type]} sets [description]
  * @return {[type]}      [description]
  */
@@ -103,9 +120,3 @@ function replaceSets(sets) {
     return { type: reduxActions.CRONO_REPLACE_SETS, sets };
 }
 
-/** TODO REFACTORING */
-
-
-function handleTick() {
-    return { type: reduxActions.CRONO_TICK_UP };
-}
