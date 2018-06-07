@@ -5,13 +5,21 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Actions } from 'react-native-router-flux';
 import * as tableEnums from 'app/editor/enums';
 
+import findRunningSet from '../pure/findRunningSet';
+
 import LongTouchButton from 'app/common/components/LongTouchButton';
 
 export default class CronoButtonSet extends React.PureComponent {
-
     static propTypes = {
         crono: ImmutablePropTypes.map.isRequired,
         cronoActions: PropTypes.object.isRequired
+    };
+
+    canTrackContractions() {
+        const { crono } = this.props;
+        const current = findRunningSet(crono.get('sets'));
+        const setType = current.get('type');
+        return current && tableEnums.SET_TYPE_HOLD === setType;
     }
 
     handleStartAuto() {
@@ -29,11 +37,15 @@ export default class CronoButtonSet extends React.PureComponent {
 
     handleSkip() {
         const { crono, cronoActions } = this.props;
-        const current = crono.getIn([ 'sets' ])
-                            .find(s => s.getIn([ 'running', 'mode' ]) === tableEnums.SET_MODE_RUNNING);
-        if (current) {
+        const current = findRunningSet(crono.get('sets'));
+        if (current != null) {
             cronoActions.skipSet(current.get('pos'));
         }
+    }
+
+    handleContraction() {
+        const { cronoActions } = this.props;
+        cronoActions.trackContraction();
     }
 
     handleFinish() {
@@ -43,34 +55,35 @@ export default class CronoButtonSet extends React.PureComponent {
 
     render() {
         const { crono } = this.props;
-        const clock = crono.getIn([ 'trainingTable', 'running', 'clock' ]);
+        const clock = crono.getIn(['trainingTable', 'running', 'clock']);
         return (
             <View style={baseStyles.container}>
-            {clock < 0 &&
-                <LongTouchButton    title="Auto"
-                                    onPress={this.handleStartAuto.bind(this)}
-                                    style={baseStyles.button}
-                                    />
-            }
+                {clock < 0 && (
+                    <LongTouchButton title="Auto" onPress={this.handleStartAuto.bind(this)} style={baseStyles.button} />
+                )}
 
-            {clock < 0 &&
-                <LongTouchButton    title="Coach"
-                                    onPress={this.handleStartCoach.bind(this)}
-                                    style={baseStyles.button}
-                                    />
-            }
+                {clock < 0 && (
+                    <LongTouchButton
+                        title="Coach"
+                        onPress={this.handleStartCoach.bind(this)}
+                        style={baseStyles.button}
+                    />
+                )}
 
-            {clock >= 0 &&
-                <LongTouchButton    title="Skip"
-                                    onPress={this.handleSkip.bind(this)}
-                                    style={baseStyles.button}
-                                    />
-            }
+                {clock >= 0 && (
+                    <LongTouchButton title="Skip" onPress={this.handleSkip.bind(this)} style={baseStyles.button} />
+                )}
 
-                <LongTouchButton    title="Finish"
-                                    onPress={this.handleFinish.bind(this)}
-                                    style={baseStyles.button}
-                                    />
+                {clock >= 0 &&
+                this.canTrackContractions() && (
+                    <LongTouchButton
+                        title="1st Cont"
+                        onPress={this.handleContraction.bind(this)}
+                        style={baseStyles.button}
+                    />
+                )}
+
+                <LongTouchButton title="Finish" onPress={this.handleFinish.bind(this)} style={baseStyles.button} />
             </View>
         );
     }
@@ -85,6 +98,6 @@ const baseStyles = StyleSheet.create({
 
     button: {
         justifyContent: 'center',
-        flex: 1,
+        flex: 1
     }
 });

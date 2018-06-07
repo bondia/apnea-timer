@@ -21,12 +21,11 @@ export default function editorToCrono(editor) {
 
 function initSet(set) {
     const pos = set.get('pos');
-    return set.set(
-        'running',
-        Immutable.fromJS({
+    return set.set('running', Immutable.fromJS({
             mode: pos === 0 ? enums.SET_MODE_RUNNING : enums.SET_MODE_INITIAL,
             countdown: set.get('duration'),
-            countup: 0
+            countup: 0,
+            contraction: -1
         })
     );
 }

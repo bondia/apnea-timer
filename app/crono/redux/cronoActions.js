@@ -3,6 +3,7 @@ import * as enums from 'app/editor/enums';
 
 import editorToCrono from '../pure/editorToCrono';
 import decideCurrentSet from '../pure/decideCurrentSet';
+import findRunningSet from '../pure/findRunningSet';
 import calculateSetsDuration from 'app/editor/pure/sets/calculateSetsDuration';
 
 /**
@@ -65,6 +66,23 @@ export function skipSet(key) {
     };
 }
 
+/**
+ * Track first contraction
+ * @return {[type]} [description]
+ */
+export function trackContraction() {
+    return (dispatch, getState) => {
+        const { crono } = getState();
+        let currentSet = findRunningSet(crono.get('sets'));
+        currentSet = currentSet.setIn(['running', 'contraction'], crono.getIn(['trainingTable', 'running', 'clock']));
+        dispatch(replaceSet(currentSet));
+    };
+}
+
+/**
+ * Handle clock tics
+ * @return {[type]} [description]
+ */
 function handleTick() {
     return (dispatch, getState) => {
         let { crono } = getState();
@@ -94,6 +112,10 @@ function handleTick() {
  * Clean state
  */
 export function clearCrono() {
+    if (timer != null) {
+        clearInterval(timer);
+        timer = null;
+    }
     return setInitialState(null);
 }
 
@@ -121,7 +143,10 @@ function setTableDuration(duration) {
     return { type: reduxActions.CRONO_SET_TABLE_DURATION, duration };
 }
 
+function replaceSet(set) {
+    return { type: reduxActions.CRONO_REPLACE_SET, set };
+}
+
 function replaceSets(sets) {
     return { type: reduxActions.CRONO_REPLACE_SETS, sets };
 }
-
