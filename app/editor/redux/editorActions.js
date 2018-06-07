@@ -22,7 +22,7 @@ export function changeTableBase(value) {
 
         // change table base
         const base = value < 5 ? 5 : value;
-        dispatch(setTableBase(value));
+        dispatch(setTableBase(base));
 
         // update sets with new base
         const tableType = editor.getIn(['trainingTable', 'type']);

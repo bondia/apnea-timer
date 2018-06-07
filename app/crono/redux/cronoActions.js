@@ -71,13 +71,16 @@ function handleTick() {
         // add clock tick
         const clock = crono.getIn(['trainingTable', 'running', 'clock']) + 1;
         crono = crono.setIn(['trainingTable', 'running', 'clock'], clock);
+
         // add current set tick
         const step = crono.getIn(['trainingTable', 'running', 'step']);
         const time = crono.getIn(['sets', step, 'running', 'countdown']) - 1;
         crono = crono.setIn(['sets', step, 'running', 'countdown'], time);
+
         // decide current set
         crono = decideCurrentSet(crono);
         dispatch(setInitialState(crono));
+
         // recalculate table duration
         dispatch(updateTableDurationBySets(crono.get('sets')));
     };
