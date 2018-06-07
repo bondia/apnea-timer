@@ -16,13 +16,13 @@ function cronoReducer(state = null, action) {
         return state.setIn(['trainingTable', 'running', 'countdown'], action.duration);
     }
 
-    // set set
+    // replace set
     if (action.type == reduxActions.CRONO_REPLACE_SET) {
         const pos = action.set.get('pos');
         return state.updateIn(['sets'], sets => sets.map(s => (s.get('pos') === pos ? action.set : s)));
     }
 
-    // set sets
+    // replace sets
     if (action.type == reduxActions.CRONO_REPLACE_SETS) {
         return state.setIn(['sets'], action.sets);
     }

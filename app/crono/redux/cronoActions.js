@@ -74,7 +74,9 @@ export function trackContraction() {
     return (dispatch, getState) => {
         const { crono } = getState();
         let currentSet = findRunningSet(crono.get('sets'));
-        currentSet = currentSet.setIn(['running', 'contraction'], crono.getIn(['trainingTable', 'running', 'clock']));
+        const duration = currentSet.get('duration');
+        const countdown = currentSet.getIn(['running', 'countdown']);
+        currentSet = currentSet.setIn(['running', 'contraction'], duration - countdown);
         dispatch(replaceSet(currentSet));
     };
 }

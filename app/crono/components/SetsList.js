@@ -21,6 +21,7 @@ export default class SetsList extends React.PureComponent {
                         const type = item.get('type');
                         const mode = item.getIn(['running', 'mode']);
                         const countdown = item.getIn(['running', 'countdown']);
+                        const contraction = item.getIn(['running', 'contraction']);
                         return (
                             <View key={idx} style={baseStyles.item}>
                                 <Crono
@@ -28,6 +29,7 @@ export default class SetsList extends React.PureComponent {
                                     running={mode === enums.SET_MODE_RUNNING}
                                     type={type}
                                     duration={countdown}
+                                    contraction={contraction}
                                 />
                             </View>
                         );
