@@ -17,7 +17,12 @@ export default class CronoButtonSet extends React.PureComponent {
 
     canTrackContractions() {
         const { crono } = this.props;
+        // get current active set
         const current = findRunningSet(crono.get('sets'));
+        if (current == null) {
+            return false;
+        }
+        // decide if can track
         const setType = current.get('type');
         return current && tableEnums.SET_TYPE_HOLD === setType;
     }
