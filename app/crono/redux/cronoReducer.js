@@ -7,13 +7,18 @@ function cronoReducer(state = null, action) {
     }
 
     // set crono mode [ auto, coach ]
-    if (action.type == reduxActions.CRONO_SET_MODE) {
+    if (action.type == reduxActions.CRONO_SET_RUNNING_MODE) {
         return state.setIn(['trainingTable', 'running', 'mode'], action.mode);
     }
 
     // set duration
-    if (action.type == reduxActions.CRONO_SET_TABLE_DURATION) {
+    if (action.type == reduxActions.CRONO_SET_RUNNING_TABLE_DURATION) {
         return state.setIn(['trainingTable', 'running', 'countdown'], action.duration);
+    }
+
+    // set contractions
+    if (action.type == reduxActions.CRONO_SET_RUNNING_CONTRACTIONS) {
+        return state.setIn(['trainingTable', 'running', 'contractions'], action.contractions);
     }
 
     // replace set

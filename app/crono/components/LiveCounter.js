@@ -24,7 +24,7 @@ export default class LiveCounter extends React.PureComponent {
     render() {
         const { crono } = this.props;
         const totalTime = crono.getIn(['trainingTable', 'running', 'countdown']);
-
+        const contractions = crono.getIn(['trainingTable', 'running', 'contractions']);
         // set data
         const current = this.getCurrentSet();
         const setType = current ? current.get('type') : null;
@@ -34,6 +34,16 @@ export default class LiveCounter extends React.PureComponent {
         return (
             <View style={[this.props.style, baseStyles.wrapper]}>
                 <View style={baseStyles.header}>
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>Remaining Time</TextComponent>
+                        <TextComponent style={baseStyles.headerText}>{secondsToTimeString(totalTime)}</TextComponent>
+                    </View>
+
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>Contractions</TextComponent>
+                        <TextComponent style={baseStyles.headerText}>{secondsToTimeString(contractions)}</TextComponent>
+                    </View>
+
                     {current &&
                     mode !== enums.SET_MODE_FINISHED && (
                         <View style={baseStyles.headerBlock}>
@@ -47,11 +57,6 @@ export default class LiveCounter extends React.PureComponent {
                             </TextComponent>
                         </View>
                     )}
-
-                    <View style={baseStyles.headerBlock}>
-                        <TextComponent style={baseStyles.headerLabel}>Remaining Time</TextComponent>
-                        <TextComponent style={baseStyles.headerText}>{secondsToTimeString(totalTime)}</TextComponent>
-                    </View>
                 </View>
             </View>
         );
@@ -65,13 +70,16 @@ const baseStyles = StyleSheet.create({
 
     // HEADER
     header: {
+        paddingTop: 50,
         flex: 1,
-        flexDirection: 'row'
+        flexWrap: 'wrap',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 
     headerBlock: {
-        flex: 1,
-        justifyContent: 'center'
+        width: '50%'
     },
 
     headerLabel: {

@@ -11,7 +11,9 @@ export default function editorToCrono(editor) {
             // table current step
             step: 0,
             // cono mode
-            mode: enums.CRONO_MODE_AUTO
+            mode: enums.CRONO_MODE_AUTO,
+            // set contractions
+            contractions: 0
         })
     );
 

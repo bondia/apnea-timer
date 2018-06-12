@@ -4,8 +4,8 @@ import * as enums from 'app/editor/enums';
 import editorToCrono from '../pure/editorToCrono';
 import decideCurrentSet from '../pure/decideCurrentSet';
 import findRunningSet from '../pure/findRunningSet';
+import calculateAverageContractions from '../pure/calculateAverageContractions';
 import calculateSetsDuration from 'app/editor/pure/sets/calculateSetsDuration';
-
 /**
  * Prepare initial crono
  * @param  {[type]} data [description]
@@ -78,6 +78,16 @@ export function trackContraction() {
         const countdown = currentSet.getIn(['running', 'countdown']);
         currentSet = currentSet.setIn(['running', 'contraction'], duration - countdown);
         dispatch(replaceSet(currentSet));
+        dispatch(updateContractionsAverage());
+    };
+}
+
+function updateContractionsAverage() {
+    return (dispatch, getState) => {
+        const { crono } = getState();
+        const sets = crono.get('sets');
+        const contractions = calculateAverageContractions(sets);
+        dispatch(setContractions(contractions));
     };
 }
 
@@ -138,11 +148,15 @@ function setInitialState(state) {
 }
 
 function setCronoMode(mode) {
-    return { type: reduxActions.CRONO_SET_MODE, mode };
+    return { type: reduxActions.CRONO_SET_RUNNING_MODE, mode };
 }
 
 function setTableDuration(duration) {
-    return { type: reduxActions.CRONO_SET_TABLE_DURATION, duration };
+    return { type: reduxActions.CRONO_SET_RUNNING_TABLE_DURATION, duration };
+}
+
+function setContractions(contractions) {
+    return { type: reduxActions.CRONO_SET_RUNNING_CONTRACTIONS, contractions };
 }
 
 function replaceSet(set) {
