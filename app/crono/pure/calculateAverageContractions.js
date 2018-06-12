@@ -5,7 +5,7 @@ export default function calculateAverageContractinos(sets) {
         const value = e.getIn([ 'running',  'contraction' ]);
         if (value > 0) {
             items++;
-            sum =+ value;
+            sum = sum + value;
         }
     });
     return items > 0 && sum > 0 ? Math.round(sum / items) : 0;
