@@ -4,6 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import KeepAwake from 'react-native-keep-awake';
 
 import * as cronoActions from 'app/crono/redux/cronoActions';
 import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles';
@@ -25,6 +26,11 @@ class CronoPane extends React.PureComponent {
         if (crono === null) {
             cronoActions.initTable(editorData);
         }
+        KeepAwake.activate();
+    }
+
+    componentWillUnmount() {
+        KeepAwake.deactivate();
     }
 
     render() {
@@ -32,6 +38,7 @@ class CronoPane extends React.PureComponent {
         if (crono === null || crono.get('sets').size <= 0) {
             return null;
         }
+
 
         return (
             <View style={[style, baseStyles.main]}>
@@ -43,6 +50,7 @@ class CronoPane extends React.PureComponent {
                 </View>
 
                 <CronoButtonsSet crono={crono} cronoActions={cronoActions} />
+
             </View>
         );
     }
