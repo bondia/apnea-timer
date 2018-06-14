@@ -23,8 +23,8 @@ export default class LiveCounter extends React.PureComponent {
 
     render() {
         const { crono } = this.props;
-        const totalTime = crono.getIn(['trainingTable', 'running', 'countdown']);
-        const contractions = crono.getIn(['trainingTable', 'running', 'contractions']);
+        const totalTime = crono.getIn(['running', 'countdown']);
+        const contractions = crono.getIn(['running', 'contractions']);
         // set data
         const current = this.getCurrentSet();
         const setType = current ? current.get('type') : null;

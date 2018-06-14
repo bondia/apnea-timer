@@ -3,7 +3,7 @@ import playSound, { A2, F2, C3 } from 'app/common/utils/playSound';
 
 // TODO: This is tight coupled with the state.
 export default function decideCurrentSet(state) {
-    const step = state.getIn(['trainingTable', 'running', 'step']);
+    const step = state.getIn(['running', 'step']);
     const countdown = state.getIn(['sets', step, 'running', 'countdown']);
     const setMode = state.getIn(['sets', step, 'running', 'mode']);
 
@@ -15,7 +15,7 @@ export default function decideCurrentSet(state) {
     }
 
     // do not change current set if not skiped and stil countdown available
-    const cronoMode = state.getIn(['trainingTable', 'running', 'mode']);
+    const cronoMode = state.getIn(['running', 'mode']);
     if (countdown <= 0 && enums.CRONO_MODE_AUTO === cronoMode) {
         return skipSet(state, step, setMode);
     }
@@ -31,7 +31,7 @@ function skipSet(state, step, setMode) {
 
     // decide next step
     step = step >= state.get('sets').size - 1 ? -1 : step + 1;
-    state = state.setIn(['trainingTable', 'running', 'step'], step);
+    state = state.setIn(['running', 'step'], step);
 
     // update next set
     if (step >= 0) {

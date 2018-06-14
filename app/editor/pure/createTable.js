@@ -23,7 +23,7 @@ export default function createTable(base, type) {
     return state;
 }
 
-function createEditorSkeleton(base=1, type=enums.TABLE_TYPE_CO2) {
+function createEditorSkeleton(base = 1, type = enums.TABLE_TYPE_CO2) {
     return Immutable.fromJS({
         trainingTable: {
             base: base,

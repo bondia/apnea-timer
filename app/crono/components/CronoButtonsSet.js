@@ -60,7 +60,7 @@ export default class CronoButtonSet extends React.PureComponent {
 
     render() {
         const { crono } = this.props;
-        const clock = crono.getIn(['trainingTable', 'running', 'clock']);
+        const clock = crono.getIn(['running', 'clock']);
         return (
             <View style={baseStyles.container}>
                 {clock < 0 && (

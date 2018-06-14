@@ -3,8 +3,8 @@ import * as enums from 'app/editor/enums';
 
 export default function editorToCrono(editor) {
     // set running data info
-    let crono = editor.setIn(
-        ['trainingTable', 'running'],
+    let crono = editor.set(
+        'running',
         Immutable.fromJS({
             // represents the seconds spend since the table started
             clock: -1,
@@ -23,7 +23,9 @@ export default function editorToCrono(editor) {
 
 function initSet(set) {
     const pos = set.get('pos');
-    return set.set('running', Immutable.fromJS({
+    return set.set(
+        'running',
+        Immutable.fromJS({
             mode: pos === 0 ? enums.SET_MODE_RUNNING : enums.SET_MODE_INITIAL,
             countdown: set.get('duration'),
             countup: 0,

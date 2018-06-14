@@ -99,17 +99,17 @@ function handleTick() {
     return (dispatch, getState) => {
         let { crono } = getState();
         // add clock tick
-        const clock = crono.getIn(['trainingTable', 'running', 'clock']) + 1;
-        crono = crono.setIn(['trainingTable', 'running', 'clock'], clock);
+        const clock = crono.getIn(['running', 'clock']) + 1;
+        crono = crono.setIn(['running', 'clock'], clock);
 
         // add current set tick
-        const step = crono.getIn(['trainingTable', 'running', 'step']);
+        const step = crono.getIn(['running', 'step']);
         const time = crono.getIn(['sets', step, 'running', 'countdown']) - 1;
         crono = crono.setIn(['sets', step, 'running', 'countdown'], time);
 
         // decide current set
         crono = decideCurrentSet(crono);
-        if (crono.getIn(['trainingTable', 'running', 'step']) < 0) {
+        if (crono.getIn(['running', 'step']) < 0) {
             clearInterval(timer);
             timer = null;
         }
