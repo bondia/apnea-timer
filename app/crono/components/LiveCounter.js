@@ -2,9 +2,11 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
+import findRunningSet from '../pure/findRunningSet';
 import secondsToTimeString from 'app/common/utils/time/secondsToTimeString';
 import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles';
 import * as enums from 'app/editor/enums';
+
 
 import TextComponent from 'app/common/components/TextComponent';
 
@@ -15,10 +17,7 @@ export default class LiveCounter extends React.PureComponent {
 
     getCurrentSet() {
         const { crono } = this.props;
-        const sets = crono.getIn(['sets']);
-
-        let current = sets.find(e => e.getIn(['running', 'mode']) === enums.SET_MODE_RUNNING);
-        return current ? current : null;
+        return findRunningSet(crono.get('sets'));
     }
 
     render() {
@@ -33,6 +32,7 @@ export default class LiveCounter extends React.PureComponent {
 
         return (
             <View style={[this.props.style, baseStyles.wrapper]}>
+
                 <View style={baseStyles.header}>
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>Remaining Time</TextComponent>
@@ -58,6 +58,7 @@ export default class LiveCounter extends React.PureComponent {
                         </View>
                     )}
                 </View>
+
             </View>
         );
     }

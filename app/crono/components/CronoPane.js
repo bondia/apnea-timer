@@ -7,12 +7,13 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import KeepAwake from 'react-native-keep-awake';
 
 import * as cronoActions from 'app/crono/redux/cronoActions';
-import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles';
+import findRunningSet from '../pure/findRunningSet';
 
-import TextComponent from 'app/common/components/TextComponent';
+import LiveCounter from './LiveCounter';
 import SetsList from './SetsList';
 import CronoButtonsSet from './CronoButtonsSet';
-import LiveCounter from './LiveCounter';
+import MultipleCountdownBar from './MultipleCountdownBar';
+import CountdownBar from './CountdownBar';
 
 class CronoPane extends React.PureComponent {
     static propTypes = {
@@ -39,18 +40,28 @@ class CronoPane extends React.PureComponent {
             return null;
         }
 
-
+        const current = findRunningSet(crono.get('sets'));
+console.info(current.toJS());
         return (
-            <View style={[style, baseStyles.main]}>
-                <LiveCounter crono={crono} />
+            <View style={[style, baseStyles.pane]}>
 
-                <View style={baseStyles.setsTable}>
-                    <TextComponent style={baseStyles.label}>Sets</TextComponent>
-                    <SetsList crono={crono} />
+                <View style={{ flex: 1, flexDirection: 'row' }}>
+
+                    <MultipleCountdownBar sets={crono.getIn(['sets'])} />
+
+                    <View style={{ flex: 1 }}>
+                        <LiveCounter crono={crono} />
+
+                        <View style={baseStyles.setsWrapper}>
+                            <SetsList crono={crono} />
+                        </View>
+                    </View>
+
+                    <CountdownBar set={current} />
+
                 </View>
 
                 <CronoButtonsSet crono={crono} cronoActions={cronoActions} />
-
             </View>
         );
     }
@@ -72,16 +83,11 @@ const dispatchToProps = dispatch => {
 export default connect(stateToProps, dispatchToProps)(CronoPane);
 
 const baseStyles = StyleSheet.create({
-    main: {
+    pane: {
         flex: 1
     },
 
-    setsTable: { flex: 4 },
-
-    label: {
-        marginTop: 15,
-        textAlign: 'center',
-        width: '100%',
-        color: FONT_COLOR_GREY
+    setsWrapper: {
+        flex: 4
     }
 });
