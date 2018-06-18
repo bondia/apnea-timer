@@ -38,25 +38,24 @@ export default class CountdownBar extends React.PureComponent {
 
 const baseStyles = StyleSheet.create({
     bar: {
-        height: '100%',
+        flex: 1,
         width: 3,
+        maxWidth: 3,
+        alignItems:'baseline',
         backgroundColor: FONT_CLOLR_GREY_LIGHT,
     },
 
     innerBar: {
-        height: '100%',
+        position: 'absolute',
+        bottom: 0,
         width: 3,
-        flex: 1,
-        borderRadius: 10
     },
 
     prepare: {
-        alignSelf: 'flex-end',
         backgroundColor: COLOR_LIGHT
     },
 
     hold: {
-        alignSelf: 'flex-end',
         backgroundColor: 'red'
     }
 });

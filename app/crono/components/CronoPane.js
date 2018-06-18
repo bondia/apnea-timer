@@ -41,7 +41,7 @@ class CronoPane extends React.PureComponent {
         }
 
         const current = findRunningSet(crono.get('sets'));
-console.info(current.toJS());
+
         return (
             <View style={[style, baseStyles.pane]}>
 
