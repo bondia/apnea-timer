@@ -3,7 +3,7 @@ import { View, StyleSheet } from 'react-native';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import * as editorEnums from 'app/editor/enums';
-import { FONT_CLOLR_GREY_LIGHT, COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from 'app/common/styles/commonStyles';
+import { FONT_CLOLR_GREY_LIGHT, COLOR_GREEN_LIGHT, COLOR_RED_LIGHT } from 'app/common/styles/commonStyles';
 
 export default class CountdownBar extends React.PureComponent {
     static propTypes = {
@@ -29,13 +29,14 @@ export default class CountdownBar extends React.PureComponent {
     }
 
     render() {
-        const { set } = this.props;
+        const { set, style } = this.props;
 
+        const barStyles = style ? [style, baseStyles.bar] : baseStyles.bar;
         const styles =
             set != null && set.get('type') === editorEnums.SET_TYPE_HOLD ? baseStyles.hold : baseStyles.prepare;
 
         return (
-            <View style={baseStyles.bar}>
+            <View style={barStyles}>
                 <View style={[baseStyles.innerBar, styles, { height: this.calculateHeight(set) }]} />
             </View>
         );
@@ -45,8 +46,8 @@ export default class CountdownBar extends React.PureComponent {
 const baseStyles = StyleSheet.create({
     bar: {
         flex: 1,
-        width: 3,
-        maxWidth: 3,
+        width: 5,
+        maxWidth: 5,
         alignItems: 'baseline',
         backgroundColor: FONT_CLOLR_GREY_LIGHT
     },
@@ -54,14 +55,14 @@ const baseStyles = StyleSheet.create({
     innerBar: {
         position: 'absolute',
         bottom: 0,
-        width: 3
+        width: 5
     },
 
     prepare: {
-        backgroundColor: COLOR_GREEN_NORMAL
+        backgroundColor: COLOR_GREEN_LIGHT
     },
 
     hold: {
-        backgroundColor: COLOR_RED_NORMAL
+        backgroundColor: COLOR_RED_LIGHT
     }
 });

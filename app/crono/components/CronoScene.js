@@ -18,6 +18,8 @@ export default class CronoScene extends React.PureComponent {
 const styles = StyleSheet.create({
     main: {
         padding: 10,
+        paddingRight: 5,
+        paddingLeft: 5,
         height: '100%'
     }
 });

@@ -49,7 +49,6 @@ export default class EditorPaneHeader extends React.PureComponent {
                                 {enums.TABLE_TYPE_CO2 === type ? 'Breath Hold' : ''}
                                 {enums.TABLE_TYPE_O2 === type ? 'Breath Up' : ''}
                             </TextComponent>
-
                             <TextComponent style={tableBaseStyles}>{secondsToTimeString(base)}</TextComponent>
                         </View>
                     )}

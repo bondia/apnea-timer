@@ -44,10 +44,8 @@ class CronoPane extends React.PureComponent {
 
         return (
             <View style={[style, baseStyles.pane]}>
-
                 <View style={{ flex: 1, flexDirection: 'row', marginTop: 35, marginBottom: 10 }}>
-
-                    <CountdownBar set={current} />
+                    <MultipleCountdownBar sets={crono.getIn(['sets'])} />
 
                     <View style={{ flex: 1 }}>
                         <LiveCounter crono={crono} />
@@ -57,8 +55,7 @@ class CronoPane extends React.PureComponent {
                         </View>
                     </View>
 
-                    <MultipleCountdownBar sets={crono.getIn(['sets'])} />
-
+                    <CountdownBar set={current} />
                 </View>
 
                 <CronoButtonsSet crono={crono} cronoActions={cronoActions} />
