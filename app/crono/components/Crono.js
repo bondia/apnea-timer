@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import * as enums from 'app/editor/enums';
-import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles';
+import { FONT_COLOR_GREY, COLOR_RED_NORMAL, COLOR_GREEN_NORMAL } from 'app/common/styles/commonStyles';
 import secondsToTimeString from 'app/common/utils/time/secondsToTimeString';
 
 import TextComponent from 'app/common/components/TextComponent';
@@ -19,8 +19,8 @@ export default class Crono extends React.PureComponent {
     render() {
         const { active, duration, type, contraction } = this.props;
 
-        let color = type == enums.SET_TYPE_PREPARE ? 'green' : 'red';
-        color = !active ? 'grey' : color;
+        let color = type == enums.SET_TYPE_PREPARE ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
+        color = !active ? FONT_COLOR_GREY : color;
 
         const styles = StyleSheet.create({
             clock: {

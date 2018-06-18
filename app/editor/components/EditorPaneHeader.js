@@ -2,7 +2,13 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles';
+import {
+    FONT_COLOR_GREY,
+    FONT_SIZE_L,
+    COLOR_LIGHT,
+    COLOR_RED_NORMAL,
+    COLOR_GREEN_NORMAL
+} from 'app/common/styles/commonStyles';
 import secondsToTimeString from 'app/common/utils/time/secondsToTimeString';
 import * as enums from '../enums';
 
@@ -20,6 +26,11 @@ export default class EditorPaneHeader extends React.PureComponent {
         const base = editor.getIn(['trainingTable', 'base']);
         const type = editor.getIn(['trainingTable', 'type']);
         const totalTime = editor.getIn(['trainingTable', 'duration']);
+        let tableBaseStyles = baseStyles.headerText;
+        tableBaseStyles =
+            enums.TABLE_TYPE_CO2 === type ? [tableBaseStyles, { color: COLOR_RED_NORMAL }] : tableBaseStyles;
+        tableBaseStyles =
+            enums.TABLE_TYPE_O2 === type ? [tableBaseStyles, { color: COLOR_GREEN_NORMAL }] : tableBaseStyles;
 
         return (
             <View
@@ -39,7 +50,7 @@ export default class EditorPaneHeader extends React.PureComponent {
                                 {enums.TABLE_TYPE_O2 === type ? 'Breath Up' : ''}
                             </TextComponent>
 
-                            <TextComponent style={baseStyles.headerText}>{secondsToTimeString(base)}</TextComponent>
+                            <TextComponent style={tableBaseStyles}>{secondsToTimeString(base)}</TextComponent>
                         </View>
                     )}
 

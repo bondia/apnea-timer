@@ -71,7 +71,6 @@ const baseStyles = StyleSheet.create({
 
     // HEADER
     header: {
-        paddingTop: 50,
         flex: 1,
         flexWrap: 'wrap',
         flexDirection: 'row',

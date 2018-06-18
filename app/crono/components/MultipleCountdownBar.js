@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import CountdownBar from './CountdownBar';
@@ -12,7 +12,7 @@ export default class MultipleCountdownBar extends React.PureComponent {
     render() {
         const { sets } = this.props;
         return (
-            <View style={baseStyles.wrapper}>
+            <View>
                 {sets.map((s, idx) => (
                     <View key={idx} style={{ flex: 1 }}>
                         <CountdownBar set={s} />
@@ -23,11 +23,3 @@ export default class MultipleCountdownBar extends React.PureComponent {
     }
 }
 
-const baseStyles = StyleSheet.create({
-    wrapper: {
-        marginTop: 5,
-        marginBottom: 15,
-        width: 3,
-        borderRadius: 10,
-    }
-});

@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 
 import * as enums from '../enums';
 import secondsToTimeString from 'app/common/utils/time/secondsToTimeString';
-import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles';
+import { FONT_COLOR_GREY, COLOR_RED_NORMAL, COLOR_GREEN_NORMAL } from 'app/common/styles/commonStyles';
 
 import LongTouchButton from 'app/common/components/LongTouchButton';
 import TextComponent from 'app/common/components/TextComponent';
@@ -39,7 +39,7 @@ export default class EditorTimerView extends React.PureComponent {
         const self = this;
         const { duration, type, setNumber, zombie } = this.props;
 
-        let clockColor = enums.SET_TYPE_PREPARE === type ? 'green' : 'red';
+        let clockColor = enums.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
         clockColor = zombie ? FONT_COLOR_GREY : clockColor;
 
         const styles = StyleSheet.create({
