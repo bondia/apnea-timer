@@ -3,7 +3,7 @@ import * as enums from 'app/editor/enums';
 
 export default function editorToCrono(editor) {
     // set running data info
-    let crono = editor.set(
+    const crono = editor.set(
         'running',
         Immutable.fromJS({
             // represents the seconds spend since the table started
