@@ -20,25 +20,36 @@ class Menu extends React.PureComponent {
         return (
             <View style={[style, styles.mainStyles]}>
                 <MenuItem
-                    title="Create Table"
+                    title="CO2/O2"
                     type={routesEnum.CREATE_TABLE_SCENE}
                     onPress={this.handleNavigate.bind(this)}
                     style={{ backgroundColor: COLOR_LIGHT }}
                 />
 
                 <MenuItem
+                    title="16x60m"
+                    type={routesEnum.ENDURANCE_TABLE_SCENE}
+                    onPress={this.handleNavigate.bind(this)}
+                    style={{ backgroundColor: COLOR_DARK }}
+                />
+
+{/*
+                <MenuItem
                     title="My Tables"
                     type={routesEnum.MY_TABLES_SCENE}
                     onPress={this.handleNavigate.bind(this)}
-                    style={{ backgroundColor: COLOR_NORMAL }}
+                    style={{ backgroundColor: COLOR_LIGHT }}
                 />
+*/}
 
+{/*
                 <MenuItem
                     title="History"
                     type={routesEnum.HISTORY_SCENE}
                     onPress={this.handleNavigate.bind(this)}
                     style={{ backgroundColor: COLOR_DARK }}
                 />
+*/}
             </View>
         );
     }

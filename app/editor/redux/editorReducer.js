@@ -1,7 +1,6 @@
 import reduxActions from 'app/main/enums/reduxActions';
-import createTable from '../pure/createTable';
 
-export default function editorReducer(state = createTable(120), action) {
+export default function editorReducer(state = null, action) {
     // set initial state
     if (action.type == reduxActions.EDITOR_SET_INITIAL_STATE) {
         return action.state;
@@ -15,6 +14,11 @@ export default function editorReducer(state = createTable(120), action) {
     // set base
     if (action.type == reduxActions.EDITOR_SET_TABLE_BASE) {
         return state.setIn(['trainingTable', 'base'], action.base);
+    }
+
+    // set base breaks
+    if (action.type == reduxActions.EDITOR_SET_TABLE_BASE_BREAKS) {
+        return state.setIn(['trainingTable', 'baseBreaks'], action.baseBreaks);
     }
 
     // set duration

@@ -2,9 +2,12 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { bindActionCreators } from 'redux';
 
 import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles';
 import * as enums from '../enums';
+
+import * as editorActions from '../redux/editorActions';
 
 import TextComponent from 'app/common/components/TextComponent';
 import EditorPaneHeader from './EditorPaneHeader';
@@ -13,11 +16,22 @@ import StartButton from './StartButton';
 
 class EditorPane extends React.PureComponent {
     static propTypes = {
-        editor: ImmutablePropTypes.map.isRequired
+        editor: ImmutablePropTypes.map
     };
+
+    componentDidMount() {
+        const { editor, editorActions } = this.props;
+        if (editor === null) {
+            editorActions.changeTableType(120, enums.TABLE_TYPE_O2);
+        }
+    }
 
     render() {
         const { editor, style } = this.props;
+        if (editor === null) {
+            return null;
+        }
+
         const type = editor.getIn(['trainingTable', 'type']);
         const sets = editor.getIn(['sets']).filter(i => {
             let valid = false;
@@ -78,4 +92,8 @@ const stateToProps = state => {
     };
 };
 
-export default connect(stateToProps)(EditorPane);
+const dispatchToProps = dispatch => {
+    return { editorActions: bindActionCreators(editorActions, dispatch) };
+};
+
+export default connect(stateToProps, dispatchToProps)(EditorPane);

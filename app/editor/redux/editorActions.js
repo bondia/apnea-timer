@@ -1,4 +1,5 @@
 import reduxActions from 'app/main/enums/reduxActions';
+import * as enums from '../enums';
 
 import createTable from '../pure/createTable';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
@@ -6,10 +7,18 @@ import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 
 /**
+ * Create Endurance table
+ */
+export function createEnduranceTable(base, baseBreaks) {
+    const newState = createTable(base, baseBreaks, enums.TABLE_TYPE_ENDURANCE);
+    return setInitialState(newState);
+}
+
+/**
  * Change table type action
  */
 export function changeTableType(base, tableType) {
-    const newState = createTable(base, tableType);
+    const newState = createTable(base, null, tableType);
     return setInitialState(newState);
 }
 
@@ -19,6 +28,7 @@ export function changeTableType(base, tableType) {
 export function changeTableBase(value) {
     return (dispatch, getState) => {
         const { editor } = getState();
+        const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
 
         // change table base
         const base = value < 5 ? 5 : value;
@@ -27,7 +37,30 @@ export function changeTableBase(value) {
         // update sets with new base
         const tableType = editor.getIn(['trainingTable', 'type']);
         let sets = editor.get('sets');
-        sets = updateSetsForTableType(sets, base, tableType);
+        sets = updateSetsForTableType(sets, base, baseBreaks, tableType);
+        dispatch(replaceSets(sets));
+
+        // update table duration
+        dispatch(updateTableDurationBySets(sets));
+    };
+}
+
+/**
+ * Change table base breaks action
+ */
+export function changeTableBaseBreaks(value) {
+    return (dispatch, getState) => {
+        const { editor } = getState();
+        const base = editor.getIn(['trainingTable', 'base']);
+
+        // change table base breaks
+        const baseBreaks = value < 5 ? 5 : value;
+        dispatch(setTableBaseBreak(baseBreaks));
+
+        // update sets with new base
+        const tableType = editor.getIn(['trainingTable', 'type']);
+        let sets = editor.get('sets');
+        sets = updateSetsForTableType(sets, base, baseBreaks, tableType);
         dispatch(replaceSets(sets));
 
         // update table duration
@@ -85,6 +118,10 @@ function setInitialState(state) {
 
 function setTableBase(base) {
     return { type: reduxActions.EDITOR_SET_TABLE_BASE, base };
+}
+
+function setTableBaseBreak(baseBreaks) {
+    return { type: reduxActions.EDITOR_SET_TABLE_BASE_BREAKS, baseBreaks };
 }
 
 function setTableDuration(duration) {

@@ -5,6 +5,7 @@ import { routesEnum } from './main/enums/routes';
 
 import MainScene from './main/components/MainScene';
 import EditorScene from './editor/components/EditorScene';
+import EditorEnduranceScene from './editor/components/EditorEnduranceScene';
 import CronoScene from './crono/components/CronoScene';
 
 export default class AppRouter extends React.PureComponent {
@@ -21,7 +22,7 @@ export default class AppRouter extends React.PureComponent {
 
                     <Scene  key={routesEnum.CREATE_TABLE_SCENE}
                             component={EditorScene}
-                            title="Crate Table"
+                            title="CO2/O2"
                             />
 
                     <Scene  key={routesEnum.CRONO_SCENE}
@@ -31,6 +32,10 @@ export default class AppRouter extends React.PureComponent {
                             hideNavBar
                             />
 
+                    <Scene  key={routesEnum.ENDURANCE_TABLE_SCENE}
+                            component={EditorEnduranceScene}
+                            title="16x60m"
+                            />
                 </Scene>
             </Router>
         );

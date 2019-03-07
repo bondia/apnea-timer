@@ -9,7 +9,7 @@ import { FONT_COLOR_GREY, COLOR_RED_NORMAL, COLOR_GREEN_NORMAL } from 'app/commo
 import LongTouchButton from 'app/common/components/LongTouchButton';
 import TextComponent from 'app/common/components/TextComponent';
 
-export default class EditorTimerView extends React.PureComponent {
+export default class EditorTimerInput extends React.PureComponent {
     static propTypes = {
         increaseAction: PropTypes.func.isRequired,
         decreaseAction: PropTypes.func.isRequired

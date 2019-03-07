@@ -3,6 +3,7 @@ import Immutable from 'immutable';
 import * as enums from '../enums';
 
 import createInitialSets from './sets/createInitialSets';
+import createEnduranceSets from './sets/createEnduranceSets';
 import calculateSetsDuration from './sets/calculateSetsDuration';
 
 /**
@@ -11,11 +12,11 @@ import calculateSetsDuration from './sets/calculateSetsDuration';
  * @param  String type
  * @return Immutable
  */
-export default function createTable(base, type) {
+export default function createTable(base, baseBreaks, type) {
     // skeleton
-    let state = createEditorSkeleton(base, type);
+    let state = createEditorSkeleton(base, baseBreaks, type);
     // sets
-    const sets = createInitialSets(base, type);
+    const sets = type === enums.TABLE_TYPE_ENDURANCE ? createEnduranceSets(base, baseBreaks) : createInitialSets(base, type);
     state = state.set('sets', sets);
     // calculate table duration
     const duration = calculateSetsDuration(sets);
@@ -23,10 +24,11 @@ export default function createTable(base, type) {
     return state;
 }
 
-function createEditorSkeleton(base = 1, type = enums.TABLE_TYPE_CO2) {
+function createEditorSkeleton(base = 1, baseBreaks = 1, type = enums.TABLE_TYPE_CO2) {
     return Immutable.fromJS({
         trainingTable: {
             base: base,
+            baseBreaks: baseBreaks,
             type: type,
             duration: 0
         },

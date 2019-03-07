@@ -6,6 +6,7 @@ const routesEnum = {
     CRONO_SCENE: 'CRONO_SCENE',
     MY_TABLES_SCENE: 'MY_TABLES_SCENE',
     HISTORY_SCENE: 'HISTORY_SCENE',
+    ENDURANCE_TABLE_SCENE: 'ENDURANCE_TABLE_SCENE',
 };
 
 export { routesEnum };
