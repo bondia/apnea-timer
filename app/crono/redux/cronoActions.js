@@ -61,11 +61,14 @@ export function skipSet(key) {
         // recalculate table duration
         dispatch(updateTableDurationBySets(crono.get('sets')));
 
-        // start interval again
+        // check if there are some sets still in initial mode
         const found = crono.get('sets').filter(s => s.getIn(['running', 'mode']) === enums.SET_MODE_INITIAL);
-        if (found.size > 0) {
-            timer = setInterval(() => dispatch(handleTick()), 1000);
+        if (found.size <= 0) {
+            dispatch(setCronoMode(enums.CRONO_MODE_FINISHED));
+            return;
         }
+
+        timer = setInterval(() => dispatch(handleTick()), 1000);
     };
 }
 

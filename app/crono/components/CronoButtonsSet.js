@@ -67,6 +67,7 @@ export default class CronoButtonSet extends React.PureComponent {
         const { crono } = this.props;
         const clock = crono.getIn(['running', 'clock']);
         const tableType = crono.getIn(['trainingTable', 'type']);
+        const tableMode = crono.getIn(['running', 'mode']);
         return (
             <View style={baseStyles.container}>
                 {clock < 0 && tableEnums.TABLE_TYPE_ENDURANCE !== tableType && (
@@ -81,12 +82,11 @@ export default class CronoButtonSet extends React.PureComponent {
                     />
                 )}
 
-                {clock >= 0 && (
+                {clock >= 0 && tableEnums.CRONO_MODE_FINISHED !== tableMode && (
                     <LongTouchButton title="Skip" onPress={this.handleSkip.bind(this)} style={baseStyles.button} />
                 )}
 
-                {clock >= 0 &&
-                this.canTrackContractions() && (
+                {clock >= 0 && this.canTrackContractions() && (
                     <LongTouchButton
                         title="1st Cont"
                         onPress={this.handleContraction.bind(this)}
@@ -94,7 +94,9 @@ export default class CronoButtonSet extends React.PureComponent {
                     />
                 )}
 
-                <LongTouchButton title="Finish" onPress={this.handleFinish.bind(this)} style={baseStyles.button} />
+                {tableEnums.CRONO_MODE_FINISHED === tableMode && (
+                    <LongTouchButton title="Finish" onPress={this.handleFinish.bind(this)} style={baseStyles.button} />
+                )}
             </View>
         );
     }
