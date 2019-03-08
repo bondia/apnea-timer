@@ -66,9 +66,10 @@ export default class CronoButtonSet extends React.PureComponent {
     render() {
         const { crono } = this.props;
         const clock = crono.getIn(['running', 'clock']);
+        const tableType = crono.getIn(['trainingTable', 'type']);
         return (
             <View style={baseStyles.container}>
-                {clock < 0 && (
+                {clock < 0 && tableEnums.TABLE_TYPE_ENDURANCE !== tableType && (
                     <LongTouchButton title="Auto" onPress={this.handleStartAuto.bind(this)} style={baseStyles.button} />
                 )}
 
