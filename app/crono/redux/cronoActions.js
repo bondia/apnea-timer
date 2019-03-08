@@ -62,7 +62,10 @@ export function skipSet(key) {
         dispatch(updateTableDurationBySets(crono.get('sets')));
 
         // start interval again
-        timer = setInterval(() => dispatch(handleTick()), 1000);
+        const found = crono.get('sets').filter(s => s.getIn(['running', 'mode']) === enums.SET_MODE_INITIAL);
+        if (found.size > 0) {
+            timer = setInterval(() => dispatch(handleTick()), 1000);
+        }
     };
 }
 

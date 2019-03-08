@@ -27,13 +27,19 @@ export default class LiveCounter extends React.PureComponent {
 
     render() {
         const { crono } = this.props;
+        const tableType = crono.getIn(['trainingTable', 'type']);
+        const spentTime = crono.getIn(['running', 'clock']);
         const totalTime = crono.getIn(['running', 'countdown']);
         const contractions = crono.getIn(['running', 'contractions']);
+
         // set data
         const current = this.getCurrentSet();
         const setType = current ? current.get('type') : null;
         const mode = current ? current.getIn(['running', 'mode']) : null;
         const countdown = current ? current.getIn(['running', 'countdown']) : null;
+        const pos = current ? current.get('pos') : 0;
+        const currentSet = pos <= 1 ? 1 : Math.floor(pos/2)+1;
+
         // current set styles
         let currentSetStyles = baseStyles.headerText;
         currentSetStyles =
@@ -44,27 +50,50 @@ export default class LiveCounter extends React.PureComponent {
         return (
             <View style={[this.props.style, baseStyles.wrapper]}>
                 <View style={baseStyles.header}>
+                {enums.TABLE_TYPE_ENDURANCE === tableType && (
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>Targeting</TextComponent>
+                        <TextComponent style={baseStyles.headerText}>{spentTime > 0 ? secondsToTimeString(spentTime+totalTime) : secondsToTimeString(totalTime)}</TextComponent>
+                    </View>
+                )}
+
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>Spent Time</TextComponent>
+                        <TextComponent style={baseStyles.headerText}>{spentTime > 0 ? secondsToTimeString(spentTime) : '00:00'}</TextComponent>
+                    </View>
+
+                {enums.TABLE_TYPE_ENDURANCE === tableType && (
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>Current Dive</TextComponent>
+                        <TextComponent style={baseStyles.headerText}>{currentSet}</TextComponent>
+                    </View>
+                )}
+
+                {enums.TABLE_TYPE_ENDURANCE !== tableType && (
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>Remaining Time</TextComponent>
                         <TextComponent style={baseStyles.headerText}>{secondsToTimeString(totalTime)}</TextComponent>
                     </View>
+                )}
 
+                {enums.TABLE_TYPE_ENDURANCE !== tableType && (
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>Contractions</TextComponent>
                         <TextComponent style={baseStyles.headerText}>{secondsToTimeString(contractions)}</TextComponent>
                     </View>
+                )}
 
-                    {current &&
-                    mode !== enums.SET_MODE_FINISHED && (
-                        <View style={baseStyles.headerBlock}>
-                            <TextComponent style={baseStyles.headerLabel}>
-                                {enums.SET_TYPE_HOLD === setType ? 'Breath Hold' : ''}
-                                {enums.SET_TYPE_PREPARE === setType ? 'Breath Up' : ''}
-                            </TextComponent>
+                {current && mode !== enums.SET_MODE_FINISHED && (
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>
+                            {enums.SET_TYPE_HOLD === setType ? 'Breath Hold' : ''}
+                            {enums.SET_TYPE_PREPARE === setType ? 'Breath Up' : ''}
+                        </TextComponent>
 
-                            <TextComponent style={currentSetStyles}>{secondsToTimeString(countdown)}</TextComponent>
-                        </View>
-                    )}
+                        <TextComponent style={currentSetStyles}>{secondsToTimeString(countdown)}</TextComponent>
+                    </View>
+                )}
+
                 </View>
             </View>
         );
