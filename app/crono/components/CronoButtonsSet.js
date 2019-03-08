@@ -17,6 +17,11 @@ export default class CronoButtonSet extends React.PureComponent {
 
     canTrackContractions() {
         const { crono } = this.props;
+        // no contractions tracking for endurance tables
+        const tableType = crono.getIn(['trainingTable', 'type']);
+        if (tableEnums.TABLE_TYPE_ENDURANCE === tableType) {
+            return false;
+        }
         // get current active set
         const current = findRunningSet(crono.get('sets'));
         if (current == null) {

@@ -57,10 +57,12 @@ export default class LiveCounter extends React.PureComponent {
                     </View>
                 )}
 
+                {enums.TABLE_TYPE_ENDURANCE === tableType && (
                     <View style={baseStyles.headerBlock}>
                         <TextComponent style={baseStyles.headerLabel}>Spent Time</TextComponent>
                         <TextComponent style={baseStyles.headerText}>{spentTime > 0 ? secondsToTimeString(spentTime) : '00:00'}</TextComponent>
                     </View>
+                )}
 
                 {enums.TABLE_TYPE_ENDURANCE === tableType && (
                     <View style={baseStyles.headerBlock}>
