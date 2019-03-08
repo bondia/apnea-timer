@@ -165,7 +165,3 @@ function setContractions(contractions) {
 function replaceSet(set) {
     return { type: reduxActions.CRONO_REPLACE_SET, set };
 }
-
-function replaceSets(sets) {
-    return { type: reduxActions.CRONO_REPLACE_SETS, sets };
-}
