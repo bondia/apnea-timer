@@ -17,7 +17,7 @@ class EditorEndurancePane extends React.PureComponent {
     componentDidMount() {
         const { editor, editorActions } = this.props;
         if (editor === null) {
-            editorActions.createEnduranceTable(50, 60);
+            editorActions.createEnduranceTable(50, 60, 16);
         }
     }
 
@@ -26,7 +26,6 @@ class EditorEndurancePane extends React.PureComponent {
         if (editor === null) {
             return null;
         }
-
         const crono = editor.update('sets', sets => sets.filter(s => !s.get('zombie')));
 
         return (
@@ -54,4 +53,7 @@ const dispatchToProps = dispatch => {
     return { editorActions: bindActionCreators(editorActions, dispatch) };
 };
 
-export default connect(stateToProps, dispatchToProps)(EditorEndurancePane);
+export default connect(
+    stateToProps,
+    dispatchToProps
+)(EditorEndurancePane);

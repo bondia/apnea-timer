@@ -27,7 +27,7 @@ class Menu extends React.PureComponent {
                 />
 
                 <MenuItem
-                    title="16x60m"
+                    title="Endurance"
                     type={routesEnum.ENDURANCE_TABLE_SCENE}
                     onPress={this.handleNavigate.bind(this)}
                     style={{ backgroundColor: COLOR_DARK }}

@@ -10,7 +10,7 @@ import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
  * Create Endurance table
  */
 export function createEnduranceTable(base, baseBreaks) {
-    const newState = createTable(base, baseBreaks, enums.TABLE_TYPE_ENDURANCE);
+    const newState = createTable(base, baseBreaks, enums.TABLE_TYPE_ENDURANCE, 16);
     return setInitialState(newState);
 }
 
@@ -20,6 +20,19 @@ export function createEnduranceTable(base, baseBreaks) {
 export function changeTableType(base, tableType) {
     const newState = createTable(base, null, tableType);
     return setInitialState(newState);
+}
+
+/**
+ * Change table endurance laps
+ */
+export function changeEnduranceLaps(laps) {
+    return (dispatch, getState) => {
+        const { editor } = getState();
+        const base = editor.getIn(['trainingTable', 'base']);
+        const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
+        const newState = createTable(base, baseBreaks, enums.TABLE_TYPE_ENDURANCE, laps);
+        return dispatch(setInitialState(newState));
+    };
 }
 
 /**

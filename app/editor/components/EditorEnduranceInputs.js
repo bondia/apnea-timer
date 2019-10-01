@@ -7,11 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import * as editorActions from '../redux/editorActions';
 
-import {
-    FONT_COLOR_GREY,
-    FONT_SIZE_L,
-    COLOR_LIGHT,
-} from 'app/common/styles/commonStyles';
+import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from 'app/common/styles/commonStyles';
 import secondsToTimeString from 'app/common/utils/time/secondsToTimeString';
 
 import TextComponent from 'app/common/components/TextComponent';
@@ -21,6 +17,16 @@ class EditorEnduranceInputs extends React.PureComponent {
     static propTypes = {
         editor: ImmutablePropTypes.map.isRequired
     };
+
+    handleLapsIncrease(amount) {
+        const { editor, editorActions } = this.props;
+        editorActions.changeEnduranceLaps(editor.getIn(['trainingTable', 'enduranceLaps']) + amount);
+    }
+
+    handleLapsDecrease(amount) {
+        const { editor, editorActions } = this.props;
+        editorActions.changeEnduranceLaps(editor.getIn(['trainingTable', 'enduranceLaps']) - amount);
+    }
 
     handleBaseDecrease(amount) {
         const { editor, editorActions } = this.props;
@@ -48,18 +54,33 @@ class EditorEnduranceInputs extends React.PureComponent {
         const base = editor.getIn(['trainingTable', 'base']);
         const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
         const totalTime = editor.getIn(['trainingTable', 'duration']);
+        const enduranceLaps = editor.getIn(['trainingTable', 'enduranceLaps']);
 
         return (
-            <View
-                style={[
-                    this.props.style,
-                    baseStyles.wrapper
-                ]}
-            >
+            <View style={[this.props.style, baseStyles.wrapper]}>
                 <View style={baseStyles.headerBlock}>
                     <TextComponent style={baseStyles.headerLabel}>Announced Performance</TextComponent>
                     <View style={baseStyles.container}>
                         <TextComponent style={baseStyles.headerText}>{secondsToTimeString(totalTime)}</TextComponent>
+                    </View>
+                </View>
+
+                <View style={baseStyles.headerBlock}>
+                    <TextComponent style={baseStyles.headerLabel}>Laps</TextComponent>
+                    <View style={baseStyles.container}>
+                        <LongTouchButton
+                            title="-"
+                            onPress={() => self.handleLapsDecrease(1)}
+                            style={baseStyles.button}
+                        />
+
+                        <TextComponent style={baseStyles.headerText}>{enduranceLaps}</TextComponent>
+
+                        <LongTouchButton
+                            title="+"
+                            onPress={() => self.handleLapsIncrease(1)}
+                            style={baseStyles.button}
+                        />
                     </View>
                 </View>
 
@@ -83,7 +104,6 @@ class EditorEnduranceInputs extends React.PureComponent {
                         />
                     </View>
                 </View>
-
 
                 <View style={baseStyles.headerBlock}>
                     <TextComponent style={baseStyles.headerLabel}>Breaks</TextComponent>
@@ -113,12 +133,12 @@ class EditorEnduranceInputs extends React.PureComponent {
 const baseStyles = StyleSheet.create({
     wrapper: {
         flex: 1,
-        justifyContent: 'flex-start',
+        justifyContent: 'flex-start'
     },
 
     headerBlock: {
         height: 150,
-            justifyContent: 'center',
+        justifyContent: 'center'
     },
 
     headerLabel: {
@@ -131,7 +151,7 @@ const baseStyles = StyleSheet.create({
         fontSize: FONT_SIZE_L,
         color: COLOR_LIGHT,
         flex: 2,
-        paddingTop: 20,
+        paddingTop: 20
     },
 
     container: {
@@ -142,12 +162,14 @@ const baseStyles = StyleSheet.create({
 
     button: {
         flex: 1
-    },
+    }
 });
 
 const dispatchToProps = dispatch => {
     return { editorActions: bindActionCreators(editorActions, dispatch) };
 };
 
-export default connect(null, dispatchToProps)(EditorEnduranceInputs);
-
+export default connect(
+    null,
+    dispatchToProps
+)(EditorEnduranceInputs);

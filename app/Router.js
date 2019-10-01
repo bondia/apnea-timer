@@ -34,7 +34,7 @@ export default class AppRouter extends React.PureComponent {
 
                     <Scene  key={routesEnum.ENDURANCE_TABLE_SCENE}
                             component={EditorEnduranceScene}
-                            title="16x60m"
+                            title="Endurance"
                             />
                 </Scene>
             </Router>
