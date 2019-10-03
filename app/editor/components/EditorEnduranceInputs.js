@@ -1,7 +1,6 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { View, StyleSheet } from 'react-native';
+import { ScrollView, View, StyleSheet } from 'react-native';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { bindActionCreators } from 'redux';
 
@@ -65,66 +64,70 @@ class EditorEnduranceInputs extends React.PureComponent {
                     </View>
                 </View>
 
-                <View style={baseStyles.headerBlock}>
-                    <TextComponent style={baseStyles.headerLabel}>Laps</TextComponent>
-                    <View style={baseStyles.container}>
-                        <LongTouchButton
-                            title="-"
-                            onPress={() => self.handleLapsDecrease(1)}
-                            style={baseStyles.button}
-                        />
+                <ScrollView>
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>Laps</TextComponent>
+                        <View style={baseStyles.container}>
+                            <LongTouchButton
+                                title="-"
+                                onPress={() => self.handleLapsDecrease(1)}
+                                style={baseStyles.button}
+                            />
 
-                        <TextComponent style={baseStyles.headerText}>{enduranceLaps}</TextComponent>
+                            <TextComponent style={baseStyles.headerText}>{enduranceLaps}</TextComponent>
 
-                        <LongTouchButton
-                            title="+"
-                            onPress={() => self.handleLapsIncrease(1)}
-                            style={baseStyles.button}
-                        />
+                            <LongTouchButton
+                                title="+"
+                                onPress={() => self.handleLapsIncrease(1)}
+                                style={baseStyles.button}
+                            />
+                        </View>
                     </View>
-                </View>
 
-                <View style={baseStyles.headerBlock}>
-                    <TextComponent style={baseStyles.headerLabel}>Dive Time</TextComponent>
-                    <View style={baseStyles.container}>
-                        <LongTouchButton
-                            title="-"
-                            onPress={() => self.handleBaseDecrease(1)}
-                            onPressLong={() => self.handleBaseDecrease(5)}
-                            style={baseStyles.button}
-                        />
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>Dive Time</TextComponent>
+                        <View style={baseStyles.container}>
+                            <LongTouchButton
+                                title="-"
+                                onPress={() => self.handleBaseDecrease(1)}
+                                onPressLong={() => self.handleBaseDecrease(5)}
+                                style={baseStyles.button}
+                            />
 
-                        <TextComponent style={baseStyles.headerText}>{secondsToTimeString(base)}</TextComponent>
+                            <TextComponent style={baseStyles.headerText}>{secondsToTimeString(base)}</TextComponent>
 
-                        <LongTouchButton
-                            title="+"
-                            onPress={() => self.handleBaseIncrease(1)}
-                            onPressLong={() => self.handleBaseIncrease(5)}
-                            style={baseStyles.button}
-                        />
+                            <LongTouchButton
+                                title="+"
+                                onPress={() => self.handleBaseIncrease(1)}
+                                onPressLong={() => self.handleBaseIncrease(5)}
+                                style={baseStyles.button}
+                            />
+                        </View>
                     </View>
-                </View>
 
-                <View style={baseStyles.headerBlock}>
-                    <TextComponent style={baseStyles.headerLabel}>Breaks</TextComponent>
-                    <View style={baseStyles.container}>
-                        <LongTouchButton
-                            title="-"
-                            onPress={() => self.handleBaseBreakDecrease(1)}
-                            onPressLong={() => self.handleBaseBreakDecrease(5)}
-                            style={baseStyles.button}
-                        />
+                    <View style={baseStyles.headerBlock}>
+                        <TextComponent style={baseStyles.headerLabel}>Breaks</TextComponent>
+                        <View style={baseStyles.container}>
+                            <LongTouchButton
+                                title="-"
+                                onPress={() => self.handleBaseBreakDecrease(1)}
+                                onPressLong={() => self.handleBaseBreakDecrease(5)}
+                                style={baseStyles.button}
+                            />
 
-                        <TextComponent style={baseStyles.headerText}>{secondsToTimeString(baseBreaks)}</TextComponent>
+                            <TextComponent style={baseStyles.headerText}>
+                                {secondsToTimeString(baseBreaks)}
+                            </TextComponent>
 
-                        <LongTouchButton
-                            title="+"
-                            onPress={() => self.handleBaseBreakIncrease(1)}
-                            onPressLong={() => self.handleBaseBreakIncrease(5)}
-                            style={baseStyles.button}
-                        />
+                            <LongTouchButton
+                                title="+"
+                                onPress={() => self.handleBaseBreakIncrease(1)}
+                                onPressLong={() => self.handleBaseBreakIncrease(5)}
+                                style={baseStyles.button}
+                            />
+                        </View>
                     </View>
-                </View>
+                </ScrollView>
             </View>
         );
     }

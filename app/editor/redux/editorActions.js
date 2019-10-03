@@ -9,8 +9,8 @@ import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 /**
  * Create Endurance table
  */
-export function createEnduranceTable(base, baseBreaks) {
-    const newState = createTable(base, baseBreaks, enums.TABLE_TYPE_ENDURANCE, 16);
+export function createEnduranceTable(base, baseBreaks, laps = 6) {
+    const newState = createTable(base, baseBreaks, enums.TABLE_TYPE_ENDURANCE, laps);
     return setInitialState(newState);
 }
 

@@ -1,11 +1,13 @@
 import reduxActions from 'app/main/enums/reduxActions';
 import * as enums from 'app/editor/enums';
 
+import generateTimestamp from 'app/common/utils/time/generateTimestamp';
 import editorToCrono from '../pure/editorToCrono';
 import decideCurrentSet from '../pure/decideCurrentSet';
 import findRunningSet from '../pure/findRunningSet';
 import calculateAverageContractions from '../pure/calculateAverageContractions';
 import calculateSetsDuration from 'app/editor/pure/sets/calculateSetsDuration';
+
 /**
  * Prepare initial crono
  * @param  {[type]} data [description]
@@ -28,11 +30,13 @@ export function initTable(data) {
  * @return {[type]}      [description]
  */
 let timer = null;
+const timerRefresh = 200;
 export function startCrono(mode) {
     return dispatch => {
         clearInterval(timer);
+        dispatch(setCronoStartTimestamp(generateTimestamp()));
         dispatch(setCronoMode(mode));
-        timer = setInterval(() => dispatch(handleTick()), 1000);
+        timer = setInterval(() => dispatch(handleTick()), timerRefresh);
     };
 }
 
@@ -43,6 +47,9 @@ export function startCrono(mode) {
  */
 export function skipSet(key) {
     return (dispatch, getState) => {
+        // current timestamp
+        const currentTimestamp = generateTimestamp();
+
         // clear interval
         clearInterval(timer);
 
@@ -55,7 +62,7 @@ export function skipSet(key) {
         );
 
         // activate new set
-        const newCrono = decideCurrentSet(crono);
+        const newCrono = decideCurrentSet(crono, currentTimestamp);
         dispatch(setInitialState(newCrono));
 
         // recalculate table duration
@@ -68,7 +75,7 @@ export function skipSet(key) {
             return;
         }
 
-        timer = setInterval(() => dispatch(handleTick()), 1000);
+        timer = setInterval(() => dispatch(handleTick()), timerRefresh);
     };
 }
 
@@ -104,17 +111,37 @@ function updateContractionsAverage() {
 function handleTick() {
     return (dispatch, getState) => {
         let { crono } = getState();
+
+        // current timestamp
+        const currentTimestamp = generateTimestamp();
+
         // add clock tick
-        const clock = crono.getIn(['running', 'clock']) + 1;
+        const startTimestamp = crono.getIn(['running', 'startTimestamp']);
+        const clock = Math.round((currentTimestamp - startTimestamp) / 1000);
         crono = crono.setIn(['running', 'clock'], clock);
 
         // add current set tick
         const step = crono.getIn(['running', 'step']);
-        const time = crono.getIn(['sets', step, 'running', 'countdown']) - 1;
-        crono = crono.setIn(['sets', step, 'running', 'countdown'], time);
+        let currentSet = crono.getIn(['sets', step]);
+        let setRunning = currentSet.get('running');
+
+        // make sure set has a start timestamp
+        if (setRunning.get('startTimestamp') === null) {
+            setRunning = setRunning.set('startTimestamp', startTimestamp);
+        }
+
+        // calculate countdown
+        const setPlannedDuration = currentSet.get('duration');
+        const setStartTimestamp = setRunning.get('startTimestamp');
+        const setTimeSpent = Math.round((currentTimestamp - setStartTimestamp) / 1000);
+        setRunning = setRunning.set('countdown', setPlannedDuration - setTimeSpent);
+
+        // replace set
+        currentSet = currentSet.set('running', setRunning);
+        crono = crono.setIn(['sets', step], currentSet);
 
         // decide current set
-        crono = decideCurrentSet(crono);
+        crono = decideCurrentSet(crono, currentTimestamp);
         if (crono.getIn(['running', 'step']) < 0) {
             clearInterval(timer);
             timer = null;
@@ -151,6 +178,10 @@ function updateTableDurationBySets(sets) {
 
 function setInitialState(state) {
     return { type: reduxActions.CRONO_SET_INITIAL_STATE, state };
+}
+
+function setCronoStartTimestamp(startTimestamp) {
+    return { type: reduxActions.CRONO_SET_START_TIMESTAMP, startTimestamp };
 }
 
 function setCronoMode(mode) {

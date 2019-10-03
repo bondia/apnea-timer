@@ -122,7 +122,7 @@ const baseStyles = StyleSheet.create({
         flexWrap: 'wrap',
         flexDirection: 'row',
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
     },
 
     headerBlock: {

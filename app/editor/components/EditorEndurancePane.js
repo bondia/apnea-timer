@@ -17,7 +17,7 @@ class EditorEndurancePane extends React.PureComponent {
     componentDidMount() {
         const { editor, editorActions } = this.props;
         if (editor === null) {
-            editorActions.createEnduranceTable(50, 60, 16);
+            editorActions.createEnduranceTable(35, 35, 8);
         }
     }
 

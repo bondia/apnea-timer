@@ -6,6 +6,7 @@ export default function editorToCrono(editor) {
     const crono = editor.set(
         'running',
         Immutable.fromJS({
+            startTimestamp: null,
             // represents the seconds spend since the table started
             clock: -1,
             // table current step
@@ -26,9 +27,11 @@ function initSet(set) {
     return set.set(
         'running',
         Immutable.fromJS({
+            startTimestamp: null,
+            endTimestamp: null,
             mode: pos === 0 ? enums.SET_MODE_RUNNING : enums.SET_MODE_INITIAL,
+            originalCountdown: set.get('duration'),
             countdown: set.get('duration'),
-            countup: 0,
             contraction: -1
         })
     );

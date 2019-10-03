@@ -6,6 +6,11 @@ function cronoReducer(state = null, action) {
         return action.state;
     }
 
+    // set start timestamp
+    if (action.type == reduxActions.CRONO_SET_START_TIMESTAMP) {
+        return state.setIn(['running', 'startTimestamp'], action.startTimestamp);
+    }
+
     // set crono mode [ auto, coach ]
     if (action.type == reduxActions.CRONO_SET_RUNNING_MODE) {
         return state.setIn(['running', 'mode'], action.mode);
