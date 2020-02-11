@@ -2,7 +2,7 @@
 export const HEADER_HEIGHT = 64;
 
 // FONTS
-export const FONT_FAMILY = 'futura';
+export const FONT_FAMILY = 'Futura';
 export const FONT_COLOR_LIGHT = 'azure';
 
 export const FONT_SIZE_M = 20;

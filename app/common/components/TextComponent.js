@@ -3,14 +3,12 @@ import { Text, StyleSheet } from 'react-native';
 
 import * as common from 'app/common/styles/commonStyles';
 
-export default class TextComponent extends React.PureComponent {
-    render() {
-        return (
-            <Text {...this.props} style={[styles.text, this.props.style]}>
-                {this.props.children}
-            </Text>
-        );
-    }
+export default (props) => {
+    return (
+        <Text {...props} style={[styles.text, props.style]}>
+            {props.children}
+        </Text>
+    );
 }
 
 const styles = StyleSheet.create({
