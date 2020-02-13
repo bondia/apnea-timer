@@ -4,7 +4,7 @@ import { StyleSheet, View } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import KeepAwake from 'react-native-keep-awake';
+// import KeepAwake from 'react-native-keep-awake';
 
 import * as cronoActions from 'app/crono/redux/cronoActions';
 import findRunningSet from '../pure/findRunningSet';
@@ -27,11 +27,12 @@ class CronoPane extends React.PureComponent {
         if (crono === null) {
             cronoActions.initTable(editorData);
         }
-        KeepAwake.activate();
+        // TODO: Keep awake not working
+        // KeepAwake.activate();
     }
 
     componentWillUnmount() {
-        KeepAwake.deactivate();
+        // KeepAwake.deactivate();
     }
 
     render() {
