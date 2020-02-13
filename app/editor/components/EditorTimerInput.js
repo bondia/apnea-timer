@@ -73,8 +73,8 @@ export default class EditorTimerInput extends React.PureComponent {
             <View style={styles.container}>
                 <LongTouchButton
                     title="-"
-                    onPress={() => self.handleDecrease(1)}
-                    onPressLong={() => self.handleDecrease(5)}
+                    onPressStart={() => self.handleDecrease(1)}
+                    onPressInterval={() => self.handleDecrease(5)}
                     style={styles.button}
                 />
 
@@ -84,8 +84,8 @@ export default class EditorTimerInput extends React.PureComponent {
 
                 <LongTouchButton
                     title="+"
-                    onPress={() => self.handleIncrease(1)}
-                    onPressLong={() => self.handleIncrease(5)}
+                    onPressStart={() => self.handleIncrease(1)}
+                    onPressInterval={() => self.handleIncrease(5)}
                     style={styles.button}
                 />
             </View>

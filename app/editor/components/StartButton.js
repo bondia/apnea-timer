@@ -20,7 +20,11 @@ export default class StartButton extends React.PureComponent {
     render() {
         return (
             <View style={baseStyles.container}>
-                <LongTouchButton title="Start" onPress={this.handleStart.bind(this)} style={baseStyles.button} />
+                <LongTouchButton 
+                    title="Start" 
+                    onPressStart={this.handleStart.bind(this)} 
+                    style={baseStyles.button} 
+                />
             </View>
         );
     }

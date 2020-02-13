@@ -51,21 +51,21 @@ class TableTypeInput extends React.PureComponent {
             <View style={[this.props.style, baseStyles.container]}>
                 <LongTouchButton
                     title="CO2"
-                    onPress={() => self.handleCO2()}
+                    onPressStart={() => self.handleCO2()}
                     active={enums.TABLE_TYPE_CO2 === type}
                     style={baseStyles.button}
                 />
 
                 <LongTouchButton
                     title="O2"
-                    onPress={() => self.handleO2()}
+                    onPressStart={() => self.handleO2()}
                     active={enums.TABLE_TYPE_O2 === type}
                     style={baseStyles.button}
                 />
 
                 <LongTouchButton
                     title="Free"
-                    onPress={() => self.handleFree()}
+                    onPressStart={() => self.handleFree()}
                     active={enums.TABLE_TYPE_FREE === type}
                     style={baseStyles.button}
                 />

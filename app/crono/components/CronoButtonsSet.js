@@ -71,31 +71,43 @@ export default class CronoButtonSet extends React.PureComponent {
         return (
             <View style={baseStyles.container}>
                 {clock < 0 && tableEnums.TABLE_TYPE_ENDURANCE !== tableType && (
-                    <LongTouchButton title="Auto" onPress={this.handleStartAuto.bind(this)} style={baseStyles.button} />
+                    <LongTouchButton 
+                        title="Auto" 
+                        onPressStart={this.handleStartAuto.bind(this)} 
+                        style={baseStyles.button} 
+                    />
                 )}
 
                 {clock < 0 && (
                     <LongTouchButton
                         title="Coach"
-                        onPress={this.handleStartCoach.bind(this)}
+                        onPressStart={this.handleStartCoach.bind(this)}
                         style={baseStyles.button}
                     />
                 )}
 
                 {clock >= 0 && tableEnums.CRONO_MODE_FINISHED !== tableMode && (
-                    <LongTouchButton title="Skip" onPress={this.handleSkip.bind(this)} style={baseStyles.button} />
+                    <LongTouchButton 
+                        title="Skip" 
+                        onPressStart={this.handleSkip.bind(this)} 
+                        style={baseStyles.button} 
+                    />
                 )}
 
                 {clock >= 0 && this.canTrackContractions() && (
                     <LongTouchButton
                         title="1st Cont"
-                        onPress={this.handleContraction.bind(this)}
+                        onPressStart={this.handleContraction.bind(this)}
                         style={baseStyles.button}
                     />
                 )}
 
                 {tableEnums.CRONO_MODE_FINISHED === tableMode && (
-                    <LongTouchButton title="Finish" onPress={this.handleFinish.bind(this)} style={baseStyles.button} />
+                    <LongTouchButton 
+                        title="Finish" 
+                        onPressStart={this.handleFinish.bind(this)} 
+                        style={baseStyles.button} 
+                    />
                 )}
             </View>
         );

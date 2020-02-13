@@ -70,7 +70,7 @@ class EditorEnduranceInputs extends React.PureComponent {
                         <View style={baseStyles.container}>
                             <LongTouchButton
                                 title="-"
-                                onPress={() => self.handleLapsDecrease(1)}
+                                onPressStart={() => self.handleLapsDecrease(1)}
                                 style={baseStyles.button}
                             />
 
@@ -78,7 +78,7 @@ class EditorEnduranceInputs extends React.PureComponent {
 
                             <LongTouchButton
                                 title="+"
-                                onPress={() => self.handleLapsIncrease(1)}
+                                onPressStart={() => self.handleLapsIncrease(1)}
                                 style={baseStyles.button}
                             />
                         </View>
@@ -89,8 +89,8 @@ class EditorEnduranceInputs extends React.PureComponent {
                         <View style={baseStyles.container}>
                             <LongTouchButton
                                 title="-"
-                                onPress={() => self.handleBaseDecrease(1)}
-                                onPressLong={() => self.handleBaseDecrease(5)}
+                                onPressStart={() => self.handleBaseDecrease(1)}
+                                onPressInterval={() => self.handleBaseDecrease(5)}
                                 style={baseStyles.button}
                             />
 
@@ -98,8 +98,8 @@ class EditorEnduranceInputs extends React.PureComponent {
 
                             <LongTouchButton
                                 title="+"
-                                onPress={() => self.handleBaseIncrease(1)}
-                                onPressLong={() => self.handleBaseIncrease(5)}
+                                onPressStart={() => self.handleBaseIncrease(1)}
+                                onPressInterval={() => self.handleBaseIncrease(5)}
                                 style={baseStyles.button}
                             />
                         </View>
@@ -110,8 +110,8 @@ class EditorEnduranceInputs extends React.PureComponent {
                         <View style={baseStyles.container}>
                             <LongTouchButton
                                 title="-"
-                                onPress={() => self.handleBaseBreakDecrease(1)}
-                                onPressLong={() => self.handleBaseBreakDecrease(5)}
+                                onPressStart={() => self.handleBaseBreakDecrease(1)}
+                                onPressInterval={() => self.handleBaseBreakDecrease(5)}
                                 style={baseStyles.button}
                             />
 
@@ -121,8 +121,8 @@ class EditorEnduranceInputs extends React.PureComponent {
 
                             <LongTouchButton
                                 title="+"
-                                onPress={() => self.handleBaseBreakIncrease(1)}
-                                onPressLong={() => self.handleBaseBreakIncrease(5)}
+                                onPressStart={() => self.handleBaseBreakIncrease(1)}
+                                onPressInterval={() => self.handleBaseBreakIncrease(5)}
                                 style={baseStyles.button}
                             />
                         </View>
