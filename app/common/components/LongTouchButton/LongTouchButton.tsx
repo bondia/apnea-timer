@@ -1,11 +1,19 @@
 import React from 'react';
-import { StyleSheet, View, Text, TouchableHighlight, StyleProp, TextStyle } from 'react-native';
+import { 
+    View, 
+    TouchableHighlight, 
+    StyleProp, 
+    TextStyle, 
+    StyleSheet 
+} from 'react-native';
+
 import useLongTouchHandling from './useLongTouchHandling'; 
 
-import { FONT_CLOLR_GREY_LIGHT, COLOR_LIGHT } from '../styles/commonStyles';
+import * as SC from './LongTouchButton.styled';
 
 interface LongTouchButtonProps {
     title?: string;
+    fullwidth: boolean;
     active?: boolean;
     enabled?: boolean;
     style?: StyleProp<TextStyle>;
@@ -18,8 +26,10 @@ interface LongTouchButtonProps {
 }
 
 export default function LongTouchButton(props: LongTouchButtonProps): JSX.Element {
+    // default props
     const { 
         title = '-- --', 
+        fullwidth = false,
         active = false,
         enabled = true,
         style = undefined,
@@ -31,6 +41,7 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
         pressIntervalRefresh,
     } = props;
 
+    // Attatch Hook for handling long touches
     const { 
         onPressIn, 
         onLongPress, 
@@ -45,36 +56,34 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
         pressIntervalRefresh
     });
 
+    /** 
+     * TODO: Convert Main view in styled component
+     * Need full refactor of all places that the style prop is passed!
+     */
+    let viewStyleSheet = StyleSheet.create({
+        mainView: {
+            width: fullwidth ? '100%' : undefined,
+        }
+    });
+    if (style) {
+        viewStyleSheet.mainView = { 
+            ...viewStyleSheet.mainView, 
+            ...(style as object) 
+        };
+    }
+    
     return (
-        <View style={[style, baseStyles.container]}>
+        <View style={viewStyleSheet.mainView}>
             <TouchableHighlight
                 onPressIn={onPressIn}
                 onLongPress={onLongPress}
                 onPressOut={onPressOut}
-                underlayColor={FONT_CLOLR_GREY_LIGHT}
+                underlayColor="transparent"
             >
-                <View style={active ? [baseStyles.button, baseStyles.active] : baseStyles.button}>
-                    <Text style={baseStyles.text}>{title}</Text>
-                </View>
+                <SC.ButtonWrapper active={active}>
+                    <SC.ButtonText>{title}</SC.ButtonText>
+                </SC.ButtonWrapper>
             </TouchableHighlight>
         </View>
     );
 }
-
-const baseStyles = StyleSheet.create({
-    container: {},
-    button: {
-        padding: 20,
-        backgroundColor: FONT_CLOLR_GREY_LIGHT,
-        borderRadius: 3,
-        margin: 5
-    },
-    text: {
-        backgroundColor: 'transparent',
-        textAlign: 'center',
-        fontSize: 20
-    },
-    active: {
-        backgroundColor: COLOR_LIGHT
-    }
-});

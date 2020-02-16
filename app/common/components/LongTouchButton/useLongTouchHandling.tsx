@@ -2,7 +2,7 @@ import { useEffect, useState, SetStateAction, Dispatch } from "react";
 import { GestureResponderEvent } from "react-native";
 
 // Long touch notification rating in milliseconds 
-const UPDATE_RATE_MILLISECONDS = 100;
+const UPDATE_RATE_MILLISECONDS: number = 100;
 
 /**
  * Crates states to track if the button was pushed for a long time or just short.

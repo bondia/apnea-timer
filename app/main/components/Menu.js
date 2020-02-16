@@ -30,6 +30,13 @@ class Menu extends React.PureComponent {
                     title="Endurance"
                     type={routesEnum.ENDURANCE_TABLE_SCENE}
                     onPress={this.handleNavigate.bind(this)}
+                    style={{ backgroundColor: COLOR_NORMAL }}
+                />
+
+                <MenuItem
+                    title="Schedule"
+                    type={routesEnum.SCHEDULE_SCENE}
+                    onPress={this.handleNavigate.bind(this)}
                     style={{ backgroundColor: COLOR_DARK }}
                 />
 
@@ -38,16 +45,14 @@ class Menu extends React.PureComponent {
                     title="My Tables"
                     type={routesEnum.MY_TABLES_SCENE}
                     onPress={this.handleNavigate.bind(this)}
-                    style={{ backgroundColor: COLOR_LIGHT }}
+                    style={{ backgroundColor: COLOR_NORMAL }}
                 />
-*/}
 
-{/*
                 <MenuItem
                     title="History"
                     type={routesEnum.HISTORY_SCENE}
                     onPress={this.handleNavigate.bind(this)}
-                    style={{ backgroundColor: COLOR_DARK }}
+                    style={{ backgroundColor: COLOR_LIGHT }}
                 />
 */}
             </View>

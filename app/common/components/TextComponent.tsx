@@ -8,9 +8,10 @@ interface TextComponentProps {
     children: ReactNode;
 }
 
+// TODO: Refactor to use only styled components
+
 export default function TextComponent(props: TextComponentProps): JSX.Element {
     const { children, style} = props;
-
     return (
         <Text {...props} style={[styles.text, style]}>
             {children}
