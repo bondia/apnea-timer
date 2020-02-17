@@ -1,4 +1,4 @@
-import reduxActions from '../../main/enums/reduxActions';
+import * as reduxActions from '../../main/enums/reduxActions';
 import { ImmutableJSCronoType } from './CronoTypes';
 
 const cronoReducer = (state = null, action): ImmutableJSCronoType => {

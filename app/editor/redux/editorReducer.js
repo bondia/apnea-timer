@@ -1,4 +1,4 @@
-import reduxActions from 'app/main/enums/reduxActions';
+import * as reduxActions from 'app/main/enums/reduxActions';
 
 export default function editorReducer(state = null, action) {
     // set initial state

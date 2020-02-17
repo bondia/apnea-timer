@@ -1,4 +1,4 @@
-import reduxActions from '../../main/enums/reduxActions';
+import * as reduxActions from '../../main/enums/reduxActions';
 import * as enums from '../../editor/enums';
 
 import generateTimestamp from '../../common/utils/time/generateTimestamp';

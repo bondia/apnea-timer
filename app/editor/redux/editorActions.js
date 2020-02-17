@@ -1,4 +1,4 @@
-import reduxActions from 'app/main/enums/reduxActions';
+import * as reduxActions from 'app/main/enums/reduxActions';
 import * as enums from '../enums';
 
 import createTable from '../pure/createTable';

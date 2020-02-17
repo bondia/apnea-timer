@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import editorReducer from 'app/editor/redux/editorReducer';
-import cronoReducer from 'app/crono/redux/cronoReducer';
+import editorReducer from '../../editor/redux/editorReducer';
+import cronoReducer from '../../crono/redux/cronoReducer';
 
 function initReducers() {
     return combineReducers({

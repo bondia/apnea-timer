@@ -18,12 +18,10 @@ const enhancer = compose(
 );
 const store = createStore(initReducers(), enhancer);
 
-export default class App extends React.PureComponent {
-    render() {
-        return (
-            <Provider store={store}>
-                <Router />
-            </Provider>
-        );
-    }
+export default function App(): JSX.Element {
+    return (
+        <Provider store={store}>
+            <Router />
+        </Provider>
+    );
 }
