@@ -1,13 +1,13 @@
 import { useEffect, useState, SetStateAction, Dispatch } from "react";
 import { GestureResponderEvent } from "react-native";
 
-// Long touch notification rating in milliseconds 
+// Long touch notification rating in milliseconds
 const UPDATE_RATE_MILLISECONDS: number = 100;
 
 /**
  * Crates states to track if the button was pushed for a long time or just short.
  * Will create some intervals to get periodical notifications during a long touch.
- * 
+ *
  * - enabled: whether the button can do actions
  * - onPressStart: get notified when the button is pushed
  * - onShortPressEnd: get notified when the button is not pushed anymore. Only when the push was short.
@@ -15,7 +15,7 @@ const UPDATE_RATE_MILLISECONDS: number = 100;
  * - onLongPressEnd: get notified when the long push is finished
  * - onPressInterval: once the button push is long; get notified by intervals during the push.
  * - pressIntervalRefresh: configure the onPressInterval notification.
- * 
+ *
  * @param input UseLongTouchHandlingInput
  */
 export default function useLongTouchHandling(input: UseLongTouchHandlingInput): UseLongTouchHandlingOutput {
@@ -29,10 +29,10 @@ export default function useLongTouchHandling(input: UseLongTouchHandlingInput): 
         onPressInterval = () => undefined,
         pressIntervalRefresh = UPDATE_RATE_MILLISECONDS,
     } = input;
-    
+
     // init state
-    const [ isLongPressed, setIsLongPressed ] = useState(false); 
-    
+    const [ isLongPressed, setIsLongPressed ] = useState(false);
+
     // use effect that will trigger the refresh intervals
     useEffect(() => updateInterval({
         enabled,
@@ -40,18 +40,24 @@ export default function useLongTouchHandling(input: UseLongTouchHandlingInput): 
         onLongPressStart,
         onPressInterval,
         pressIntervalRefresh,
-    }), [ pressIntervalRefresh, isLongPressed, enabled ]);
+    }), [
+        enabled,
+        isLongPressed,
+        onLongPressStart,
+        onPressInterval,
+        pressIntervalRefresh,
+    ]);
 
-    // return 
+    // return
     return {
         onPressIn: () => onPressIn({ enabled, onPressStart }),
         onLongPress: () => onLongPress({ enabled, setIsLongPressed }),
-        onPressOut: () => onPressOut({ 
+        onPressOut: () => onPressOut({
             enabled,
             onShortPressEnd,
             onLongPressEnd,
-            isLongPressed, 
-            setIsLongPressed 
+            isLongPressed,
+            setIsLongPressed
         }),
     }
 }
@@ -75,11 +81,11 @@ interface UseLongTouchHandlingOutput {
 
 /**
  * - Notify when long press starts
- * - Notify press intervals based on refresh rate 
+ * - Notify press intervals based on refresh rate
  * @param input updateIntervalInput
  */
 function updateInterval(input: UpdateIntervalInput): () => void | void {
-    const { 
+    const {
         enabled,
         isLongPressed,
         onLongPressStart,
@@ -96,7 +102,7 @@ function updateInterval(input: UpdateIntervalInput): () => void | void {
     }
 }
 
-interface UpdateIntervalInput { 
+interface UpdateIntervalInput {
     enabled: boolean;
     isLongPressed: boolean;
     onLongPressStart: () => void;
@@ -115,7 +121,7 @@ function onPressIn(input: OnPressInInput): void {
     }
 }
 
-interface OnPressInInput { 
+interface OnPressInInput {
     enabled: boolean;
     onPressStart: () => void;
 }
@@ -156,7 +162,7 @@ function onPressOut(input: OnPressOutInput): void {
 }
 
 interface OnPressOutInput {
-    enabled: boolean; 
+    enabled: boolean;
     isLongPressed: boolean;
     setIsLongPressed: Dispatch<SetStateAction<boolean>>;
     onShortPressEnd: () => void;

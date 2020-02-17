@@ -1,4 +1,4 @@
-import styled from 'styled-components/native'
+import styled from 'styled-components/native';
 import { FONT_CLOLR_GREY_LIGHT, COLOR_LIGHT } from '../../styles/commonStyles';
 
 interface ButtonWrapperProps {
@@ -6,7 +6,7 @@ interface ButtonWrapperProps {
 };
 export const ButtonWrapper = styled.View<ButtonWrapperProps>`
     padding: 20px;
-    background-color: ${props => (props.active ? COLOR_LIGHT : FONT_CLOLR_GREY_LIGHT)}; 
+    background-color: ${props => (props.active ? COLOR_LIGHT : FONT_CLOLR_GREY_LIGHT)};
     border-radius: 3px;
     margin: 5px;
 `;

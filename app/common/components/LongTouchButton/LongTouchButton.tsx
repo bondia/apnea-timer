@@ -1,19 +1,19 @@
 import React from 'react';
-import { 
-    View, 
-    TouchableHighlight, 
-    StyleProp, 
-    TextStyle, 
-    StyleSheet 
+import {
+    View,
+    TouchableHighlight,
+    StyleProp,
+    TextStyle,
+    StyleSheet
 } from 'react-native';
 
-import useLongTouchHandling from './useLongTouchHandling'; 
+import useLongTouchHandling from './useLongTouchHandling';
 
 import * as SC from './LongTouchButton.styled';
 
 interface LongTouchButtonProps {
     title?: string;
-    fullwidth: boolean;
+    fullwidth?: boolean;
     active?: boolean;
     enabled?: boolean;
     style?: StyleProp<TextStyle>;
@@ -27,8 +27,8 @@ interface LongTouchButtonProps {
 
 export default function LongTouchButton(props: LongTouchButtonProps): JSX.Element {
     // default props
-    const { 
-        title = '-- --', 
+    const {
+        title = '-- --',
         fullwidth = false,
         active = false,
         enabled = true,
@@ -42,12 +42,12 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
     } = props;
 
     // Attatch Hook for handling long touches
-    const { 
-        onPressIn, 
-        onLongPress, 
-        onPressOut 
+    const {
+        onPressIn,
+        onLongPress,
+        onPressOut
     } = useLongTouchHandling({
-        enabled, 
+        enabled,
         onPressStart,
         onShortPressEnd,
         onLongPressStart,
@@ -56,7 +56,7 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
         pressIntervalRefresh
     });
 
-    /** 
+    /**
      * TODO: Convert Main view in styled component
      * Need full refactor of all places that the style prop is passed!
      */
@@ -66,12 +66,12 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
         }
     });
     if (style) {
-        viewStyleSheet.mainView = { 
-            ...viewStyleSheet.mainView, 
-            ...(style as object) 
+        viewStyleSheet.mainView = {
+            ...viewStyleSheet.mainView,
+            ...(style as object)
         };
     }
-    
+
     return (
         <View style={viewStyleSheet.mainView}>
             <TouchableHighlight
