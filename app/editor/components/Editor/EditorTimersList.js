@@ -5,8 +5,8 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as editorActions from '../redux/editorActions';
-import * as enums from '../enums';
+import * as editorActions from '../../redux/editorActions';
+import * as enums from '../../enums';
 
 import EditorTimerInput from './EditorTimerInput';
 

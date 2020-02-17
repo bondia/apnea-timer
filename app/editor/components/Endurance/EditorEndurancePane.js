@@ -4,10 +4,10 @@ import { connect } from 'react-redux';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { bindActionCreators } from 'redux';
 
-import * as editorActions from '../redux/editorActions';
+import * as editorActions from '../../redux/editorActions';
 
 import EditorEnduranceInputs from './EditorEnduranceInputs';
-import StartButton from './StartButton';
+import StartButton from '../Common/StartButton';
 
 class EditorEndurancePane extends React.PureComponent {
     static propTypes = {

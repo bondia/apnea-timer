@@ -2,9 +2,9 @@ import React from 'react';
 import { Actions } from 'react-native-router-flux';
 import styled from 'styled-components/native';
 
-import * as routesEnum from '../../main/enums/routes';
+import * as routesEnum from '../../../main/enums/routes';
 
-import LongTouchButton from '../../common/components/LongTouchButton';
+import LongTouchButton from '../../../common/components/LongTouchButton';
 
 interface StartButtonProps {
     data: object;

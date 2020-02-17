@@ -5,14 +5,14 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { bindActionCreators } from 'redux';
 
 import { FONT_COLOR_GREY } from 'app/common/styles/commonStyles';
-import * as enums from '../enums';
+import * as enums from '../../enums';
 
-import * as editorActions from '../redux/editorActions';
+import * as editorActions from '../../redux/editorActions';
 
 import TextComponent from 'app/common/components/TextComponent';
 import EditorPaneHeader from './EditorPaneHeader';
 import EditorTimersList from './EditorTimersList';
-import StartButton from './StartButton';
+import StartButton from '../Common/StartButton';
 
 class EditorPane extends React.PureComponent {
     static propTypes = {

@@ -10,7 +10,7 @@ import {
     COLOR_GREEN_NORMAL
 } from 'app/common/styles/commonStyles';
 import secondsToTimeString from 'app/common/utils/time/secondsToTimeString';
-import * as enums from '../enums';
+import * as enums from '../../enums';
 
 import TextComponent from 'app/common/components/TextComponent';
 import TableTypeInput from './TableTypeInput';

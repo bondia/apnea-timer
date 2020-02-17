@@ -1,15 +1,15 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as editorActions from '../redux/editorActions';
-import secondsToTimeString from '../../common/utils/time/secondsToTimeString';
+import * as editorActions from '../../redux/editorActions';
+import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
 
 import * as SC from './EditorEnduranceInputs.styled';
-import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from '../../common/styles/commonStyles';
-import TextComponent from '../../common/components/TextComponent';
-import LongTouchButton from '../../common/components/LongTouchButton';
+import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from '../../../common/styles/commonStyles';
+import TextComponent from '../../../common/components/TextComponent';
+import LongTouchButton from '../../../common/components/LongTouchButton';
 
 interface EditorEnduranceProps {
     editor: ImmutableJSEditor;
