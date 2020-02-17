@@ -1,6 +1,7 @@
-import reduxActions from 'app/main/enums/reduxActions';
+import reduxActions from '../../main/enums/reduxActions';
+import { ImmutableJSCronoType } from './CronoTypes';
 
-function cronoReducer(state = null, action) {
+const cronoReducer = (state = null, action): ImmutableJSCronoType => {
     // set initial state
     if (action.type == reduxActions.CRONO_SET_INITIAL_STATE) {
         return action.state;

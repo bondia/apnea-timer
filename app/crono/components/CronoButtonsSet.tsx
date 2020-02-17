@@ -5,7 +5,7 @@ import * as tableEnums from '../../editor/enums';
 import findRunningSet from '../pure/findRunningSet';
 import LongTouchButton from '../../common/components/LongTouchButton';
 import * as SC from './CronoButtonSet.styled';
-import { CronoActionsTypes } from '../redux/CronoActionsTypes';
+import { CronoActionsTypes, ImmutableJSCronoType } from '../redux/CronoTypes';
 
 interface CronoButtonSetProps {
     crono: ImmutableJSCronoType;
@@ -64,14 +64,6 @@ export default function CronoButtonSet(props: CronoButtonSetProps): JSX.Element 
             )}
         </SC.ButtonSetWrapper>
     );
-}
-
-/**
- * TODO: Remove immutable js
- */
-interface ImmutableJSCronoType {
-    get: (prop: string) => any;
-    getIn: (stack: string[]) => any;
 }
 
 const canTrackContractions = (crono: ImmutableJSCronoType) => {

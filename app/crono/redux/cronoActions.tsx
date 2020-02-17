@@ -7,11 +7,13 @@ import decideCurrentSet from '../pure/decideCurrentSet';
 import findRunningSet from '../pure/findRunningSet';
 import calculateAverageContractions from '../pure/calculateAverageContractions';
 import calculateSetsDuration from '../../editor/pure/sets/calculateSetsDuration';
-import { InitTableType, StartCronoType, SkipSetType, TrackContractionType, ClearCronoType } from './CronoActionsTypes';
 
 /**
  * Prepare initial crono
  */
+export type InitTableType =
+    (data: object) => (dispatch: any) => void;
+
 export const initTable: InitTableType = (data: object) => {
     return dispatch => {
         // convert traning table to a crono table
@@ -28,6 +30,10 @@ export const initTable: InitTableType = (data: object) => {
  */
 let timer = null;
 const timerRefresh = 200;
+
+export type StartCronoType =
+    (mode: string) => (dispatch: any) => void;
+
 export const startCrono: StartCronoType = (mode: string) => {
     return dispatch => {
         clearInterval(timer);
@@ -40,6 +46,9 @@ export const startCrono: StartCronoType = (mode: string) => {
 /**
  * Skips a single set
  */
+export type SkipSetType =
+    (key: number) => (dispatch: any, getState: any) => void;
+
 export const skipSet: SkipSetType = (key: number) => {
     return (dispatch, getState) => {
         // current timestamp
@@ -77,6 +86,9 @@ export const skipSet: SkipSetType = (key: number) => {
 /**
  * Track first contraction
  */
+export type TrackContractionType =
+    () => (dispatch: any, getState: any) => void;
+
  export const trackContraction: TrackContractionType = () => {
     return (dispatch, getState) => {
         const { crono } = getState();
@@ -150,6 +162,9 @@ function handleTick() {
 /**
  * Clean state
  */
+export type ClearCronoType =
+    () => object;
+
 export const clearCrono: ClearCronoType = () => {
     if (timer != null) {
         clearInterval(timer);

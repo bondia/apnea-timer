@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 // import KeepAwake from 'react-native-keep-awake';
 
-import { CronoActionsTypes } from '../redux/CronoActionsTypes';
+import { CronoActionsTypes, ImmutableJSCronoType } from '../redux/CronoTypes';
 
 import * as cronoActions from '../redux/cronoActions';
 import findRunningSet from '../pure/findRunningSet';
@@ -15,9 +15,8 @@ import CronoButtonsSet from './CronoButtonsSet';
 import MultipleCountdownBar from './MultipleCountdownBar';
 import CountdownBar from './CountdownBar';
 
-// TODO: Better types
 interface CoronoPaneProps {
-    crono: any;
+    crono: ImmutableJSCronoType;
     editorData: object;
     cronoActions: CronoActionsTypes;
 }
