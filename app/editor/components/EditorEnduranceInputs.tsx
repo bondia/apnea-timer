@@ -40,120 +40,101 @@ function EditorEnduranceInputs(props: EditorEnduranceProps): JSX.Element {
                     <TextComponent style={baseStyles.headerLabel}>Laps</TextComponent>
 
                     <SC.RowContainer>
-                        <SC.ButtonWrapper>
-                            <LongTouchButton
-                                title="-"
-                                onPressStart={() => handleAction({
-                                    original: enduranceLaps,
-                                    increase: -1,
-                                    dispatchAction: editorActions.changeEnduranceLaps,
-                                })}
-                                fullwidth
-                            />
-                        </SC.ButtonWrapper>
+                        <LongTouchButton
+                            title="-"
+                            onPressStart={() => handleAction({
+                                original: enduranceLaps,
+                                increase: -1,
+                                dispatchAction: editorActions.changeEnduranceLaps,
+                            })}
+                        />
 
                         <TextComponent style={baseStyles.headerText}>{enduranceLaps}</TextComponent>
 
-                        <SC.ButtonWrapper>
-                            <LongTouchButton
-                                title="+"
-                                onPressStart={() => handleAction({
-                                    original: enduranceLaps,
-                                    increase: 1,
-                                    dispatchAction: editorActions.changeEnduranceLaps,
-                                })}
-                                fullwidth
-                                />
-                        </SC.ButtonWrapper>
+                        <LongTouchButton
+                            title="+"
+                            onPressStart={() => handleAction({
+                                original: enduranceLaps,
+                                increase: 1,
+                                dispatchAction: editorActions.changeEnduranceLaps,
+                            })}
+                            />
                     </SC.RowContainer>
                 </SC.Block>
 
                 <SC.Block>
                     <TextComponent style={baseStyles.headerLabel}>Dive Time</TextComponent>
                     <SC.RowContainer>
-                        <SC.ButtonWrapper>
-                            <LongTouchButton
-                                title="-"
-                                onPressStart={() => handleAction({
-                                    original: base,
-                                    increase: -1,
-                                    dispatchAction: editorActions.changeTableBase,
-                                })}
-                                onPressInterval={() => handleAction({
-                                    original: base,
-                                    increase: -5,
-                                    dispatchAction: editorActions.changeTableBase,
-                                })}
-                                fullwidth
-                                />
-                        </SC.ButtonWrapper>
+                        <LongTouchButton
+                            title="-"
+                            onPressStart={() => handleAction({
+                                original: base,
+                                increase: -1,
+                                dispatchAction: editorActions.changeTableBase,
+                            })}
+                            onPressInterval={() => handleAction({
+                                original: base,
+                                increase: -5,
+                                dispatchAction: editorActions.changeTableBase,
+                            })}
+                            />
 
                         <TextComponent style={baseStyles.headerText}>
                             {secondsToTimeString(base)}
                         </TextComponent>
 
-                        <SC.ButtonWrapper>
-                            <LongTouchButton
-                                title="+"
-                                onPressStart={() => handleAction({
-                                    original: base,
-                                    increase: 1,
-                                    dispatchAction: editorActions.changeTableBase,
-                                })}
-                                onPressInterval={() => handleAction({
-                                    original: base,
-                                    increase: 5,
-                                    dispatchAction: editorActions.changeTableBase,
-                                })}
-                                fullwidth
-                                />
-                        </SC.ButtonWrapper>
+                        <LongTouchButton
+                            title="+"
+                            onPressStart={() => handleAction({
+                                original: base,
+                                increase: 1,
+                                dispatchAction: editorActions.changeTableBase,
+                            })}
+                            onPressInterval={() => handleAction({
+                                original: base,
+                                increase: 5,
+                                dispatchAction: editorActions.changeTableBase,
+                            })}
+                            />
                     </SC.RowContainer>
                 </SC.Block>
 
                 <SC.Block>
                     <TextComponent style={baseStyles.headerLabel}>Breaks</TextComponent>
                     <SC.RowContainer>
-                        <SC.ButtonWrapper>
-                            <LongTouchButton
-                                title="-"
-                                onPressStart={() => handleAction({
-                                    original: baseBreaks,
-                                    increase: -1,
-                                    dispatchAction: editorActions.changeTableBaseBreaks,
-                                })}
-                                onPressInterval={() => handleAction({
-                                    original: baseBreaks,
-                                    increase: -5,
-                                    dispatchAction: editorActions.changeTableBaseBreaks,
-                                })}
-                                fullwidth
-                            />
-                        </SC.ButtonWrapper>
+                        <LongTouchButton
+                            title="-"
+                            onPressStart={() => handleAction({
+                                original: baseBreaks,
+                                increase: -1,
+                                dispatchAction: editorActions.changeTableBaseBreaks,
+                            })}
+                            onPressInterval={() => handleAction({
+                                original: baseBreaks,
+                                increase: -5,
+                                dispatchAction: editorActions.changeTableBaseBreaks,
+                            })}
+                        />
 
                         <TextComponent style={baseStyles.headerText}>
                             {secondsToTimeString(baseBreaks)}
                         </TextComponent>
 
-                        <SC.ButtonWrapper>
-                            <LongTouchButton
-                                title="+"
-                                onPressStart={() => handleAction({
-                                    original: baseBreaks,
-                                    increase: 1,
-                                    dispatchAction: editorActions.changeTableBaseBreaks,
-                                })}
-                                onPressInterval={() => handleAction({
-                                    original: baseBreaks,
-                                    increase: 5,
-                                    dispatchAction: editorActions.changeTableBaseBreaks,
-                                })}
-                                fullwidth
-                            />
-                        </SC.ButtonWrapper>
+                        <LongTouchButton
+                            title="+"
+                            onPressStart={() => handleAction({
+                                original: baseBreaks,
+                                increase: 1,
+                                dispatchAction: editorActions.changeTableBaseBreaks,
+                            })}
+                            onPressInterval={() => handleAction({
+                                original: baseBreaks,
+                                increase: 5,
+                                dispatchAction: editorActions.changeTableBaseBreaks,
+                            })}
+                        />
                     </SC.RowContainer>
                 </SC.Block>
-
             </ScrollView>
         </SC.MainWrapper>
     );
@@ -197,7 +178,7 @@ function handleAction(params: HandleActionParams): void {
 const baseStyles = StyleSheet.create({
     headerLabel: {
         textAlign: 'center',
-        color: FONT_COLOR_GREY
+        color: FONT_COLOR_GREY,
     },
 
     headerText: {
@@ -205,7 +186,7 @@ const baseStyles = StyleSheet.create({
         fontSize: FONT_SIZE_L,
         color: COLOR_LIGHT,
         flex: 2,
-        paddingTop: 20
+        paddingTop: 20,
     },
 });
 

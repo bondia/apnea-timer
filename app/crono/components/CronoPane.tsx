@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, View, StyleProp, TextStyle } from 'react-native';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import ImmutablePropTypes from 'react-immutable-proptypes';
+import styled from 'styled-components/native';
 // import KeepAwake from 'react-native-keep-awake';
+
+import { CronoActionsTypes } from '../redux/CronoActionsTypes';
 
 import * as cronoActions from '../redux/cronoActions';
 import findRunningSet from '../pure/findRunningSet';
@@ -15,19 +15,15 @@ import CronoButtonsSet from './CronoButtonsSet';
 import MultipleCountdownBar from './MultipleCountdownBar';
 import CountdownBar from './CountdownBar';
 
-
 // TODO: Better types
 interface CoronoPaneProps {
     crono: any;
     editorData: object;
-    cronoActions: { 
-        initTable: (editorData: object) => void 
-    };
-    style?: StyleProp<TextStyle>;
+    cronoActions: CronoActionsTypes;
 }
 
 function CronoPane(props: CoronoPaneProps): JSX.Element {
-    const { crono, editorData, cronoActions, style } = props;
+    const { crono, editorData, cronoActions } = props;
 
     useEffect(() => {
         if (crono === null) {
@@ -48,25 +44,52 @@ function CronoPane(props: CoronoPaneProps): JSX.Element {
     const current = findRunningSet(crono.get('sets'));
 
     return (
-        <View style={[style, baseStyles.pane]}>
-            <View style={{ flex: 1, flexDirection: 'row', marginTop: 35, marginBottom: 10 }}>
+        <PaneWrapper>
+            <CountersWrapper>
                 <MultipleCountdownBar sets={crono.getIn(['sets'])} />
 
-                <View style={{ flex: 1 }}>
+                <ContentWrapper>
                     <LiveCounter crono={crono} />
 
-                    <View style={baseStyles.setsWrapper}>
+                    <SetsWrapper>
                         <SetsList crono={crono} />
-                    </View>
-                </View>
+                    </SetsWrapper>
+                </ContentWrapper>
 
                 <CountdownBar set={current} />
-            </View>
+            </CountersWrapper>
 
             <CronoButtonsSet crono={crono} cronoActions={cronoActions} />
-        </View>
+        </PaneWrapper>
     );
 }
+
+/**
+ * STYLES
+ */
+
+const PaneWrapper = styled.View`
+    flex: 1;
+`;
+
+const CountersWrapper = styled.View`
+    flex: 1;
+    flex-direction: row;
+    margin-top: 35px;
+    margin-bottom: 10px;
+`;
+
+const ContentWrapper = styled.View`
+    flex: 1;
+`;
+
+const SetsWrapper = styled.View`
+    flex: 5;
+`;
+
+/**
+ * REDUX
+ */
 
 const stateToProps = (state, ownProps) => {
     return {
@@ -82,13 +105,3 @@ const dispatchToProps = dispatch => {
 };
 
 export default connect(stateToProps, dispatchToProps)(CronoPane);
-
-const baseStyles = StyleSheet.create({
-    pane: {
-        flex: 1
-    },
-
-    setsWrapper: {
-        flex: 5
-    }
-});

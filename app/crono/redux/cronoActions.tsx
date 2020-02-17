@@ -1,19 +1,18 @@
-import reduxActions from 'app/main/enums/reduxActions';
-import * as enums from 'app/editor/enums';
+import reduxActions from '../../main/enums/reduxActions';
+import * as enums from '../../editor/enums';
 
-import generateTimestamp from 'app/common/utils/time/generateTimestamp';
+import generateTimestamp from '../../common/utils/time/generateTimestamp';
 import editorToCrono from '../pure/editorToCrono';
 import decideCurrentSet from '../pure/decideCurrentSet';
 import findRunningSet from '../pure/findRunningSet';
 import calculateAverageContractions from '../pure/calculateAverageContractions';
-import calculateSetsDuration from 'app/editor/pure/sets/calculateSetsDuration';
+import calculateSetsDuration from '../../editor/pure/sets/calculateSetsDuration';
+import { InitTableType, StartCronoType, SkipSetType, TrackContractionType, ClearCronoType } from './CronoActionsTypes';
 
 /**
  * Prepare initial crono
- * @param  {[type]} data [description]
- * @return {[type]}      [description]
  */
-export function initTable(data) {
+export const initTable: InitTableType = (data: object) => {
     return dispatch => {
         // convert traning table to a crono table
         const crono = editorToCrono(data);
@@ -26,12 +25,10 @@ export function initTable(data) {
 
 /**
  * Start crono
- * @param  {[type]} mode [description]
- * @return {[type]}      [description]
  */
 let timer = null;
 const timerRefresh = 200;
-export function startCrono(mode) {
+export const startCrono: StartCronoType = (mode: string) => {
     return dispatch => {
         clearInterval(timer);
         dispatch(setCronoStartTimestamp(generateTimestamp()));
@@ -42,10 +39,8 @@ export function startCrono(mode) {
 
 /**
  * Skips a single set
- * @param  {[type]} key [description]
- * @return {[type]}     [description]
  */
-export function skipSet(key) {
+export const skipSet: SkipSetType = (key: number) => {
     return (dispatch, getState) => {
         // current timestamp
         const currentTimestamp = generateTimestamp();
@@ -81,9 +76,8 @@ export function skipSet(key) {
 
 /**
  * Track first contraction
- * @return {[type]} [description]
  */
-export function trackContraction() {
+ export const trackContraction: TrackContractionType = () => {
     return (dispatch, getState) => {
         const { crono } = getState();
         let currentSet = findRunningSet(crono.get('sets'));
@@ -96,7 +90,7 @@ export function trackContraction() {
 }
 
 function updateContractionsAverage() {
-    return (dispatch, getState) => {
+    return (dispatch: any, getState: any) => {
         const { crono } = getState();
         const sets = crono.get('sets');
         const contractions = calculateAverageContractions(sets);
@@ -156,7 +150,7 @@ function handleTick() {
 /**
  * Clean state
  */
-export function clearCrono() {
+export const clearCrono: ClearCronoType = () => {
     if (timer != null) {
         clearInterval(timer);
         timer = null;
@@ -169,33 +163,33 @@ export function clearCrono() {
  * @param  {[type]} sets [description]
  * @return {[type]}      [description]
  */
-function updateTableDurationBySets(sets) {
+function updateTableDurationBySets(sets: object[]): object {
     const duration = calculateSetsDuration(sets);
     return setTableDuration(duration);
 }
 
 /** BASIC ACTIONS */
 
-function setInitialState(state) {
+function setInitialState(state: object): object {
     return { type: reduxActions.CRONO_SET_INITIAL_STATE, state };
 }
 
-function setCronoStartTimestamp(startTimestamp) {
+function setCronoStartTimestamp(startTimestamp: number): object {
     return { type: reduxActions.CRONO_SET_START_TIMESTAMP, startTimestamp };
 }
 
-function setCronoMode(mode) {
+function setCronoMode(mode: string): object {
     return { type: reduxActions.CRONO_SET_RUNNING_MODE, mode };
 }
 
-function setTableDuration(duration) {
+function setTableDuration(duration: number): object {
     return { type: reduxActions.CRONO_SET_RUNNING_TABLE_DURATION, duration };
 }
 
-function setContractions(contractions) {
+function setContractions(contractions: number): object {
     return { type: reduxActions.CRONO_SET_RUNNING_CONTRACTIONS, contractions };
 }
 
-function replaceSet(set) {
+function replaceSet(set: object): object {
     return { type: reduxActions.CRONO_REPLACE_SET, set };
 }

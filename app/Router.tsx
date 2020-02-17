@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Router, Scene, ActionConst } from 'react-native-router-flux';
+
 import { routesEnum } from './main/enums/routes';
 
 import MainScene from './main/components/MainScene';
@@ -40,6 +40,7 @@ export default function AppRouter(props: AppRouterProps): JSX.Element {
                     component={EditorEnduranceScene}
                     title="Endurance"
                 />
+
                 <Scene
                     key={routesEnum.SCHEDULE_SCENE}
                     component={EditorEnduranceScene}

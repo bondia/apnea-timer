@@ -1,6 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 import * as enums from '../enums';
 import secondsToTimeString from '../../common/utils/time/secondsToTimeString';
@@ -63,7 +62,6 @@ export default function EditorTimerInput(props: EditorTimerInputProps): JSX.Elem
                     title="-"
                     onPressStart={() => decreaseAction(index, 1)}
                     onPressInterval={() => decreaseAction(index, 5)}
-                    fullwidth
                 />
             </SC.ButtonWrapper>
 
@@ -80,7 +78,6 @@ export default function EditorTimerInput(props: EditorTimerInputProps): JSX.Elem
                     title="+"
                     onPressStart={() => increaseAction(index, 1)}
                     onPressInterval={() => increaseAction(index, 5)}
-                    fullwidth
                 />
             </SC.ButtonWrapper>
         </SC.Container>

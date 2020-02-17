@@ -13,7 +13,6 @@ import * as SC from './LongTouchButton.styled';
 
 interface LongTouchButtonProps {
     title?: string;
-    fullwidth?: boolean;
     active?: boolean;
     enabled?: boolean;
     style?: StyleProp<TextStyle>;
@@ -29,7 +28,6 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
     // default props
     const {
         title = '-- --',
-        fullwidth = false,
         active = false,
         enabled = true,
         style = undefined,
@@ -56,24 +54,8 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
         pressIntervalRefresh
     });
 
-    /**
-     * TODO: Convert Main view in styled component
-     * Need full refactor of all places that the style prop is passed!
-     */
-    let viewStyleSheet = StyleSheet.create({
-        mainView: {
-            width: fullwidth ? '100%' : undefined,
-        }
-    });
-    if (style) {
-        viewStyleSheet.mainView = {
-            ...viewStyleSheet.mainView,
-            ...(style as object)
-        };
-    }
-
     return (
-        <View style={viewStyleSheet.mainView}>
+        <SC.LongTouchButtonContainer>
             <TouchableHighlight
                 onPressIn={onPressIn}
                 onLongPress={onLongPress}
@@ -84,6 +66,6 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
                     <SC.ButtonText>{title}</SC.ButtonText>
                 </SC.ButtonWrapper>
             </TouchableHighlight>
-        </View>
+        </SC.LongTouchButtonContainer>
     );
 }

@@ -5,10 +5,11 @@ import * as tableEnums from '../../editor/enums';
 import findRunningSet from '../pure/findRunningSet';
 import LongTouchButton from '../../common/components/LongTouchButton';
 import * as SC from './CronoButtonSet.styled';
+import { CronoActionsTypes } from '../redux/CronoActionsTypes';
 
 interface CronoButtonSetProps {
     crono: ImmutableJSCronoType;
-    cronoActions: CronoActions;
+    cronoActions: CronoActionsTypes;
 }
 export default function CronoButtonSet(props: CronoButtonSetProps): JSX.Element {
     const { crono, cronoActions } = props;
@@ -19,10 +20,9 @@ export default function CronoButtonSet(props: CronoButtonSetProps): JSX.Element 
         <SC.ButtonSetWrapper>
             {clock < 0 && tableEnums.TABLE_TYPE_ENDURANCE !== tableType && (
                 <SC.ButtonWrapper>
-                    <LongTouchButton 
-                        title="Auto" 
+                    <LongTouchButton
+                        title="Auto"
                         onPressStart={() => handleStartAuto(cronoActions)}
-                        fullwidth 
                         />
                 </SC.ButtonWrapper>
             )}
@@ -32,17 +32,15 @@ export default function CronoButtonSet(props: CronoButtonSetProps): JSX.Element 
                     <LongTouchButton
                         title="Coach"
                         onPressStart={() => handleStartCoach(cronoActions)}
-                        fullwidth 
                     />
                 </SC.ButtonWrapper>
             )}
 
             {clock >= 0 && tableEnums.CRONO_MODE_FINISHED !== tableMode && (
                 <SC.ButtonWrapper>
-                    <LongTouchButton 
-                        title="Skip" 
-                        onPressStart={() => handleSkip(crono, cronoActions)} 
-                        fullwidth 
+                    <LongTouchButton
+                        title="Skip"
+                        onPressStart={() => handleSkip(crono, cronoActions)}
                     />
                 </SC.ButtonWrapper>
             )}
@@ -52,17 +50,15 @@ export default function CronoButtonSet(props: CronoButtonSetProps): JSX.Element 
                     <LongTouchButton
                         title="1st Cont"
                         onPressStart={() => handleContraction(cronoActions)}
-                        fullwidth 
                     />
                 </SC.ButtonWrapper>
             )}
 
             {tableEnums.CRONO_MODE_FINISHED === tableMode && (
                 <SC.ButtonWrapper>
-                    <LongTouchButton 
-                        title="Finish" 
-                        onPressStart={() => handleFinish(cronoActions)} 
-                        fullwidth 
+                    <LongTouchButton
+                        title="Finish"
+                        onPressStart={() => handleFinish(cronoActions)}
                     />
                 </SC.ButtonWrapper>
             )}
@@ -70,19 +66,12 @@ export default function CronoButtonSet(props: CronoButtonSetProps): JSX.Element 
     );
 }
 
-/** 
+/**
  * TODO: Remove immutable js
  */
 interface ImmutableJSCronoType {
     get: (prop: string) => any;
     getIn: (stack: string[]) => any;
-}
-
-interface CronoActions {
-    startCrono: (mode: string) => void;
-    skipSet: (item: string) => void;
-    trackContraction: () => void;
-    clearCrono: () => void;
 }
 
 const canTrackContractions = (crono: ImmutableJSCronoType) => {
@@ -101,30 +90,30 @@ const canTrackContractions = (crono: ImmutableJSCronoType) => {
     return current && tableEnums.SET_TYPE_HOLD === setType;
 }
 
-const handleStart = (cronoActions: CronoActions, mode: string) => {
+const handleStart = (cronoActions: CronoActionsTypes, mode: string) => {
     cronoActions.startCrono(mode);
 }
 
-const handleStartAuto = (cronoActions: CronoActions) => {
+const handleStartAuto = (cronoActions: CronoActionsTypes) => {
     handleStart(cronoActions, tableEnums.CRONO_MODE_AUTO);
 }
 
-const handleStartCoach = (cronoActions: CronoActions) => {
+const handleStartCoach = (cronoActions: CronoActionsTypes) => {
     handleStart(cronoActions, tableEnums.CRONO_MODE_COACH);
 }
 
-const handleSkip = (crono: ImmutableJSCronoType, cronoActions: CronoActions) => {
+const handleSkip = (crono: ImmutableJSCronoType, cronoActions: CronoActionsTypes) => {
     const current = findRunningSet(crono.get('sets'));
     if (current != null) {
         cronoActions.skipSet(current.get('pos'));
     }
 }
 
-const handleContraction = (cronoActions: CronoActions) => {
+const handleContraction = (cronoActions: CronoActionsTypes) => {
     cronoActions.trackContraction();
 }
 
-const handleFinish = (cronoActions: CronoActions) => {
+const handleFinish = (cronoActions: CronoActionsTypes) => {
     Actions.pop();
     cronoActions.clearCrono();
 }

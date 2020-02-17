@@ -15,7 +15,3 @@ export const RowContainer = styled.View`
     flex-direction: row;
     width: 100%;
 `;
-
-export const ButtonWrapper = styled.View`
-    flex: 1;
-`;
