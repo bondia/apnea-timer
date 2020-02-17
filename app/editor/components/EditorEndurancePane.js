@@ -22,14 +22,14 @@ class EditorEndurancePane extends React.PureComponent {
     }
 
     render() {
-        const { editor, style } = this.props;
+        const { editor } = this.props;
         if (editor === null) {
             return null;
         }
         const crono = editor.update('sets', sets => sets.filter(s => !s.get('zombie')));
 
         return (
-            <View style={[style, baseStyles.main]}>
+            <View style={baseStyles.main}>
                 <EditorEnduranceInputs editor={editor} />
                 <StartButton data={crono} />
             </View>
@@ -39,7 +39,8 @@ class EditorEndurancePane extends React.PureComponent {
 
 const baseStyles = StyleSheet.create({
     main: {
-        flex: 1
+        flex: 1,
+        padding: 10
     }
 });
 

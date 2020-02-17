@@ -69,6 +69,7 @@ function CronoPane(props: CoronoPaneProps): JSX.Element {
 
 const PaneWrapper = styled.View`
     flex: 1;
+    padding: 10px 5px;
 `;
 
 const CountersWrapper = styled.View`

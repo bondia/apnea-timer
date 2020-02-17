@@ -67,7 +67,8 @@ class EditorPane extends React.PureComponent {
 
 const baseStyles = StyleSheet.create({
     main: {
-        flex: 1
+        flex: 1,
+        padding: 10
     },
 
     label: {
