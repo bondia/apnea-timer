@@ -4,8 +4,8 @@ import { Router, Scene, ActionConst } from 'react-native-router-flux';
 import * as routesEnum from './main/enums/routes';
 
 import MainScene from './main/components/MainScene';
-import EditorScene from './editor/components/EditorScene';
-import EditorEnduranceScene from './editor/components/EditorEnduranceScene';
+import StaticEditorScene from './editor-static/components/StaticEditorScene';
+import EditorEnduranceScene from './editor-endurance/components/EditorEnduranceScene';
 import CronoScene from './crono/components/CronoScene';
 
 interface AppRouterProps { }
@@ -23,7 +23,7 @@ export default function AppRouter(props: AppRouterProps): JSX.Element {
 
                 <Scene
                     key={routesEnum.CREATE_TABLE_SCENE}
-                    component={EditorScene}
+                    component={StaticEditorScene}
                     title="CO2/O2"
                 />
 

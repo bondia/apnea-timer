@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 
-import * as editorActions from '../../redux/editorActions';
+import * as editorActions from '../../editor/redux/editorActions';
 
-import LongTouchButton from '../../../common/components/LongTouchButton';
+import LongTouchButton from '../../common/components/LongTouchButton';
 
 interface TableBaseInputProps {
     editor: ImmutableJSEditor;

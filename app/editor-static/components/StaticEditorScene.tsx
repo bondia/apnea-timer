@@ -1,9 +1,9 @@
 import React from 'react';
 
 import SceneWrapper from '../../common/components/SceneWrapper';
-import EditorPane from './Editor/EditorPane';
+import EditorPane from './EditorPane';
 
-export default function EditorScene(): JSX.Element {
+export default function StaticEditorScene(): JSX.Element {
     return (
         <SceneWrapper>
             <EditorPane />

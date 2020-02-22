@@ -3,10 +3,10 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as editorActions from '../../redux/editorActions';
+import * as editorActions from '../../../editor/redux/editorActions';
 import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
 
-import * as SC from './EditorEnduranceInputs.styled';
+import * as SC from './EnduranceForm.styled';
 import { FONT_COLOR_GREY, FONT_SIZE_L, COLOR_LIGHT } from '../../../common/styles/commonStyles';
 import TextComponent from '../../../common/components/TextComponent';
 import LongTouchButton from '../../../common/components/LongTouchButton';

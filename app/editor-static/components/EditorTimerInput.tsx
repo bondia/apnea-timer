@@ -1,14 +1,14 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
 
-import * as enums from '../../enums';
-import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
+import * as enums from '../../editor/enums';
+import secondsToTimeString from '../../common/utils/time/secondsToTimeString';
 
 import * as SC from './EditorTimerInput.styled';
-import { FONT_COLOR_GREY, COLOR_RED_NORMAL, COLOR_GREEN_NORMAL } from '../../../common/styles/commonStyles';
+import { FONT_COLOR_GREY, COLOR_RED_NORMAL, COLOR_GREEN_NORMAL } from '../../common/styles/commonStyles';
 
-import LongTouchButton from '../../../common/components/LongTouchButton';
-import TextComponent from '../../../common/components/TextComponent';
+import LongTouchButton from '../../common/components/LongTouchButton';
+import TextComponent from '../../common/components/TextComponent';
 
 interface EditorTimerInputProps {
     index: number;

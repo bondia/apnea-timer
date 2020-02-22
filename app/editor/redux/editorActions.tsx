@@ -1,4 +1,4 @@
-import * as reduxActions from 'app/main/enums/reduxActions';
+import * as reduxActions from '../../main/enums/reduxActions';
 import * as enums from '../enums';
 
 import createTable from '../pure/createTable';
@@ -9,7 +9,10 @@ import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 /**
  * Create Endurance table
  */
-export function createEnduranceTable(base, baseBreaks, laps = 6) {
+export type CreateEnduranceTableType =
+    (base: number, baseBreaks: number, laps?: number) => object;
+
+export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks, laps = 6) => {
     const newState = createTable(base, baseBreaks, enums.TABLE_TYPE_ENDURANCE, laps);
     return setInitialState(newState);
 }
