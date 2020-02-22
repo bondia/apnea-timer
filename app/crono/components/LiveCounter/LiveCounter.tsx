@@ -37,46 +37,44 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
 
     return (
         <SC.LiveCounterWrapper>
-            <View style={SC.baseStyles.header}>
-                {enums.TABLE_TYPE_ENDURANCE === tableType && (
-                <>
-                    <LiveCounterBlock
-                        title="Targeting"
-                        timeContent={targeting}
-                    />
-                    <LiveCounterBlock
-                        title="Spent Time"
-                        timeContent={spentTime > 0 ? spentTime : 0}
-                    />
+            {enums.TABLE_TYPE_ENDURANCE === tableType && (
+            <>
+                <LiveCounterBlock
+                    title="Targeting"
+                    timeContent={targeting}
+                />
+                <LiveCounterBlock
+                    title="Spent Time"
+                    timeContent={spentTime > 0 ? spentTime : 0}
+                />
 
-                    <LiveCounterBlock
-                        title="Current Dive"
-                        rawContent={currentSet}
-                    />
-                </>
-                )}
+                <LiveCounterBlock
+                    title="Current Dive"
+                    rawContent={currentSet}
+                />
+            </>
+            )}
 
-                {enums.TABLE_TYPE_ENDURANCE !== tableType && (
-                <>
-                    <LiveCounterBlock
-                        title="Remaining Time"
-                        timeContent={totalTime}
-                    />
-                    <LiveCounterBlock
-                        title="Contractions"
-                        timeContent={contractions}
-                    />
-                </>
-                )}
+            {enums.TABLE_TYPE_ENDURANCE !== tableType && (
+            <>
+                <LiveCounterBlock
+                    title="Remaining Time"
+                    timeContent={totalTime}
+                />
+                <LiveCounterBlock
+                    title="Contractions"
+                    timeContent={contractions}
+                />
+            </>
+            )}
 
-                {current && mode !== enums.SET_MODE_FINISHED && (
-                    <LiveCounterBlock
-                        title={currentSetHeader}
-                        timeContent={countdown}
-                        textColor={currentSetColor}
-                    />
-                )}
-            </View>
+            {current && mode !== enums.SET_MODE_FINISHED && (
+                <LiveCounterBlock
+                    title={currentSetHeader}
+                    timeContent={countdown}
+                    textColor={currentSetColor}
+                />
+            )}
         </SC.LiveCounterWrapper>
     );
 }
