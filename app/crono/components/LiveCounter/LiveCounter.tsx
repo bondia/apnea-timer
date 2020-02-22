@@ -1,16 +1,19 @@
 import React from 'react';
-import { View } from 'react-native';
+
+import {
+    SET_TYPE_HOLD,
+    SET_MODE_FINISHED,
+    TABLE_TYPE_ENDURANCE
+} from '../../../editor/enums';
+import { ImmutableJSCronoType } from '../../redux/CronoTypes';
+import findRunningSet from '../../pure/findRunningSet';
 
 import {
     COLOR_RED_NORMAL,
     COLOR_GREEN_NORMAL
 } from '../../../common/styles/commonStyles';
-
-import * as enums from '../../../editor/enums';
-import { ImmutableJSCronoType } from '../../redux/CronoTypes';
-import findRunningSet from '../../pure/findRunningSet';
-
 import * as SC from './LiveCounter.styled';
+
 import LiveCounterBlock from './LiveCounterBlock';
 
 interface LiveCounterProps {
@@ -32,12 +35,12 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
     const pos = current ? current.get('pos') : 0;
     const currentSet = pos <= 1 ? 1 : Math.floor(pos / 2) + 1;
     const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
-    const currentSetHeader = enums.SET_TYPE_HOLD === setType ? 'Breath Hold' : 'Breath Up';
-    const currentSetColor = enums.SET_TYPE_HOLD === setType ? COLOR_RED_NORMAL : COLOR_GREEN_NORMAL;
+    const currentSetHeader = SET_TYPE_HOLD === setType ? 'Breath Hold' : 'Breath Up';
+    const currentSetColor = SET_TYPE_HOLD === setType ? COLOR_RED_NORMAL : COLOR_GREEN_NORMAL;
 
     return (
         <SC.LiveCounterWrapper>
-            {enums.TABLE_TYPE_ENDURANCE === tableType && (
+            {TABLE_TYPE_ENDURANCE === tableType && (
             <>
                 <LiveCounterBlock
                     title="Targeting"
@@ -55,7 +58,7 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
             </>
             )}
 
-            {enums.TABLE_TYPE_ENDURANCE !== tableType && (
+            {TABLE_TYPE_ENDURANCE !== tableType && (
             <>
                 <LiveCounterBlock
                     title="Remaining Time"
@@ -68,7 +71,7 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
             </>
             )}
 
-            {current && mode !== enums.SET_MODE_FINISHED && (
+            {current && mode !== SET_MODE_FINISHED && (
                 <LiveCounterBlock
                     title={currentSetHeader}
                     timeContent={countdown}
