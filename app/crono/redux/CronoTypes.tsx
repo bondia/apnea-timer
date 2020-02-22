@@ -21,3 +21,8 @@ export interface ImmutableJSCronoType {
     get: (prop: string) => any;
     getIn: (stack: string[]) => any;
 }
+
+export interface ImmutableJSSetType {
+    get: (prop: string) => any;
+    getIn: (stack: string[]) => any;
+}
