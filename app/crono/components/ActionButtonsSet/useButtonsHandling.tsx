@@ -21,7 +21,6 @@ interface UseButtonsHandlingOutput {
     handleSkip: () => void;
     handleContraction: () => void;
     handleFinish: () => void;
-
 }
 
 export default function useButtonsHandling(input: UseButtonsHandlingInput): UseButtonsHandlingOutput {
