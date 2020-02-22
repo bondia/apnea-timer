@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import * as editorActions from '../../../editor/redux/editorActions';
+import { ImmutableJSEditorType, EditorActionsTypes } from '../../../editor/redux/editorTypes';
 import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
 
 import * as SC from './EnduranceForm.styled';
@@ -12,8 +13,8 @@ import TextComponent from '../../../common/components/TextComponent';
 import LongTouchButton from '../../../common/components/LongTouchButton';
 
 interface EditorEnduranceProps {
-    editor: ImmutableJSEditor;
-    editorActions: EditorActions;
+    editor: ImmutableJSEditorType;
+    editorActions: EditorActionsTypes;
 }
 
 function EditorEnduranceInputs(props: EditorEnduranceProps): JSX.Element {
@@ -141,29 +142,16 @@ function EditorEnduranceInputs(props: EditorEnduranceProps): JSX.Element {
 }
 
 /**
- * TODO: Remove immutable js
- */
-interface ImmutableJSEditor {
-    getIn: (stack: string[]) => any;
-}
-
-type changeEnduranceLaps = (amount: number) => void;
-type changeTableBase = (amount: number) => void;
-type changeTableBaseBreaks = (amount: number) => void;
-interface EditorActions {
-    changeEnduranceLaps: changeEnduranceLaps;
-    changeTableBase: changeTableBase;
-    changeTableBaseBreaks: changeTableBaseBreaks;
-}
-
-/**
  * Handle action to dispatch
  */
 
 interface HandleActionParams {
     original: number;
     increase: number;
-    dispatchAction: changeEnduranceLaps | changeTableBase | changeTableBaseBreaks;
+    dispatchAction:
+        editorActions.ChangeEnduranceLapsType |
+        editorActions.ChangeTableBaseType |
+        editorActions.ChangeTableBaseBreaksType;
 }
 
 function handleAction(params: HandleActionParams): void {

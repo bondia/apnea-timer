@@ -11,7 +11,6 @@ import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
  */
 export type CreateEnduranceTableType =
     (base: number, baseBreaks: number, laps?: number) => object;
-
 export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks, laps = 6) => {
     const newState = createTable(base, baseBreaks, enums.TABLE_TYPE_ENDURANCE, laps);
     return setInitialState(newState);
@@ -28,7 +27,8 @@ export function changeTableType(base, tableType) {
 /**
  * Change table endurance laps
  */
-export function changeEnduranceLaps(laps) {
+export type ChangeEnduranceLapsType = (amount: number) => void;
+export const changeEnduranceLaps: ChangeEnduranceLapsType = (laps) => {
     return (dispatch, getState) => {
         const { editor } = getState();
         const base = editor.getIn(['trainingTable', 'base']);
@@ -41,7 +41,8 @@ export function changeEnduranceLaps(laps) {
 /**
  * Change table base action
  */
-export function changeTableBase(value) {
+export type ChangeTableBaseType = (amount: number) => void;
+export const changeTableBase: ChangeTableBaseType = (value: number) =>  {
     return (dispatch, getState) => {
         const { editor } = getState();
         const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
@@ -64,7 +65,8 @@ export function changeTableBase(value) {
 /**
  * Change table base breaks action
  */
-export function changeTableBaseBreaks(value) {
+export type ChangeTableBaseBreaksType = (amount: number) => void;
+export const changeTableBaseBreaks: ChangeTableBaseBreaksType = (value) => {
     return (dispatch, getState) => {
         const { editor } = getState();
         const base = editor.getIn(['trainingTable', 'base']);

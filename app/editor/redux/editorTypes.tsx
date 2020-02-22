@@ -1,9 +1,15 @@
 import {
-    CreateEnduranceTableType
+    CreateEnduranceTableType,
+    ChangeTableBaseType,
+    ChangeEnduranceLapsType,
+    ChangeTableBaseBreaksType
 } from "../../editor/redux/editorActions";
 
 export interface EditorActionsTypes {
     createEnduranceTable: CreateEnduranceTableType;
+    changeEnduranceLaps: ChangeEnduranceLapsType;
+    changeTableBase: ChangeTableBaseType;
+    changeTableBaseBreaks: ChangeTableBaseBreaksType;
 }
 
 /**
