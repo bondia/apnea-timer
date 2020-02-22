@@ -23,7 +23,7 @@ export const SingleBarOuter = styled.View`
 `;
 
 interface SingleBarInnerProps {
-    set: ImmutableJSSetType;
+    set?: ImmutableJSSetType;
 }
 export const SingleBarInner = styled.View<SingleBarInnerProps>`
     position: absolute;
@@ -35,7 +35,7 @@ export const SingleBarInner = styled.View<SingleBarInnerProps>`
 
 function decideBackgroundColor(props: SingleBarInnerProps): string {
     const { set } = props;
-    const type = set.get('type');
+    const type = set ? set.get('type') : null;
     return type === SET_TYPE_HOLD ? COLOR_RED_LIGHT : COLOR_GREEN_LIGHT
 }
 

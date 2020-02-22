@@ -9,11 +9,11 @@ import { CronoActionsTypes, ImmutableJSCronoType } from '../redux/CronoTypes';
 import * as cronoActions from '../redux/cronoActions';
 import findRunningSet from '../pure/findRunningSet';
 
-import CountdownBar from './CountdownBar/SingleBar';
-import MultipleCountdownBar from './CountdownBar/MultipleBar';
+import SingleBar from './CountdownBar/SingleBar';
+import MultipleBar from './CountdownBar/MultipleBar';
 import LiveCounter from './LiveCounter';
 import SetsList from './SetsList';
-import CronoButtonsSet from './CronoButtonsSet';
+import CronoButtonsSet from './ActionButtonsSet';
 
 interface CoronoPaneProps {
     crono: ImmutableJSCronoType;
@@ -45,7 +45,7 @@ function CronoPane(props: CoronoPaneProps): JSX.Element {
     return (
         <PaneWrapper>
             <CountersWrapper>
-                <MultipleCountdownBar sets={crono.getIn(['sets'])} />
+                <MultipleBar sets={crono.getIn(['sets'])} />
 
                 <ContentWrapper>
                     <LiveCounter crono={crono} />
@@ -55,7 +55,7 @@ function CronoPane(props: CoronoPaneProps): JSX.Element {
                     </SetsWrapper>
                 </ContentWrapper>
 
-                <CountdownBar set={current} />
+                <SingleBar set={current} />
             </CountersWrapper>
 
             <CronoButtonsSet crono={crono} cronoActions={cronoActions} />
