@@ -5,7 +5,6 @@ import styled from 'styled-components/native';
 // import KeepAwake from 'react-native-keep-awake';
 
 import { CronoActionsTypes, ImmutableJSCronoType } from '../redux/CronoTypes';
-
 import * as cronoActions from '../redux/cronoActions';
 import findRunningSet from '../pure/findRunningSet';
 
