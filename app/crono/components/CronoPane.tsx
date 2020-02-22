@@ -9,11 +9,11 @@ import { CronoActionsTypes, ImmutableJSCronoType } from '../redux/CronoTypes';
 import * as cronoActions from '../redux/cronoActions';
 import findRunningSet from '../pure/findRunningSet';
 
+import CountdownBar from './CountdownBar/SingleBar';
+import MultipleCountdownBar from './CountdownBar/MultipleBar';
 import LiveCounter from './LiveCounter';
 import SetsList from './SetsList';
 import CronoButtonsSet from './CronoButtonsSet';
-import MultipleCountdownBar from './MultipleCountdownBar';
-import CountdownBar from './CountdownBar';
 
 interface CoronoPaneProps {
     crono: ImmutableJSCronoType;

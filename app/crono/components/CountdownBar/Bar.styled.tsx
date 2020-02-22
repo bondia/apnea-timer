@@ -1,19 +1,20 @@
+
 import styled from 'styled-components/native';
 
 import {
     FONT_CLOLR_GREY_LIGHT,
     COLOR_GREEN_LIGHT,
     COLOR_RED_LIGHT
-} from '../../common/styles/commonStyles';
+} from '../../../common/styles/commonStyles';
 
 import {
     SET_TYPE_HOLD,
     SET_MODE_FINISHED,
     SET_MODE_SKIPED
-} from '../../editor/enums';
-import { ImmutableJSSetType } from '../redux/CronoTypes';
+} from '../../../editor/enums';
+import { ImmutableJSSetType } from '../../redux/CronoTypes';
 
-export const OuterBar = styled.View`
+export const SingleBarOuter = styled.View`
     flex: 1;
     width: 5px;
     max-width: 5px;
@@ -21,10 +22,10 @@ export const OuterBar = styled.View`
     background-color: ${FONT_CLOLR_GREY_LIGHT};
 `;
 
-interface InnerBarProps {
+interface SingleBarInnerProps {
     set: ImmutableJSSetType;
 }
-export const InnerBar = styled.View<InnerBarProps>`
+export const SingleBarInner = styled.View<SingleBarInnerProps>`
     position: absolute;
     bottom: 0;
     width: 5px;
@@ -32,13 +33,13 @@ export const InnerBar = styled.View<InnerBarProps>`
     height: ${decideHeight}
 `;
 
-function decideBackgroundColor(props: InnerBarProps): string {
+function decideBackgroundColor(props: SingleBarInnerProps): string {
     const { set } = props;
     const type = set.get('type');
     return type === SET_TYPE_HOLD ? COLOR_RED_LIGHT : COLOR_GREEN_LIGHT
 }
 
-function decideHeight(props: InnerBarProps): number | string {
+function decideHeight(props: SingleBarInnerProps): number | string {
     const { set } = props;
     // check set
     if (set == null) {
