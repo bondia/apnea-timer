@@ -4,7 +4,7 @@ import * as enums from '../../../editor/enums';
 import { ImmutableJSSetType } from '../../redux/CronoTypes';
 
 import * as SC from './SetsList.styled';
-import Crono from '../Crono';
+import Crono from './SetItemCrono';
 
 interface SetItemProps {
     item: ImmutableJSSetType;
@@ -20,11 +20,10 @@ export default function SetItem(props: SetItemProps): JSX.Element {
         <SC.SetItemWrapper>
             <Crono
                 active={mode === enums.SET_MODE_RUNNING || mode === enums.SET_MODE_INITIAL}
-                running={mode === enums.SET_MODE_RUNNING}
                 type={type}
                 duration={countdown}
                 contraction={contraction}
-                />
+            />
         </SC.SetItemWrapper>
     );
 }
