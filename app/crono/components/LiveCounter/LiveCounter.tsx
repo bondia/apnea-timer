@@ -14,7 +14,7 @@ import {
 } from '../../../common/styles/commonStyles';
 import * as SC from './LiveCounter.styled';
 
-import LiveCounterBlock from './LiveCounterBlock';
+import InfoBlock from '../../../common/components/InfoBlock';
 
 interface LiveCounterProps {
     crono: ImmutableJSCronoType;
@@ -42,16 +42,16 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
         <SC.LiveCounterWrapper>
             {TABLE_TYPE_ENDURANCE === tableType && (
             <>
-                <LiveCounterBlock
+                <InfoBlock
                     title="Targeting"
                     timeContent={targeting}
                 />
-                <LiveCounterBlock
+                <InfoBlock
                     title="Spent Time"
                     timeContent={spentTime > 0 ? spentTime : 0}
                 />
 
-                <LiveCounterBlock
+                <InfoBlock
                     title="Current Dive"
                     rawContent={currentSet}
                 />
@@ -60,11 +60,11 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
 
             {TABLE_TYPE_ENDURANCE !== tableType && (
             <>
-                <LiveCounterBlock
+                <InfoBlock
                     title="Remaining Time"
                     timeContent={totalTime}
                 />
-                <LiveCounterBlock
+                <InfoBlock
                     title="Contractions"
                     timeContent={contractions}
                 />
@@ -72,7 +72,7 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
             )}
 
             {current && mode !== SET_MODE_FINISHED && (
-                <LiveCounterBlock
+                <InfoBlock
                     title={currentSetHeader}
                     timeContent={countdown}
                     textColor={currentSetColor}

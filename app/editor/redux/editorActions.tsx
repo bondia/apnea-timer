@@ -1,6 +1,7 @@
 import * as reduxActions from '../../main/enums/reduxActions';
 import * as enums from '../enums';
 
+import { ImmutableJSEditorSetType } from './editorTypes';
 import createTable from '../pure/createTable';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
@@ -19,7 +20,9 @@ export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks,
 /**
  * Change table type action
  */
-export function changeTableType(base, tableType) {
+export type ChangeTableTypeType =
+    (base: number, tableType: string) => object;
+export const changeTableType: ChangeTableTypeType = (base, tableType) => {
     const newState = createTable(base, null, tableType);
     return setInitialState(newState);
 }
@@ -89,20 +92,25 @@ export const changeTableBaseBreaks: ChangeTableBaseBreaksType = (value) => {
 /**
  * Changing sets times
  */
-export function increaseTimeItem(key, amount) {
+export type IncreaseTimeItemType = (key: number, amount: number) => void;
+export const increaseTimeItem:IncreaseTimeItemType = (key, amount) => {
     return changeTimeItem(key, amount);
 }
 
-export function decreaseTimeItem(key, amount) {
+export type DecreaseTimeItemType = (key: number, amount: number) => void;
+export const decreaseTimeItem: DecreaseTimeItemType = (key, amount) => {
     return changeTimeItem(key, -amount);
 }
 
-function changeTimeItem(key, amount) {
+function changeTimeItem(key: number, amount: number) {
     return (dispatch, getState) => {
         const { editor } = getState();
 
         // find item
-        const item = editor.getIn(['sets']).find(i => i.get('pos') === key);
+        const item = editor
+            .getIn(['sets'])
+            .find((set: ImmutableJSEditorSetType) => set.get('pos') === key);
+
         if (!item) {
             return;
         }

@@ -1,12 +1,12 @@
 import React from 'react';
 
 import SceneWrapper from '../../common/components/SceneWrapper';
-import EditorPane from './EditorPane';
+import StaticForm from './StaticForm';
 
-export default function StaticEditorScene(): JSX.Element {
+export default function EditorStaticScene(): JSX.Element {
     return (
         <SceneWrapper>
-            <EditorPane />
+            <StaticForm />
         </SceneWrapper>
     );
 }

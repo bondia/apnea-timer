@@ -1,15 +1,21 @@
 import {
-    CreateEnduranceTableType,
+    ChangeTableTypeType,
     ChangeTableBaseType,
+    ChangeTableBaseBreaksType,
+    IncreaseTimeItemType,
+    DecreaseTimeItemType,
+    CreateEnduranceTableType,
     ChangeEnduranceLapsType,
-    ChangeTableBaseBreaksType
 } from "../../editor/redux/editorActions";
 
 export interface EditorActionsTypes {
-    createEnduranceTable: CreateEnduranceTableType;
-    changeEnduranceLaps: ChangeEnduranceLapsType;
+    changeTableType: ChangeTableTypeType;
     changeTableBase: ChangeTableBaseType;
     changeTableBaseBreaks: ChangeTableBaseBreaksType;
+    increaseTimeItem: IncreaseTimeItemType;
+    decreaseTimeItem: DecreaseTimeItemType;
+    createEnduranceTable: CreateEnduranceTableType;
+    changeEnduranceLaps: ChangeEnduranceLapsType;
 }
 
 /**

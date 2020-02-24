@@ -1,14 +1,18 @@
 import React from 'react';
 import { StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
-import * as enums from '../../editor/enums';
-import secondsToTimeString from '../../common/utils/time/secondsToTimeString';
+import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
+import * as enums from '../../../editor/enums';
+import * as editorActions from '../../../editor/redux/editorActions';
+import { EditorActionsTypes } from '../../../editor/redux/editorTypes';
 
 import * as SC from './EditorTimerInput.styled';
-import { FONT_COLOR_GREY, COLOR_RED_NORMAL, COLOR_GREEN_NORMAL } from '../../common/styles/commonStyles';
+import { FONT_COLOR_GREY, COLOR_RED_NORMAL, COLOR_GREEN_NORMAL } from '../../../common/styles/commonStyles';
 
-import LongTouchButton from '../../common/components/LongTouchButton';
-import TextComponent from '../../common/components/TextComponent';
+import LongTouchButton from '../../../common/components/LongTouchButton';
+import TextComponent from '../../../common/components/TextComponent';
 
 interface EditorTimerInputProps {
     index: number;
@@ -16,21 +20,18 @@ interface EditorTimerInputProps {
     type?: string;
     setNumber?: number;
     zombie?: boolean;
-    increaseAction: (index: number, amount: number) => void;
-    decreaseAction: (index: number, amount: number) => void;
+    editorActions: EditorActionsTypes;
 }
 
-export default function EditorTimerInput(props: EditorTimerInputProps): JSX.Element {
+function EditorTimerInput(props: EditorTimerInputProps): JSX.Element {
     const {
         index,
         duration = 0,
         type = enums.SET_TYPE_PREPARE,
         setNumber = 0,
         zombie = false,
-        increaseAction = null,
-        decreaseAction = null
+        editorActions,
     } = props;
-
 
     let clockColor = enums.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
     clockColor = zombie ? FONT_COLOR_GREY : clockColor;
@@ -60,8 +61,8 @@ export default function EditorTimerInput(props: EditorTimerInputProps): JSX.Elem
             <SC.ButtonWrapper>
                 <LongTouchButton
                     title="-"
-                    onPressStart={() => decreaseAction(index, 1)}
-                    onPressInterval={() => decreaseAction(index, 5)}
+                    onPressStart={() => editorActions.decreaseTimeItem(index, 1)}
+                    onPressInterval={() => editorActions.decreaseTimeItem(index, 5)}
                 />
             </SC.ButtonWrapper>
 
@@ -76,10 +77,18 @@ export default function EditorTimerInput(props: EditorTimerInputProps): JSX.Elem
             <SC.ButtonWrapper>
                 <LongTouchButton
                     title="+"
-                    onPressStart={() => increaseAction(index, 1)}
-                    onPressInterval={() => increaseAction(index, 5)}
+                    onPressStart={() => editorActions.increaseTimeItem(index, 1)}
+                    onPressInterval={() => editorActions.increaseTimeItem(index, 5)}
                 />
             </SC.ButtonWrapper>
         </SC.Container>
     );
 }
+
+const dispatchToProps = dispatch => {
+    return {
+        editorActions: bindActionCreators(editorActions, dispatch)
+    };
+};
+
+export default connect(null, dispatchToProps)(EditorTimerInput);

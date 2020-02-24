@@ -1,18 +1,18 @@
 import React from 'react';
 
-import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
+import secondsToTimeString from '../../utils/time/secondsToTimeString';
 
-import * as SC from './LiveCounter.styled';
-import TextComponent from '../../../common/components/TextComponent';
+import * as SC from './InfoBlock.styled';
+import TextComponent from '../TextComponent';
 import { TextStyle } from 'react-native';
 
-interface LiveCounterBlockProps {
+interface InfoBlockProps {
     title: string;
     timeContent?: number;
     rawContent?: number | string;
     textColor?: string;
 }
-export default function LiveCounterBlock(props: LiveCounterBlockProps): JSX.Element {
+export default function InfoBlock(props: InfoBlockProps): JSX.Element {
     const {
         title,
         timeContent,
