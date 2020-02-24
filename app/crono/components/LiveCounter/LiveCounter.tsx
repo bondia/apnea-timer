@@ -5,8 +5,7 @@ import {
     SET_MODE_FINISHED,
     TABLE_TYPE_ENDURANCE
 } from '../../../editor/enums';
-import { ImmutableJSCronoType } from '../../redux/cronoTypes';
-import findRunningSet from '../../pure/findRunningSet';
+import { ImmutableJSCronoType, ImmutableJSSetType } from '../../redux/cronoTypes';
 
 import {
     COLOR_RED_NORMAL,
@@ -18,21 +17,21 @@ import InfoBlock from '../../../common/components/InfoBlock';
 
 interface LiveCounterProps {
     crono: ImmutableJSCronoType;
+    set: ImmutableJSSetType;
 }
 
 export default function LiveCounter(props: LiveCounterProps): JSX.Element {
-    const { crono } = props;
+    const { crono, set } = props;
     const tableType = crono.getIn(['trainingTable', 'type']);
     const spentTime = crono.getIn(['running', 'clock']);
     const totalTime = crono.getIn(['running', 'countdown']);
     const contractions = crono.getIn(['running', 'contractions']);
 
     // set data
-    const current = findRunningSet(crono.get('sets'));
-    const setType = current ? current.get('type') : null;
-    const mode = current ? current.getIn(['running', 'mode']) : null;
-    const countdown = current ? current.getIn(['running', 'countdown']) : null;
-    const pos = current ? current.get('pos') : 0;
+    const setType = set ? set.get('type') : null;
+    const mode = set ? set.getIn(['running', 'mode']) : null;
+    const countdown = set ? set.getIn(['running', 'countdown']) : null;
+    const pos = set ? set.get('pos') : 0;
     const currentSet = pos <= 1 ? 1 : Math.floor(pos / 2) + 1;
     const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
     const currentSetHeader = SET_TYPE_HOLD === setType ? 'Breath Hold' : 'Breath Up';
@@ -71,7 +70,7 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
             </>
             )}
 
-            {current && mode !== SET_MODE_FINISHED && (
+            {set && mode !== SET_MODE_FINISHED && (
                 <InfoBlock
                     title={currentSetHeader}
                     timeContent={countdown}

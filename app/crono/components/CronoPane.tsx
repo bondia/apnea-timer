@@ -3,10 +3,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import styled from 'styled-components/native';
 // import KeepAwake from 'react-native-keep-awake';
+import Immutable from 'immutable';
 
-import { CronoActionsTypes, ImmutableJSCronoType } from '../redux/cronoTypes';
+import { CronoActionsTypes, ImmutableJSCronoType, CronoSetType } from '../redux/cronoTypes';
 import * as cronoActions from '../redux/cronoActions';
-import findRunningSet from '../pure/findRunningSet';
+import findRunningSet from '../pure/findRunningSet'
 
 import SingleBar from './CountdownBar/SingleBar';
 import MultipleBar from './CountdownBar/MultipleBar';
@@ -40,7 +41,9 @@ function CronoPane(props: CoronoPaneProps): JSX.Element {
         return null;
     }
 
-    const current = findRunningSet(crono.get('sets'));
+    const sets: CronoSetType[] = crono.get('sets').toJS() as CronoSetType[];
+    const current: CronoSetType = findRunningSet(sets);
+    const immutableCurrentSet = Immutable.fromJS(current);
 
     return (
         <PaneWrapper>
@@ -48,17 +51,20 @@ function CronoPane(props: CoronoPaneProps): JSX.Element {
                 <MultipleBar sets={crono.getIn(['sets'])} />
 
                 <ContentWrapper>
-                    <LiveCounter crono={crono} />
+                    <LiveCounter crono={crono} set={immutableCurrentSet} />
 
                     <SetsWrapper>
                         <SetsList crono={crono} />
                     </SetsWrapper>
                 </ContentWrapper>
 
-                <SingleBar set={current} />
+                <SingleBar set={immutableCurrentSet} />
             </CountersWrapper>
 
-            <CronoButtonsSet crono={crono} cronoActions={cronoActions} />
+            <CronoButtonsSet
+                crono={crono}
+                cronoActions={cronoActions}
+            />
         </PaneWrapper>
     );
 }

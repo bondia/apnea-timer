@@ -8,9 +8,7 @@ import EditorStaticScene from './editor-static/components/EditorStaticScene';
 import EditorEnduranceScene from './editor-endurance/components/EditorEnduranceScene';
 import CronoScene from './crono/components/CronoScene';
 
-interface AppRouterProps { }
-
-export default function AppRouter(props: AppRouterProps): JSX.Element {
+export default function AppRouter(): JSX.Element {
     return (
         <Router>
             <Scene key={routesEnum.ROOT}>

@@ -9,7 +9,8 @@ import decideCurrentSet from '../pure/decideCurrentSet';
 import findRunningSet from '../pure/findRunningSet';
 import calculateAverageContractions from '../pure/calculateAverageContractions';
 import calculateSetsDuration from '../../editor/pure/sets/calculateSetsDuration';
-import { EditorStateType, ImmutableJSEditorStateType } from '../../editor/redux/editorTypes';
+import { EditorStateType } from '../../editor/redux/editorTypes';
+import { CronoSetType } from './cronoTypes';
 
 /**
  * Prepare initial crono
@@ -96,11 +97,15 @@ export type TrackContractionType =
  export const trackContraction: TrackContractionType = () => {
     return (dispatch, getState) => {
         const { crono } = getState();
-        let currentSet = findRunningSet(crono.get('sets'));
-        const duration = currentSet.get('duration');
-        const countdown = currentSet.getIn(['running', 'countdown']);
-        currentSet = currentSet.setIn(['running', 'contraction'], duration - countdown);
-        dispatch(replaceSet(currentSet));
+
+        const sets: CronoSetType[] = crono.get('sets').toJS() as CronoSetType[];
+        const current: CronoSetType = findRunningSet(sets);
+        let immutableCurrentSet = Immutable.fromJS(current);
+
+        const duration = immutableCurrentSet.get('duration');
+        const countdown = immutableCurrentSet.getIn(['running', 'countdown']);
+        immutableCurrentSet = immutableCurrentSet.setIn(['running', 'contraction'], duration - countdown);
+        dispatch(replaceSet(immutableCurrentSet));
         dispatch(updateContractionsAverage());
     };
 }

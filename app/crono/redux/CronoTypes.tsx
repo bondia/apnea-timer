@@ -9,7 +9,6 @@ import {
 
 // TYPES
 
-
 export interface CronoStateType {
     trainingTable: CronoType;
     running: CronoRunningType;
