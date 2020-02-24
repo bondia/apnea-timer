@@ -1,7 +1,7 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 
-import { ImmutableJSSetType, ImmutableJSCronoType } from '../../redux/CronoTypes';
+import { ImmutableJSSetType, ImmutableJSCronoType } from '../../redux/cronoTypes';
 import * as SC from './SetsList.styled';
 import SetItem from './SetItem';
 

@@ -4,7 +4,7 @@ import { Actions } from 'react-native-router-flux';
 import {
     CronoActionsTypes,
     ImmutableJSCronoType
-} from '../../redux/CronoTypes';
+} from '../../redux/cronoTypes';
 
 interface UseButtonsHandlingInput {
     crono: ImmutableJSCronoType;

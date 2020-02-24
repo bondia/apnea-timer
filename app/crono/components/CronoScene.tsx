@@ -1,18 +1,19 @@
 import React from 'react';
 
-import { ImmutableJSCronoType } from '../redux/CronoTypes';
+import { EditorStateType } from '../../editor/redux/editorTypes';
+
 import SceneWrapper from '../../common/components/SceneWrapper';
 import CronoPane from './CronoPane';
 
 interface CronoSceneProps {
-    crono: ImmutableJSCronoType;
+    initialData: EditorStateType;
 }
 
 export default function CronoScene(props: CronoSceneProps): JSX.Element {
-    const { crono } = props;
+    const { initialData } = props;
     return (
         <SceneWrapper noHeader>
-            <CronoPane crono={crono} />
+            <CronoPane initialData={initialData} />
         </SceneWrapper>
     );
 }

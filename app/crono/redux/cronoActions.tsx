@@ -1,3 +1,5 @@
+import Immutable from 'immutable';
+
 import * as reduxActions from '../../main/enums/reduxActions';
 import * as enums from '../../editor/enums';
 
@@ -7,20 +9,22 @@ import decideCurrentSet from '../pure/decideCurrentSet';
 import findRunningSet from '../pure/findRunningSet';
 import calculateAverageContractions from '../pure/calculateAverageContractions';
 import calculateSetsDuration from '../../editor/pure/sets/calculateSetsDuration';
+import { EditorStateType, ImmutableJSEditorStateType } from '../../editor/redux/editorTypes';
 
 /**
  * Prepare initial crono
  */
 export type InitTableType =
-    (data: object) => (dispatch: any) => void;
+    (data: EditorStateType) => (dispatch: any) => void;
 
-export const initTable: InitTableType = (data: object) => {
+export const initTable: InitTableType = (trainingTable) => {
     return dispatch => {
         // convert traning table to a crono table
-        const crono = editorToCrono(data);
-        dispatch(setInitialState(crono));
+        const crono = editorToCrono(trainingTable);
+        const immutableCronno = Immutable.fromJS(crono);
+        dispatch(setInitialState(immutableCronno));
         // make sure all durations are correctly calculated
-        const sets = crono.get('sets');
+        const sets = immutableCronno.get('sets');
         dispatch(updateTableDurationBySets(sets));
     };
 }
@@ -104,8 +108,8 @@ export type TrackContractionType =
 function updateContractionsAverage() {
     return (dispatch: any, getState: any) => {
         const { crono } = getState();
-        const sets = crono.get('sets');
-        const contractions = calculateAverageContractions(sets);
+        const sets = crono.get('sets').toJS();
+        const contractions: number = calculateAverageContractions(sets);
         dispatch(setContractions(contractions));
     };
 }

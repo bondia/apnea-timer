@@ -12,7 +12,7 @@ import {
     SET_MODE_FINISHED,
     SET_MODE_SKIPED
 } from '../../../editor/enums';
-import { ImmutableJSSetType } from '../../redux/CronoTypes';
+import { ImmutableJSSetType } from '../../redux/cronoTypes';
 
 export const SingleBarOuter = styled.View`
     flex: 1;

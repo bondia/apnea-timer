@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ImmutableJSSetType } from '../../redux/CronoTypes';
+import { ImmutableJSSetType } from '../../redux/cronoTypes';
 import * as SC from './Bar.styled';
 
 export interface SingleBarProps {

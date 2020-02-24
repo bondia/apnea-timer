@@ -1,7 +1,7 @@
 import React from 'react';
 
 import * as enums from '../../../editor/enums';
-import { ImmutableJSSetType } from '../../redux/CronoTypes';
+import { ImmutableJSSetType } from '../../redux/cronoTypes';
 
 import * as SC from './SetsList.styled';
 import Crono from './SetItemCrono';

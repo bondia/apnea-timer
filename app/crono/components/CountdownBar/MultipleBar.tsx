@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 
-import { ImmutableJSSetType } from '../../redux/CronoTypes';
+import { ImmutableJSSetType } from '../../redux/cronoTypes';
 
 import SingleBar from './SingleBar';
 

@@ -5,9 +5,10 @@ import styled from 'styled-components/native';
 import * as routesEnum from '../../../main/enums/routes';
 
 import LongTouchButton from '../../../common/components/LongTouchButton';
+import { ImmutableJSEditorStateType } from '../../redux/editorTypes';
 
 interface StartButtonProps {
-    data: object;
+    data: ImmutableJSEditorStateType;
 }
 
 export default function StartButton(props: StartButtonProps): JSX.Element {
@@ -17,7 +18,7 @@ export default function StartButton(props: StartButtonProps): JSX.Element {
             <LongTouchButton
                 title="Start"
                 onPressStart={() =>
-                    Actions[routesEnum.CRONO_SCENE]({ crono: data })
+                    Actions[routesEnum.CRONO_SCENE]({ initialData: data.toJS() })
                 }
             />
         </ButtonContainer>

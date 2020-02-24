@@ -5,7 +5,7 @@ import {
     SET_MODE_FINISHED,
     TABLE_TYPE_ENDURANCE
 } from '../../../editor/enums';
-import { ImmutableJSCronoType } from '../../redux/CronoTypes';
+import { ImmutableJSCronoType } from '../../redux/cronoTypes';
 import findRunningSet from '../../pure/findRunningSet';
 
 import {
