@@ -10,7 +10,7 @@ import findRunningSet from '../pure/findRunningSet';
 import calculateAverageContractions from '../pure/calculateAverageContractions';
 import calculateSetsDuration from '../../editor/pure/sets/calculateSetsDuration';
 import { EditorStateType } from '../../editor/redux/editorTypes';
-import { CronoSetType } from './cronoTypes';
+import { CronoSetType, CronoStateType } from './cronoTypes';
 
 /**
  * Prepare initial crono
@@ -71,8 +71,11 @@ export const skipSet: SkipSetType = (key: number) => {
         );
 
         // activate new set
-        const newCrono = decideCurrentSet(crono, currentTimestamp);
-        dispatch(setInitialState(newCrono));
+        const cronoState: CronoStateType = crono.toJS();
+        const newCrono = decideCurrentSet(cronoState, currentTimestamp);
+        const newCronoImmutable = Immutable.fromJS(newCrono);
+
+        dispatch(setInitialState(newCronoImmutable));
 
         // recalculate table duration
         dispatch(updateTableDurationBySets(crono.get('sets')));
@@ -156,7 +159,10 @@ function handleTick() {
         crono = crono.setIn(['sets', step], currentSet);
 
         // decide current set
-        crono = decideCurrentSet(crono, currentTimestamp);
+        const cronoState: CronoStateType = crono.toJS();
+        const newCrono = decideCurrentSet(cronoState, currentTimestamp);
+        crono = Immutable.fromJS(newCrono);
+
         if (crono.getIn(['running', 'step']) < 0) {
             clearInterval(timer);
             timer = null;
