@@ -1,28 +1,20 @@
-import React from 'react';
-
+import React, { FC } from 'react';
 import TextComponent from '../../../common/components/TextComponent';
 import { ActionArea, styles } from './Menu.styled';
 
 interface MenuItemProps {
-    title: string;
-    type: string;
-    onPress: (type: string) => void;
-    color: string;
+  title: string;
+  onPress: () => void;
+  color: string;
 }
 
-export default function MenuItem(props: MenuItemProps): JSX.Element {
-    const {
-        title,
-        type,
-        onPress,
-        color
-    } = props;
+const MenuItem: FC<MenuItemProps> = (props) => {
+  const { title, onPress, color } = props;
+  return (
+    <ActionArea onPress={onPress} color={color}>
+      <TextComponent style={styles.baseStyles}>{title}</TextComponent>
+    </ActionArea>
+  );
+};
 
-    return (
-        <ActionArea onPress={() => onPress(type)} color={color}>
-            <TextComponent style={styles.baseStyles}>
-                {title}
-            </TextComponent>
-        </ActionArea>
-    );
-}
+export default MenuItem;

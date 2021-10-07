@@ -1,30 +1,32 @@
-import React from 'react';
-import { Actions } from 'react-native-router-flux';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import React, { FC } from 'react';
 import styled from 'styled-components/native';
-
-import * as routesEnum from '../../../main/enums/routes';
-
 import LongTouchButton from '../../../common/components/LongTouchButton';
+import { Routes } from '../../../main/types/Routes';
 import { ImmutableJSEditorStateType } from '../../redux/editorTypes';
 
 interface StartButtonProps {
-    data: ImmutableJSEditorStateType;
+  data: ImmutableJSEditorStateType;
 }
 
-export default function StartButton(props: StartButtonProps): JSX.Element {
-    const { data } = props;
-    return (
-        <ButtonContainer>
-            <LongTouchButton
-                title="Start"
-                onPressStart={() =>
-                    Actions[routesEnum.CRONO_SCENE]({ initialData: data.toJS() })
-                }
-            />
-        </ButtonContainer>
-    );
-}
+const StartButton: FC<StartButtonProps> = (props) => {
+  const { data } = props;
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  return (
+    <ButtonContainer>
+      <LongTouchButton
+        title="Start"
+        onPressStart={() =>
+          navigation.push(Routes.CRONO_SCENE, { initialData: data.toJS() })
+        }
+      />
+    </ButtonContainer>
+  );
+};
 
-export const ButtonContainer = styled.View`
-    flex-direction: row;
+const ButtonContainer = styled.View`
+  flex-direction: row;
 `;
+
+export default StartButton;

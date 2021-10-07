@@ -1,19 +1,18 @@
-import React from 'react';
-
-import { EditorStateType } from '../../editor/redux/editorTypes';
-
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import React, { FC } from 'react';
 import SceneWrapper from '../../common/components/SceneWrapper';
+import { RootStackParamList, Routes } from '../../main/types/Routes';
 import CronoPane from './CronoPane';
 
-interface CronoSceneProps {
-    initialData: EditorStateType;
-}
+const CronoScene: FC<
+  NativeStackScreenProps<RootStackParamList, Routes.CRONO_SCENE>
+> = (props) => {
+  const initialData = props.route.params.initialData;
+  return (
+    <SceneWrapper>
+      <CronoPane initialData={initialData} />
+    </SceneWrapper>
+  );
+};
 
-export default function CronoScene(props: CronoSceneProps): JSX.Element {
-    const { initialData } = props;
-    return (
-        <SceneWrapper noHeader>
-            <CronoPane initialData={initialData} />
-        </SceneWrapper>
-    );
-}
+export default CronoScene;

@@ -1,50 +1,52 @@
-import React from 'react';
-import { Router, Scene, ActionConst } from 'react-native-router-flux';
-
-import * as routesEnum from './main/enums/routes';
-
-import MainScene from './main/components/MainScene';
-import EditorStaticScene from './editor-static/components/EditorStaticScene';
-import EditorEnduranceScene from './editor-endurance/components/EditorEnduranceScene';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React, { FC } from 'react';
 import CronoScene from './crono/components/CronoScene';
+import EditorEnduranceScene from './editor-endurance/components/EditorEnduranceScene';
+import EditorStaticScene from './editor-static/components/EditorStaticScene';
+import MainScene from './main/components/MainScene';
+import { Routes } from './main/types/Routes';
 
-export default function AppRouter(): JSX.Element {
-    return (
-        <Router>
-            <Scene key={routesEnum.ROOT}>
-                <Scene
-                    key={routesEnum.MAIN_SCENE}
-                    component={MainScene}
-                    title="Apnea"
-                    initial
-                />
+const { Navigator, Screen } = createNativeStackNavigator();
 
-                <Scene
-                    key={routesEnum.CREATE_TABLE_SCENE}
-                    component={EditorStaticScene}
-                    title="CO2/O2"
-                />
+const AppRouter: FC = () => {
+  return (
+    <NavigationContainer>
+      <Navigator initialRouteName={Routes.MENU}>
+        <Screen
+          name={Routes.MENU}
+          component={MainScene}
+          options={{ title: 'Apnea' }}
+        />
 
-                <Scene
-                    key={routesEnum.CRONO_SCENE}
-                    component={CronoScene}
-                    title="Crono"
-                    type={ActionConst.REPLACE}
-                    hideNavBar
-                />
+        <Screen
+          name={Routes.CREATE_TABLE_SCENE}
+          component={EditorStaticScene}
+          options={{ title: 'CO2/O2' }}
+        />
 
-                <Scene
-                    key={routesEnum.ENDURANCE_TABLE_SCENE}
-                    component={EditorEnduranceScene}
-                    title="Endurance"
-                />
+        <Screen
+          name={Routes.ENDURANCE_TABLE_SCENE}
+          component={EditorEnduranceScene}
+          options={{ title: 'Endurance' }}
+        />
 
-                <Scene
-                    key={routesEnum.SCHEDULE_SCENE}
-                    component={EditorEnduranceScene}
-                    title="Schedule"
-                />
-            </Scene>
-        </Router>
-    );
-}
+        <Screen
+          name={Routes.SCHEDULE_SCENE}
+          component={EditorEnduranceScene}
+          options={{ title: 'Schedule' }}
+        />
+
+        <Screen
+          name={Routes.CRONO_SCENE}
+          component={CronoScene}
+          options={{ title: 'Crono', headerShown: false }}
+          //   type={ActionConst.REPLACE}
+          //   hideNavBar
+        />
+      </Navigator>
+    </NavigationContainer>
+  );
+};
+
+export default AppRouter;
