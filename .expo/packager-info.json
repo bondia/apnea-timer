@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 35024,
+  "packagerPort": 19003,
+  "packagerPid": 40840,
   "expoServerNgrokUrl": "https://r8-x7k.anonymous.apnea-timer.exp.direct",
   "packagerNgrokUrl": "https://packager.r8-x7k.anonymous.apnea-timer.exp.direct",
-  "ngrokPid": 35040
+  "ngrokPid": 40866
 }
