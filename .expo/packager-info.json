@@ -1,9 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19003,
-  "packagerPid": 30566,
-  "expoServerNgrokUrl": "https://r8-x7k.bondia.apnea-timer.exp.direct",
-  "packagerNgrokUrl": "https://packager.r8-x7k.bondia.apnea-timer.exp.direct",
-  "ngrokPid": 30410
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
+  "webpackServerPort": null
 }
