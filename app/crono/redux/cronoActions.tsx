@@ -45,9 +45,12 @@ const skipSet: SkipSetType = (key: number) => {
     let { crono } = getState();
     crono = crono.updateIn(['sets'], (sets) =>
       sets.map((s) => {
-        return s.get('pos') === key
-          ? s.setIn(['running', 'mode'], SetMode.SET_MODE_SKIPED)
-          : s;
+        if (s.get('pos') === key) {
+          return s
+            .setIn(['running', 'mode'], SetMode.SET_MODE_SKIPED)
+            .setIn(['running', 'endTimestamp'], currentTimestamp);
+        }
+        return s;
       })
     );
 
