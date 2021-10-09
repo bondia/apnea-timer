@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Immutable from 'immutable';
-import * as tableEnums from '../../../editor/enums';
+import { CronoMode, SetType, TableType } from '../../../editor/enums';
 import findRunningSet from '../../pure/findRunningSet';
 import {
   CronoActionsTypes,
@@ -61,7 +61,7 @@ const canTrackContractions = (
 ): boolean => {
   // no contractions tracking for endurance tables
   const tableType = crono.getIn(['trainingTable', 'type']);
-  if (tableEnums.TABLE_TYPE_ENDURANCE === tableType) {
+  if (TableType.TABLE_TYPE_ENDURANCE === tableType) {
     return false;
   }
   // get current active set
@@ -70,19 +70,19 @@ const canTrackContractions = (
   }
   // decide if can track
   const setType = current.get('type');
-  return current && tableEnums.SET_TYPE_HOLD === setType;
+  return current && SetType.SET_TYPE_HOLD === setType;
 };
 
-const handleStart = (cronoActions: CronoActionsTypes, mode: string) => {
+const handleStart = (cronoActions: CronoActionsTypes, mode: CronoMode) => {
   cronoActions.startCrono(mode);
 };
 
 const handleStartAuto = (cronoActions: CronoActionsTypes) => {
-  handleStart(cronoActions, tableEnums.CRONO_MODE_AUTO);
+  handleStart(cronoActions, CronoMode.CRONO_MODE_AUTO);
 };
 
 const handleStartCoach = (cronoActions: CronoActionsTypes) => {
-  handleStart(cronoActions, tableEnums.CRONO_MODE_COACH);
+  handleStart(cronoActions, CronoMode.CRONO_MODE_COACH);
 };
 
 const handleSkip = (

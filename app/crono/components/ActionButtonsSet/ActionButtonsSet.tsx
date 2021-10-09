@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import LongTouchButton from '../../../common/components/LongTouchButton';
-import * as tableEnums from '../../../editor/enums';
+import { CronoMode, TableType } from '../../../editor/enums';
 import {
   CronoActionsTypes,
   ImmutableJSCronoType
@@ -30,7 +30,7 @@ const CronoButtonSet: FC<CronoButtonSetProps> = (props) => {
 
   return (
     <SC.ButtonSetWrapper>
-      {clock < 0 && tableEnums.TABLE_TYPE_ENDURANCE !== tableType && (
+      {clock < 0 && TableType.TABLE_TYPE_ENDURANCE !== tableType && (
         <SC.ButtonWrapper>
           <LongTouchButton title="Auto" onPressStart={handleStartAuto} />
         </SC.ButtonWrapper>
@@ -42,7 +42,7 @@ const CronoButtonSet: FC<CronoButtonSetProps> = (props) => {
         </SC.ButtonWrapper>
       )}
 
-      {clock >= 0 && tableEnums.CRONO_MODE_FINISHED !== tableMode && (
+      {clock >= 0 && CronoMode.CRONO_MODE_FINISHED !== tableMode && (
         <SC.ButtonWrapper>
           <LongTouchButton title="Skip" onPressStart={handleSkip} />
         </SC.ButtonWrapper>
@@ -54,7 +54,7 @@ const CronoButtonSet: FC<CronoButtonSetProps> = (props) => {
         </SC.ButtonWrapper>
       )}
 
-      {tableEnums.CRONO_MODE_FINISHED === tableMode && (
+      {CronoMode.CRONO_MODE_FINISHED === tableMode && (
         <SC.ButtonWrapper>
           <LongTouchButton title="Finish" onPressStart={handleFinish} />
         </SC.ButtonWrapper>

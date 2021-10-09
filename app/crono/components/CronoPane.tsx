@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
 import { EditorStateType } from '../../editor/redux/editorTypes';
 import findRunningSet from '../pure/findRunningSet';
-import * as cronoActions from '../redux/cronoActions';
+import { cronoActions } from '../redux/cronoActions';
 import {
   CronoActionsTypes,
   CronoSetType,
