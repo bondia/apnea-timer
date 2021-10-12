@@ -5,8 +5,8 @@ import editorReducer from '../../editor/redux/editorReducer';
 const initReducers = () => {
   return combineReducers({
     editor: editorReducer,
-    crono: cronoReducer
+    crono: cronoReducer,
   });
 };
 
-export { initReducers };
+export default initReducers;

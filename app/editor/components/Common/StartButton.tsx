@@ -6,27 +6,24 @@ import LongTouchButton from '../../../common/components/LongTouchButton';
 import { Routes } from '../../../main/types/Routes';
 import { ImmutableJSEditorStateType } from '../../redux/editorTypes';
 
+const ButtonContainer = styled.View`
+  flex-direction: row;
+`;
 interface StartButtonProps {
   data: ImmutableJSEditorStateType;
 }
 
-const StartButton: FC<StartButtonProps> = (props) => {
+const StartButton: FC<StartButtonProps> = props => {
   const { data } = props;
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
   return (
     <ButtonContainer>
       <LongTouchButton
         title="Start"
-        onPressStart={() =>
-          navigation.push(Routes.CRONO_SCENE, { initialData: data.toJS() })
-        }
+        onPressStart={() => navigation.push(Routes.CRONO_SCENE, { initialData: data.toJS() })}
       />
     </ButtonContainer>
   );
 };
-
-const ButtonContainer = styled.View`
-  flex-direction: row;
-`;
 
 export default StartButton;

@@ -7,9 +7,7 @@ function getSingleSetDuration(set: CronoSetType) {
   const running = set.get('running');
   if (running) {
     const countdown = running.get('countdown');
-    return running.get('mode') !== SetMode.SET_MODE_SKIPED && countdown > 0
-      ? countdown
-      : 0;
+    return running.get('mode') !== SetMode.SET_MODE_SKIPED && countdown > 0 ? countdown : 0;
   }
 
   // do not include zombie sets
@@ -17,8 +15,7 @@ function getSingleSetDuration(set: CronoSetType) {
   return zombie === true ? 0 : set.get('duration');
 }
 
-const reducer = (prev: number, next: CronoSetType) =>
-  prev + getSingleSetDuration(next);
+const reducer = (prev: number, next: CronoSetType) => prev + getSingleSetDuration(next);
 
 const calculateTableDuration = (sets: CronoSetType[] = null): number => {
   if (!sets) {

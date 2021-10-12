@@ -8,7 +8,7 @@ interface MenuItemProps {
   color: string;
 }
 
-const MenuItem: FC<MenuItemProps> = (props) => {
+const MenuItem: FC<MenuItemProps> = props => {
   const { title, onPress, color } = props;
   return (
     <ActionArea onPress={onPress} color={color}>

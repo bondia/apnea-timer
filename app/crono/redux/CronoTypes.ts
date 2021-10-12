@@ -1,11 +1,8 @@
+import { Action } from 'redux';
 import { TableSetType, TableType } from '../../editor/redux/editorTypes';
 import { InitTableAction } from './creators/initTableAction';
-import {
-  ClearCronoType,
-  SkipSetType,
-  StartCronoType,
-  TrackContractionType
-} from './cronoActions';
+import { TrackContractionType } from './creators/trackContractionAction';
+import { SkipSetType, StartCronoType } from './cronoActions';
 
 // TYPES
 
@@ -15,7 +12,7 @@ export interface CronoStateType {
   sets: CronoSetType[];
 }
 
-export interface CronoType extends TableType {}
+export type CronoType = TableType;
 
 export interface CronoRunningType {
   startTimestamp?: number;
@@ -45,15 +42,15 @@ export interface CronoActionsTypes {
   startCrono: StartCronoType;
   skipSet: SkipSetType;
   trackContraction: TrackContractionType;
-  clearCrono: ClearCronoType;
+  clearCrono: () => Action;
 }
 
 /**
  * TODO: Remove immutable js
  */
-export interface ImmutableJSCronoType extends ImmutableJSObject {}
+export type ImmutableJSCronoType = ImmutableJSObject;
 
-export interface ImmutableJSSetType extends ImmutableJSObject {}
+export type ImmutableJSSetType = ImmutableJSObject;
 
 export interface ImmutableJSObject {
   get: (prop: string) => any;

@@ -4,27 +4,44 @@ import createTable from '../pure/createTable';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
-import { ImmutableJSEditorSetType } from './editorTypes';
+import { ImmutableJSType } from './editorTypes';
+
+function setInitialState(state) {
+  return { type: reduxActions.EDITOR_SET_INITIAL_STATE, state };
+}
+
+function setTableBase(base) {
+  return { type: reduxActions.EDITOR_SET_TABLE_BASE, base };
+}
+
+function setTableBaseBreak(baseBreaks) {
+  return { type: reduxActions.EDITOR_SET_TABLE_BASE_BREAKS, baseBreaks };
+}
+
+function setTableDuration(duration) {
+  return { type: reduxActions.EDITOR_SET_TABLE_DURATION, duration };
+}
+
+function replaceSets(sets) {
+  return { type: reduxActions.EDITOR_REPLACE_SETS, sets };
+}
+
+/**
+ * Due some sets, calculatetable duration and update it
+ * @param  {[type]} sets [description]
+ * @return {[type]}      [description]
+ */
+function updateTableDurationBySets(sets) {
+  const duration = calculateSetsDuration(sets);
+  return setTableDuration(duration);
+}
 
 /**
  * Create Endurance table
  */
-export type CreateEnduranceTableType = (
-  base: number,
-  baseBreaks: number,
-  laps?: number
-) => object;
-export const createEnduranceTable: CreateEnduranceTableType = (
-  base,
-  baseBreaks,
-  laps = 6
-) => {
-  const newState = createTable(
-    base,
-    baseBreaks,
-    TableType.TABLE_TYPE_ENDURANCE,
-    laps
-  );
+export type CreateEnduranceTableType = (base: number, baseBreaks: number, laps?: number) => object;
+export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks, laps = 6) => {
+  const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
   return setInitialState(newState);
 };
 
@@ -33,7 +50,7 @@ export const createEnduranceTable: CreateEnduranceTableType = (
  */
 export type ChangeTableTypeType = (base: number, tableType: string) => object;
 export const changeTableType: ChangeTableTypeType = (base, tableType) => {
-  const newState = createTable(base, null, tableType);
+  const newState = createTable(base, null, tableType, 6);
   return setInitialState(newState);
 };
 
@@ -41,17 +58,12 @@ export const changeTableType: ChangeTableTypeType = (base, tableType) => {
  * Change table endurance laps
  */
 export type ChangeEnduranceLapsType = (amount: number) => void;
-export const changeEnduranceLaps: ChangeEnduranceLapsType = (laps) => {
+export const changeEnduranceLaps: ChangeEnduranceLapsType = laps => {
   return (dispatch, getState) => {
     const { editor } = getState();
     const base = editor.getIn(['trainingTable', 'base']);
     const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
-    const newState = createTable(
-      base,
-      baseBreaks,
-      TableType.TABLE_TYPE_ENDURANCE,
-      laps
-    );
+    const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
     return dispatch(setInitialState(newState));
   };
 };
@@ -84,7 +96,7 @@ export const changeTableBase: ChangeTableBaseType = (value: number) => {
  * Change table base breaks action
  */
 export type ChangeTableBaseBreaksType = (amount: number) => void;
-export const changeTableBaseBreaks: ChangeTableBaseBreaksType = (value) => {
+export const changeTableBaseBreaks: ChangeTableBaseBreaksType = value => {
   return (dispatch, getState) => {
     const { editor } = getState();
     const base = editor.getIn(['trainingTable', 'base']);
@@ -107,6 +119,28 @@ export const changeTableBaseBreaks: ChangeTableBaseBreaksType = (value) => {
 /**
  * Changing sets times
  */
+function changeTimeItem(key: number, amount: number) {
+  return (dispatch, getState) => {
+    const { editor } = getState();
+
+    // find item
+    const item = editor.getIn(['sets']).find((set: ImmutableJSType) => set.get('pos') === key);
+
+    if (!item) {
+      return;
+    }
+
+    // decide new duration
+    const duration = amount + item.get('duration');
+    const tableType = editor.getIn(['trainingTable', 'type']);
+    const sets = updateSetDurationForKey(editor.get('sets'), tableType, key, duration);
+    dispatch(replaceSets(sets));
+
+    // update table duration
+    dispatch(updateTableDurationBySets(sets));
+  };
+}
+
 export type IncreaseTimeItemType = (key: number, amount: number) => void;
 export const increaseTimeItem: IncreaseTimeItemType = (key, amount) => {
   return changeTimeItem(key, amount);
@@ -116,64 +150,3 @@ export type DecreaseTimeItemType = (key: number, amount: number) => void;
 export const decreaseTimeItem: DecreaseTimeItemType = (key, amount) => {
   return changeTimeItem(key, -amount);
 };
-
-function changeTimeItem(key: number, amount: number) {
-  return (dispatch, getState) => {
-    const { editor } = getState();
-
-    // find item
-    const item = editor
-      .getIn(['sets'])
-      .find((set: ImmutableJSEditorSetType) => set.get('pos') === key);
-
-    if (!item) {
-      return;
-    }
-
-    // decide new duration
-    const duration = amount + item.get('duration');
-    const tableType = editor.getIn(['trainingTable', 'type']);
-    const sets = updateSetDurationForKey(
-      editor.get('sets'),
-      tableType,
-      key,
-      duration
-    );
-    dispatch(replaceSets(sets));
-
-    // update table duration
-    dispatch(updateTableDurationBySets(sets));
-  };
-}
-
-/**
- * Due some sets, calculatetable duration and update it
- * @param  {[type]} sets [description]
- * @return {[type]}      [description]
- */
-function updateTableDurationBySets(sets) {
-  const duration = calculateSetsDuration(sets);
-  return setTableDuration(duration);
-}
-
-/** BASIC ACTIONS */
-
-function setInitialState(state) {
-  return { type: reduxActions.EDITOR_SET_INITIAL_STATE, state };
-}
-
-function setTableBase(base) {
-  return { type: reduxActions.EDITOR_SET_TABLE_BASE, base };
-}
-
-function setTableBaseBreak(baseBreaks) {
-  return { type: reduxActions.EDITOR_SET_TABLE_BASE_BREAKS, baseBreaks };
-}
-
-function setTableDuration(duration) {
-  return { type: reduxActions.EDITOR_SET_TABLE_DURATION, duration };
-}
-
-function replaceSets(sets) {
-  return { type: reduxActions.EDITOR_REPLACE_SETS, sets };
-}

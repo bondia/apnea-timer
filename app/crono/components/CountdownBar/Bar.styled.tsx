@@ -1,30 +1,7 @@
 import styled from 'styled-components/native';
-import {
-  COLOR_GREEN_LIGHT,
-  COLOR_RED_LIGHT,
-  FONT_CLOLR_GREY_LIGHT
-} from '../../../common/styles/commonStyles';
+import { COLOR_GREEN_LIGHT, COLOR_RED_LIGHT, FONT_CLOLR_GREY_LIGHT } from '../../../common/styles/commonStyles';
 import { SetMode, SetType } from '../../../editor/enums';
 import { ImmutableJSSetType } from '../../redux/cronoTypes';
-
-export const SingleBarOuter = styled.View`
-  flex: 1;
-  width: 5px;
-  max-width: 5px;
-  align-items: baseline;
-  background-color: ${FONT_CLOLR_GREY_LIGHT};
-`;
-
-interface SingleBarInnerProps {
-  set?: ImmutableJSSetType;
-}
-export const SingleBarInner = styled.View<SingleBarInnerProps>`
-    position: absolute;
-    bottom: 0;
-    width: 5px;
-    background-color: ${decideBackgroundColor}
-    height: ${decideHeight}
-`;
 
 function decideBackgroundColor(props: SingleBarInnerProps): string {
   const { set } = props;
@@ -49,3 +26,22 @@ function decideHeight(props: SingleBarInnerProps): number | string {
   const percent = (has * 100) / should;
   return `${percent} %`;
 }
+
+export const SingleBarOuter = styled.View`
+  flex: 1;
+  width: 5px;
+  max-width: 5px;
+  align-items: baseline;
+  background-color: ${FONT_CLOLR_GREY_LIGHT};
+`;
+
+interface SingleBarInnerProps {
+  set?: ImmutableJSSetType;
+}
+export const SingleBarInner = styled.View<SingleBarInnerProps>`
+    position: absolute;
+    bottom: 0;
+    width: 5px;
+    background-color: ${decideBackgroundColor}
+    height: ${decideHeight}
+`;

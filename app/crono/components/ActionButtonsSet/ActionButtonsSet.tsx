@@ -1,10 +1,7 @@
 import React, { FC } from 'react';
 import LongTouchButton from '../../../common/components/LongTouchButton';
 import { CronoMode, TableType } from '../../../editor/enums';
-import {
-  CronoActionsTypes,
-  ImmutableJSCronoType
-} from '../../redux/cronoTypes';
+import { CronoActionsTypes, ImmutableJSCronoType } from '../../redux/cronoTypes';
 import * as SC from './ActionButtonsSet.styled';
 import useButtonsHandling from './useButtonsHandling';
 
@@ -13,7 +10,7 @@ interface CronoButtonSetProps {
   cronoActions: CronoActionsTypes;
 }
 
-const CronoButtonSet: FC<CronoButtonSetProps> = (props) => {
+const CronoButtonSet: FC<CronoButtonSetProps> = props => {
   const { crono, cronoActions } = props;
 
   const {
@@ -25,7 +22,7 @@ const CronoButtonSet: FC<CronoButtonSetProps> = (props) => {
     handleStartCoach,
     handleSkip,
     handleContraction,
-    handleFinish
+    handleFinish,
   } = useButtonsHandling({ crono, cronoActions });
 
   return (

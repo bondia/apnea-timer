@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LongTouchButton from '../../../common/components/LongTouchButton';
 import TextComponent from '../../../common/components/TextComponent';
-import {
-  COLOR_GREEN_NORMAL,
-  COLOR_RED_NORMAL,
-  FONT_COLOR_GREY
-} from '../../../common/styles/commonStyles';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../common/styles/commonStyles';
 import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
 import { SetType } from '../../../editor/enums';
 import * as editorActions from '../../../editor/redux/editorActions';
@@ -21,21 +17,13 @@ interface EditorTimerInputProps {
   type?: string;
   setNumber?: number;
   zombie?: boolean;
-  editorActions: EditorActionsTypes;
+  actions: EditorActionsTypes;
 }
 
-function EditorTimerInput(props: EditorTimerInputProps): JSX.Element {
-  const {
-    index,
-    duration = 0,
-    type = SetType.SET_TYPE_PREPARE,
-    setNumber = 0,
-    zombie = false,
-    editorActions
-  } = props;
+const EditorTimerInput: FC<EditorTimerInputProps> = props => {
+  const { index, duration = 0, type = SetType.SET_TYPE_PREPARE, setNumber = 0, zombie = false, actions } = props;
 
-  let clockColor =
-    SetType.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
+  let clockColor = SetType.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
   clockColor = zombie ? FONT_COLOR_GREY : clockColor;
 
   // TODO: Move to styled with text component
@@ -46,7 +34,7 @@ function EditorTimerInput(props: EditorTimerInputProps): JSX.Element {
       paddingTop: 33,
       lineHeight: 15,
       fontSize: 15,
-      color: FONT_COLOR_GREY
+      color: FONT_COLOR_GREY,
     },
     clock: {
       paddingTop: 25,
@@ -54,8 +42,8 @@ function EditorTimerInput(props: EditorTimerInputProps): JSX.Element {
       color: clockColor,
       fontSize: 30,
       lineHeight: 30,
-      textAlign: 'center'
-    }
+      textAlign: 'center',
+    },
   });
 
   return (
@@ -63,31 +51,29 @@ function EditorTimerInput(props: EditorTimerInputProps): JSX.Element {
       <SC.ButtonWrapper>
         <LongTouchButton
           title="-"
-          onPressStart={() => editorActions.decreaseTimeItem(index, 1)}
-          onPressInterval={() => editorActions.decreaseTimeItem(index, 5)}
+          onPressStart={() => actions.decreaseTimeItem(index, 1)}
+          onPressInterval={() => actions.decreaseTimeItem(index, 5)}
         />
       </SC.ButtonWrapper>
 
-      <TextComponent style={styles.clock}>
-        {secondsToTimeString(duration)}
-      </TextComponent>
+      <TextComponent style={styles.clock}>{secondsToTimeString(duration)}</TextComponent>
 
       <TextComponent style={styles.setNumber}>({setNumber})</TextComponent>
 
       <SC.ButtonWrapper>
         <LongTouchButton
           title="+"
-          onPressStart={() => editorActions.increaseTimeItem(index, 1)}
-          onPressInterval={() => editorActions.increaseTimeItem(index, 5)}
+          onPressStart={() => actions.increaseTimeItem(index, 1)}
+          onPressInterval={() => actions.increaseTimeItem(index, 5)}
         />
       </SC.ButtonWrapper>
     </SC.Container>
   );
-}
+};
 
-const dispatchToProps = (dispatch) => {
+const dispatchToProps = dispatch => {
   return {
-    editorActions: bindActionCreators(editorActions, dispatch)
+    actions: bindActionCreators(editorActions, dispatch),
   };
 };
 

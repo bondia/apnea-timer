@@ -17,10 +17,7 @@ const trackContractionAction: TrackContractionType = () => {
 
     const duration = immutableCurrentSet.get('duration');
     const countdown = immutableCurrentSet.getIn(['running', 'countdown']);
-    immutableCurrentSet = immutableCurrentSet.setIn(
-      ['running', 'contraction'],
-      duration - countdown
-    );
+    immutableCurrentSet = immutableCurrentSet.setIn(['running', 'contraction'], duration - countdown);
     dispatch(replaceSetAction(immutableCurrentSet));
     dispatch(updateContractionsAverageAction());
   };

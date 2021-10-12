@@ -9,14 +9,13 @@ interface Props {
   item: ImmutableJSSetType;
 }
 
-const SetItem: FC<Props> = (props) => {
+const SetItem: FC<Props> = props => {
   const { item } = props;
   const type = item.get('type');
   const mode = item.getIn(['running', 'mode']);
   const countdown = item.getIn(['running', 'countdown']);
   const contraction = item.getIn(['running', 'contraction']);
-  const active =
-    mode === SetMode.SET_MODE_RUNNING || mode === SetMode.SET_MODE_INITIAL;
+  const active = mode === SetMode.SET_MODE_RUNNING || mode === SetMode.SET_MODE_INITIAL;
   const currentTimestamp = generateTimestamp();
   const startTimestamp = item.getIn(['running', 'startTimestamp']);
   const endTimestamp = item.getIn(['running', 'endTimestamp']);
@@ -28,8 +27,8 @@ const SetItem: FC<Props> = (props) => {
         type={type}
         duration={countdown}
         contraction={contraction}
-        started={startTimestamp | 0}
-        ended={ended | 0}
+        started={startTimestamp || 0}
+        ended={ended || 0}
       />
     </SC.SetItemWrapper>
   );

@@ -1,4 +1,5 @@
 import Immutable from 'immutable';
+import { Action } from 'redux';
 import generateTimestamp from '../../common/utils/time/generateTimestamp';
 import { CronoMode, SetMode } from '../../editor/enums';
 import { StoreThunkAction } from '../../main/redux/types';
@@ -12,77 +13,16 @@ import updateTableDurationBySetsAction from './creators/updateTableDurationBySet
 import { CronoActionsTypes, CronoStateType } from './cronoTypes';
 
 /**
- * Start crono
+ * Handle clock tics
+ * @return {[type]} [description]
  */
 let timer = null;
 const timerRefresh = 200;
 
-export type StartCronoType = (mode: CronoMode) => StoreThunkAction;
-
-const startCrono: StartCronoType = (mode: CronoMode) => {
-  return (dispatch) => {
-    clearInterval(timer);
-    dispatch(setCronoStartTimestampAction(generateTimestamp()));
-    dispatch(setCronoModeAction(mode));
-    timer = setInterval(() => dispatch(handleTick()), timerRefresh);
-  };
-};
-
-/**
- * Skips a single set
- */
-export type SkipSetType = (key: number) => StoreThunkAction;
-
-const skipSet: SkipSetType = (key: number) => {
-  return (dispatch, getState) => {
-    // current timestamp
-    const currentTimestamp = generateTimestamp();
-
-    // clear interval
-    clearInterval(timer);
-
-    // disable set by key
-    let { crono } = getState();
-    crono = crono.updateIn(['sets'], (sets) =>
-      sets.map((s) => {
-        if (s.get('pos') === key) {
-          return s
-            .setIn(['running', 'mode'], SetMode.SET_MODE_SKIPED)
-            .setIn(['running', 'endTimestamp'], currentTimestamp);
-        }
-        return s;
-      })
-    );
-
-    // activate new set
-    const cronoState: CronoStateType = crono.toJS();
-    const newCrono = decideCurrentSet(cronoState, currentTimestamp);
-    const newCronoImmutable = Immutable.fromJS(newCrono);
-
-    dispatch(setInitialStateAction(newCronoImmutable));
-
-    // recalculate table duration
-    dispatch(updateTableDurationBySetsAction(crono.get('sets')));
-
-    // check if there are some sets still in initial mode
-    const found = crono
-      .get('sets')
-      .filter((s) => s.getIn(['running', 'mode']) === SetMode.SET_MODE_INITIAL);
-    if (found.size <= 0) {
-      dispatch(setCronoModeAction(CronoMode.CRONO_MODE_FINISHED));
-      return;
-    }
-
-    timer = setInterval(() => dispatch(handleTick()), timerRefresh);
-  };
-};
-
-/**
- * Handle clock tics
- * @return {[type]} [description]
- */
 const handleTick = (): StoreThunkAction => {
   return (dispatch, getState): void => {
+    console.info('HANDLE TICK');
+
     let { crono } = getState();
 
     // current timestamp
@@ -106,9 +46,7 @@ const handleTick = (): StoreThunkAction => {
     // calculate countdown
     const setPlannedDuration = currentSet.get('duration');
     const setStartTimestamp = setRunning.get('startTimestamp');
-    const setTimeSpent = Math.round(
-      (currentTimestamp - setStartTimestamp) / 1000
-    );
+    const setTimeSpent = Math.round((currentTimestamp - setStartTimestamp) / 1000);
     setRunning = setRunning.set('countdown', setPlannedDuration - setTimeSpent);
 
     // replace set
@@ -132,11 +70,72 @@ const handleTick = (): StoreThunkAction => {
 };
 
 /**
+ * Start crono
+ */
+export type StartCronoType = (mode: CronoMode) => StoreThunkAction;
+
+const startCrono: StartCronoType = (mode: CronoMode) => {
+  return dispatch => {
+    clearInterval(timer);
+    dispatch(setCronoStartTimestampAction(generateTimestamp()));
+    dispatch(setCronoModeAction(mode));
+    timer = setInterval(() => dispatch(handleTick()), timerRefresh);
+  };
+};
+
+/**
+ * Skips a single set
+ */
+export type SkipSetType = (key: number) => StoreThunkAction;
+
+const skipSet: SkipSetType = (key: number) => {
+  return (dispatch, getState) => {
+    console.info('SKIPSET', key);
+
+    // current timestamp
+    const currentTimestamp = generateTimestamp();
+
+    // clear interval
+    clearInterval(timer);
+
+    // disable set by key
+    let { crono } = getState();
+    crono = crono.updateIn(['sets'], sets =>
+      sets.map(s => {
+        if (s.get('pos') === key) {
+          return s
+            .setIn(['running', 'mode'], SetMode.SET_MODE_SKIPED)
+            .setIn(['running', 'endTimestamp'], currentTimestamp);
+        }
+        return s;
+      }),
+    );
+
+    // activate new set
+    const cronoState: CronoStateType = crono.toJS();
+    const newCrono = decideCurrentSet(cronoState, currentTimestamp);
+    const newCronoImmutable = Immutable.fromJS(newCrono);
+
+    dispatch(setInitialStateAction(newCronoImmutable));
+
+    // recalculate table duration
+    dispatch(updateTableDurationBySetsAction(crono.get('sets')));
+
+    // check if there are some sets still in initial mode
+    const found = crono.get('sets').filter(s => s.getIn(['running', 'mode']) === SetMode.SET_MODE_INITIAL);
+    if (found.size <= 0) {
+      dispatch(setCronoModeAction(CronoMode.CRONO_MODE_FINISHED));
+      return;
+    }
+
+    timer = setInterval(() => dispatch(handleTick()), timerRefresh);
+  };
+};
+
+/**
  * Clean state
  */
-export type ClearCronoType = () => object;
-
-const clearCrono: ClearCronoType = () => {
+const clearCrono = (): Action => {
   if (timer != null) {
     clearInterval(timer);
     timer = null;
@@ -149,5 +148,5 @@ export const cronoActions: CronoActionsTypes = {
   startCrono,
   skipSet,
   trackContraction: trackContractionAction,
-  clearCrono
+  clearCrono,
 };

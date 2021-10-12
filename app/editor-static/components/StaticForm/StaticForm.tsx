@@ -1,26 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TextComponent from '../../../common/components/TextComponent';
 import StartButton from '../../../editor/components/Common/StartButton';
 import { SetType, TableType } from '../../../editor/enums';
 import * as editorActions from '../../../editor/redux/editorActions';
-import {
-  EditorActionsTypes,
-  ImmutableJSEditorSetType,
-  ImmutableJSEditorType
-} from '../../../editor/redux/editorTypes';
+import { EditorActionsTypes, ImmutableJSEditorType, ImmutableJSType } from '../../../editor/redux/editorTypes';
 import StaticSetsList from '../StaticSetsList';
 import * as SC from './StaticForm.styled';
 import StaticMainForm from './StaticMainForm';
 
 interface StaticFormProps {
   editor: ImmutableJSEditorType;
-  editorActions: EditorActionsTypes;
+  actions: EditorActionsTypes;
 }
-const StaticForm = (props: StaticFormProps): JSX.Element => {
-  const { editor, editorActions } = props;
-  const { changeTableType } = editorActions;
+
+const StaticForm: FC<StaticFormProps> = props => {
+  const { editor, actions } = props;
+  const { changeTableType } = actions;
 
   useEffect(() => {
     changeTableType(120, TableType.TABLE_TYPE_O2);
@@ -32,26 +29,16 @@ const StaticForm = (props: StaticFormProps): JSX.Element => {
 
   // filter sets by table type
   const tableType = editor.getIn(['trainingTable', 'type']);
-  const sets = editor
-    .getIn(['sets'])
-    .filter((set: ImmutableJSEditorSetType) => {
-      const setType = set.get('type');
-      let isValid = false;
-      isValid =
-        (tableType === TableType.TABLE_TYPE_CO2 &&
-          setType === SetType.SET_TYPE_PREPARE) ||
-        isValid;
-      isValid =
-        (tableType === TableType.TABLE_TYPE_O2 &&
-          setType === SetType.SET_TYPE_HOLD) ||
-        isValid;
-      isValid = tableType === TableType.TABLE_TYPE_FREE || isValid;
-      return isValid;
-    });
+  const sets = editor.getIn(['sets']).filter((set: ImmutableJSType) => {
+    const setType = set.get('type');
+    let isValid = false;
+    isValid = (tableType === TableType.TABLE_TYPE_CO2 && setType === SetType.SET_TYPE_PREPARE) || isValid;
+    isValid = (tableType === TableType.TABLE_TYPE_O2 && setType === SetType.SET_TYPE_HOLD) || isValid;
+    isValid = tableType === TableType.TABLE_TYPE_FREE || isValid;
+    return isValid;
+  });
 
-  const crono = editor.update('sets', (sets) =>
-    sets.filter((s) => !s.get('zombie'))
-  );
+  const crono = editor.update('sets', items => items.filter(item => !item.get('zombie')));
   const showStartButton = crono.get('sets').size > 0;
 
   return (
@@ -75,14 +62,14 @@ const StaticForm = (props: StaticFormProps): JSX.Element => {
 
 // REDUX
 
-const stateToProps = (state) => {
+const stateToProps = state => {
   return {
-    editor: state.editor
+    editor: state.editor,
   };
 };
 
-const dispatchToProps = (dispatch) => {
-  return { editorActions: bindActionCreators(editorActions, dispatch) };
+const dispatchToProps = dispatch => {
+  return { actions: bindActionCreators(editorActions, dispatch) };
 };
 
 export default connect(stateToProps, dispatchToProps)(StaticForm);

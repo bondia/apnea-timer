@@ -4,10 +4,12 @@ import SceneWrapper from '../../common/components/SceneWrapper';
 import { RootStackParamList, Routes } from '../../main/types/Routes';
 import CronoPane from './CronoPane';
 
-const CronoScene: FC<
-  NativeStackScreenProps<RootStackParamList, Routes.CRONO_SCENE>
-> = (props) => {
-  const initialData = props.route.params.initialData;
+const CronoScene: FC<NativeStackScreenProps<RootStackParamList, Routes.CRONO_SCENE>> = props => {
+  const {
+    route: {
+      params: { initialData },
+    },
+  } = props;
   return (
     <SceneWrapper>
       <CronoPane initialData={initialData} />

@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { FC } from 'react';
+import styled from 'styled-components/native';
 import InfoBlock from '../../../common/components/InfoBlock';
-import {
-  COLOR_GREEN_NORMAL,
-  COLOR_RED_NORMAL
-} from '../../../common/styles/commonStyles';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../common/styles/commonStyles';
 import { SetMode, SetType, TableType } from '../../../editor/enums';
-import {
-  ImmutableJSCronoType,
-  ImmutableJSSetType
-} from '../../redux/cronoTypes';
-import * as SC from './LiveCounter.styled';
+import { ImmutableJSCronoType, ImmutableJSSetType } from '../../redux/cronoTypes';
+
+const LiveCounterWrapper = styled.View`
+  flex: 2;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
 
 interface LiveCounterProps {
   crono: ImmutableJSCronoType;
   set: ImmutableJSSetType;
 }
 
-export default function LiveCounter(props: LiveCounterProps): JSX.Element {
+const LiveCounter: FC<LiveCounterProps> = props => {
   const { crono, set } = props;
   const tableType = crono.getIn(['trainingTable', 'type']);
   const spentTime = crono.getIn(['running', 'clock']);
@@ -30,20 +32,15 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
   const pos = set ? set.get('pos') : 0;
   const currentSet = pos <= 1 ? 1 : Math.floor(pos / 2) + 1;
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
-  const currentSetHeader =
-    SetType.SET_TYPE_HOLD === setType ? 'Breath Hold' : 'Breath Up';
-  const currentSetColor =
-    SetType.SET_TYPE_HOLD === setType ? COLOR_RED_NORMAL : COLOR_GREEN_NORMAL;
+  const currentSetHeader = SetType.SET_TYPE_HOLD === setType ? 'Breath Hold' : 'Breath Up';
+  const currentSetColor = SetType.SET_TYPE_HOLD === setType ? COLOR_RED_NORMAL : COLOR_GREEN_NORMAL;
 
   return (
-    <SC.LiveCounterWrapper>
+    <LiveCounterWrapper>
       {TableType.TABLE_TYPE_ENDURANCE === tableType && (
         <>
           <InfoBlock title="Targeting" timeContent={targeting} />
-          <InfoBlock
-            title="Spent Time"
-            timeContent={spentTime > 0 ? spentTime : 0}
-          />
+          <InfoBlock title="Spent Time" timeContent={spentTime > 0 ? spentTime : 0} />
 
           <InfoBlock title="Current Dive" rawContent={currentSet} />
         </>
@@ -57,12 +54,10 @@ export default function LiveCounter(props: LiveCounterProps): JSX.Element {
       )}
 
       {set && mode !== SetMode.SET_MODE_FINISHED && (
-        <InfoBlock
-          title={currentSetHeader}
-          timeContent={countdown}
-          textColor={currentSetColor}
-        />
+        <InfoBlock title={currentSetHeader} timeContent={countdown} textColor={currentSetColor} />
       )}
-    </SC.LiveCounterWrapper>
+    </LiveCounterWrapper>
   );
-}
+};
+
+export default LiveCounter;

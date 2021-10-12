@@ -8,9 +8,4 @@ export interface StoreState {
   crono: ImmutableJSCronoType;
 }
 
-export type StoreThunkAction = ThunkAction<
-  void,
-  StoreState,
-  undefined,
-  AnyAction
->;
+export type StoreThunkAction = ThunkAction<void, StoreState, undefined, AnyAction>;

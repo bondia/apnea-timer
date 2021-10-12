@@ -1,11 +1,7 @@
 import React, { FC } from 'react';
 import { StyleSheet, View } from 'react-native';
 import TextComponent from '../../../common/components/TextComponent';
-import {
-  COLOR_GREEN_NORMAL,
-  COLOR_RED_NORMAL,
-  FONT_COLOR_GREY
-} from '../../../common/styles/commonStyles';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../common/styles/commonStyles';
 import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
 import { SetType } from '../../../editor/enums';
 
@@ -18,21 +14,19 @@ interface Props {
   ended: number;
 }
 
-const SetItemCrono: FC<Props> = (props) => {
+const SetItemCrono: FC<Props> = props => {
   const {
     active = true,
     duration = 0,
     type = SetType.SET_TYPE_PREPARE,
     contraction = -1,
     started = 0,
-    ended = 0
+    ended = 0,
   } = props;
 
-  const spent =
-    started > 0 && ended > 0 ? Math.round((ended - started) / 1000) : 0;
+  const spent = started > 0 && ended > 0 ? Math.round((ended - started) / 1000) : 0;
 
-  let color =
-    type == SetType.SET_TYPE_PREPARE ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
+  let color = type === SetType.SET_TYPE_PREPARE ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
   color = !active ? FONT_COLOR_GREY : color;
 
   const styles = StyleSheet.create({
@@ -41,31 +35,21 @@ const SetItemCrono: FC<Props> = (props) => {
       paddingTop: 25,
       fontSize: 30,
       lineHeight: 30,
-      textAlign: 'center'
+      textAlign: 'center',
     },
     contraction: {
       color: FONT_COLOR_GREY,
       fontSize: 15,
       lineHeight: 15,
-      textAlign: 'center'
-    }
+      textAlign: 'center',
+    },
   });
 
   return (
     <View>
-      <TextComponent style={styles.clock}>
-        {secondsToTimeString(duration)}
-      </TextComponent>
-      {contraction > 0 && (
-        <TextComponent style={styles.contraction}>
-          {secondsToTimeString(contraction)}
-        </TextComponent>
-      )}
-      {spent > 0 && (
-        <TextComponent style={styles.contraction}>
-          {secondsToTimeString(spent)}
-        </TextComponent>
-      )}
+      <TextComponent style={styles.clock}>{secondsToTimeString(duration)}</TextComponent>
+      {contraction > 0 && <TextComponent style={styles.contraction}>{secondsToTimeString(contraction)}</TextComponent>}
+      {spent > 0 && <TextComponent style={styles.contraction}>{secondsToTimeString(spent)}</TextComponent>}
     </View>
   );
 };

@@ -13,29 +13,13 @@ const AppRouter: FC = () => {
   return (
     <NavigationContainer>
       <Navigator initialRouteName={Routes.MENU}>
-        <Screen
-          name={Routes.MENU}
-          component={MainScene}
-          options={{ title: 'Apnea' }}
-        />
+        <Screen name={Routes.MENU} component={MainScene} options={{ title: 'Apnea' }} />
 
-        <Screen
-          name={Routes.CREATE_TABLE_SCENE}
-          component={EditorStaticScene}
-          options={{ title: 'CO2/O2' }}
-        />
+        <Screen name={Routes.CREATE_TABLE_SCENE} component={EditorStaticScene} options={{ title: 'CO2/O2' }} />
 
-        <Screen
-          name={Routes.ENDURANCE_TABLE_SCENE}
-          component={EditorEnduranceScene}
-          options={{ title: 'Endurance' }}
-        />
+        <Screen name={Routes.ENDURANCE_TABLE_SCENE} component={EditorEnduranceScene} options={{ title: 'Endurance' }} />
 
-        <Screen
-          name={Routes.SCHEDULE_SCENE}
-          component={EditorEnduranceScene}
-          options={{ title: 'Schedule' }}
-        />
+        <Screen name={Routes.SCHEDULE_SCENE} component={EditorEnduranceScene} options={{ title: 'Schedule' }} />
 
         <Screen
           name={Routes.CRONO_SCENE}

@@ -1,7 +1,5 @@
 import calculateSetsDuration from '../../../editor/pure/sets/calculateSetsDuration';
-import setTableDurationAction, {
-  SetTableDurationAction
-} from '../actions/setTableDurationAction';
+import setTableDurationAction, { SetTableDurationAction } from '../actions/setTableDurationAction';
 import { CronoSetType } from '../cronoTypes';
 
 /**
@@ -9,9 +7,7 @@ import { CronoSetType } from '../cronoTypes';
  * @param  {[type]} sets [description]
  * @return {[type]}      [description]
  */
-const updateTableDurationBySetsAction = (
-  sets: CronoSetType[]
-): SetTableDurationAction => {
+const updateTableDurationBySetsAction = (sets: CronoSetType[]): SetTableDurationAction => {
   const duration = calculateSetsDuration(sets);
   return setTableDurationAction(duration);
 };

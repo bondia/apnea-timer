@@ -4,13 +4,12 @@ import SceneWrapper from '../../common/components/SceneWrapper';
 import { RootStackParamList, Routes } from '../types/Routes';
 import Menu from './Menu/Menu';
 
-const MainScene: FC<NativeStackScreenProps<RootStackParamList, Routes.MENU>> =
-  () => {
-    return (
-      <SceneWrapper>
-        <Menu />
-      </SceneWrapper>
-    );
-  };
+const MainScene: FC<NativeStackScreenProps<RootStackParamList, Routes.MENU>> = () => {
+  return (
+    <SceneWrapper>
+      <Menu />
+    </SceneWrapper>
+  );
+};
 
 export default MainScene;

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
@@ -6,15 +6,24 @@ import LongTouchButton from '../../../common/components/LongTouchButton';
 import { TableType } from '../../../editor/enums';
 import * as editorActions from '../../../editor/redux/editorActions';
 
+/**
+ * STYLES
+ */
+
+export const ButtonsSetWrapper = styled.View`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+`;
 interface TableBaseInputProps {
   editor: ImmutableJSEditor;
-  editorActions: EditorActions;
+  actions: EditorActions;
 }
 
-function TableTypeInput(props: TableBaseInputProps): JSX.Element {
-  const { editor, editorActions } = props;
+const TableTypeInput: FC<TableBaseInputProps> = props => {
+  const { editor, actions } = props;
 
-  const { changeTableType } = editorActions;
+  const { changeTableType } = actions;
   const type = editor.getIn(['trainingTable', 'type']);
   const base = editor.getIn(['trainingTable', 'base']);
 
@@ -45,7 +54,7 @@ function TableTypeInput(props: TableBaseInputProps): JSX.Element {
       />
     </ButtonsSetWrapper>
   );
-}
+};
 
 /**
  * TYPES
@@ -62,25 +71,15 @@ interface EditorActions {
 }
 
 /**
- * STYLES
- */
-
-export const ButtonsSetWrapper = styled.View`
-  flex: 1;
-  flex-direction: row;
-  align-items: center;
-`;
-
-/**
  * REDUX
  */
 
-const stateToProps = (state) => {
+const stateToProps = state => {
   return { editor: state.editor };
 };
 
-const dispatchToProps = (dispatch) => {
-  return { editorActions: bindActionCreators(editorActions, dispatch) };
+const dispatchToProps = dispatch => {
+  return { actions: bindActionCreators(editorActions, dispatch) };
 };
 
 export default connect(stateToProps, dispatchToProps)(TableTypeInput);
