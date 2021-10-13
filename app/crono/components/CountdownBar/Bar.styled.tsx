@@ -1,12 +1,12 @@
 import styled from 'styled-components/native';
-import { COLOR_GREEN_LIGHT, COLOR_RED_LIGHT, FONT_CLOLR_GREY_LIGHT } from '../../../common/styles/commonStyles';
+import { COLOR_GREEN_LIGHT, COLOR_RED_NORMAL, FONT_CLOLR_GREY_LIGHT } from '../../../common/styles/commonStyles';
 import { SetMode, SetType } from '../../../editor/enums';
 import { ImmutableJSSetType } from '../../redux/cronoTypes';
 
 function decideBackgroundColor(props: SingleBarInnerProps): string {
   const { set } = props;
   const type = set ? set.get('type') : null;
-  return type === SetType.SET_TYPE_HOLD ? COLOR_RED_LIGHT : COLOR_GREEN_LIGHT;
+  return type === SetType.SET_TYPE_HOLD ? COLOR_RED_NORMAL : COLOR_GREEN_LIGHT;
 }
 
 function decideHeight(props: SingleBarInnerProps): number | string {

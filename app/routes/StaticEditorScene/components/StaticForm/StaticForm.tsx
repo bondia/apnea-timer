@@ -1,17 +1,18 @@
 import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import TextComponent from '../../../common/components/TextComponent';
-import StartButton from '../../../editor/components/Common/StartButton';
-import { SetType, TableType } from '../../../editor/enums';
-import * as editorActions from '../../../editor/redux/editorActions';
-import { EditorActionsTypes, ImmutableJSEditorType, ImmutableJSType } from '../../../editor/redux/editorTypes';
-import StaticSetsList from '../StaticSetsList';
+import TextComponent from '../../../../common/components/TextComponent';
+import StaticSetsList from '../../../../editor-static/components/StaticSetsList';
+import StartButton from '../../../../editor/components/Common/StartButton';
+import { SetType, TableType } from '../../../../editor/enums';
+import * as editorActions from '../../../../editor/redux/editorActions';
+import { EditorActionsTypes, ImmutableJSEditorStateType, ImmutableJSType } from '../../../../editor/redux/editorTypes';
+import { StoreState } from '../../../../main/redux/types';
 import * as SC from './StaticForm.styled';
 import StaticMainForm from './StaticMainForm';
 
 interface StaticFormProps {
-  editor: ImmutableJSEditorType;
+  editor: ImmutableJSEditorStateType;
   actions: EditorActionsTypes;
 }
 
@@ -20,7 +21,7 @@ const StaticForm: FC<StaticFormProps> = props => {
   const { changeTableType } = actions;
 
   useEffect(() => {
-    changeTableType(120, TableType.TABLE_TYPE_O2);
+    changeTableType(120, TableType.TABLE_TYPE_CO2);
   }, [changeTableType]);
 
   if (editor === null) {
@@ -62,7 +63,7 @@ const StaticForm: FC<StaticFormProps> = props => {
 
 // REDUX
 
-const stateToProps = state => {
+const stateToProps = (state: StoreState) => {
   return {
     editor: state.editor,
   };

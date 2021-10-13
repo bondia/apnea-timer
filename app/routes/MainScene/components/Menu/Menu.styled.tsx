@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
-import { FONT_COLOR_LIGHT } from '../../../common/styles/commonStyles';
+import { FONT_COLOR_LIGHT } from '../../../../common/styles/commonStyles';
 
 export const MenuWrapper = styled.ScrollView`
   flex: 1;
@@ -9,11 +9,12 @@ export const MenuWrapper = styled.ScrollView`
 interface ActionAreaProps {
   color: string;
 }
+
 export const ActionArea = styled.TouchableHighlight<ActionAreaProps>`
   flex: 1;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.color};
+  background-color: ${(props: ActionAreaProps) => props.color};
   min-height: 250px;
 `;
 
