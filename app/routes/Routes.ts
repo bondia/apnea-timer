@@ -1,4 +1,4 @@
-import { EditorStateType } from '../../editor/redux/editorTypes';
+import { EditorStateType } from '../editor/redux/editorTypes';
 
 export enum Routes {
   MENU = 'MENU',

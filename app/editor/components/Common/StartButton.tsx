@@ -3,7 +3,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import styled from 'styled-components/native';
 import LongTouchButton from '../../../common/components/LongTouchButton';
-import { Routes } from '../../../main/types/Routes';
+import { Routes } from '../../../routes/Routes';
 import { ImmutableJSEditorStateType } from '../../redux/editorTypes';
 
 const ButtonContainer = styled.View`

@@ -2,8 +2,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import CronoScene from './crono/components/CronoScene';
-import { Routes } from './main/types/Routes';
 import MainScene from './routes/MainScene/MainScene';
+import { Routes } from './routes/Routes';
 import EditorStaticScene from './routes/StaticEditorScene/StaticEditorScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();

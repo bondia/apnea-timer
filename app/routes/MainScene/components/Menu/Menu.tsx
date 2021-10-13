@@ -2,7 +2,7 @@ import { ParamListBase, useNavigation } from '@react-navigation/core';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC, useCallback } from 'react';
 import { COLOR_LIGHT } from '../../../../common/styles/commonStyles';
-import { Routes } from '../../../../main/types/Routes';
+import { Routes } from '../../../Routes';
 import { MenuWrapper } from './Menu.styled';
 import MenuItem from './MenuItem';
 
