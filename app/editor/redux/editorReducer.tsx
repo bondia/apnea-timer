@@ -1,4 +1,4 @@
-import * as reduxActions from '../../main/enums/reduxActions';
+import * as reduxActions from '../../redux/actions';
 import { ImmutableJSEditorType } from './editorTypes';
 
 export default function editorReducer(state = null, action): ImmutableJSEditorType {

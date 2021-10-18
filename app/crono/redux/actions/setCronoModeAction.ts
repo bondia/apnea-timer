@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { CronoMode } from '../../../editor/enums';
-import * as reduxActions from '../../../main/enums/reduxActions';
+import * as reduxActions from '../../../redux/actions';
 
 interface SetCronoModeAction extends Action {
   mode: CronoMode;

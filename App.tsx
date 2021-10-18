@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';
-import initReducers from './app/main/redux/reducers';
+import initReducers from './app/redux/reducers';
 // import devTools from 'remote-redux-devtools';
 import Router from './app/Router';
 

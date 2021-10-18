@@ -2,12 +2,16 @@ import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import TextComponent from '../../../../common/components/TextComponent';
-import StaticSetsList from '../../../../editor-static/components/StaticSetsList';
 import StartButton from '../../../../editor/components/Common/StartButton';
 import { SetType, TableType } from '../../../../editor/enums';
 import * as editorActions from '../../../../editor/redux/editorActions';
-import { EditorActionsTypes, ImmutableJSEditorStateType, ImmutableJSType } from '../../../../editor/redux/editorTypes';
-import { StoreState } from '../../../../main/redux/types';
+import {
+  EditorActionsTypes,
+  ImmutableJSEditorSetType,
+  ImmutableJSEditorStateType,
+} from '../../../../editor/redux/editorTypes';
+import { StoreState } from '../../../../redux/types';
+import StaticSetsList from '../StaticSetsList/StaticSetsList';
 import * as SC from './StaticForm.styled';
 import StaticMainForm from './StaticMainForm';
 
@@ -30,7 +34,7 @@ const StaticForm: FC<StaticFormProps> = props => {
 
   // filter sets by table type
   const tableType = editor.getIn(['trainingTable', 'type']);
-  const sets = editor.getIn(['sets']).filter((set: ImmutableJSType) => {
+  const sets = editor.getIn(['sets']).filter((set: ImmutableJSEditorSetType) => {
     const setType = set.get('type');
     let isValid = false;
     isValid = (tableType === TableType.TABLE_TYPE_CO2 && setType === SetType.SET_TYPE_PREPARE) || isValid;

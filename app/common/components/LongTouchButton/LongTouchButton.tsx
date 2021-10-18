@@ -1,5 +1,5 @@
-import React from 'react';
-import { StyleProp, TextStyle, TouchableHighlight } from 'react-native';
+import React, { FC } from 'react';
+import { TouchableHighlight } from 'react-native';
 import * as SC from './LongTouchButton.styled';
 import useLongTouchHandling from './useLongTouchHandling';
 
@@ -7,7 +7,6 @@ interface LongTouchButtonProps {
   title?: string;
   active?: boolean;
   enabled?: boolean;
-  style?: StyleProp<TextStyle>;
   onPressStart?: () => void;
   onShortPressEnd?: () => void;
   onLongPressStart?: () => void;
@@ -16,13 +15,12 @@ interface LongTouchButtonProps {
   pressIntervalRefresh?: number;
 }
 
-export default function LongTouchButton(props: LongTouchButtonProps): JSX.Element {
+const LongTouchButton: FC<LongTouchButtonProps> = props => {
   // default props
   const {
     title = '-- --',
     active = false,
     enabled = true,
-    style = undefined,
     onPressStart,
     onShortPressEnd,
     onLongPressStart,
@@ -56,4 +54,6 @@ export default function LongTouchButton(props: LongTouchButtonProps): JSX.Elemen
       </TouchableHighlight>
     </SC.LongTouchButtonContainer>
   );
-}
+};
+
+export default LongTouchButton;

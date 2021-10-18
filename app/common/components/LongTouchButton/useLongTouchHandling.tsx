@@ -21,14 +21,6 @@ interface UseLongTouchHandlingOutput {
   onPressOut: (event: GestureResponderEvent) => void;
 }
 
-interface UpdateIntervalInput {
-  enabled: boolean;
-  isLongPressed: boolean;
-  onLongPressStart: () => void;
-  onPressInterval: () => void;
-  pressIntervalRefresh: number;
-}
-
 /**
  * Hanlde Press start
  * - Notify touch start if active

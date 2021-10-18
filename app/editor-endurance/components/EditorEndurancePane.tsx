@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
 import StartButton from '../../editor/components/Common/StartButton';
 import * as editorActions from '../../editor/redux/editorActions';
-import { EditorActionsTypes, ImmutableJSEditorType, ImmutableJSType } from '../../editor/redux/editorTypes';
+import { EditorActionsTypes, ImmutableJSEditorSetType, ImmutableJSEditorType } from '../../editor/redux/editorTypes';
 import EnduranceForm from './EnduranceForm';
 
 // STYLES
@@ -30,7 +30,7 @@ function EditorEndurancePane(props: EditorEnudrancePaneProps): JSX.Element {
     return null;
   }
 
-  const crono = editor.update('sets', (sets: ImmutableJSType[]) => sets.filter(s => !s.get('zombie')));
+  const crono = editor.update('sets', (sets: ImmutableJSEditorSetType[]) => sets.filter(s => !s.get('zombie')));
 
   return (
     <Wrapper>

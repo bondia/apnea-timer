@@ -47,12 +47,11 @@ export interface ImmutableJSType {
   get: (prop: string) => any;
   getIn: (stack: string[]) => any;
   update: (stack: string[] | string, cb: (data: any) => any) => any;
-}
-
-export interface ImmutableJSEditorStateType extends ImmutableJSType {
   toJS: () => EditorStateType;
 }
 
-export interface ImmutableJSEditorType extends ImmutableJSType {
-  toJS: () => TableType;
-}
+export type ImmutableJSEditorStateType = ImmutableJSType;
+
+export type ImmutableJSEditorType = ImmutableJSType;
+
+export interface ImmutableJSEditorSetType extends TableSetType, ImmutableJSType {}

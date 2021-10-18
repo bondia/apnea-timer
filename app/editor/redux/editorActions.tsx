@@ -1,10 +1,10 @@
-import * as reduxActions from '../../main/enums/reduxActions';
+import * as reduxActions from '../../redux/actions';
 import { TableType } from '../enums';
 import createTable from '../pure/createTable';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
-import { ImmutableJSType } from './editorTypes';
+import { ImmutableJSEditorSetType } from './editorTypes';
 
 function setInitialState(state) {
   return { type: reduxActions.EDITOR_SET_INITIAL_STATE, state };
@@ -124,7 +124,7 @@ function changeTimeItem(key: number, amount: number) {
     const { editor } = getState();
 
     // find item
-    const item = editor.getIn(['sets']).find((set: ImmutableJSType) => set.get('pos') === key);
+    const item = editor.getIn(['sets']).find((set: ImmutableJSEditorSetType) => set.get('pos') === key);
 
     if (!item) {
       return;

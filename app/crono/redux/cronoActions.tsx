@@ -2,7 +2,7 @@ import Immutable from 'immutable';
 import { Action } from 'redux';
 import generateTimestamp from '../../common/utils/time/generateTimestamp';
 import { CronoMode, SetMode } from '../../editor/enums';
-import { StoreThunkAction } from '../../main/redux/types';
+import { StoreThunkAction } from '../../redux/types';
 import decideCurrentSet from '../pure/decideCurrentSet';
 import setCronoModeAction from './actions/setCronoModeAction';
 import setCronoStartTimestampAction from './actions/setCronoStartTimestampAction';
@@ -21,8 +21,6 @@ const timerRefresh = 200;
 
 const handleTick = (): StoreThunkAction => {
   return (dispatch, getState): void => {
-    console.info('HANDLE TICK');
-
     let { crono } = getState();
 
     // current timestamp
@@ -90,8 +88,6 @@ export type SkipSetType = (key: number) => StoreThunkAction;
 
 const skipSet: SkipSetType = (key: number) => {
   return (dispatch, getState) => {
-    console.info('SKIPSET', key);
-
     // current timestamp
     const currentTimestamp = generateTimestamp();
 

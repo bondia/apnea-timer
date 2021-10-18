@@ -1,6 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import Immutable from 'immutable';
+import { debounce } from 'lodash';
 import { useCallback } from 'react';
 import { CronoMode, SetType, TableType } from '../../../editor/enums';
 import findRunningSet from '../../pure/findRunningSet';
@@ -77,9 +78,17 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
   const current: CronoSetType = findRunningSet(sets);
   const immutableCurrentSet = Immutable.fromJS(current);
 
-  const skip = useCallback(() => {
-    handleSkip(cronoActions, immutableCurrentSet);
-  }, [cronoActions, immutableCurrentSet]);
+  const skip = useCallback((actions: CronoActionsTypes, set: any) => {
+    handleSkip(actions, set);
+  }, []);
+
+  const deubuncedSkip = useCallback(
+    debounce(skip, 500, {
+      leading: true,
+      trailing: false,
+    }),
+    [skip],
+  );
 
   return {
     clock,
@@ -88,7 +97,7 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
     canTrackContractions: (): boolean => canTrackContractions(crono, immutableCurrentSet),
     handleStartAuto: (): void => handleStartAuto(cronoActions),
     handleStartCoach: (): void => handleStartCoach(cronoActions),
-    handleSkip: skip,
+    handleSkip: () => deubuncedSkip(cronoActions, immutableCurrentSet),
     handleContraction: (): void => handleContraction(cronoActions),
     handleFinish: (): void => handleFinish(cronoActions, navigation),
   };

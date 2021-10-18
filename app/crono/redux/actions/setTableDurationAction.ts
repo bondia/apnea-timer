@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import * as reduxActions from '../../../main/enums/reduxActions';
+import * as reduxActions from '../../../redux/actions';
 
 export interface SetTableDurationAction extends Action {
   duration: number;
