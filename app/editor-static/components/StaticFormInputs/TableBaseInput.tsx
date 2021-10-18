@@ -29,12 +29,12 @@ function TableBaseInput(props: TableBaseInputProps): JSX.Element {
     <ButtonsSet>
       <LongTouchButton
         title="-"
-        onPressStart={() => changeTableBase(base - 1)}
+        onPressStart={() => changeTableBase(base - 5)}
         onPressInterval={() => changeTableBase(base - 5)}
       />
       <LongTouchButton
         title="+"
-        onPressStart={() => changeTableBase(base + 1)}
+        onPressStart={() => changeTableBase(base + 5)}
         onPressInterval={() => changeTableBase(base + 5)}
       />
     </ButtonsSet>

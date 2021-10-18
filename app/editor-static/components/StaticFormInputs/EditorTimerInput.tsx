@@ -51,7 +51,7 @@ const EditorTimerInput: FC<EditorTimerInputProps> = props => {
       <SC.ButtonWrapper>
         <LongTouchButton
           title="-"
-          onPressStart={() => actions.decreaseTimeItem(index, 1)}
+          onPressStart={() => actions.decreaseTimeItem(index, 5)}
           onPressInterval={() => actions.decreaseTimeItem(index, 5)}
         />
       </SC.ButtonWrapper>
@@ -63,7 +63,7 @@ const EditorTimerInput: FC<EditorTimerInputProps> = props => {
       <SC.ButtonWrapper>
         <LongTouchButton
           title="+"
-          onPressStart={() => actions.increaseTimeItem(index, 1)}
+          onPressStart={() => actions.increaseTimeItem(index, 5)}
           onPressInterval={() => actions.increaseTimeItem(index, 5)}
         />
       </SC.ButtonWrapper>
