@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC } from 'react';
 import CronoScene from './crono/components/CronoScene';
 import MainScene from './routes/Main/MainScene';
@@ -9,6 +10,7 @@ import EditorStaticScene from './routes/StaticEditor/StaticEditorScene';
 const { Navigator, Screen } = createNativeStackNavigator();
 
 const AppRouter: FC = () => {
+  deactivateKeepAwake();
   return (
     <NavigationContainer>
       <Navigator initialRouteName={Routes.MENU}>

@@ -1,4 +1,5 @@
-import React, { FC } from 'react';
+import { deactivateKeepAwake } from 'expo-keep-awake';
+import React, { FC, useEffect } from 'react';
 import { Provider } from 'react-redux';
 import { applyMiddleware, compose, createStore } from 'redux';
 import thunk from 'redux-thunk';

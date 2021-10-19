@@ -1,4 +1,5 @@
 // import KeepAwake from 'react-native-keep-awake';
+import { activateKeepAwake, deactivateKeepAwake, useKeepAwake } from 'expo-keep-awake';
 import Immutable from 'immutable';
 import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -47,16 +48,14 @@ const CronoPane: FC<CoronoPaneProps> = props => {
   const { crono, initialData, actions } = props;
 
   useEffect(() => {
+    console.info('init');
     if (crono === null) {
       actions.initTable(initialData);
     }
-    // TODO: Keep awake not working
-    // KeepAwake.activate();
-
+    activateKeepAwake();
     return () => {
-      // KeepAwake.deactivate();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+      deactivateKeepAwake();
+    }
   }, []);
 
   if (crono === null || crono.get('sets').size <= 0) {
