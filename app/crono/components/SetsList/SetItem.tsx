@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import generateTimestamp from '../../../common/utils/time/generateTimestamp';
 import { SetMode } from '../../../editor/enums';
-import { ImmutableJSSetType } from '../../redux/cronoTypes';
-import Crono from './SetItemCrono';
+import { ImmutableJSSetType } from '../../redux/CronoTypes';
+import SetItemCrono from './SetItemCrono';
 import * as SC from './SetsList.styled';
 
 interface Props {
@@ -22,7 +22,7 @@ const SetItem: FC<Props> = props => {
   const ended = active ? currentTimestamp : endTimestamp;
   return (
     <SC.SetItemWrapper>
-      <Crono
+      <SetItemCrono
         active={active}
         type={type}
         duration={countdown}

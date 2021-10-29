@@ -7,5 +7,6 @@ export const SetsWrapper = styled.View`
 `;
 
 export const SetItemWrapper = styled.View`
-  width: 33%;
+  width: 25%;
+  padding: 2px 0;
 `;

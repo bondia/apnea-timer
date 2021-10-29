@@ -3,14 +3,14 @@ import styled from 'styled-components/native';
 import InfoBlock from '../../../common/components/InfoBlock';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../common/styles/commonStyles';
 import { SetMode, SetType, TableType } from '../../../editor/enums';
-import { ImmutableJSCronoType, ImmutableJSSetType } from '../../redux/cronoTypes';
+import { ImmutableJSCronoType, ImmutableJSSetType } from '../../redux/CronoTypes';
 
 const LiveCounterWrapper = styled.View`
-  flex: 2;
+  flex: 1;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  align-items: center;
+  align-content: center;
 `;
 
 interface LiveCounterProps {
@@ -41,7 +41,6 @@ const LiveCounter: FC<LiveCounterProps> = props => {
         <>
           <InfoBlock title="Targeting" timeContent={targeting} />
           <InfoBlock title="Spent Time" timeContent={spentTime > 0 ? spentTime : 0} />
-
           <InfoBlock title="Current Dive" rawContent={currentSet} />
         </>
       )}

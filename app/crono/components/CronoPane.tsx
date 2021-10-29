@@ -1,5 +1,5 @@
 // import KeepAwake from 'react-native-keep-awake';
-import { activateKeepAwake, deactivateKeepAwake, useKeepAwake } from 'expo-keep-awake';
+import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import Immutable from 'immutable';
 import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
@@ -8,7 +8,7 @@ import styled from 'styled-components/native';
 import { EditorStateType } from '../../editor/redux/editorTypes';
 import findRunningSet from '../pure/findRunningSet';
 import { cronoActions } from '../redux/cronoActions';
-import { CronoActionsTypes, CronoSetType, ImmutableJSCronoType } from '../redux/cronoTypes';
+import { CronoActionsTypes, CronoSetType, ImmutableJSCronoType } from '../redux/CronoTypes';
 import CronoButtonsSet from './ActionButtonsSet';
 import MultipleBar from './CountdownBar/MultipleBar';
 import SingleBar from './CountdownBar/SingleBar';
@@ -36,7 +36,7 @@ const ContentWrapper = styled.View`
 `;
 
 const SetsWrapper = styled.View`
-  flex: 5;
+  flex: 1;
 `;
 interface CoronoPaneProps {
   initialData: EditorStateType;
@@ -48,15 +48,12 @@ const CronoPane: FC<CoronoPaneProps> = props => {
   const { crono, initialData, actions } = props;
 
   useEffect(() => {
-    console.info('init');
     if (crono === null) {
       actions.initTable(initialData);
     }
     activateKeepAwake();
-    return () => {
-      deactivateKeepAwake();
-    }
-  }, []);
+    return () => deactivateKeepAwake();
+  }, [actions, crono, initialData]);
 
   if (crono === null || crono.get('sets').size <= 0) {
     return null;

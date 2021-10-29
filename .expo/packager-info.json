@@ -4,6 +4,6 @@
   "packagerNgrokUrl": "https://packager.9t-92i.anonymous.apnea-timer.exp.direct",
   "ngrokPid": 9741,
   "devToolsPort": 19002,
-  "packagerPort": 19003,
-  "packagerPid": 9728
+  "packagerPort": 19000,
+  "packagerPid": null
 }

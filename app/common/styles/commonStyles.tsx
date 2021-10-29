@@ -4,6 +4,7 @@ export const FONT_COLOR_LIGHT = 'azure';
 
 export const FONT_SIZE_M = 20;
 export const FONT_SIZE_L = 30;
+export const FONT_SIZE_XL = 40;
 
 export const FONT_COLOR_GREY = '#a8a8a8';
 export const FONT_CLOLR_GREY_LIGHT = '#e6e6e6';
