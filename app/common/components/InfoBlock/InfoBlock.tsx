@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { TextStyle } from 'react-native';
+import { COLOR_LIGHT, FONT_SIZE } from '../../styles/commonStyles';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
 import TextComponent from '../TextComponent';
 import * as SC from './InfoBlock.styled';
@@ -9,13 +10,16 @@ interface InfoBlockProps {
   timeContent?: number;
   rawContent?: number | string;
   textColor?: string;
+  textSize?: FONT_SIZE;
 }
-export default function InfoBlock(props: InfoBlockProps): JSX.Element {
-  const { title, timeContent, rawContent, textColor } = props;
+
+const InfoBlock: FC<InfoBlockProps> = props => {
+  const { title, timeContent, rawContent, textColor = COLOR_LIGHT, textSize = FONT_SIZE.FONT_SIZE_L } = props;
 
   const styles: TextStyle = textColor
-    ? { ...SC.baseStyles.headerText, ...{ color: textColor } }
+    ? { ...SC.baseStyles.headerText, ...{ color: textColor, fontSize: textSize } }
     : SC.baseStyles.headerText;
+
   return (
     <SC.BlockWrapper>
       <TextComponent style={SC.baseStyles.headerLabel}>{title}</TextComponent>
@@ -24,4 +28,6 @@ export default function InfoBlock(props: InfoBlockProps): JSX.Element {
       </TextComponent>
     </SC.BlockWrapper>
   );
-}
+};
+
+export default InfoBlock;

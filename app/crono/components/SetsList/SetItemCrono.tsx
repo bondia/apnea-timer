@@ -6,29 +6,32 @@ import secondsToTimeString from '../../../common/utils/time/secondsToTimeString'
 import { SetType } from '../../../editor/enums';
 
 const useStyles = (type: SetType, active: boolean) => {
-  const mainColor = useMemo(() => (type === SetType.SET_TYPE_PREPARE ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL), [type]);
   return useMemo(() => {
+    const mainColor = type === SetType.SET_TYPE_PREPARE ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
     return StyleSheet.create({
+      wrapper: {
+        minHeight: 60,
+      },
       clock: {
         color: active ? mainColor : FONT_COLOR_GREY,
-        fontSize: 25,
-        lineHeight: 28,
+        fontSize: 22,
+        lineHeight: 24,
         textAlign: 'center',
       },
       result: {
         color: !active ? mainColor : FONT_COLOR_GREY,
-        fontSize: 15,
-        lineHeight: 18,
+        fontSize: 14,
+        lineHeight: 16,
         textAlign: 'center',
       },
       contraction: {
         color: FONT_COLOR_GREY,
-        fontSize: 15,
-        lineHeight: 18,
+        fontSize: 14,
+        lineHeight: 16,
         textAlign: 'center',
       },
     });
-  }, [active, mainColor]);
+  }, [active, type]);
 };
 
 interface Props {
@@ -57,7 +60,7 @@ const SetItemCrono: FC<Props> = props => {
   const contractionsCopy = useMemo(() => secondsToTimeString(contraction), [contraction]);
 
   return (
-    <View>
+    <View style={styles.wrapper}>
       <TextComponent style={styles.clock}>{durationCopy}</TextComponent>
       {spent > 0 && <TextComponent style={styles.result}>{spentCopy}</TextComponent>}
       {contraction > 0 && <TextComponent style={styles.contraction}>{contractionsCopy}</TextComponent>}

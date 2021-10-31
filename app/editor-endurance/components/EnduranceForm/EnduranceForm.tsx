@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import LongTouchButton from '../../../common/components/LongTouchButton';
 import TextComponent from '../../../common/components/TextComponent';
-import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE_L } from '../../../common/styles/commonStyles';
+import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../common/styles/commonStyles';
 import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
 import * as editorActions from '../../../editor/redux/editorActions';
 import { EditorActionsTypes, ImmutableJSEditorType } from '../../../editor/redux/editorTypes';
@@ -42,7 +42,7 @@ const baseStyles = StyleSheet.create({
 
   headerText: {
     textAlign: 'center',
-    fontSize: FONT_SIZE_L,
+    fontSize: FONT_SIZE.FONT_SIZE_L,
     color: COLOR_LIGHT,
     flex: 2,
     paddingTop: 20,

@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import * as reduxActions from '../../../redux/actions';
-import { ImmutableJSCronoType } from '../cronoTypes';
+import { ImmutableJSCronoType } from '../CronoTypes';
 
 export interface InitialStateAction extends Action {
   state: ImmutableJSCronoType;

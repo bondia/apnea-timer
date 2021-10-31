@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { ImmutableJSCronoType } from '../crono/redux/cronoTypes';
+import { ImmutableJSCronoType } from '../crono/redux/CronoTypes';
 import { ImmutableJSEditorStateType } from '../editor/redux/editorTypes';
 
 export interface StoreState {

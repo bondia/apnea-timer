@@ -10,7 +10,7 @@ import setInitialStateAction from './actions/setInitialStateAction';
 import initTableAction from './creators/initTableAction';
 import trackContractionAction from './creators/trackContractionAction';
 import updateTableDurationBySetsAction from './creators/updateTableDurationBySetsAction';
-import { CronoActionsTypes, CronoStateType } from './cronoTypes';
+import { CronoActionsTypes, CronoStateType } from './CronoTypes';
 
 /**
  * Handle clock tics

@@ -13,7 +13,7 @@ const AppRouter: FC = () => {
   deactivateKeepAwake();
   return (
     <NavigationContainer>
-      <Navigator initialRouteName={Routes.MENU}>
+      <Navigator initialRouteName={Routes.MENU} screenOptions={{ headerShown: false }}>
         <Screen name={Routes.MENU} component={MainScene} options={{ title: 'Apnea' }} />
         <Screen name={Routes.CREATE_TABLE_SCENE} component={EditorStaticScene} options={{ title: 'CO2/O2' }} />
         {/* <Screen name={Routes.ENDURANCE_TABLE_SCENE} component={EditorEnduranceScene} options={{ title: 'Endurance' }} /> */}

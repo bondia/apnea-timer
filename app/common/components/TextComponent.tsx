@@ -9,7 +9,7 @@ interface TextComponentProps {
 
 const styles = StyleSheet.create({
   text: {
-    fontSize: common.FONT_SIZE_M,
+    fontSize: common.FONT_SIZE.FONT_SIZE_M,
     fontFamily: common.FONT_FAMILY,
   },
 });

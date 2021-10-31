@@ -1,4 +1,3 @@
-// import KeepAwake from 'react-native-keep-awake';
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import Immutable from 'immutable';
 import React, { FC, useEffect } from 'react';
@@ -27,7 +26,6 @@ const PaneWrapper = styled.View`
 const CountersWrapper = styled.View`
   flex: 1;
   flex-direction: row;
-  margin-top: 35px;
   margin-bottom: 10px;
 `;
 
@@ -36,7 +34,7 @@ const ContentWrapper = styled.View`
 `;
 
 const SetsWrapper = styled.View`
-  flex: 1;
+  flex: 1 0 0;
 `;
 interface CoronoPaneProps {
   initialData: EditorStateType;
