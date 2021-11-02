@@ -29,9 +29,9 @@ const LiveCounter: FC<LiveCounterProps> = props => {
   // set data
   const setType = set ? set.get('type') : null;
   const mode = set ? set.getIn(['running', 'mode']) : null;
-  const startTimestamp = set.getIn(['running', 'startTimestamp']);
+  const startTimestamp = set ? set.getIn(['running', 'startTimestamp']) : null;
   const currentTimestamp = generateTimestamp();
-  const endTimestamp = set.getIn(['running', 'endTimestamp']) || currentTimestamp;
+  const endTimestamp = set ? set.getIn(['running', 'endTimestamp']) || currentTimestamp : currentTimestamp;
   const spent = useMemo(
     () => (startTimestamp > 0 && endTimestamp > 0 ? Math.round((endTimestamp - startTimestamp) / 1000) : 0),
     [startTimestamp, endTimestamp],
