@@ -4,7 +4,6 @@
     "name": "Apnea Timer",
     "slug": "apnea-timer",
     "privacy": "public",
-    "sdkVersion": "42.0.0",
     "userInterfaceStyle": "light",
     "platforms": [
       "ios",
