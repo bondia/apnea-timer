@@ -2,12 +2,12 @@ import React, { FC } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LongTouchButton from '../../../common/components/LongTouchButton';
-import TextComponent from '../../../common/components/TextComponent';
-import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../common/styles/commonStyles';
-import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
-import * as editorActions from '../../../editor/redux/editorActions';
-import { EditorActionsTypes, ImmutableJSEditorType } from '../../../editor/redux/editorTypes';
+import LongTouchButton from '../../../../common/components/LongTouchButton';
+import TextComponent from '../../../../common/components/TextComponent';
+import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../../common/styles/commonStyles';
+import secondsToTimeString from '../../../../common/utils/time/secondsToTimeString';
+import * as editorActions from '../../../../editor/redux/editorActions';
+import { EditorActionsTypes, ImmutableJSEditorType } from '../../../../editor/redux/editorTypes';
 import * as SC from './EnduranceForm.styled';
 
 /**

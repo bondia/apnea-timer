@@ -14,7 +14,7 @@ export enum Routes {
 export type RootStackParamList = {
   [Routes.MENU]: undefined;
   [Routes.CREATE_TABLE_SCENE]: undefined;
-  [Routes.CRONO_SCENE]: { initialData: EditorStateType };
   [Routes.ENDURANCE_TABLE_SCENE]: undefined;
+  [Routes.CRONO_SCENE]: { initialData: EditorStateType };
   // [Routes.SCHEDULE_SCENE]: undefined;
 };

@@ -1,18 +1,17 @@
 import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import styled from 'styled-components/native';
-import StartButton from '../../editor/components/Common/StartButton';
-import * as editorActions from '../../editor/redux/editorActions';
-import { EditorActionsTypes, ImmutableJSEditorSetType, ImmutableJSEditorType } from '../../editor/redux/editorTypes';
-import { StoreState } from '../../redux/types';
-import EnduranceForm from './EnduranceForm';
+import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
+import * as editorActions from '../../../../editor/redux/editorActions';
+import {
+  EditorActionsTypes,
+  ImmutableJSEditorSetType,
+  ImmutableJSEditorType,
+} from '../../../../editor/redux/editorTypes';
+import { StoreState } from '../../../../redux/types';
+import { Wrapper } from './EnduranceForm.styled';
+import EnduranceMainForm from './EnduranceMainForm';
 
-// STYLES
-export const Wrapper = styled.View`
-  flex: 1;
-  padding: 10px;
-`;
 interface EditorEnudrancePaneProps {
   editor: ImmutableJSEditorType;
   actions: EditorActionsTypes;
@@ -23,10 +22,8 @@ const EditorEndurancePane: FC<EditorEnudrancePaneProps> = (props: EditorEnudranc
   const { createEnduranceTable } = actions;
 
   useEffect(() => {
-    if (editor === null) {
-      createEnduranceTable(35, 35, 8);
-    }
-  }, [editor, createEnduranceTable]);
+    createEnduranceTable(35, 35, 8);
+  }, [createEnduranceTable]);
 
   if (editor === null) {
     return null;
@@ -36,8 +33,8 @@ const EditorEndurancePane: FC<EditorEnudrancePaneProps> = (props: EditorEnudranc
 
   return (
     <Wrapper>
-      <EnduranceForm editor={editor} actions={actions} />
-      <StartButton data={crono} />
+      <EnduranceMainForm editor={editor} actions={actions} />
+      <CronoStartButton data={crono} />
     </Wrapper>
   );
 };

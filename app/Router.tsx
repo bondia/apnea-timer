@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC } from 'react';
 import CronoScene from './crono/components/CronoScene';
-import EditorEnduranceScene from './editor-endurance/components/EditorEnduranceScene';
+import EditorEnduranceScene from './routes/EnduranceEditor/EditorEnduranceScene';
 import MainScene from './routes/Main/MainScene';
 import MouthfillScene from './routes/Mouthfill/MouthfillScene';
 import { Routes } from './routes/Routes';
@@ -21,8 +21,10 @@ const AppRouter: FC = () => {
 
         {/* Create tables */}
         <Screen name={Routes.CREATE_TABLE_SCENE} component={EditorStaticScene} options={{ title: 'CO2/O2' }} />
-        <Screen name={Routes.CRONO_SCENE} component={CronoScene} options={{ title: 'Crono', headerShown: false }} />
         <Screen name={Routes.ENDURANCE_TABLE_SCENE} component={EditorEnduranceScene} options={{ title: 'Endurance' }} />
+
+        {/* Crono */}
+        <Screen name={Routes.CRONO_SCENE} component={CronoScene} options={{ title: 'Crono', headerShown: false }} />
 
         {/* Utils */}
         <Screen name={Routes.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
