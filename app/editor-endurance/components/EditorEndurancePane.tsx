@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
 import StartButton from '../../editor/components/Common/StartButton';
 import * as editorActions from '../../editor/redux/editorActions';
 import { EditorActionsTypes, ImmutableJSEditorSetType, ImmutableJSEditorType } from '../../editor/redux/editorTypes';
+import { StoreState } from '../../redux/types';
 import EnduranceForm from './EnduranceForm';
 
 // STYLES
@@ -17,14 +18,15 @@ interface EditorEnudrancePaneProps {
   actions: EditorActionsTypes;
 }
 
-function EditorEndurancePane(props: EditorEnudrancePaneProps): JSX.Element {
+const EditorEndurancePane: FC<EditorEnudrancePaneProps> = (props: EditorEnudrancePaneProps) => {
   const { editor, actions } = props;
+  const { createEnduranceTable } = actions;
 
   useEffect(() => {
     if (editor === null) {
-      actions.createEnduranceTable(35, 35, 8);
+      createEnduranceTable(35, 35, 8);
     }
-  }, [editor, actions]);
+  }, [editor, createEnduranceTable]);
 
   if (editor === null) {
     return null;
@@ -34,15 +36,15 @@ function EditorEndurancePane(props: EditorEnudrancePaneProps): JSX.Element {
 
   return (
     <Wrapper>
-      <EnduranceForm editor={editor} actions={undefined} />
+      <EnduranceForm editor={editor} actions={actions} />
       <StartButton data={crono} />
     </Wrapper>
   );
-}
+};
 
 // REDUX
 
-const stateToProps = state => {
+const stateToProps = (state: StoreState) => {
   return {
     editor: state.editor,
   };

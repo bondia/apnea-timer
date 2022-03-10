@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC } from 'react';
 import CronoScene from './crono/components/CronoScene';
+import EditorEnduranceScene from './editor-endurance/components/EditorEnduranceScene';
 import MainScene from './routes/Main/MainScene';
 import MouthfillScene from './routes/Mouthfill/MouthfillScene';
 import { Routes } from './routes/Routes';
@@ -15,15 +16,16 @@ const AppRouter: FC = () => {
   return (
     <NavigationContainer>
       <Navigator initialRouteName={Routes.MENU} screenOptions={{ headerShown: false }}>
-        {/* MAIN */}
+        {/* Main */}
         <Screen name={Routes.MENU} component={MainScene} options={{ title: 'Apnea' }} />
-        {/* TABLES */}
+
+        {/* Create tables */}
         <Screen name={Routes.CREATE_TABLE_SCENE} component={EditorStaticScene} options={{ title: 'CO2/O2' }} />
         <Screen name={Routes.CRONO_SCENE} component={CronoScene} options={{ title: 'Crono', headerShown: false }} />
-        {/* UTILS */}
-        <Screen name={Routes.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
+        <Screen name={Routes.ENDURANCE_TABLE_SCENE} component={EditorEnduranceScene} options={{ title: 'Endurance' }} />
 
-        {/* <Screen name={Routes.ENDURANCE_TABLE_SCENE} component={EditorEnduranceScene} options={{ title: 'Endurance' }} /> */}
+        {/* Utils */}
+        <Screen name={Routes.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
         {/* <Screen name={Routes.SCHEDULE_SCENE} component={EditorEnduranceScene} options={{ title: 'Schedule' }} /> */}
       </Navigator>
     </NavigationContainer>

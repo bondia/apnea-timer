@@ -52,9 +52,9 @@ const StaticForm: FC<StaticFormProps> = props => {
 
       <SC.SetsListWrapper fullHeight={!showStartButton}>
         <TextComponent style={SC.baseStyles.label}>
-          {TableType.TABLE_TYPE_CO2 === tableType ? 'Breath Up' : ''}
-          {TableType.TABLE_TYPE_O2 === tableType ? 'Breath Hold' : ''}
-          {TableType.TABLE_TYPE_FREE === tableType ? 'Sets' : ''}
+          {TableType.TABLE_TYPE_CO2 === tableType && 'Breath Up'}
+          {TableType.TABLE_TYPE_O2 === tableType && 'Breath Hold'}
+          {TableType.TABLE_TYPE_FREE === tableType && 'Sets'}
         </TextComponent>
 
         <StaticSetsList sets={sets} />
