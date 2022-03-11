@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { COLOR_LIGHT, FONT_CLOLR_GREY_LIGHT } from '../../styles/commonStyles';
+import { COLOR_LIGHT, FONT_CLOLR_GREY_LIGHT } from '../../commonStyles';
 
 export const LongTouchButtonContainer = styled.View`
   width: 100%;

@@ -1,6 +1,6 @@
-import playSound, { A2, C3, F2 } from '../../common/utils/playSound';
 import { CronoMode, SetMode } from '../../editor/enums';
-import { CronoStateType } from '../redux/cronoTypes';
+import playSound, { A2, C3, F2 } from '../../utils/playSound';
+import { CronoStateType } from '../redux/CronoTypes';
 
 function skipSet(state: CronoStateType, step: number, setMode: string, currentTimestamp: number) {
   const newState = state;

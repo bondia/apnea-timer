@@ -1,9 +1,9 @@
 import React, { FC, useMemo } from 'react';
 import styled from 'styled-components/native';
-import InfoBlock from '../../../common/components/InfoBlock';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_SIZE } from '../../../common/styles/commonStyles';
-import generateTimestamp from '../../../common/utils/time/generateTimestamp';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_SIZE } from '../../../commonStyles';
+import InfoBlock from '../../../components/InfoBlock';
 import { SetMode, SetType, TableType } from '../../../editor/enums';
+import generateTimestamp from '../../../utils/time/generateTimestamp';
 import { ImmutableJSCronoType, ImmutableJSSetType } from '../../redux/CronoTypes';
 
 const LiveCounterWrapper = styled.View`

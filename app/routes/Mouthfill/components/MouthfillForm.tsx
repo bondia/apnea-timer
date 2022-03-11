@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
-import LongTouchButton from '../../../common/components/LongTouchButton';
-import TextComponent from '../../../common/components/TextComponent';
-import { COLOR_DARK, COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../common/styles/commonStyles';
+import { COLOR_DARK, COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
+import LongTouchButton from '../../../components/LongTouchButton';
+import TextComponent from '../../../components/TextComponent/TextComponent';
 import useMouthfill from '../hooks/useMouthfill';
 import * as SC from './MouthfillForm.styled';
 

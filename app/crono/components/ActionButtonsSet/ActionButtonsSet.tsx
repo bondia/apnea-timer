@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import LongTouchButton from '../../../common/components/LongTouchButton';
+import LongTouchButton from '../../../components/LongTouchButton';
 import { CronoMode, TableType } from '../../../editor/enums';
-import { CronoActionsTypes, ImmutableJSCronoType } from '../../redux/cronoTypes';
+import { CronoActionsTypes, ImmutableJSCronoType } from '../../redux/CronoTypes';
 import * as SC from './ActionButtonsSet.styled';
 import useButtonsHandling from './useButtonsHandling';
 

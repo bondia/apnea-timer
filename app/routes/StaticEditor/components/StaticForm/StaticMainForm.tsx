@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import InfoBlock from '../../../../common/components/InfoBlock';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../../common/styles/commonStyles';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../../commonStyles';
+import InfoBlock from '../../../../components/InfoBlock';
 import TableBaseInput from '../../../../editor-static/components/StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../../../../editor-static/components/StaticFormInputs/TableTypeInput';
 import { TableType } from '../../../../editor/enums';

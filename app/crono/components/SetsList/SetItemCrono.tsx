@@ -1,9 +1,9 @@
 import React, { FC, useMemo } from 'react';
 import { StyleSheet, View } from 'react-native';
-import TextComponent from '../../../common/components/TextComponent';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../common/styles/commonStyles';
-import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
+import TextComponent from '../../../components/TextComponent/TextComponent';
 import { SetType } from '../../../editor/enums';
+import secondsToTimeString from '../../../utils/time/secondsToTimeString';
 
 const useStyles = (type: SetType, active: boolean) => {
   return useMemo(() => {

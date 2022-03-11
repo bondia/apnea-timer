@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import generateTimestamp from '../../../common/utils/time/generateTimestamp';
 import { SetMode } from '../../../editor/enums';
+import generateTimestamp from '../../../utils/time/generateTimestamp';
 import { ImmutableJSSetType } from '../../redux/CronoTypes';
 import SetItemCrono from './SetItemCrono';
 import * as SC from './SetsList.styled';

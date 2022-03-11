@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
-import { FONT_COLOR_GREY } from '../../../../common/styles/commonStyles';
+import { FONT_COLOR_GREY } from '../../../../commonStyles';
 
 export const FormWrapper = styled.View`
   flex: 1;

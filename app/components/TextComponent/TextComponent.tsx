@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { StyleSheet, Text, TextStyle } from 'react-native';
-import * as common from '../styles/commonStyles';
+import * as common from '../../commonStyles';
 
 interface TextComponentProps {
   style: TextStyle;

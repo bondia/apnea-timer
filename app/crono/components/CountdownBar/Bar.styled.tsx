@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
-import { COLOR_GREEN_LIGHT, COLOR_RED_NORMAL, FONT_CLOLR_GREY_LIGHT } from '../../../common/styles/commonStyles';
+import { COLOR_GREEN_LIGHT, COLOR_RED_NORMAL, FONT_CLOLR_GREY_LIGHT } from '../../../commonStyles';
 import { SetMode, SetType } from '../../../editor/enums';
-import { ImmutableJSSetType } from '../../redux/cronoTypes';
+import { ImmutableJSSetType } from '../../redux/CronoTypes';
 
 function decideBackgroundColor(props: SingleBarInnerProps): string {
   const { set } = props;

@@ -2,9 +2,9 @@ import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC, useCallback } from 'react';
 import styled from 'styled-components/native';
-import LongTouchButton from '../../common/components/LongTouchButton';
 import { ImmutableJSEditorStateType } from '../../editor/redux/editorTypes';
 import { RootStackParamList, Routes } from '../../routes/Routes';
+import LongTouchButton from '../LongTouchButton';
 
 const ButtonContainer = styled.View`
   flex-direction: row;

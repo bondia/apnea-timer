@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
-import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../styles/commonStyles';
+import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../commonStyles';
 
 export const BlockWrapper = styled.View`
   width: 50%;

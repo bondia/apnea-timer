@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { TextStyle } from 'react-native';
-import { COLOR_LIGHT, FONT_SIZE } from '../../styles/commonStyles';
+import { COLOR_LIGHT, FONT_SIZE } from '../../commonStyles';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
-import TextComponent from '../TextComponent';
+import TextComponent from '../TextComponent/TextComponent';
 import * as SC from './InfoBlock.styled';
 
 interface InfoBlockProps {

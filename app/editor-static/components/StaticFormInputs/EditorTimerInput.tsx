@@ -2,13 +2,13 @@ import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import LongTouchButton from '../../../common/components/LongTouchButton';
-import TextComponent from '../../../common/components/TextComponent';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../common/styles/commonStyles';
-import secondsToTimeString from '../../../common/utils/time/secondsToTimeString';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
+import LongTouchButton from '../../../components/LongTouchButton';
+import TextComponent from '../../../components/TextComponent/TextComponent';
 import { SetType } from '../../../editor/enums';
 import * as editorActions from '../../../editor/redux/editorActions';
 import { EditorActionsTypes } from '../../../editor/redux/editorTypes';
+import secondsToTimeString from '../../../utils/time/secondsToTimeString';
 import * as SC from './EditorTimerInput.styled';
 
 interface EditorTimerInputProps {

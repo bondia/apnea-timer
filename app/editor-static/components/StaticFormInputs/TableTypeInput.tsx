@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
-import LongTouchButton from '../../../common/components/LongTouchButton';
+import LongTouchButton from '../../../components/LongTouchButton';
 import { TableType } from '../../../editor/enums';
 import * as editorActions from '../../../editor/redux/editorActions';
 
