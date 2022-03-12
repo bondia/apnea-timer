@@ -1,16 +1,18 @@
-import React from 'react';
-import { ImmutableJSSetType } from '../../redux/cronoTypes';
+import React, { FC } from 'react';
+import { CronoSetType } from '../../crono/redux/CronoTypes';
 import * as SC from './Bar.styled';
 
 export interface SingleBarProps {
-  set: ImmutableJSSetType;
+  set: CronoSetType;
 }
 
-export default function SingleBar(props: SingleBarProps): JSX.Element {
+const SingleBar: FC<SingleBarProps> = props => {
   const { set } = props;
   return (
     <SC.SingleBarOuter>
       <SC.SingleBarInner set={set} />
     </SC.SingleBarOuter>
   );
-}
+};
+
+export default SingleBar;

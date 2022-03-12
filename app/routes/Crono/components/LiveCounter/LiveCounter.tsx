@@ -1,10 +1,10 @@
 import React, { FC, useMemo } from 'react';
 import styled from 'styled-components/native';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_SIZE } from '../../../commonStyles';
-import InfoBlock from '../../../components/InfoBlock';
-import { SetMode, SetType, TableType } from '../../../editor/enums';
-import generateTimestamp from '../../../utils/time/generateTimestamp';
-import { ImmutableJSCronoType, ImmutableJSSetType } from '../../redux/CronoTypes';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
+import InfoBlock from '../../../../components/InfoBlock';
+import { CronoSetType, CronoStateType } from '../../../../crono/redux/CronoTypes';
+import { SetMode, SetType, TableType } from '../../../../editor/enums';
+import generateTimestamp from '../../../../utils/time/generateTimestamp';
 
 const LiveCounterWrapper = styled.View`
   flex: 1.25;
@@ -15,30 +15,33 @@ const LiveCounterWrapper = styled.View`
 `;
 
 interface LiveCounterProps {
-  crono: ImmutableJSCronoType;
-  set: ImmutableJSSetType;
+  crono: CronoStateType;
+  set: CronoSetType;
 }
 
 const LiveCounter: FC<LiveCounterProps> = props => {
-  const { crono, set } = props;
-  const tableType = crono.getIn(['trainingTable', 'type']);
-  const spentTime = crono.getIn(['running', 'clock']);
-  const totalTime = crono.getIn(['running', 'countdown']);
-  const contractions = crono.getIn(['running', 'contractions']);
+  const {
+    crono: {
+      trainingTable: { type: tableType },
+      running: { clock: spentTime, countdown: totalTime, contractions },
+    },
+    set,
+  } = props;
 
   // set data
-  const setType = set ? set.get('type') : null;
-  const mode = set ? set.getIn(['running', 'mode']) : null;
-  const startTimestamp = set ? set.getIn(['running', 'startTimestamp']) : null;
+  const setType = set ? set.type : null;
+  const mode = set ? set.running.mode : null;
+  const startTimestamp = set ? set.running.startTimestamp : null;
+
   const currentTimestamp = generateTimestamp();
-  const endTimestamp = set ? set.getIn(['running', 'endTimestamp']) || currentTimestamp : currentTimestamp;
+  const endTimestamp = set ? set.running.endTimestamp || currentTimestamp : currentTimestamp;
   const spent = useMemo(
     () => (startTimestamp > 0 && endTimestamp > 0 ? Math.round((endTimestamp - startTimestamp) / 1000) : 0),
     [startTimestamp, endTimestamp],
   );
 
-  const countdown = set ? set.getIn(['running', 'countdown']) : null;
-  const pos = set ? set.get('pos') : 0;
+  const countdown = set ? set.running.countdown : null;
+  const pos = set ? set.pos : 0;
   const currentSet = pos <= 1 ? 1 : Math.floor(pos / 2) + 1;
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
   const currentSetHeader = SetType.SET_TYPE_HOLD === setType ? 'Breath Hold' : 'Breath Up';
@@ -57,6 +60,7 @@ const LiveCounter: FC<LiveCounterProps> = props => {
           <InfoBlock title="Countdown" timeContent={countdown} textSize={FONT_SIZE.FONT_SIZE_XL} />
         </>
       )}
+
       {TableType.TABLE_TYPE_ENDURANCE === tableType && (
         <>
           <InfoBlock title="Targeting" timeContent={targeting} />

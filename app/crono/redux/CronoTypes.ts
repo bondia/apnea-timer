@@ -20,6 +20,7 @@ export interface CronoRunningType {
   clock: number;
   step: number;
   mode: string;
+  countdown: number;
   contractions: number;
 }
 
