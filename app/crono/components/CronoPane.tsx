@@ -1,18 +1,18 @@
 import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
 import Immutable from 'immutable';
-import React, { FC, useEffect } from 'react';
+import React, { FC, useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
+import SetsList from '../../components/CronoSetsList.tsx';
 import { EditorStateType } from '../../editor/redux/editorTypes';
 import findRunningSet from '../pure/findRunningSet';
 import { cronoActions } from '../redux/cronoActions';
-import { CronoActionsTypes, CronoSetType, ImmutableJSCronoType } from '../redux/CronoTypes';
+import { CronoActionsTypes, CronoSetType, CronoStateType, ImmutableJSCronoType } from '../redux/CronoTypes';
 import CronoButtonsSet from './ActionButtonsSet';
 import MultipleBar from './CountdownBar/MultipleBar';
 import SingleBar from './CountdownBar/SingleBar';
 import LiveCounter from './LiveCounter';
-import SetsList from './SetsList';
 
 /**
  * STYLES
@@ -44,6 +44,7 @@ interface CoronoPaneProps {
 
 const CronoPane: FC<CoronoPaneProps> = props => {
   const { crono, initialData, actions } = props;
+  const rawCrono: CronoStateType = useMemo(() => crono?.toJS<CronoStateType>(), [crono]);
 
   useEffect(() => {
     if (crono === null) {
@@ -70,7 +71,7 @@ const CronoPane: FC<CoronoPaneProps> = props => {
           <LiveCounter crono={crono} set={immutableCurrentSet} />
 
           <SetsWrapper>
-            <SetsList crono={crono} />
+            <SetsList sets={rawCrono.sets} />
           </SetsWrapper>
         </ContentWrapper>
 

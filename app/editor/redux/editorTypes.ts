@@ -1,3 +1,4 @@
+import { SetType } from '../enums';
 import {
   ChangeEnduranceLapsType,
   ChangeTableBaseBreaksType,
@@ -24,7 +25,7 @@ export interface TableType {
 
 export interface TableSetType {
   duration: number;
-  type: number;
+  type: SetType;
   pos: number;
 }
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import TextComponent from '../../../../components/TextComponent/TextComponent';
+import TextComponent from '../../../../components/TextComponent/OldTextComponent';
 import { ActionArea, styles } from './Menu.styled';
 
 interface MenuItemProps {

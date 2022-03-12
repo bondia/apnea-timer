@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
-import TextComponent from '../../../../components/TextComponent/TextComponent';
+import TextComponent from '../../../../components/TextComponent/OldTextComponent';
 import * as editorActions from '../../../../editor/redux/editorActions';
 import { EditorActionsTypes, ImmutableJSEditorType } from '../../../../editor/redux/editorTypes';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';

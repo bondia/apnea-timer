@@ -5,7 +5,13 @@ import { debounce } from 'lodash';
 import { useCallback } from 'react';
 import { CronoMode, SetType, TableType } from '../../../editor/enums';
 import findRunningSet from '../../pure/findRunningSet';
-import { CronoActionsTypes, CronoSetType, ImmutableJSCronoType, ImmutableJSSetType } from '../../redux/cronoTypes';
+import {
+  CronoActionsTypes,
+  CronoSetType,
+  ImmutableJSCronoType,
+  ImmutableJSObject,
+  ImmutableJSSetType,
+} from '../../redux/CronoTypes';
 
 interface UseButtonsHandlingInput {
   crono: ImmutableJSCronoType;
@@ -78,7 +84,7 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
   const current: CronoSetType = findRunningSet(sets);
   const immutableCurrentSet = Immutable.fromJS(current);
 
-  const skip = useCallback((actions: CronoActionsTypes, set: any) => {
+  const skip = useCallback((actions: CronoActionsTypes, set: ImmutableJSObject) => {
     handleSkip(actions, set);
   }, []);
 
