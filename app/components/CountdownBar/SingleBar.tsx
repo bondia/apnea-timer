@@ -6,10 +6,13 @@ export interface SingleBarProps {
   set: CronoSetType;
 }
 
-const SingleBar: FC<SingleBarProps> = set => (
-  <SC.SingleBarOuter>
-    <SC.SingleBarInner set={set} />
-  </SC.SingleBarOuter>
-);
+const SingleBar: FC<SingleBarProps> = props => {
+  const { set } = props;
+  return (
+    <SC.SingleBarOuter>
+      <SC.SingleBarInner set={set} />
+    </SC.SingleBarOuter>
+  );
+};
 
 export default SingleBar;

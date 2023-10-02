@@ -1,4 +1,4 @@
-import { CronoSetType } from '../redux/CronoTypes';
+import { CronoSetType } from '../redux/cronoTypes';
 
 export default function calculateAverageContractions(sets: CronoSetType[]): number {
   let items = 0;

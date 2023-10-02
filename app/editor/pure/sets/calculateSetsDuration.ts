@@ -1,4 +1,4 @@
-import { CronoSetType } from '../../../crono/redux/CronoTypes';
+import { CronoSetType } from '../../../crono/redux/cronoTypes';
 import { SetMode } from '../../enums';
 
 function getSingleSetDuration(set: CronoSetType) {

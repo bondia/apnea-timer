@@ -8,8 +8,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject",
-    "tslint": "tsc --watch"
+    "eject": "expo eject"
   },
   "dependencies": {
     "@react-navigation/core": "^6.1.0",

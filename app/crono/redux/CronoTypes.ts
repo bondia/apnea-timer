@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { CronoMode, SetMode } from '../../editor/enums';
+import { SetMode } from '../../editor/enums';
 import { TableSetType, TableType } from '../../editor/redux/editorTypes';
 import { InitTableAction } from './creators/initTableAction';
 import { TrackContractionType } from './creators/trackContractionAction';
@@ -19,8 +19,8 @@ export interface CronoRunningType {
   startTimestamp?: number;
   clock: number;
   step: number;
-  mode: CronoMode;
-  countdown?: number;
+  mode: string;
+  countdown: number;
   contractions: number;
 }
 

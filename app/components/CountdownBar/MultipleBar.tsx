@@ -7,12 +7,15 @@ interface MultipleBarProps {
   sets: CronoSetType[];
 }
 
-const MultipleBar: FC<MultipleBarProps> = ({ sets }) => (
-  <View>
-    {sets.map((set: CronoSetType) => (
-      <SingleBar key={set.pos} set={set} />
-    ))}
-  </View>
-);
+const MultipleBar: FC<MultipleBarProps> = props => {
+  const { sets } = props;
+  return (
+    <View>
+      {sets.map((set: CronoSetType) => (
+        <SingleBar key={set.pos} set={set} />
+      ))}
+    </View>
+  );
+};
 
 export default MultipleBar;
