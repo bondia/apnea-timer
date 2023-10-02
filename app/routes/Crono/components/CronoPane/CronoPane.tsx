@@ -1,4 +1,4 @@
-import { activateKeepAwake, deactivateKeepAwake } from 'expo-keep-awake';
+import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC, useEffect, useMemo } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -32,8 +32,10 @@ const CronoPane: FC<CoronoPaneProps> = props => {
     if (!rawCrono) {
       actions.initTable(initialData);
     }
-    activateKeepAwake();
-    return () => deactivateKeepAwake();
+    activateKeepAwakeAsync();
+    return () => {
+      deactivateKeepAwake();
+    };
   }, [actions, rawCrono, initialData]);
 
   if (!rawCrono || rawCrono.sets.length <= 0) {
