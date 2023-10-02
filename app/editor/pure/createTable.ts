@@ -3,6 +3,7 @@ import { TableType } from '../enums';
 import calculateSetsDuration from './sets/calculateSetsDuration';
 import createEnduranceSets from './sets/createEnduranceSets';
 import createInitialSets from './sets/createInitialSets';
+import { CronoSetType } from '../../crono/redux/CronoTypes';
 
 function createEditorSkeleton(base = 1, baseBreaks = 1, type = TableType.TABLE_TYPE_CO2, enduranceLaps = null) {
   return Immutable.fromJS({
@@ -33,7 +34,7 @@ export default function createTable(base, baseBreaks, type, enduranceLaps) {
       : createInitialSets(base, type);
   state = state.set('sets', sets);
   // calculate table duration
-  const duration = calculateSetsDuration(sets);
+  const duration = calculateSetsDuration(sets as unknown as CronoSetType[]);
   state = state.setIn(['trainingTable', 'duration'], duration);
   return state;
 }

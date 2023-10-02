@@ -8,7 +8,11 @@ const Container = styled.View`
   width: 100%;
 `;
 
-const SceneWrapper: FC = props => {
+type Props = {
+  children?: React.ReactNode;
+};
+
+const SceneWrapper: FC<Props> = props => {
   const { children } = props;
   return (
     <SafeAreaView style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}>

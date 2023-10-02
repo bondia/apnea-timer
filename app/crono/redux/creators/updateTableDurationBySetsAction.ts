@@ -1,6 +1,6 @@
 import calculateSetsDuration from '../../../editor/pure/sets/calculateSetsDuration';
+import { CronoSetType } from '../CronoTypes';
 import setTableDurationAction, { SetTableDurationAction } from '../actions/setTableDurationAction';
-import { CronoSetType } from '../cronoTypes';
 
 /**
  * Due some sets, calculate table duration and update it
