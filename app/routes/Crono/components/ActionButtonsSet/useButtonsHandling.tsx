@@ -1,14 +1,13 @@
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-import Immutable from 'immutable';
 import { debounce } from 'lodash';
 import { useCallback } from 'react';
-import { CronoMode, SetType, TableType } from '../../../editor/enums';
-import findRunningSet from '../../pure/findRunningSet';
-import { CronoActionsTypes, CronoSetType, ImmutableJSCronoType, ImmutableJSSetType } from '../../redux/cronoTypes';
+import findRunningSet from '../../../../crono/pure/findRunningSet';
+import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../crono/redux/CronoTypes';
+import { CronoMode, SetType, TableType } from '../../../../editor/enums';
 
 interface UseButtonsHandlingInput {
-  crono: ImmutableJSCronoType;
+  crono: CronoStateType;
   cronoActions: CronoActionsTypes;
 }
 
@@ -24,9 +23,9 @@ interface UseButtonsHandlingOutput {
   handleFinish: () => void;
 }
 
-const canTrackContractions = (crono: ImmutableJSCronoType, current: ImmutableJSSetType): boolean => {
+const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boolean => {
   // no contractions tracking for endurance tables
-  const tableType = crono.getIn(['trainingTable', 'type']);
+  const tableType = crono?.trainingTable?.type;
   if (TableType.TABLE_TYPE_ENDURANCE === tableType) {
     return false;
   }
@@ -35,8 +34,7 @@ const canTrackContractions = (crono: ImmutableJSCronoType, current: ImmutableJSS
     return false;
   }
   // decide if can track
-  const setType = current.get('type');
-  return current && SetType.SET_TYPE_HOLD === setType;
+  return current && SetType.SET_TYPE_HOLD === current.type;
 };
 
 const handleStart = (cronoActions: CronoActionsTypes, mode: CronoMode) => {
@@ -51,9 +49,9 @@ const handleStartCoach = (cronoActions: CronoActionsTypes) => {
   handleStart(cronoActions, CronoMode.CRONO_MODE_COACH);
 };
 
-const handleSkip = (cronoActions: CronoActionsTypes, current: ImmutableJSSetType) => {
+const handleSkip = (cronoActions: CronoActionsTypes, current: CronoSetType) => {
   if (current != null) {
-    cronoActions.skipSet(current.get('pos'));
+    cronoActions.skipSet(current.pos);
   }
 };
 
@@ -69,16 +67,13 @@ const handleFinish = (cronoActions: CronoActionsTypes, navigation: NativeStackNa
 export default function useButtonsHandling(input: UseButtonsHandlingInput): UseButtonsHandlingOutput {
   const { crono, cronoActions } = input;
   const navigation = useNavigation<NativeStackNavigationProp<any>>();
-  const clock = crono.getIn(['running', 'clock']);
-  const tableType = crono.getIn(['trainingTable', 'type']);
-  const tableMode = crono.getIn(['running', 'mode']);
+  const clock = crono?.running?.clock;
+  const tableType = crono?.trainingTable?.type;
+  const tableMode = crono?.running.mode;
 
-  // TODO: Maybe no need to find running set (performance)
-  const sets: CronoSetType[] = crono.get('sets').toJS() as CronoSetType[];
-  const current: CronoSetType = findRunningSet(sets);
-  const immutableCurrentSet = Immutable.fromJS(current);
+  const current: CronoSetType = findRunningSet(crono.sets);
 
-  const skip = useCallback((actions: CronoActionsTypes, set: any) => {
+  const skip = useCallback((actions: CronoActionsTypes, set: CronoSetType) => {
     handleSkip(actions, set);
   }, []);
 
@@ -94,10 +89,10 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
     clock,
     tableType,
     tableMode,
-    canTrackContractions: (): boolean => canTrackContractions(crono, immutableCurrentSet),
+    canTrackContractions: (): boolean => canTrackContractions(crono, current),
     handleStartAuto: (): void => handleStartAuto(cronoActions),
     handleStartCoach: (): void => handleStartCoach(cronoActions),
-    handleSkip: () => deubuncedSkip(cronoActions, immutableCurrentSet),
+    handleSkip: () => deubuncedSkip(cronoActions, current),
     handleContraction: (): void => handleContraction(cronoActions),
     handleFinish: (): void => handleFinish(cronoActions, navigation),
   };

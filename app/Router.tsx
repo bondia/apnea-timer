@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC } from 'react';
-import CronoScene from './crono/components/CronoScene';
+import CronoScene from './routes/Crono/CronoScene';
 import EditorEnduranceScene from './routes/EnduranceEditor/EditorEnduranceScene';
 import MainScene from './routes/Main/MainScene';
 import MouthfillScene from './routes/Mouthfill/MouthfillScene';

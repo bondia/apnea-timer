@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
-import TextComponent from '../../../../components/TextComponent/TextComponent';
+import TextComponent from '../../../../components/TextComponent/OldTextComponent';
 import { TableType } from '../../../../editor/enums';
 import * as editorActions from '../../../../editor/redux/editorActions';
 import { EditorActionsTypes, ImmutableJSEditorStateType } from '../../../../editor/redux/editorTypes';

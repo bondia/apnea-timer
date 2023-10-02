@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
 import LongTouchButton from '../../../components/LongTouchButton';
-import TextComponent from '../../../components/TextComponent/TextComponent';
+import TextComponent from '../../../components/TextComponent/OldTextComponent';
 import { SetType } from '../../../editor/enums';
 import * as editorActions from '../../../editor/redux/editorActions';
 import { EditorActionsTypes } from '../../../editor/redux/editorTypes';
