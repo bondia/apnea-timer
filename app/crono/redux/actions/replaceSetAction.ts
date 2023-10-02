@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import * as reduxActions from '../../../redux/actions';
-import { CronoSetType } from '../cronoTypes';
+import { CronoSetType } from '../CronoTypes';
 
 interface ReplaceSetAction extends Action {
   set: CronoSetType;
