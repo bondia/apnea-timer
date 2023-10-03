@@ -18,11 +18,11 @@ import CronoButtonsSet from '../ActionButtonsSet';
 import LiveCounter from '../LiveCounter';
 import * as SC from './CronoPane.styled';
 
-interface CoronoPaneProps {
+type CoronoPaneProps = {
   initialData: EditorStateType;
   crono: ImmutableJSCronoType;
   actions: CronoActionsTypes;
-}
+};
 
 const CronoPane: FC<CoronoPaneProps> = props => {
   const { crono, initialData, actions } = props;

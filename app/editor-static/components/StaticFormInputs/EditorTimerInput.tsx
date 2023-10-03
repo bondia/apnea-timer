@@ -11,14 +11,14 @@ import { EditorActionsTypes } from '../../../editor/redux/editorTypes';
 import secondsToTimeString from '../../../utils/time/secondsToTimeString';
 import * as SC from './EditorTimerInput.styled';
 
-interface EditorTimerInputProps {
+type EditorTimerInputProps = {
   index: number;
   duration?: number;
   type?: string;
   setNumber?: number;
   zombie?: boolean;
   actions: EditorActionsTypes;
-}
+};
 
 const EditorTimerInput: FC<EditorTimerInputProps> = props => {
   const { index, duration = 0, type = SetType.SET_TYPE_PREPARE, setNumber = 0, zombie = false, actions } = props;

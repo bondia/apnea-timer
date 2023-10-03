@@ -9,29 +9,29 @@ import {
   IncreaseTimeItemType,
 } from './editorActions';
 
-export interface EditorStateType {
+export type EditorStateType = {
   trainingTable: TableType;
   sets: TableSetType[];
-}
+};
 
-export interface TableType {
+export type TableType = {
   base: number;
   type: string;
   duration: number;
   // endurance
   baseBreaks?: number;
   enduranceLaps?: number;
-}
+};
 
-export interface TableSetType {
+export type TableSetType = {
   duration: number;
   type: SetType;
   pos: number;
-}
+};
 
 // REDUX ACTIONS
 
-export interface EditorActionsTypes {
+export type EditorActionsTypes = {
   changeTableType: ChangeTableTypeType;
   changeTableBase: ChangeTableBaseType;
   changeTableBaseBreaks: ChangeTableBaseBreaksType;
@@ -39,20 +39,20 @@ export interface EditorActionsTypes {
   decreaseTimeItem: DecreaseTimeItemType;
   createEnduranceTable: CreateEnduranceTableType;
   changeEnduranceLaps: ChangeEnduranceLapsType;
-}
+};
 
 /**
  * TODO: Remove immutable js
  */
-export interface ImmutableJSType {
+export type ImmutableJSType = {
   get: (prop: string) => any;
   getIn: (stack: string[]) => any;
   update: (stack: string[] | string, cb: (data: any) => any) => any;
   toJS: () => EditorStateType;
-}
+};
 
 export type ImmutableJSEditorStateType = ImmutableJSType;
 
 export type ImmutableJSEditorType = ImmutableJSType;
 
-export interface ImmutableJSEditorSetType extends TableSetType, ImmutableJSType {}
+export type ImmutableJSEditorSetType = TableSetType & ImmutableJSType;

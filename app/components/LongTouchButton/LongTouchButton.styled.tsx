@@ -6,9 +6,10 @@ export const LongTouchButtonContainer = styled.View`
   flex: 1;
 `;
 
-interface ButtonWrapperProps {
+type ButtonWrapperProps = {
   active: boolean;
-}
+};
+
 export const ButtonWrapper = styled.View<ButtonWrapperProps>`
   padding: 20px;
   background-color: ${props => (props.active ? COLOR_LIGHT : FONT_CLOLR_GREY_LIGHT)};

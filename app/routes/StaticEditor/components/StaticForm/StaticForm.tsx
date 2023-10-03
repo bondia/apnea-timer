@@ -13,10 +13,10 @@ import StaticSetsList from '../StaticSetsList/StaticSetsList';
 import * as SC from './StaticForm.styled';
 import StaticMainForm from './StaticMainForm';
 
-interface StaticFormProps {
+type StaticFormProps = {
   editor: ImmutableJSEditorStateType;
   actions: EditorActionsTypes;
-}
+};
 
 const StaticForm: FC<StaticFormProps> = props => {
   const { editor, actions } = props;

@@ -5,10 +5,10 @@ import { CronoMode, TableType } from '../../../../editor/enums';
 import * as SC from './ActionButtonsSet.styled';
 import useButtonsHandling from './useButtonsHandling';
 
-interface CronoButtonSetProps {
+type CronoButtonSetProps = {
   crono: CronoStateType;
   cronoActions: CronoActionsTypes;
-}
+};
 
 const CronoButtonSet: FC<CronoButtonSetProps> = props => {
   const { crono, cronoActions } = props;

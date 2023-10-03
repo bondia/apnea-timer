@@ -2,10 +2,10 @@ import React, { ReactNode } from 'react';
 import { StyleSheet, Text, TextStyle } from 'react-native';
 import * as common from '../../commonStyles';
 
-interface TextComponentProps {
+type TextComponentProps = {
   style: TextStyle;
   children: ReactNode;
-}
+};
 
 const styles = StyleSheet.create({
   text: {

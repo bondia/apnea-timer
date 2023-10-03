@@ -6,9 +6,9 @@ export const MenuWrapper = styled.ScrollView`
   flex: 1;
 `;
 
-interface ActionAreaProps {
+type ActionAreaProps = {
   color: string;
-}
+};
 
 export const ActionArea = styled.TouchableHighlight<ActionAreaProps>`
   flex: 1;

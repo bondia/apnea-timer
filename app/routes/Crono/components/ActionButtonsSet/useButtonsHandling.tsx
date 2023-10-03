@@ -6,12 +6,12 @@ import findRunningSet from '../../../../crono/pure/findRunningSet';
 import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../crono/redux/CronoTypes';
 import { CronoMode, SetType, TableType } from '../../../../editor/enums';
 
-interface UseButtonsHandlingInput {
+type UseButtonsHandlingInput = {
   crono: CronoStateType;
   cronoActions: CronoActionsTypes;
-}
+};
 
-interface UseButtonsHandlingOutput {
+type UseButtonsHandlingOutput = {
   clock: number;
   tableType: string;
   tableMode: string;
@@ -21,7 +21,7 @@ interface UseButtonsHandlingOutput {
   handleSkip: () => void;
   handleContraction: () => void;
   handleFinish: () => void;
-}
+};
 
 const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boolean => {
   // no contractions tracking for endurance tables

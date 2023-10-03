@@ -13,9 +13,9 @@ export const GridItem = styled.View`
   padding: 2px 0;
 `;
 
-interface SetProps {
+type SetProps = {
   isRunning: boolean;
-}
+};
 
 export const Set = styled.View<SetProps>`
   min-height: 60px;

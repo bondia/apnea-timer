@@ -37,9 +37,9 @@ export const SingleBarOuter = styled.View`
   background-color: ${FONT_CLOLR_GREY_LIGHT};
 `;
 
-interface SingleBarInnerProps {
+type SingleBarInnerProps = {
   set?: CronoSetType;
-}
+};
 
 export const SingleBarInner = styled.View<SingleBarInnerProps>`
     position: absolute;

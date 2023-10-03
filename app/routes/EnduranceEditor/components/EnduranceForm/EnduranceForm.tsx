@@ -12,10 +12,10 @@ import { StoreState } from '../../../../redux/types';
 import { Wrapper } from './EnduranceForm.styled';
 import EnduranceMainForm from './EnduranceMainForm';
 
-interface EditorEnudrancePaneProps {
+type EditorEnudrancePaneProps = {
   editor: ImmutableJSEditorType;
   actions: EditorActionsTypes;
-}
+};
 
 const EditorEndurancePane: FC<EditorEnudrancePaneProps> = (props: EditorEnudrancePaneProps) => {
   const { editor, actions } = props;
