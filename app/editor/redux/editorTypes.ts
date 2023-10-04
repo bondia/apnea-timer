@@ -54,8 +54,6 @@ export type ImmutableJSType = {
 };
 
 export type ImmutableJSEditorStateType = ImmutableJSType;
-
 export type ImmutableJSEditorType = ImmutableJSType;
 export type ImmutableTrainingTableType = ImmutableJSType;
-
 export type ImmutableJSEditorSetType = TableSetType & ImmutableJSType;
