@@ -4,16 +4,10 @@ import createTable from '../pure/createTable';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
-import setInitialStateAction from './actions/setInitialStateAction';
+import setEditorInitialStateAction from './actions/setEditorInitialStateAction';
+import setEditorTableBaseAction from './actions/setEditorTableBase';
+import setEditorTableBaseBreakAction from './actions/setEditorTableBaseBreakAction';
 import { ImmutableJSEditorSetType } from './editorTypes';
-
-function setTableBase(base) {
-  return { type: reduxActions.EDITOR_SET_TABLE_BASE, base };
-}
-
-function setTableBaseBreak(baseBreaks) {
-  return { type: reduxActions.EDITOR_SET_TABLE_BASE_BREAKS, baseBreaks };
-}
 
 function setTableDuration(duration) {
   return { type: reduxActions.EDITOR_SET_TABLE_DURATION, duration };
@@ -39,7 +33,7 @@ function updateTableDurationBySets(sets) {
 export type CreateEnduranceTableType = (base: number, baseBreaks: number, laps?: number) => object;
 export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks, laps = 6) => {
   const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
-  return setInitialStateAction(newState);
+  return setEditorInitialStateAction(newState);
 };
 
 /**
@@ -48,7 +42,7 @@ export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks,
 export type ChangeTableTypeType = (base: number, tableType: string) => object;
 export const changeTableType: ChangeTableTypeType = (base, tableType) => {
   const newState = createTable(base, null, tableType, 6);
-  return setInitialStateAction(newState);
+  return setEditorInitialStateAction(newState);
 };
 
 /**
@@ -61,7 +55,7 @@ export const changeEnduranceLaps: ChangeEnduranceLapsType = laps => {
     const base = editor.getIn(['trainingTable', 'base']);
     const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
     const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
-    return dispatch(setInitialStateAction(newState));
+    return dispatch(setEditorInitialStateAction(newState));
   };
 };
 
@@ -76,7 +70,7 @@ export const changeTableBase: ChangeTableBaseType = (value: number) => {
 
     // change table base
     const base = value < 5 ? 5 : value;
-    dispatch(setTableBase(base));
+    dispatch(setEditorTableBaseAction(base));
 
     // update sets with new base
     const tableType = editor.getIn(['trainingTable', 'type']);
@@ -100,7 +94,7 @@ export const changeTableBaseBreaks: ChangeTableBaseBreaksType = value => {
 
     // change table base breaks
     const baseBreaks = value < 5 ? 5 : value;
-    dispatch(setTableBaseBreak(baseBreaks));
+    dispatch(setEditorTableBaseBreakAction(baseBreaks));
 
     // update sets with new base
     const tableType = editor.getIn(['trainingTable', 'type']);

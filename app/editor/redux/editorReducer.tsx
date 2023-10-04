@@ -1,14 +1,9 @@
 import { AnyAction } from 'redux';
-import { SET_EDITOR_INITIAL_STATE } from './actions/setInitialStateAction';
+import { SET_EDITOR_INITIAL_STATE } from './actions/setEditorInitialStateAction';
 import { ImmutableJSEditorType } from './editorTypes';
-import {
-  EDITOR_REPLACE_SETS,
-  EDITOR_SET_TABLE_BASE,
-  EDITOR_SET_TABLE_BASE_BREAKS,
-  EDITOR_SET_TABLE_DURATION,
-  EDITOR_SET_TABLE_TYPE,
-  defaultEmptyAction,
-} from '../../redux/actions';
+import { EDITOR_REPLACE_SETS, EDITOR_SET_TABLE_DURATION, defaultEmptyAction } from '../../redux/actions';
+import { SET_EDITOR_TABLE_BASE } from './actions/setEditorTableBase';
+import { SET_EDITOR_TABLE_BASE_BREAKS } from './actions/setEditorTableBaseBreakAction';
 
 export default function editorReducer(
   state: ImmutableJSEditorType = null,
@@ -20,17 +15,17 @@ export default function editorReducer(
   }
 
   // set type
-  if (action.type === EDITOR_SET_TABLE_TYPE) {
+  if (action.type === SET_EDITOR_INITIAL_STATE) {
     return state.setIn(['trainingTable', 'type'], action.type);
   }
 
   // set base
-  if (action.type === EDITOR_SET_TABLE_BASE) {
+  if (action.type === SET_EDITOR_TABLE_BASE) {
     return state.setIn(['trainingTable', 'base'], action.base);
   }
 
   // set base breaks
-  if (action.type === EDITOR_SET_TABLE_BASE_BREAKS) {
+  if (action.type === SET_EDITOR_TABLE_BASE_BREAKS) {
     return state.setIn(['trainingTable', 'baseBreaks'], action.baseBreaks);
   }
 
