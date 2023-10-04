@@ -17,9 +17,9 @@ const colorByType = {
   [TableType.TABLE_TYPE_O2]: COLOR_GREEN_NORMAL,
 };
 
-interface Props {
+type Props = {
   editor: ImmutableJSEditorStateType;
-}
+};
 
 const StaticMainForm: FC<Props> = props => {
   const { editor } = props;

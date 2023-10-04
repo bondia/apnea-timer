@@ -14,14 +14,14 @@ import * as SC from './EnduranceForm.styled';
  * Handle action to dispatch
  */
 
-interface HandleActionParams {
+type HandleActionParams = {
   original: number;
   increase: number;
   dispatchAction:
     | editorActions.ChangeEnduranceLapsType
     | editorActions.ChangeTableBaseType
     | editorActions.ChangeTableBaseBreaksType;
-}
+};
 
 function handleAction(params: HandleActionParams): void {
   const { original, increase, dispatchAction } = params;
@@ -48,10 +48,10 @@ const baseStyles = StyleSheet.create({
     paddingTop: 20,
   },
 });
-interface EditorEnduranceProps {
+type EditorEnduranceProps = {
   editor: ImmutableJSEditorType;
   actions: EditorActionsTypes;
-}
+};
 
 const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const { editor, actions } = props;

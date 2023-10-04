@@ -4,7 +4,7 @@ import { GestureResponderEvent } from 'react-native';
 // Long touch notification rating in milliseconds
 const UPDATE_RATE_MILLISECONDS = 100;
 
-interface UseLongTouchHandlingInput {
+type UseLongTouchHandlingInput = {
   active?: boolean;
   enabled?: boolean;
   onPressStart?: () => void;
@@ -13,13 +13,13 @@ interface UseLongTouchHandlingInput {
   onLongPressEnd?: () => void;
   onPressInterval?: () => void;
   pressIntervalRefresh?: number;
-}
+};
 
-interface UseLongTouchHandlingOutput {
+type UseLongTouchHandlingOutput = {
   onPressIn: (event: GestureResponderEvent) => void;
   onLongPress: (event: GestureResponderEvent) => void;
   onPressOut: (event: GestureResponderEvent) => void;
-}
+};
 
 /**
  * Hanlde Press start
@@ -32,10 +32,10 @@ function onPressIn(input: OnPressInInput): void {
   }
 }
 
-interface OnPressInInput {
+type OnPressInInput = {
   enabled: boolean;
   onPressStart: () => void;
-}
+};
 
 /**
  * Handle Long Press start
@@ -48,10 +48,10 @@ function onLongPress(input: OnLongPressInput): void {
   }
 }
 
-interface OnLongPressInput {
+type OnLongPressInput = {
   enabled: boolean;
   setIsLongPressed: Dispatch<SetStateAction<boolean>>;
-}
+};
 
 /**
  * Handle Press out (Long or Short)
@@ -72,13 +72,13 @@ function onPressOut(input: OnPressOutInput): void {
   setIsLongPressed(false);
 }
 
-interface OnPressOutInput {
+type OnPressOutInput = {
   enabled: boolean;
   isLongPressed: boolean;
   setIsLongPressed: Dispatch<SetStateAction<boolean>>;
   onShortPressEnd: () => void;
   onLongPressEnd: () => void;
-}
+};
 
 /**
  * Crates states to track if the button was pushed for a long time or just short.

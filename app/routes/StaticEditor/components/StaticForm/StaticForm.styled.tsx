@@ -9,9 +9,9 @@ export const FormWrapper = styled.View`
 
 // FORM
 
-interface StaticMainFormWrapperProps {
+type StaticMainFormWrapperProps = {
   small: boolean;
-}
+};
 export const StaticMainFormWrapper = styled.View<StaticMainFormWrapperProps>`
   flex: ${(props: StaticMainFormWrapperProps) => (props.small ? 2 : 3)};
   max-height: ${(props: StaticMainFormWrapperProps) => (props.small ? '150px' : '225px')};
@@ -26,9 +26,9 @@ export const MainInfoBlock = styled.View`
 
 // LIST
 
-interface SetsListWrapperProps {
+type SetsListWrapperProps = {
   fullHeight: boolean;
-}
+};
 export const SetsListWrapper = styled.View<SetsListWrapperProps>`
   flex: ${(props: SetsListWrapperProps) => (props.fullHeight ? 5 : 4)};
 `;

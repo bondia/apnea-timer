@@ -3,9 +3,9 @@ import { ScrollView } from 'react-native';
 import { ImmutableJSEditorSetType } from '../../../../editor/redux/editorTypes';
 import EditorSet from './StaticSet';
 
-interface Props {
+type Props = {
   sets: ImmutableJSEditorSetType[];
-}
+};
 
 const EditorSetsList: FC<Props> = props => {
   const { sets } = props;

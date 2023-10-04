@@ -1,13 +1,29 @@
 # Apnea Timer
 
-## Install and Run
+## Install dependencies
 
 ```bash
 git clone --repository--
 cd apnea-timer
-npm install
-chmod -R 777 node_modules
-npm start
-react-native run-ios
+yarn
 ```
 
+## Expo and EAS
+
+https://blog.expo.dev/
+
+### Start
+
+Use expo to start the project locally
+
+```bash
+npx expo
+```
+
+### Manage deployments to `preview`
+
+```bash
+eas login
+eas branch:list
+eas update --branch preview --message "Upload app"
+```

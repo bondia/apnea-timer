@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
@@ -14,12 +14,12 @@ export const ButtonsSet = styled.View`
 export const ButtonWrapper = styled.View`
   flex: 1;
 `;
-interface TableBaseInputProps {
+type TableBaseInputProps = {
   editor: ImmutableJSEditor;
   actions: EditorActions;
-}
+};
 
-function TableBaseInput(props: TableBaseInputProps): JSX.Element {
+const TableBaseInput: FC<TableBaseInputProps> = (props: TableBaseInputProps) => {
   const { editor, actions } = props;
 
   const base = editor.getIn(['trainingTable', 'base']);
@@ -39,19 +39,19 @@ function TableBaseInput(props: TableBaseInputProps): JSX.Element {
       />
     </ButtonsSet>
   );
-}
+};
 
 /**
  * TODO: Remove immutable js
  */
-interface ImmutableJSEditor {
+type ImmutableJSEditor = {
   getIn: (stack: string[]) => any;
-}
+};
 
 type changeTableBase = (amount: number) => void;
-interface EditorActions {
+type EditorActions = {
   changeTableBase: changeTableBase;
-}
+};
 
 const stateToProps = state => {
   return { editor: state.editor };

@@ -10,9 +10,9 @@ const ButtonContainer = styled.View`
   flex-direction: row;
 `;
 
-interface CronoStartButtonProps {
+type CronoStartButtonProps = {
   data: ImmutableJSEditorStateType;
-}
+};
 
 const CronoStartButton: FC<CronoStartButtonProps> = props => {
   const { data } = props;

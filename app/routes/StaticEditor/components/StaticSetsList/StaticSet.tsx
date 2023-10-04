@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import EditorTimerInput from '../../../../editor-static/components/StaticFormInputs/EditorTimerInput';
 import { ImmutableJSEditorSetType } from '../../../../editor/redux/editorTypes';
 
-interface Props {
+type Props = {
   set: ImmutableJSEditorSetType;
-}
+};
 
 const StaticSet: FC<Props> = props => {
   const { set } = props;

@@ -14,10 +14,10 @@ const LiveCounterWrapper = styled.View`
   align-content: center;
 `;
 
-interface LiveCounterProps {
+type LiveCounterProps = {
   crono: CronoStateType;
   set: CronoSetType;
-}
+};
 
 const LiveCounter: FC<LiveCounterProps> = props => {
   const {

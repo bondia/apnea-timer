@@ -1,39 +1,21 @@
-import * as reduxActions from '../../redux/actions';
 import { TableType } from '../enums';
 import createTable from '../pure/createTable';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
+import replaceEditorSets from './actions/replaceEditorSets';
+import setEditorInitialStateAction from './actions/setEditorInitialStateAction';
+import setEditorTableBaseAction from './actions/setEditorTableBase';
+import setEditorTableBaseBreakAction from './actions/setEditorTableBaseBreakAction';
+import setEditorTableDuration from './actions/setEditorTableDuration';
 import { ImmutableJSEditorSetType } from './editorTypes';
 
-function setInitialState(state) {
-  return { type: reduxActions.EDITOR_SET_INITIAL_STATE, state };
-}
-
-function setTableBase(base) {
-  return { type: reduxActions.EDITOR_SET_TABLE_BASE, base };
-}
-
-function setTableBaseBreak(baseBreaks) {
-  return { type: reduxActions.EDITOR_SET_TABLE_BASE_BREAKS, baseBreaks };
-}
-
-function setTableDuration(duration) {
-  return { type: reduxActions.EDITOR_SET_TABLE_DURATION, duration };
-}
-
-function replaceSets(sets) {
-  return { type: reduxActions.EDITOR_REPLACE_SETS, sets };
-}
-
 /**
- * Due some sets, calculatetable duration and update it
- * @param  {[type]} sets [description]
- * @return {[type]}      [description]
+ * Given some sets alculate table duration and update it.
  */
 function updateTableDurationBySets(sets) {
   const duration = calculateSetsDuration(sets);
-  return setTableDuration(duration);
+  return setEditorTableDuration(duration);
 }
 
 /**
@@ -42,7 +24,7 @@ function updateTableDurationBySets(sets) {
 export type CreateEnduranceTableType = (base: number, baseBreaks: number, laps?: number) => object;
 export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks, laps = 6) => {
   const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
-  return setInitialState(newState);
+  return setEditorInitialStateAction(newState);
 };
 
 /**
@@ -51,7 +33,7 @@ export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks,
 export type ChangeTableTypeType = (base: number, tableType: string) => object;
 export const changeTableType: ChangeTableTypeType = (base, tableType) => {
   const newState = createTable(base, null, tableType, 6);
-  return setInitialState(newState);
+  return setEditorInitialStateAction(newState);
 };
 
 /**
@@ -64,7 +46,7 @@ export const changeEnduranceLaps: ChangeEnduranceLapsType = laps => {
     const base = editor.getIn(['trainingTable', 'base']);
     const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
     const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
-    return dispatch(setInitialState(newState));
+    return dispatch(setEditorInitialStateAction(newState));
   };
 };
 
@@ -79,13 +61,13 @@ export const changeTableBase: ChangeTableBaseType = (value: number) => {
 
     // change table base
     const base = value < 5 ? 5 : value;
-    dispatch(setTableBase(base));
+    dispatch(setEditorTableBaseAction(base));
 
     // update sets with new base
     const tableType = editor.getIn(['trainingTable', 'type']);
     let sets = editor.get('sets');
     sets = updateSetsForTableType(sets, base, baseBreaks, tableType);
-    dispatch(replaceSets(sets));
+    dispatch(replaceEditorSets(sets));
 
     // update table duration
     dispatch(updateTableDurationBySets(sets));
@@ -103,13 +85,13 @@ export const changeTableBaseBreaks: ChangeTableBaseBreaksType = value => {
 
     // change table base breaks
     const baseBreaks = value < 5 ? 5 : value;
-    dispatch(setTableBaseBreak(baseBreaks));
+    dispatch(setEditorTableBaseBreakAction(baseBreaks));
 
     // update sets with new base
     const tableType = editor.getIn(['trainingTable', 'type']);
     let sets = editor.get('sets');
     sets = updateSetsForTableType(sets, base, baseBreaks, tableType);
-    dispatch(replaceSets(sets));
+    dispatch(replaceEditorSets(sets));
 
     // update table duration
     dispatch(updateTableDurationBySets(sets));
@@ -134,7 +116,7 @@ function changeTimeItem(key: number, amount: number) {
     const duration = amount + item.get('duration');
     const tableType = editor.getIn(['trainingTable', 'type']);
     const sets = updateSetDurationForKey(editor.get('sets'), tableType, key, duration);
-    dispatch(replaceSets(sets));
+    dispatch(replaceEditorSets(sets));
 
     // update table duration
     dispatch(updateTableDurationBySets(sets));

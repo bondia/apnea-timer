@@ -5,13 +5,13 @@ import secondsToTimeString from '../../utils/time/secondsToTimeString';
 import TextComponent from '../TextComponent/OldTextComponent';
 import * as SC from './InfoBlock.styled';
 
-interface InfoBlockProps {
+type InfoBlockProps = {
   title: string;
   timeContent?: number;
   rawContent?: number | string;
   textColor?: string;
   textSize?: FONT_SIZE;
-}
+};
 
 const InfoBlock: FC<InfoBlockProps> = props => {
   const { title, timeContent, rawContent, textColor = COLOR_LIGHT, textSize = FONT_SIZE.FONT_SIZE_L } = props;

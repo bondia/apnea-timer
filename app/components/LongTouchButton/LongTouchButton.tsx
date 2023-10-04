@@ -3,7 +3,7 @@ import { TouchableHighlight } from 'react-native';
 import * as SC from './LongTouchButton.styled';
 import useLongTouchHandling from './useLongTouchHandling';
 
-interface LongTouchButtonProps {
+type LongTouchButtonProps = {
   title?: string;
   active?: boolean;
   enabled?: boolean;
@@ -13,7 +13,7 @@ interface LongTouchButtonProps {
   onLongPressEnd?: () => void;
   onPressInterval?: () => void;
   pressIntervalRefresh?: number;
-}
+};
 
 const LongTouchButton: FC<LongTouchButtonProps> = props => {
   // default props

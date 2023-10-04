@@ -29,6 +29,13 @@
     }
   },
   "rules": {
+    // not sure if this is a "bug" or "feature" in airBnB config? https://github.com/airbnb/javascript/issues/2505
+    "react/function-component-definition": [
+      "error",
+      {
+        "namedComponents": ["function-declaration", "arrow-function"]
+      }
+    ],
     "react/jsx-filename-extension": [
       1,
       {

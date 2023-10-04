@@ -15,17 +15,17 @@ export const ButtonsSetWrapper = styled.View`
   flex-direction: row;
   align-items: center;
 `;
-interface TableBaseInputProps {
+type TableBaseInputProps = {
   editor: ImmutableJSEditor;
   actions: EditorActions;
-}
+};
 
 const TableTypeInput: FC<TableBaseInputProps> = props => {
   const { editor, actions } = props;
 
   const { changeTableType } = actions;
   const type = editor.getIn(['trainingTable', 'type']);
-  const base = editor.getIn(['trainingTable', 'base']);
+  const base: number = editor.getIn(['trainingTable', 'base']) as number;
 
   const changeType = (newType: string) => {
     if (type !== newType) {
@@ -61,14 +61,14 @@ const TableTypeInput: FC<TableBaseInputProps> = props => {
  * TODO: Remove immutable js
  */
 
-interface ImmutableJSEditor {
-  getIn: (stack: string[]) => any;
-}
+type ImmutableJSEditor = {
+  getIn: (stack: string[]) => unknown;
+};
 
 type ChangeTableType = (base: number, type: string) => void;
-interface EditorActions {
+type EditorActions = {
   changeTableType: ChangeTableType;
-}
+};
 
 /**
  * REDUX
