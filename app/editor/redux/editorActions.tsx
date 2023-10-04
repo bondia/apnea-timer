@@ -4,11 +4,8 @@ import createTable from '../pure/createTable';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
+import setInitialStateAction from './actions/setInitialStateAction';
 import { ImmutableJSEditorSetType } from './editorTypes';
-
-function setInitialState(state) {
-  return { type: reduxActions.EDITOR_SET_INITIAL_STATE, state };
-}
 
 function setTableBase(base) {
   return { type: reduxActions.EDITOR_SET_TABLE_BASE, base };
@@ -42,7 +39,7 @@ function updateTableDurationBySets(sets) {
 export type CreateEnduranceTableType = (base: number, baseBreaks: number, laps?: number) => object;
 export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks, laps = 6) => {
   const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
-  return setInitialState(newState);
+  return setInitialStateAction(newState);
 };
 
 /**
@@ -51,7 +48,7 @@ export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks,
 export type ChangeTableTypeType = (base: number, tableType: string) => object;
 export const changeTableType: ChangeTableTypeType = (base, tableType) => {
   const newState = createTable(base, null, tableType, 6);
-  return setInitialState(newState);
+  return setInitialStateAction(newState);
 };
 
 /**
@@ -64,7 +61,7 @@ export const changeEnduranceLaps: ChangeEnduranceLapsType = laps => {
     const base = editor.getIn(['trainingTable', 'base']);
     const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
     const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
-    return dispatch(setInitialState(newState));
+    return dispatch(setInitialStateAction(newState));
   };
 };
 

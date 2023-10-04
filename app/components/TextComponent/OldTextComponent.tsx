@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { StyleSheet, Text, TextStyle } from 'react-native';
 import * as common from '../../commonStyles';
 
@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
 
 // TODO: Refactor to use only styled components
 
-export default function TextComponent(props: TextComponentProps): JSX.Element {
+const TextComponent: FC<TextComponentProps> = (props: TextComponentProps) => {
   const { children, style } = props;
   return (
     // eslint-disable-next-line react/jsx-props-no-spreading
@@ -24,4 +24,6 @@ export default function TextComponent(props: TextComponentProps): JSX.Element {
       {children}
     </Text>
   );
-}
+};
+
+export default TextComponent;

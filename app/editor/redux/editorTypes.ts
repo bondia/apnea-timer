@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { SetType } from '../enums';
 import {
   ChangeEnduranceLapsType,
@@ -47,6 +48,7 @@ export type EditorActionsTypes = {
 export type ImmutableJSType = {
   get: (prop: string) => any;
   getIn: (stack: string[]) => any;
+  setIn: (stack: string[], data: any) => any;
   update: (stack: string[] | string, cb: (data: any) => any) => any;
   toJS: () => EditorStateType;
 };
@@ -54,5 +56,6 @@ export type ImmutableJSType = {
 export type ImmutableJSEditorStateType = ImmutableJSType;
 
 export type ImmutableJSEditorType = ImmutableJSType;
+export type ImmutableTrainingTableType = ImmutableJSType;
 
 export type ImmutableJSEditorSetType = TableSetType & ImmutableJSType;
