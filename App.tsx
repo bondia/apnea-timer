@@ -1,12 +1,21 @@
 import React, { FC } from 'react';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
-import { applyMiddleware, compose, createStore } from 'redux';
-import thunk from 'redux-thunk';
 import initReducers from './app/redux/reducers';
 import Router from './app/Router';
 
-const enhancer = compose(applyMiddleware(thunk));
-const store = createStore(initReducers(), enhancer);
+export const configureAppStore = () => {
+  const reducers = initReducers();
+  const store = configureStore({
+    reducer: reducers,
+    // preloadedState,
+    // devTools: config.NODE_ENV === 'development',
+  });
+
+  return store;
+};
+
+const store = configureAppStore();
 
 const App: FC = () => {
   return (
@@ -17,3 +26,4 @@ const App: FC = () => {
 };
 
 export default App;
+export type AppDispatch = typeof store.dispatch;

@@ -8,7 +8,7 @@ import {
   ImmutableJSEditorSetType,
   ImmutableJSEditorType,
 } from '../../../../editor/redux/editorTypes';
-import { StoreState } from '../../../../redux/types';
+import { RootState } from '../../../../redux/types';
 import { Wrapper } from './EnduranceForm.styled';
 import EnduranceMainForm from './EnduranceMainForm';
 
@@ -41,7 +41,7 @@ const EditorEndurancePane: FC<EditorEnudrancePaneProps> = (props: EditorEnudranc
 
 // REDUX
 
-const stateToProps = (state: StoreState) => {
+const stateToProps = (state: RootState) => {
   return {
     editor: state.editor,
   };

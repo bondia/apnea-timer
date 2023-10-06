@@ -6,8 +6,6 @@ import {
   ChangeTableBaseType,
   ChangeTableTypeType,
   CreateEnduranceTableType,
-  DecreaseTimeItemType,
-  IncreaseTimeItemType,
 } from './editorActions';
 
 export type EditorStateType = {
@@ -36,8 +34,6 @@ export type EditorActionsTypes = {
   changeTableType: ChangeTableTypeType;
   changeTableBase: ChangeTableBaseType;
   changeTableBaseBreaks: ChangeTableBaseBreaksType;
-  increaseTimeItem: IncreaseTimeItemType;
-  decreaseTimeItem: DecreaseTimeItemType;
   createEnduranceTable: CreateEnduranceTableType;
   changeEnduranceLaps: ChangeEnduranceLapsType;
 };

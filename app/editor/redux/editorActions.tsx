@@ -4,7 +4,7 @@ import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
 import updateSetsForTableType from '../pure/sets/updateSetsForTableType';
 import replaceEditorSets from './actions/replaceEditorSets';
-import setEditorInitialStateAction from './actions/setEditorInitialStateAction';
+import setEditorInitialStateAction, { SetEditorInitialStateAction } from './actions/setEditorInitialStateAction';
 import setEditorTableBaseAction from './actions/setEditorTableBase';
 import setEditorTableBaseBreakAction from './actions/setEditorTableBaseBreakAction';
 import setEditorTableDuration from './actions/setEditorTableDuration';
@@ -21,7 +21,7 @@ function updateTableDurationBySets(sets) {
 /**
  * Create Endurance table
  */
-export type CreateEnduranceTableType = (base: number, baseBreaks: number, laps?: number) => object;
+export type CreateEnduranceTableType = (base: number, baseBreaks: number, laps?: number) => SetEditorInitialStateAction;
 export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks, laps = 6) => {
   const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
   return setEditorInitialStateAction(newState);
@@ -30,7 +30,7 @@ export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks,
 /**
  * Change table type action
  */
-export type ChangeTableTypeType = (base: number, tableType: string) => object;
+export type ChangeTableTypeType = (base: number, tableType: string) => SetEditorInitialStateAction;
 export const changeTableType: ChangeTableTypeType = (base, tableType) => {
   const newState = createTable(base, null, tableType, 6);
   return setEditorInitialStateAction(newState);
@@ -123,12 +123,5 @@ function changeTimeItem(key: number, amount: number) {
   };
 }
 
-export type IncreaseTimeItemType = (key: number, amount: number) => void;
-export const increaseTimeItem: IncreaseTimeItemType = (key, amount) => {
-  return changeTimeItem(key, amount);
-};
-
-export type DecreaseTimeItemType = (key: number, amount: number) => void;
-export const decreaseTimeItem: DecreaseTimeItemType = (key, amount) => {
-  return changeTimeItem(key, -amount);
-};
+export const increaseTimeItem = (key: number, amount: number) => changeTimeItem(key, amount);
+export const decreaseTimeItem = (key: number, amount: number) => changeTimeItem(key, -amount);
