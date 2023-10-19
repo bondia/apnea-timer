@@ -4,6 +4,7 @@ import { TableSetType, TableType } from '../../editor/redux/editorTypes';
 import { InitTableAction } from './creators/initTableAction';
 import { TrackContractionType } from './creators/trackContractionAction';
 import { SkipSetType, StartCronoType } from './cronoActions';
+import { FixMe } from '../../types';
 
 // TYPES
 
@@ -56,9 +57,9 @@ export type ImmutableJSCronoType = ImmutableJSObject;
 export type ImmutableJSSetType = ImmutableJSObject;
 
 export type ImmutableJSObject = {
-  get: (prop: string) => any;
-  getIn: (stack: string[]) => any;
-  setIn: (stack: string[], value: unknown) => any;
+  get: (prop: string) => FixMe;
+  getIn: (stack: string[]) => FixMe;
+  setIn: (stack: string[], value: unknown) => FixMe;
   toJS: <T>() => T;
-  updateIn(arg0: string[], arg1: (sets: any) => any): ImmutableJSCronoType;
+  updateIn(arg0: string[], arg1: (sets: FixMe) => FixMe): ImmutableJSCronoType;
 };
