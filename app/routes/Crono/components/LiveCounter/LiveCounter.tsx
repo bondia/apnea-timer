@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import InfoBlock from '../../../../components/InfoBlock';
 import { CronoSetType, CronoStateType } from '../../../../crono/redux/CronoTypes';
-import { SetMode, SetType, TableType } from '../../../../editor/enums';
+import { SetMode, SetType, TableTypeEnum } from '../../../../editor/enums';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
 
 const LiveCounterWrapper = styled.View`
@@ -22,7 +22,7 @@ type LiveCounterProps = {
 const LiveCounter: FC<LiveCounterProps> = props => {
   const {
     crono: {
-      trainingTable: { type: tableType },
+      trainingTable: { type: tableTypeEnum },
       running: { clock: spentTime, countdown: totalTime, contractions },
     },
     set,
@@ -61,7 +61,7 @@ const LiveCounter: FC<LiveCounterProps> = props => {
         </>
       )}
 
-      {TableType.TABLE_TYPE_ENDURANCE === tableType && (
+      {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
         <>
           <InfoBlock title="Targeting" timeContent={targeting} />
           <InfoBlock title="Spent Time" timeContent={spentTime > 0 ? spentTime : 0} />
@@ -69,7 +69,7 @@ const LiveCounter: FC<LiveCounterProps> = props => {
         </>
       )}
 
-      {TableType.TABLE_TYPE_ENDURANCE !== tableType && (
+      {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
         <>
           <InfoBlock
             title="Remaining Time"

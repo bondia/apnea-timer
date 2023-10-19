@@ -1,4 +1,4 @@
-import { TableType } from '../enums';
+import { TableTypeEnum } from '../enums';
 import createTable from '../pure/createTable';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
 import updateSetDurationForKey from '../pure/sets/updateSetDurationForKey';
@@ -23,7 +23,7 @@ function updateTableDurationBySets(sets) {
  */
 export type CreateEnduranceTableType = (base: number, baseBreaks: number, laps?: number) => SetEditorInitialStateAction;
 export const createEnduranceTable: CreateEnduranceTableType = (base, baseBreaks, laps = 6) => {
-  const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
+  const newState = createTable(base, baseBreaks, TableTypeEnum.TABLE_TYPE_ENDURANCE, laps);
   return setEditorInitialStateAction(newState);
 };
 
@@ -45,7 +45,7 @@ export const changeEnduranceLaps: ChangeEnduranceLapsType = laps => {
     const { editor } = getState();
     const base = editor.getIn(['trainingTable', 'base']);
     const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
-    const newState = createTable(base, baseBreaks, TableType.TABLE_TYPE_ENDURANCE, laps);
+    const newState = createTable(base, baseBreaks, TableTypeEnum.TABLE_TYPE_ENDURANCE, laps);
     return dispatch(setEditorInitialStateAction(newState));
   };
 };

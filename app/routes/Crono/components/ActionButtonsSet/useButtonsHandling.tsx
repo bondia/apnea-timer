@@ -4,7 +4,8 @@ import { debounce } from 'lodash';
 import { useCallback } from 'react';
 import findRunningSet from '../../../../crono/pure/findRunningSet';
 import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../crono/redux/CronoTypes';
-import { CronoMode, SetType, TableType } from '../../../../editor/enums';
+import { CronoMode, SetType, TableTypeEnum } from '../../../../editor/enums';
+import { FixMe } from '../../../../types';
 
 type UseButtonsHandlingInput = {
   crono: CronoStateType;
@@ -25,8 +26,8 @@ type UseButtonsHandlingOutput = {
 
 const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boolean => {
   // no contractions tracking for endurance tables
-  const tableType = crono?.trainingTable?.type;
-  if (TableType.TABLE_TYPE_ENDURANCE === tableType) {
+  const tableTypeEnum = crono?.trainingTable?.type;
+  if (TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum) {
     return false;
   }
   // get current active set
@@ -59,16 +60,16 @@ const handleContraction = (cronoActions: CronoActionsTypes) => {
   cronoActions.trackContraction();
 };
 
-const handleFinish = (cronoActions: CronoActionsTypes, navigation: NativeStackNavigationProp<any, string>) => {
+const handleFinish = (cronoActions: CronoActionsTypes, navigation: NativeStackNavigationProp<FixMe, string>) => {
   navigation.pop();
   cronoActions.clearCrono();
 };
 
 export default function useButtonsHandling(input: UseButtonsHandlingInput): UseButtonsHandlingOutput {
   const { crono, cronoActions } = input;
-  const navigation = useNavigation<NativeStackNavigationProp<any>>();
+  const navigation = useNavigation<NativeStackNavigationProp<FixMe>>();
   const clock = crono?.running?.clock;
-  const tableType = crono?.trainingTable?.type;
+  const tableType = crono?.trainingTable?.type as TableTypeEnum;
   const tableMode = crono?.running.mode;
 
   const current: CronoSetType = findRunningSet(crono.sets);

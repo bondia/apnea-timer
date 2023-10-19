@@ -1,4 +1,4 @@
-import { SetType, TableType } from '../../enums';
+import { SetType, TableTypeEnum } from '../../enums';
 
 function decideSetDuration(tableType, item, key, duration) {
   // never less than 0
@@ -9,7 +9,7 @@ function decideSetDuration(tableType, item, key, duration) {
   const type = item.get('type');
 
   // UPDATE FOR O2 TABLES
-  if (TableType.TABLE_TYPE_O2 === tableType && SetType.SET_TYPE_HOLD === type) {
+  if (TableTypeEnum.TABLE_TYPE_O2 === tableType && SetType.SET_TYPE_HOLD === type) {
     if (
       (item.get('pos') < key && item.get('duration') > duration) ||
       item.get('pos') === key ||
@@ -20,7 +20,7 @@ function decideSetDuration(tableType, item, key, duration) {
   }
 
   // UPDATE FOR CO2 TABLES
-  if (TableType.TABLE_TYPE_CO2 === tableType && SetType.SET_TYPE_PREPARE === type) {
+  if (TableTypeEnum.TABLE_TYPE_CO2 === tableType && SetType.SET_TYPE_PREPARE === type) {
     if (
       (item.get('pos') < key && item.get('duration') < duration) ||
       item.get('pos') === key ||

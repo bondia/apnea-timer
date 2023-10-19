@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import { TableType } from '../../../../editor/enums';
+import { TableTypeEnum } from '../../../../editor/enums';
 import headlineByTableType from '../../utils/headlineByTableType';
 import setsByTableType from '../../utils/setsByTableType';
 import StaticSetsList from '../StaticSetsList/StaticSetsList';
@@ -17,7 +17,7 @@ const StaticForm: FC = () => {
   const editor = useAppSelector(editorSelector);
 
   useEffect(() => {
-    dispatch(changeTableType(120, TableType.TABLE_TYPE_CO2));
+    dispatch(changeTableType(120, TableTypeEnum.TABLE_TYPE_CO2));
   }, [dispatch]);
 
   if (editor === null) {

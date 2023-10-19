@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SetType } from '../enums';
+import { TableTypeEnum, SetType } from '../enums';
 import {
   ChangeEnduranceLapsType,
   ChangeTableBaseBreaksType,
@@ -15,7 +15,7 @@ export type EditorStateType = {
 
 export type TableType = {
   base: number;
-  type: string;
+  type: TableTypeEnum;
   duration: number;
   // endurance
   baseBreaks?: number;

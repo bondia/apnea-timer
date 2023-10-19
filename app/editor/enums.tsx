@@ -1,5 +1,5 @@
 // TRAINING TABLE TYPES
-export enum TableType {
+export enum TableTypeEnum {
   TABLE_TYPE_O2 = 'TABLE_TYPE_O2',
   TABLE_TYPE_CO2 = 'TABLE_TYPE_CO2',
   TABLE_TYPE_FREE = 'TABLE_TYPE_FREE',

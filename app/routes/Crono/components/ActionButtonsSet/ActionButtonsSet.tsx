@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { CronoActionsTypes, CronoStateType } from '../../../../crono/redux/CronoTypes';
-import { CronoMode, TableType } from '../../../../editor/enums';
+import { CronoMode, TableTypeEnum } from '../../../../editor/enums';
 import * as SC from './ActionButtonsSet.styled';
 import useButtonsHandling from './useButtonsHandling';
 
@@ -27,7 +27,7 @@ const CronoButtonSet: FC<CronoButtonSetProps> = props => {
 
   return (
     <SC.ButtonSetWrapper>
-      {clock < 0 && TableType.TABLE_TYPE_ENDURANCE !== tableType && (
+      {clock < 0 && TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableType && (
         <SC.ButtonWrapper>
           <LongTouchButton title="Auto" onPressStart={handleStartAuto} />
         </SC.ButtonWrapper>
