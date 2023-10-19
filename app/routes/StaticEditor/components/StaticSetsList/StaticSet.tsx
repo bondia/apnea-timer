@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import EditorTimerInput from '../StaticFormInputs/EditorTimerInput';
-import { ImmutableJSEditorSetType } from '../../../../editor/redux/editorTypes';
+import { ImmutableJSEditorSetType } from '../../../../modules/editor/redux/editorTypes';
 
 type Props = {
   set: ImmutableJSEditorSetType;

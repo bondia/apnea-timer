@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
 import LongTouchButton from '../../../../components/LongTouchButton';
-import * as editorActions from '../../../../editor/redux/editorActions';
+import * as editorActions from '../../../../modules/editor/redux/editorActions';
+import { ImmutableJSEditorType } from '../../../../modules/editor/redux/editorTypes';
 
 export const ButtonsSet = styled.View`
   flex: 1;
@@ -15,7 +16,7 @@ export const ButtonWrapper = styled.View`
   flex: 1;
 `;
 type TableBaseInputProps = {
-  editor: ImmutableJSEditor;
+  editor: ImmutableJSEditorType;
   actions: EditorActions;
 };
 
@@ -39,13 +40,6 @@ const TableBaseInput: FC<TableBaseInputProps> = (props: TableBaseInputProps) => 
       />
     </ButtonsSet>
   );
-};
-
-/**
- * TODO: Remove immutable js
- */
-type ImmutableJSEditor = {
-  getIn: (stack: string[]) => any;
 };
 
 type changeTableBase = (amount: number) => void;

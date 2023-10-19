@@ -1,6 +1,6 @@
 import React, { FC, useCallback } from 'react';
 import styled from 'styled-components/native';
-import { ImmutableJSEditorStateType } from '../../editor/redux/editorTypes';
+import { ImmutableJSEditorStateType } from '../../modules/editor/redux/editorTypes';
 import { RoutesEnum } from '../../routes/Routes';
 import LongTouchButton from '../LongTouchButton';
 import useAppNavitation from '../../routes/useAppNavigation';

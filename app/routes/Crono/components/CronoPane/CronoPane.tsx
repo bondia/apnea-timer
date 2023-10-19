@@ -5,15 +5,15 @@ import { bindActionCreators } from 'redux';
 import MultipleBar from '../../../../components/CountdownBar/MultipleBar';
 import SingleBar from '../../../../components/CountdownBar/SingleBar';
 import SetsList from '../../../../components/CronoSetsList.tsx';
-import findRunningSet from '../../../../crono/pure/findRunningSet';
-import { cronoActions } from '../../../../crono/redux/cronoActions';
+import findRunningSet from '../../../../modules/crono/pure/findRunningSet';
+import { cronoActions } from '../../../../modules/crono/redux/cronoActions';
 import {
   CronoActionsTypes,
   CronoSetType,
   CronoStateType,
   ImmutableJSCronoType,
-} from '../../../../crono/redux/CronoTypes';
-import { EditorStateType } from '../../../../editor/redux/editorTypes';
+} from '../../../../modules/crono/redux/CronoTypes';
+import { EditorStateType } from '../../../../modules/editor/redux/editorTypes';
 import CronoButtonsSet from '../ActionButtonsSet';
 import LiveCounter from '../LiveCounter';
 import * as SC from './CronoPane.styled';

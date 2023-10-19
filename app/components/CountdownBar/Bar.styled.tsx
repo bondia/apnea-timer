@@ -1,7 +1,7 @@
 import styled from 'styled-components/native';
 import { COLOR_GREEN_LIGHT, COLOR_RED_NORMAL, FONT_CLOLR_GREY_LIGHT } from '../../commonStyles';
-import { CronoSetType } from '../../crono/redux/CronoTypes';
-import { SetMode, SetType } from '../../editor/enums';
+import { CronoSetType } from '../../modules/crono/redux/CronoTypes';
+import { SetMode, SetType } from '../../modules/editor/enums';
 
 const decideBackgroundColor = (props: SingleBarInnerProps): string =>
   props.set?.type === SetType.SET_TYPE_HOLD ? COLOR_RED_NORMAL : COLOR_GREEN_LIGHT;

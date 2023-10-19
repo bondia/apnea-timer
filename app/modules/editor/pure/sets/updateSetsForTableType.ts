@@ -1,4 +1,4 @@
-import { FixMe } from '../../../types';
+import { FixMe } from '../../../../types';
 import { SetType, TableTypeEnum } from '../../enums';
 import createInitialSets from './createInitialSets';
 

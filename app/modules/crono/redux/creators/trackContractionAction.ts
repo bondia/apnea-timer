@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { StoreThunkAction } from '../../../redux/types';
+import { StoreThunkAction } from '../../../../redux/types';
 import findRunningSet from '../../pure/findRunningSet';
 import replaceSetAction from '../actions/replaceSetAction';
 import { CronoSetType } from '../CronoTypes';

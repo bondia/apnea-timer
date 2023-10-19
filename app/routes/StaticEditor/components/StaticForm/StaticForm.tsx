@@ -1,14 +1,14 @@
 import React, { FC, useEffect } from 'react';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import { TableTypeEnum } from '../../../../editor/enums';
+import { TableTypeEnum } from '../../../../modules/editor/enums';
 import headlineByTableType from '../../utils/headlineByTableType';
 import setsByTableType from '../../utils/setsByTableType';
 import StaticSetsList from '../StaticSetsList/StaticSetsList';
 import StaticMainForm from './StaticMainForm';
-import { changeTableType } from '../../../../editor/redux/editorActions';
-import { editorSelector } from '../../../../editor/redux/editorSelectors';
-import { useAppDispatch, useAppSelector } from '../../../../editor/redux/hooks';
+import { changeTableType } from '../../../../modules/editor/redux/editorActions';
+import { editorSelector } from '../../../../modules/editor/redux/editorSelectors';
+import { useAppDispatch, useAppSelector } from '../../../../modules/editor/redux/hooks';
 
 import * as SC from './StaticForm.styled';
 

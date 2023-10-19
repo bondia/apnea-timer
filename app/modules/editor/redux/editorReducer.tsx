@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { SET_EDITOR_INITIAL_STATE } from './actions/setEditorInitialStateAction';
 import { ImmutableJSEditorType } from './editorTypes';
-import { defaultEmptyAction } from '../../redux/actions';
+import { defaultEmptyAction } from '../../../redux/actions';
 import { SET_EDITOR_TABLE_BASE } from './actions/setEditorTableBase';
 import { SET_EDITOR_TABLE_BASE_BREAKS } from './actions/setEditorTableBaseBreakAction';
 import { SET_EDITOR_TABLE_DURATION } from './actions/setEditorTableDuration';

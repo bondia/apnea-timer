@@ -4,7 +4,7 @@ import { TableSetType, TableType } from '../../editor/redux/editorTypes';
 import { InitTableAction } from './creators/initTableAction';
 import { TrackContractionType } from './creators/trackContractionAction';
 import { SkipSetType, StartCronoType } from './cronoActions';
-import { FixMe } from '../../types';
+import { FixMe } from '../../../types';
 
 // TYPES
 

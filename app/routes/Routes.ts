@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { EditorStateType } from '../editor/redux/editorTypes';
+import { EditorStateType } from '../modules/editor/redux/editorTypes';
 
 export enum RoutesEnum {
   MENU = 'MENU',

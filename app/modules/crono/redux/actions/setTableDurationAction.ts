@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import * as reduxActions from '../../../redux/actions';
+import * as reduxActions from '../../../../redux/actions';
 
 export type SetTableDurationAction = Action & {
   duration: number;

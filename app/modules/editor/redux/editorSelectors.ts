@@ -1,5 +1,5 @@
 import { createSelector } from '@reduxjs/toolkit';
-import { RootState } from '../../redux/types';
+import { RootState } from '../../../redux/types';
 
 const editor = (state: RootState) => state.editor;
 

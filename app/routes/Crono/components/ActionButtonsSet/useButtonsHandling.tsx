@@ -1,9 +1,9 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { debounce } from 'lodash';
 import { useCallback } from 'react';
-import findRunningSet from '../../../../crono/pure/findRunningSet';
-import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../crono/redux/CronoTypes';
-import { CronoMode, SetType, TableTypeEnum } from '../../../../editor/enums';
+import findRunningSet from '../../../../modules/crono/pure/findRunningSet';
+import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
+import { CronoMode, SetType, TableTypeEnum } from '../../../../modules/editor/enums';
 import { FixMe } from '../../../../types';
 import useAppNavitation from '../../../useAppNavigation';
 

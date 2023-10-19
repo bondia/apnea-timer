@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import * as reduxActions from '../../../redux/actions';
+import * as reduxActions from '../../../../redux/actions';
 
 type SetCronoStartTimestampAction = Action & {
   startTimestamp: number;
