@@ -6,7 +6,7 @@ import CronoScene from './routes/Crono/CronoScene';
 import EditorEnduranceScene from './routes/EnduranceEditor/EditorEnduranceScene';
 import MainScene from './routes/Main/MainScene';
 import MouthfillScene from './routes/Mouthfill/MouthfillScene';
-import { Routes } from './routes/Routes';
+import { RoutesEnum } from './routes/Routes';
 import EditorStaticScene from './routes/StaticEditor/StaticEditorScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -15,20 +15,24 @@ const AppRouter: FC = () => {
   deactivateKeepAwake();
   return (
     <NavigationContainer>
-      <Navigator initialRouteName={Routes.MENU} screenOptions={{ headerShown: false }}>
+      <Navigator initialRouteName={RoutesEnum.MENU} screenOptions={{ headerShown: false }}>
         {/* Main */}
-        <Screen name={Routes.MENU} component={MainScene} options={{ title: 'Apnea' }} />
+        <Screen name={RoutesEnum.MENU} component={MainScene} options={{ title: 'Apnea' }} />
 
         {/* Create tables */}
-        <Screen name={Routes.CREATE_TABLE_SCENE} component={EditorStaticScene} options={{ title: 'CO2/O2' }} />
-        <Screen name={Routes.ENDURANCE_TABLE_SCENE} component={EditorEnduranceScene} options={{ title: 'Endurance' }} />
+        <Screen name={RoutesEnum.CREATE_TABLE_SCENE} component={EditorStaticScene} options={{ title: 'CO2/O2' }} />
+        <Screen
+          name={RoutesEnum.ENDURANCE_TABLE_SCENE}
+          component={EditorEnduranceScene}
+          options={{ title: 'Endurance' }}
+        />
 
         {/* Crono */}
-        <Screen name={Routes.CRONO_SCENE} component={CronoScene} options={{ title: 'Crono', headerShown: false }} />
+        <Screen name={RoutesEnum.CRONO_SCENE} component={CronoScene} options={{ title: 'Crono', headerShown: false }} />
 
         {/* Utils */}
-        <Screen name={Routes.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
-        {/* <Screen name={Routes.SCHEDULE_SCENE} component={EditorEnduranceScene} options={{ title: 'Schedule' }} /> */}
+        <Screen name={RoutesEnum.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
+        {/* <Screen name={RoutesEnum.SCHEDULE_SCENE} component={EditorEnduranceScene} options={{ title: 'Schedule' }} /> */}
       </Navigator>
     </NavigationContainer>
   );

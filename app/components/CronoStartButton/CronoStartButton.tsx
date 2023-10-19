@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 import styled from 'styled-components/native';
 import { ImmutableJSEditorStateType } from '../../editor/redux/editorTypes';
-import { Routes } from '../../routes/Routes';
+import { RoutesEnum } from '../../routes/Routes';
 import LongTouchButton from '../LongTouchButton';
 import useAppNavitation from '../../routes/useAppNavigation';
 
@@ -19,7 +19,7 @@ const CronoStartButton: FC<CronoStartButtonProps> = props => {
 
   const onPressStart = useCallback(() => {
     const initialData = data.toJS();
-    navigation.push(Routes.CRONO_SCENE, { initialData });
+    navigation.push(RoutesEnum.CRONO_SCENE, { initialData });
   }, [data, navigation]);
 
   return (

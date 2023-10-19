@@ -1,7 +1,7 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { EditorStateType } from '../editor/redux/editorTypes';
 
-export enum Routes {
+export enum RoutesEnum {
   MENU = 'MENU',
   CREATE_TABLE_SCENE = 'CREATE_TABLE_SCENE',
   ENDURANCE_TABLE_SCENE = 'ENDURANCE_TABLE_SCENE',
@@ -10,10 +10,10 @@ export enum Routes {
 }
 
 export type RootStackParamList = {
-  [Routes.MENU]: undefined;
-  [Routes.CREATE_TABLE_SCENE]: undefined;
-  [Routes.ENDURANCE_TABLE_SCENE]: undefined;
-  [Routes.CRONO_SCENE]: { initialData: EditorStateType };
+  [RoutesEnum.MENU]: undefined;
+  [RoutesEnum.CREATE_TABLE_SCENE]: undefined;
+  [RoutesEnum.ENDURANCE_TABLE_SCENE]: undefined;
+  [RoutesEnum.CRONO_SCENE]: { initialData: EditorStateType };
 };
 
 export type AppScreenType<GenericRoute extends keyof RootStackParamList> = NativeStackScreenProps<
