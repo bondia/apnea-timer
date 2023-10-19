@@ -7,20 +7,20 @@ export enum TableTypeEnum {
 }
 
 // TRAINING SET TYPE
-export enum SetType {
+export enum SetTypeEnum {
   SET_TYPE_PREPARE = 'SET_TYPE_PREPARE',
   SET_TYPE_HOLD = 'SET_TYPE_HOLD',
 }
 
 // TRAINING SET MODE
-export enum SetMode {
+export enum SetModeEnum {
   SET_MODE_INITIAL = 'SET_MODE_INITIAL',
   SET_MODE_RUNNING = 'SET_MODE_RUNNING',
   SET_MODE_FINISHED = 'SET_MODE_FINISHED',
   SET_MODE_SKIPED = 'SET_MODE_SKIPED',
 }
 
-export enum CronoMode {
+export enum CronoModeEnum {
   CRONO_MODE_INITIAL = 'CRONO_MODE_INITIAL',
   CRONO_MODE_AUTO = 'CRONO_MODE_AUTO',
   CRONO_MODE_COACH = 'CRONO_MODE_COACH',

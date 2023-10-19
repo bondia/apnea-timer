@@ -1,5 +1,5 @@
 import { CronoSetType } from '../../../crono/redux/CronoTypes';
-import { SetMode } from '../../enums';
+import { SetModeEnum } from '../../enums';
 
 function getSingleSetDuration(set: CronoSetType) {
   // use running wrapper if exists
@@ -7,7 +7,7 @@ function getSingleSetDuration(set: CronoSetType) {
   const running = set.get('running');
   if (running) {
     const countdown = running.get('countdown');
-    return running.get('mode') !== SetMode.SET_MODE_SKIPED && countdown > 0 ? countdown : 0;
+    return running.get('mode') !== SetModeEnum.SET_MODE_SKIPED && countdown > 0 ? countdown : 0;
   }
 
   // do not include zombie sets

@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import InfoBlock from '../../../../components/InfoBlock';
 import { CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
-import { SetMode, SetType, TableTypeEnum } from '../../../../modules/editor/enums';
+import { SetModeEnum, SetTypeEnum, TableTypeEnum } from '../../../../modules/editor/enums';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
 
 const LiveCounterWrapper = styled.View`
@@ -44,12 +44,12 @@ const LiveCounter: FC<LiveCounterProps> = props => {
   const pos = set ? set.pos : 0;
   const currentSet = pos <= 1 ? 1 : Math.floor(pos / 2) + 1;
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
-  const currentSetHeader = SetType.SET_TYPE_HOLD === setType ? 'Breath Hold' : 'Breath Up';
-  const currentSetColor = SetType.SET_TYPE_HOLD === setType ? COLOR_RED_NORMAL : COLOR_GREEN_NORMAL;
+  const currentSetHeader = SetTypeEnum.SET_TYPE_HOLD === setType ? 'Breath Hold' : 'Breath Up';
+  const currentSetColor = SetTypeEnum.SET_TYPE_HOLD === setType ? COLOR_RED_NORMAL : COLOR_GREEN_NORMAL;
 
   return (
     <LiveCounterWrapper>
-      {set && mode !== SetMode.SET_MODE_FINISHED && (
+      {set && mode !== SetModeEnum.SET_MODE_FINISHED && (
         <>
           <InfoBlock
             title={currentSetHeader}

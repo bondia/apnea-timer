@@ -1,10 +1,10 @@
 import styled from 'styled-components/native';
 import { COLOR_GREEN_LIGHT, COLOR_RED_NORMAL, FONT_CLOLR_GREY_LIGHT } from '../../commonStyles';
 import { CronoSetType } from '../../modules/crono/redux/CronoTypes';
-import { SetMode, SetType } from '../../modules/editor/enums';
+import { SetModeEnum, SetTypeEnum } from '../../modules/editor/enums';
 
 const decideBackgroundColor = (props: SingleBarInnerProps): string =>
-  props.set?.type === SetType.SET_TYPE_HOLD ? COLOR_RED_NORMAL : COLOR_GREEN_LIGHT;
+  props.set?.type === SetTypeEnum.SET_TYPE_HOLD ? COLOR_RED_NORMAL : COLOR_GREEN_LIGHT;
 
 const decideHeight = (props: SingleBarInnerProps): number | string => {
   const { set } = props;
@@ -20,7 +20,7 @@ const decideHeight = (props: SingleBarInnerProps): number | string => {
   } = set;
 
   // check mode
-  if (mode === SetMode.SET_MODE_FINISHED || mode === SetMode.SET_MODE_SKIPED) {
+  if (mode === SetModeEnum.SET_MODE_FINISHED || mode === SetModeEnum.SET_MODE_SKIPED) {
     return 0;
   }
 

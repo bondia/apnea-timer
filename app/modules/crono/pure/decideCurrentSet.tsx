@@ -1,4 +1,4 @@
-import { CronoMode, SetMode } from '../../editor/enums';
+import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import playSound, { A2, C3, F2 } from '../../../utils/playSound';
 import { CronoStateType } from '../redux/CronoTypes';
 
@@ -6,9 +6,9 @@ function skipSet(state: CronoStateType, step: number, setMode: string, currentTi
   const newState = state;
   let newStep = step;
   // change set mode
-  if (SetMode.SET_MODE_SKIPED !== setMode) {
+  if (SetModeEnum.SET_MODE_SKIPED !== setMode) {
     newState.sets[newStep].running.endTimestamp = currentTimestamp;
-    newState.sets[newStep].running.mode = SetMode.SET_MODE_FINISHED;
+    newState.sets[newStep].running.mode = SetModeEnum.SET_MODE_FINISHED;
   }
 
   // decide next step
@@ -18,7 +18,7 @@ function skipSet(state: CronoStateType, step: number, setMode: string, currentTi
   // update next set
   if (newStep >= 0) {
     newState.sets[newStep].running.startTimestamp = currentTimestamp;
-    newState.sets[newStep].running.mode = SetMode.SET_MODE_RUNNING;
+    newState.sets[newStep].running.mode = SetModeEnum.SET_MODE_RUNNING;
   }
 
   return newState;
@@ -51,13 +51,13 @@ export default function decideCurrentSet(state: CronoStateType, currentTimestamp
   playNotificationSound(countdown);
 
   // handle explicit skiped sets
-  if (SetMode.SET_MODE_SKIPED === setMode) {
+  if (SetModeEnum.SET_MODE_SKIPED === setMode) {
     return skipSet(state, step, setMode, currentTimestamp);
   }
 
   // do not change current set if not skiped and stil countdown available
   const cronoMode: string = state.running.mode;
-  if (countdown <= 0 && CronoMode.CRONO_MODE_AUTO === cronoMode) {
+  if (countdown <= 0 && CronoModeEnum.CRONO_MODE_AUTO === cronoMode) {
     return skipSet(state, step, setMode, currentTimestamp);
   }
 

@@ -3,7 +3,7 @@ import { debounce } from 'lodash';
 import { useCallback } from 'react';
 import findRunningSet from '../../../../modules/crono/pure/findRunningSet';
 import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
-import { CronoMode, SetType, TableTypeEnum } from '../../../../modules/editor/enums';
+import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../../modules/editor/enums';
 import { FixMe } from '../../../../types';
 import useAppNavitation from '../../../useAppNavigation';
 
@@ -35,19 +35,19 @@ const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boo
     return false;
   }
   // decide if can track
-  return current && SetType.SET_TYPE_HOLD === current.type;
+  return current && SetTypeEnum.SET_TYPE_HOLD === current.type;
 };
 
-const handleStart = (cronoActions: CronoActionsTypes, mode: CronoMode) => {
+const handleStart = (cronoActions: CronoActionsTypes, mode: CronoModeEnum) => {
   cronoActions.startCrono(mode);
 };
 
 const handleStartAuto = (cronoActions: CronoActionsTypes) => {
-  handleStart(cronoActions, CronoMode.CRONO_MODE_AUTO);
+  handleStart(cronoActions, CronoModeEnum.CRONO_MODE_AUTO);
 };
 
 const handleStartCoach = (cronoActions: CronoActionsTypes) => {
-  handleStart(cronoActions, CronoMode.CRONO_MODE_COACH);
+  handleStart(cronoActions, CronoModeEnum.CRONO_MODE_COACH);
 };
 
 const handleSkip = (cronoActions: CronoActionsTypes, current: CronoSetType) => {

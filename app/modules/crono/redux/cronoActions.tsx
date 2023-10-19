@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import { Action } from 'redux';
-import { CronoMode, SetMode } from '../../editor/enums';
+import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { StoreThunkAction } from '../../../redux/types';
 import generateTimestamp from '../../../utils/time/generateTimestamp';
 import decideCurrentSet from '../pure/decideCurrentSet';
@@ -70,9 +70,9 @@ const handleTick = (): StoreThunkAction => {
 /**
  * Start crono
  */
-export type StartCronoType = (mode: CronoMode) => StoreThunkAction;
+export type StartCronoType = (mode: CronoModeEnum) => StoreThunkAction;
 
-const startCrono: StartCronoType = (mode: CronoMode) => {
+const startCrono: StartCronoType = (mode: CronoModeEnum) => {
   return dispatch => {
     clearInterval(timer);
     dispatch(setCronoStartTimestampAction(generateTimestamp()));
@@ -100,7 +100,7 @@ const skipSet: SkipSetType = (key: number) => {
       sets.map(s => {
         if (s.get('pos') === key) {
           return s
-            .setIn(['running', 'mode'], SetMode.SET_MODE_SKIPED)
+            .setIn(['running', 'mode'], SetModeEnum.SET_MODE_SKIPED)
             .setIn(['running', 'endTimestamp'], currentTimestamp);
         }
         return s;
@@ -118,9 +118,9 @@ const skipSet: SkipSetType = (key: number) => {
     dispatch(updateTableDurationBySetsAction(crono.get('sets')));
 
     // check if there are some sets still in initial mode
-    const found = crono.get('sets').filter(s => s.getIn(['running', 'mode']) === SetMode.SET_MODE_INITIAL);
+    const found = crono.get('sets').filter(s => s.getIn(['running', 'mode']) === SetModeEnum.SET_MODE_INITIAL);
     if (found.size <= 0) {
-      dispatch(setCronoModeAction(CronoMode.CRONO_MODE_FINISHED));
+      dispatch(setCronoModeAction(CronoModeEnum.CRONO_MODE_FINISHED));
       return;
     }
 

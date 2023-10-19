@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import { SetType } from '../../../../modules/editor/enums';
+import { SetTypeEnum } from '../../../../modules/editor/enums';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EditorTimerInput.styled';
 import { useAppDispatch } from '../../../../modules/editor/redux/hooks';
@@ -20,12 +20,12 @@ type EditorTimerInputProps = {
 const EditorTimerInput: FC<EditorTimerInputProps> = props => {
   const dispatch = useAppDispatch();
 
-  const { index, duration = 0, type = SetType.SET_TYPE_PREPARE, setNumber = 0, zombie = false } = props;
+  const { index, duration = 0, type = SetTypeEnum.SET_TYPE_PREPARE, setNumber = 0, zombie = false } = props;
 
   const increase = () => dispatch(increaseTimeItem(index, 5));
   const decrease = () => dispatch(decreaseTimeItem(index, 5));
 
-  let clockColor = SetType.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
+  let clockColor = SetTypeEnum.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
   clockColor = zombie ? FONT_COLOR_GREY : clockColor;
 
   // TODO: Move to styled with text component

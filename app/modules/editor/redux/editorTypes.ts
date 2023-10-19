@@ -1,5 +1,5 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
-import { TableTypeEnum, SetType } from '../enums';
+import { FixMe } from '../../../types';
+import { TableTypeEnum, SetTypeEnum } from '../enums';
 import {
   ChangeEnduranceLapsType,
   ChangeTableBaseBreaksType,
@@ -24,7 +24,7 @@ export type TableType = {
 
 export type TableSetType = {
   duration: number;
-  type: SetType;
+  type: SetTypeEnum;
   pos: number;
 };
 
@@ -42,10 +42,10 @@ export type EditorActionsTypes = {
  * TODO: Remove immutable js
  */
 export type ImmutableJSType = {
-  get: (prop: string) => any;
-  getIn: (stack: string[]) => any;
-  setIn: (stack: string[], data: any) => any;
-  update: (stack: string[] | string, cb: (data: any) => any) => any;
+  get: (prop: string) => FixMe;
+  getIn: (stack: string[]) => FixMe;
+  setIn: (stack: string[], data: FixMe) => FixMe;
+  update: (stack: string[] | string, cb: (data: FixMe) => FixMe) => FixMe;
   toJS: () => EditorStateType;
 };
 

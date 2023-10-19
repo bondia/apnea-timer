@@ -1,4 +1,4 @@
-import { CronoMode, SetMode } from '../../editor/enums';
+import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { EditorStateType, TableSetType } from '../../editor/redux/editorTypes';
 import { CronoRunningType, CronoSetType, CronoStateType } from '../redux/CronoTypes';
 
@@ -9,7 +9,7 @@ function initSet(originalSet: TableSetType): CronoSetType {
   set.running = {
     startTimestamp: null,
     endTimestamp: null,
-    mode: pos === 0 ? SetMode.SET_MODE_RUNNING : SetMode.SET_MODE_INITIAL,
+    mode: pos === 0 ? SetModeEnum.SET_MODE_RUNNING : SetModeEnum.SET_MODE_INITIAL,
     originalCountdown: originalSetDuration,
     countdown: originalSetDuration,
     contraction: -1,
@@ -30,7 +30,7 @@ function createDefaultRunningProp(): CronoRunningType {
     // table current step
     step: 0,
     // cono mode
-    mode: CronoMode.CRONO_MODE_INITIAL,
+    mode: CronoModeEnum.CRONO_MODE_INITIAL,
     // set contractions
     contractions: 0,
   };

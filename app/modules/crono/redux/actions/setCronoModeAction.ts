@@ -1,12 +1,12 @@
 import { Action } from 'redux';
-import { CronoMode } from '../../../editor/enums';
+import { CronoModeEnum } from '../../../editor/enums';
 import * as reduxActions from '../../../../redux/actions';
 
 type SetCronoModeAction = Action & {
-  mode: CronoMode;
+  mode: CronoModeEnum;
 };
 
-const setCronoModeAction = (mode: CronoMode): SetCronoModeAction => {
+const setCronoModeAction = (mode: CronoModeEnum): SetCronoModeAction => {
   return { type: reduxActions.CRONO_SET_RUNNING_MODE, mode };
 };
 

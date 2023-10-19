@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { SetType, TableTypeEnum } from '../../enums';
+import { SetTypeEnum, TableTypeEnum } from '../../enums';
 
 const getBHTimeForSet = (type: TableTypeEnum, index: number, base: number): number => {
   if (TableTypeEnum.TABLE_TYPE_O2 !== type) {
@@ -21,14 +21,14 @@ export default function createInitialSets(base = 5, tableType = TableTypeEnum.TA
     sets = sets.push(
       Immutable.fromJS({
         duration: getBUTimeForSet(tableType, i, base),
-        type: SetType.SET_TYPE_PREPARE,
+        type: SetTypeEnum.SET_TYPE_PREPARE,
         pos: i,
       }),
     );
     sets = sets.push(
       Immutable.fromJS({
         duration: getBHTimeForSet(tableType, i, base),
-        type: SetType.SET_TYPE_HOLD,
+        type: SetTypeEnum.SET_TYPE_HOLD,
         pos: i + 1,
       }),
     );
