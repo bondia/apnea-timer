@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
-import LongTouchButton from '../../../components/LongTouchButton';
-import TextComponent from '../../../components/TextComponent/OldTextComponent';
-import { SetType } from '../../../editor/enums';
-import secondsToTimeString from '../../../utils/time/secondsToTimeString';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
+import LongTouchButton from '../../../../components/LongTouchButton';
+import TextComponent from '../../../../components/TextComponent/OldTextComponent';
+import { SetType } from '../../../../editor/enums';
+import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EditorTimerInput.styled';
-import { useAppDispatch } from '../../../editor/redux/hooks';
-import { decreaseTimeItem, increaseTimeItem } from '../../../editor/redux/editorActions';
+import { useAppDispatch } from '../../../../editor/redux/hooks';
+import { decreaseTimeItem, increaseTimeItem } from '../../../../editor/redux/editorActions';
 
 type EditorTimerInputProps = {
   index: number;

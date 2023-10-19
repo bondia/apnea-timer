@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
-import LongTouchButton from '../../../components/LongTouchButton';
-import { TableTypeEnum } from '../../../editor/enums';
-import * as editorActions from '../../../editor/redux/editorActions';
+import LongTouchButton from '../../../../components/LongTouchButton';
+import { TableTypeEnum } from '../../../../editor/enums';
+import * as editorActions from '../../../../editor/redux/editorActions';
 
 /**
  * STYLES
@@ -15,6 +15,7 @@ export const ButtonsSetWrapper = styled.View`
   flex-direction: row;
   align-items: center;
 `;
+
 type TableBaseInputProps = {
   editor: ImmutableJSEditor;
   actions: EditorActions;

@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
-import LongTouchButton from '../../../components/LongTouchButton';
-import * as editorActions from '../../../editor/redux/editorActions';
+import LongTouchButton from '../../../../components/LongTouchButton';
+import * as editorActions from '../../../../editor/redux/editorActions';
 
 export const ButtonsSet = styled.View`
   flex: 1;
