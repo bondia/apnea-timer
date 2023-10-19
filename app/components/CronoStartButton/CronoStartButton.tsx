@@ -1,10 +1,9 @@
-import { useNavigation } from '@react-navigation/native';
-import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import React, { FC, useCallback } from 'react';
 import styled from 'styled-components/native';
 import { ImmutableJSEditorStateType } from '../../editor/redux/editorTypes';
-import { RootStackParamList, Routes } from '../../routes/Routes';
+import { Routes } from '../../routes/Routes';
 import LongTouchButton from '../LongTouchButton';
+import useAppNavitation from '../../routes/useAppNavigation';
 
 const ButtonContainer = styled.View`
   flex-direction: row;
@@ -16,7 +15,7 @@ type CronoStartButtonProps = {
 
 const CronoStartButton: FC<CronoStartButtonProps> = props => {
   const { data } = props;
-  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const navigation = useAppNavitation();
 
   const onPressStart = useCallback(() => {
     const initialData = data.toJS();
