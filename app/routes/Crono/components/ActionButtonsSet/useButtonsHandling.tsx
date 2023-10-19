@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { debounce } from 'lodash';
 import { useCallback } from 'react';
@@ -6,6 +5,7 @@ import findRunningSet from '../../../../crono/pure/findRunningSet';
 import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../crono/redux/CronoTypes';
 import { CronoMode, SetType, TableTypeEnum } from '../../../../editor/enums';
 import { FixMe } from '../../../../types';
+import useAppNavitation from '../../../useAppNavigation';
 
 type UseButtonsHandlingInput = {
   crono: CronoStateType;
@@ -67,7 +67,7 @@ const handleFinish = (cronoActions: CronoActionsTypes, navigation: NativeStackNa
 
 export default function useButtonsHandling(input: UseButtonsHandlingInput): UseButtonsHandlingOutput {
   const { crono, cronoActions } = input;
-  const navigation = useNavigation<NativeStackNavigationProp<FixMe>>();
+  const navigation = useAppNavitation();
   const clock = crono?.running?.clock;
   const tableType = crono?.trainingTable?.type as TableTypeEnum;
   const tableMode = crono?.running.mode;
@@ -78,6 +78,7 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
     handleSkip(actions, set);
   }, []);
 
+  // TODO: Check that callback
   const deubuncedSkip = useCallback(
     debounce(skip, 500, {
       leading: true,

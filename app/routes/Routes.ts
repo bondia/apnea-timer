@@ -14,6 +14,7 @@ export type RootStackParamList = {
   [RoutesEnum.CREATE_TABLE_SCENE]: undefined;
   [RoutesEnum.ENDURANCE_TABLE_SCENE]: undefined;
   [RoutesEnum.CRONO_SCENE]: { initialData: EditorStateType };
+  [RoutesEnum.MF_DEPTH]: undefined;
 };
 
 export type AppScreenType<GenericRoute extends keyof RootStackParamList> = NativeStackScreenProps<
