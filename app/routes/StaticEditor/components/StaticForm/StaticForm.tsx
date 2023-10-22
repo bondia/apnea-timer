@@ -8,7 +8,7 @@ import StaticSetsList from '../StaticSetsList/StaticSetsList';
 import StaticMainForm from './StaticMainForm';
 import { changeTableType } from '../../../../modules/editor/redux/editorActions';
 import { editorSelector } from '../../../../modules/editor/redux/editorSelectors';
-import { useAppDispatch, useAppSelector } from '../../../../modules/editor/redux/hooks';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 
 import * as SC from './StaticForm.styled';
 

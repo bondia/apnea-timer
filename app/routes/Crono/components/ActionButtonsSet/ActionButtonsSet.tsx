@@ -1,17 +1,16 @@
 import React, { FC } from 'react';
 import LongTouchButton from '../../../../components/LongTouchButton';
-import { CronoActionsTypes, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
+import { CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
 import { CronoModeEnum, TableTypeEnum } from '../../../../modules/editor/enums';
 import * as SC from './ActionButtonsSet.styled';
 import useButtonsHandling from './useButtonsHandling';
 
 type CronoButtonSetProps = {
   crono: CronoStateType;
-  cronoActions: CronoActionsTypes;
 };
 
 const CronoButtonSet: FC<CronoButtonSetProps> = props => {
-  const { crono, cronoActions } = props;
+  const { crono } = props;
 
   const {
     clock,
@@ -23,7 +22,7 @@ const CronoButtonSet: FC<CronoButtonSetProps> = props => {
     handleSkip,
     handleContraction,
     handleFinish,
-  } = useButtonsHandling({ crono, cronoActions });
+  } = useButtonsHandling({ crono });
 
   return (
     <SC.ButtonSetWrapper>

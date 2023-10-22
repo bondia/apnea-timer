@@ -3,7 +3,7 @@ import { TableTypeEnum, SetTypeEnum } from '../enums';
 import {
   ChangeEnduranceLapsType,
   ChangeTableBaseBreaksType,
-  ChangeTableBaseType,
+  EditorChangeTableBaseAction,
   ChangeTableTypeType,
   CreateEnduranceTableType,
 } from './editorActions';
@@ -32,7 +32,7 @@ export type TableSetType = {
 
 export type EditorActionsTypes = {
   changeTableType: ChangeTableTypeType;
-  changeTableBase: ChangeTableBaseType;
+  changeTableBase: EditorChangeTableBaseAction;
   changeTableBaseBreaks: ChangeTableBaseBreaksType;
   createEnduranceTable: CreateEnduranceTableType;
   changeEnduranceLaps: ChangeEnduranceLapsType;

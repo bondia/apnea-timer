@@ -1,3 +1,4 @@
+import { ThunkAction } from 'redux-thunk';
 import { TableTypeEnum } from '../enums';
 import createTable from '../pure/createTable';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
@@ -53,8 +54,7 @@ export const changeEnduranceLaps: ChangeEnduranceLapsType = laps => {
 /**
  * Change table base action
  */
-export type ChangeTableBaseType = (amount: number) => void;
-export const changeTableBase: ChangeTableBaseType = (value: number) => {
+export const changeTableBase = (value: number) => {
   return (dispatch, getState) => {
     const { editor } = getState();
     const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
@@ -73,6 +73,7 @@ export const changeTableBase: ChangeTableBaseType = (value: number) => {
     dispatch(updateTableDurationBySets(sets));
   };
 };
+export type EditorChangeTableBaseAction = typeof changeTableBase;
 
 /**
  * Change table base breaks action

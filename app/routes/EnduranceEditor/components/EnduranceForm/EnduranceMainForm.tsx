@@ -19,7 +19,7 @@ type HandleActionParams = {
   increase: number;
   dispatchAction:
     | editorActions.ChangeEnduranceLapsType
-    | editorActions.ChangeTableBaseType
+    | editorActions.EditorChangeTableBaseAction
     | editorActions.ChangeTableBaseBreaksType;
 };
 

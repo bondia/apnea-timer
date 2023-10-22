@@ -1,11 +1,14 @@
 import React, { FC } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import styled from 'styled-components/native';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { TableTypeEnum } from '../../../../modules/editor/enums';
-import * as editorActions from '../../../../modules/editor/redux/editorActions';
-import { ImmutableJSEditorType } from '../../../../modules/editor/redux/editorTypes';
+import { changeTableType } from '../../../../modules/editor/redux/editorActions';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
+import {
+  editorSelector,
+  useEditorBaseSelector,
+  useEditorTypeSelector,
+} from '../../../../modules/editor/redux/editorSelectors';
 
 /**
  * STYLES
@@ -17,21 +20,14 @@ export const ButtonsSetWrapper = styled.View`
   align-items: center;
 `;
 
-type TableBaseInputProps = {
-  editor: ImmutableJSEditorType;
-  actions: EditorActions;
-};
-
-const TableTypeInput: FC<TableBaseInputProps> = props => {
-  const { editor, actions } = props;
-
-  const { changeTableType } = actions;
-  const type = editor.getIn(['trainingTable', 'type']);
-  const base: number = editor.getIn(['trainingTable', 'base']) as number;
+const TableTypeInput: FC = () => {
+  const dispatch = useAppDispatch();
+  const type = useEditorTypeSelector();
+  const base = useEditorBaseSelector();
 
   const changeType = (newType: string) => {
     if (type !== newType) {
-      changeTableType(base, newType);
+      dispatch(changeTableType(base, newType));
     }
   };
 
@@ -58,21 +54,4 @@ const TableTypeInput: FC<TableBaseInputProps> = props => {
   );
 };
 
-type ChangeTableType = (base: number, type: string) => void;
-type EditorActions = {
-  changeTableType: ChangeTableType;
-};
-
-/**
- * REDUX
- */
-
-const stateToProps = state => {
-  return { editor: state.editor };
-};
-
-const dispatchToProps = dispatch => {
-  return { actions: bindActionCreators(editorActions, dispatch) };
-};
-
-export default connect(stateToProps, dispatchToProps)(TableTypeInput);
+export default TableTypeInput;

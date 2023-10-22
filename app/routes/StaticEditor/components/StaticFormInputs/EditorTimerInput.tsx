@@ -6,7 +6,7 @@ import TextComponent from '../../../../components/TextComponent/OldTextComponent
 import { SetTypeEnum } from '../../../../modules/editor/enums';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EditorTimerInput.styled';
-import { useAppDispatch } from '../../../../modules/editor/redux/hooks';
+import { useAppDispatch } from '../../../../redux/hooks';
 import { decreaseTimeItem, increaseTimeItem } from '../../../../modules/editor/redux/editorActions';
 
 type EditorTimerInputProps = {

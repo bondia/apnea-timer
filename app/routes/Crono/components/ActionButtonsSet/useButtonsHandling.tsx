@@ -6,10 +6,11 @@ import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../mod
 import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../../modules/editor/enums';
 import { FixMe } from '../../../../types';
 import useAppNavitation from '../../../useAppNavigation';
+import { useAppDispatch } from '../../../../redux/hooks';
+import { cronoActions } from '../../../../modules/crono/redux/cronoActions';
 
 type UseButtonsHandlingInput = {
   crono: CronoStateType;
-  cronoActions: CronoActionsTypes;
 };
 
 type UseButtonsHandlingOutput = {
@@ -38,27 +39,19 @@ const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boo
   return current && SetTypeEnum.SET_TYPE_HOLD === current.type;
 };
 
-const handleStart = (cronoActions: CronoActionsTypes, mode: CronoModeEnum) => {
-  cronoActions.startCrono(mode);
-};
+const handleStart = (mode: CronoModeEnum) => cronoActions.startCrono(mode);
 
-const handleStartAuto = (cronoActions: CronoActionsTypes) => {
-  handleStart(cronoActions, CronoModeEnum.CRONO_MODE_AUTO);
-};
+const handleStartAuto = () => handleStart(CronoModeEnum.CRONO_MODE_AUTO);
 
-const handleStartCoach = (cronoActions: CronoActionsTypes) => {
-  handleStart(cronoActions, CronoModeEnum.CRONO_MODE_COACH);
-};
+const handleStartCoach = () => handleStart(CronoModeEnum.CRONO_MODE_COACH);
 
-const handleSkip = (cronoActions: CronoActionsTypes, current: CronoSetType) => {
+const handleSkip = (current: CronoSetType) => {
   if (current != null) {
-    cronoActions.skipSet(current.pos);
+    return cronoActions.skipSet(current.pos);
   }
 };
 
-const handleContraction = (cronoActions: CronoActionsTypes) => {
-  cronoActions.trackContraction();
-};
+const handleContraction = () => cronoActions.trackContraction();
 
 const handleFinish = (cronoActions: CronoActionsTypes, navigation: NativeStackNavigationProp<FixMe, string>) => {
   navigation.pop();
@@ -66,7 +59,8 @@ const handleFinish = (cronoActions: CronoActionsTypes, navigation: NativeStackNa
 };
 
 export default function useButtonsHandling(input: UseButtonsHandlingInput): UseButtonsHandlingOutput {
-  const { crono, cronoActions } = input;
+  const { crono } = input;
+  const dispatch = useAppDispatch();
   const navigation = useAppNavitation();
   const clock = crono?.running?.clock;
   const tableType = crono?.trainingTable?.type as TableTypeEnum;
@@ -74,9 +68,7 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
 
   const current: CronoSetType = findRunningSet(crono.sets);
 
-  const skip = useCallback((actions: CronoActionsTypes, set: CronoSetType) => {
-    handleSkip(actions, set);
-  }, []);
+  const skip = useCallback((set: CronoSetType) => dispatch(handleSkip(set)), []);
 
   // TODO: Check that callback
   const deubuncedSkip = useCallback(
@@ -92,10 +84,10 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
     tableType,
     tableMode,
     canTrackContractions: (): boolean => canTrackContractions(crono, current),
-    handleStartAuto: (): void => handleStartAuto(cronoActions),
-    handleStartCoach: (): void => handleStartCoach(cronoActions),
-    handleSkip: () => deubuncedSkip(cronoActions, current),
-    handleContraction: (): void => handleContraction(cronoActions),
+    handleStartAuto: (): void => dispatch(handleStartAuto()),
+    handleStartCoach: (): void => dispatch(handleStartCoach()),
+    handleSkip: () => deubuncedSkip(current),
+    handleContraction: (): void => dispatch(handleContraction()),
     handleFinish: (): void => handleFinish(cronoActions, navigation),
   };
 }
