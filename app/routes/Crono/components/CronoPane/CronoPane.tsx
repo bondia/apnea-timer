@@ -1,42 +1,38 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC, useEffect, useMemo } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import MultipleBar from '../../../../components/CountdownBar/MultipleBar';
 import SingleBar from '../../../../components/CountdownBar/SingleBar';
 import SetsList from '../../../../components/CronoSetsList.tsx';
-import findRunningSet from '../../../../crono/pure/findRunningSet';
-import { cronoActions } from '../../../../crono/redux/cronoActions';
-import {
-  CronoActionsTypes,
-  CronoSetType,
-  CronoStateType,
-  ImmutableJSCronoType,
-} from '../../../../crono/redux/CronoTypes';
-import { EditorStateType } from '../../../../editor/redux/editorTypes';
+import findRunningSet from '../../../../modules/crono/pure/findRunningSet';
+import { CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
+import { EditorStateType } from '../../../../modules/editor/redux/editorTypes';
 import CronoButtonsSet from '../ActionButtonsSet';
 import LiveCounter from '../LiveCounter';
 import * as SC from './CronoPane.styled';
+import { useAppDispatch } from '../../../../redux/hooks';
+import initTableAction from '../../../../modules/crono/redux/creators/initTableAction';
+import { useCronoSelector } from '../../../../modules/crono/redux/cronoSelectors';
 
 type CoronoPaneProps = {
   initialData: EditorStateType;
-  crono: ImmutableJSCronoType;
-  actions: CronoActionsTypes;
 };
 
 const CronoPane: FC<CoronoPaneProps> = props => {
-  const { crono, initialData, actions } = props;
+  const { initialData } = props;
+
+  const dispatch = useAppDispatch();
+  const crono = useCronoSelector();
   const rawCrono: CronoStateType = useMemo(() => crono?.toJS<CronoStateType>(), [crono]);
 
   useEffect(() => {
     if (!rawCrono) {
-      actions.initTable(initialData);
+      dispatch(initTableAction(initialData));
     }
     activateKeepAwakeAsync();
     return () => {
       deactivateKeepAwake();
     };
-  }, [actions, rawCrono, initialData]);
+  }, [rawCrono, initialData]);
 
   if (!rawCrono || rawCrono.sets.length <= 0) {
     return null;
@@ -61,26 +57,9 @@ const CronoPane: FC<CoronoPaneProps> = props => {
         <SingleBar set={current} />
       </SC.CountersWrapper>
 
-      <CronoButtonsSet crono={rawCrono} cronoActions={actions} />
+      <CronoButtonsSet crono={rawCrono} />
     </SC.PaneWrapper>
   );
 };
 
-/**
- * REDUX
- */
-
-const stateToProps = (state, ownProps) => {
-  return {
-    initialData: ownProps.initialData,
-    crono: state.crono ? state.crono : null,
-  };
-};
-
-const dispatchToProps = dispatch => {
-  return {
-    actions: bindActionCreators<any, any>(cronoActions, dispatch),
-  };
-};
-
-export default connect(stateToProps, dispatchToProps)(CronoPane);
+export default CronoPane;

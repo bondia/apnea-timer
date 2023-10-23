@@ -2,13 +2,13 @@ import React, { FC, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
-import * as editorActions from '../../../../editor/redux/editorActions';
+import * as editorActions from '../../../../modules/editor/redux/editorActions';
 import {
   EditorActionsTypes,
   ImmutableJSEditorSetType,
   ImmutableJSEditorType,
-} from '../../../../editor/redux/editorTypes';
-import { StoreState } from '../../../../redux/types';
+} from '../../../../modules/editor/redux/editorTypes';
+import { RootState } from '../../../../redux/types';
 import { Wrapper } from './EnduranceForm.styled';
 import EnduranceMainForm from './EnduranceMainForm';
 
@@ -41,7 +41,7 @@ const EditorEndurancePane: FC<EditorEnudrancePaneProps> = (props: EditorEnudranc
 
 // REDUX
 
-const stateToProps = (state: StoreState) => {
+const stateToProps = (state: RootState) => {
   return {
     editor: state.editor,
   };

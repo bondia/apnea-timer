@@ -1,30 +1,24 @@
 import React, { FC, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import { TableType } from '../../../../editor/enums';
-import * as editorActions from '../../../../editor/redux/editorActions';
-import { EditorActionsTypes, ImmutableJSEditorStateType } from '../../../../editor/redux/editorTypes';
-import { StoreState } from '../../../../redux/types';
+import { TableTypeEnum } from '../../../../modules/editor/enums';
 import headlineByTableType from '../../utils/headlineByTableType';
 import setsByTableType from '../../utils/setsByTableType';
 import StaticSetsList from '../StaticSetsList/StaticSetsList';
-import * as SC from './StaticForm.styled';
 import StaticMainForm from './StaticMainForm';
+import { changeTableType } from '../../../../modules/editor/redux/editorActions';
+import { editorSelector } from '../../../../modules/editor/redux/editorSelectors';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 
-type StaticFormProps = {
-  editor: ImmutableJSEditorStateType;
-  actions: EditorActionsTypes;
-};
+import * as SC from './StaticForm.styled';
 
-const StaticForm: FC<StaticFormProps> = props => {
-  const { editor, actions } = props;
-  const { changeTableType } = actions;
+const StaticForm: FC = () => {
+  const dispatch = useAppDispatch();
+  const editor = useAppSelector(editorSelector);
 
   useEffect(() => {
-    changeTableType(120, TableType.TABLE_TYPE_CO2);
-  }, [changeTableType]);
+    dispatch(changeTableType(120, TableTypeEnum.TABLE_TYPE_CO2));
+  }, [dispatch]);
 
   if (editor === null) {
     return null;
@@ -50,16 +44,4 @@ const StaticForm: FC<StaticFormProps> = props => {
   );
 };
 
-// REDUX
-
-const stateToProps = (state: StoreState) => {
-  return {
-    editor: state.editor,
-  };
-};
-
-const dispatchToProps = dispatch => {
-  return { actions: bindActionCreators(editorActions, dispatch) };
-};
-
-export default connect(stateToProps, dispatchToProps)(StaticForm);
+export default StaticForm;

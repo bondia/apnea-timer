@@ -12,14 +12,11 @@ type Props = {
   children?: React.ReactNode;
 };
 
-const SceneWrapper: FC<Props> = props => {
-  const { children } = props;
-  return (
-    <SafeAreaView style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-      <Container>{children}</Container>
-      <StatusBar />
-    </SafeAreaView>
-  );
-};
+const SceneWrapper: FC<Props> = ({ children }) => (
+  <SafeAreaView style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}>
+    <Container>{children}</Container>
+    <StatusBar />
+  </SafeAreaView>
+);
 
 export default SceneWrapper;

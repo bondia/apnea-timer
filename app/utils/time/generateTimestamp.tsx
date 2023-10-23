@@ -1,3 +1,3 @@
-export default function generateTimestamp(): number {
-  return new Date().getTime();
-}
+const generateTimestamp = (): number => new Date().getTime();
+
+export default generateTimestamp;

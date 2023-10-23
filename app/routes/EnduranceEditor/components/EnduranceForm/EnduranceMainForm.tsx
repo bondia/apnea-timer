@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import * as editorActions from '../../../../editor/redux/editorActions';
-import { EditorActionsTypes, ImmutableJSEditorType } from '../../../../editor/redux/editorTypes';
+import * as editorActions from '../../../../modules/editor/redux/editorActions';
+import { EditorActionsTypes, ImmutableJSEditorType } from '../../../../modules/editor/redux/editorTypes';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EnduranceForm.styled';
 
@@ -19,7 +19,7 @@ type HandleActionParams = {
   increase: number;
   dispatchAction:
     | editorActions.ChangeEnduranceLapsType
-    | editorActions.ChangeTableBaseType
+    | editorActions.EditorChangeTableBaseAction
     | editorActions.ChangeTableBaseBreaksType;
 };
 

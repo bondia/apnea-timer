@@ -1,10 +1,9 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React, { FC } from 'react';
 import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
-import { RootStackParamList, Routes } from '../Routes';
+import { AppScreenType, RoutesEnum } from '../Routes';
 import CronoPane from './components/CronoPane/CronoPane';
 
-const CronoScene: FC<NativeStackScreenProps<RootStackParamList, Routes.CRONO_SCENE>> = props => {
+const CronoScene: FC<AppScreenType<RoutesEnum.CRONO_SCENE>> = props => {
   const {
     route: {
       params: { initialData },

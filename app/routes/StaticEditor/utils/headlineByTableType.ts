@@ -1,12 +1,12 @@
-import { TableType } from '../../../editor/enums';
+import { TableTypeEnum } from '../../../modules/editor/enums';
 
-const headlineByTableType = (tableType: TableType): string => {
+const headlineByTableType = (tableType: TableTypeEnum): string => {
   switch (tableType) {
-    case TableType.TABLE_TYPE_CO2:
+    case TableTypeEnum.TABLE_TYPE_CO2:
       return 'Breath Up';
-    case TableType.TABLE_TYPE_O2:
+    case TableTypeEnum.TABLE_TYPE_O2:
       return 'Breath Hold';
-    case TableType.TABLE_TYPE_FREE:
+    case TableTypeEnum.TABLE_TYPE_FREE:
       return 'Sets';
     default:
       return '';

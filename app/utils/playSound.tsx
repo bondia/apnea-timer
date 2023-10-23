@@ -11,12 +11,14 @@ export const F2 = 'F2';
 export const C3 = 'C3';
 
 // prepare available sounds
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const sounds = {
   // A2: new Sound('a2.mp3', Sound.MAIN_BUNDLE /*, error => {}*/),
   // F2: new Sound('f2.mp3', Sound.MAIN_BUNDLE /*, error => {}*/),
   // C3: new Sound('c3.mp3', Sound.MAIN_BUNDLE /*, error => {}*/)
 };
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function playSound(sound: string): void {
   // if (sounds[sound]) {
   //     sounds[sound].setVolume(10).play(/*success => {}*/);

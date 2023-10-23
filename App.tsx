@@ -1,12 +1,9 @@
 import React, { FC } from 'react';
 import { Provider } from 'react-redux';
-import { applyMiddleware, compose, createStore } from 'redux';
-import thunk from 'redux-thunk';
-import initReducers from './app/redux/reducers';
 import Router from './app/Router';
+import configureAppStore from './app/redux/configureAppStore';
 
-const enhancer = compose(applyMiddleware(thunk));
-const store = createStore(initReducers(), enhancer);
+const store = configureAppStore();
 
 const App: FC = () => {
   return (
@@ -17,3 +14,4 @@ const App: FC = () => {
 };
 
 export default App;
+export type AppDispatch = typeof store.dispatch;
