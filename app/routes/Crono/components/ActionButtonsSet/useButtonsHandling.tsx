@@ -7,7 +7,8 @@ import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../../modules/e
 import { FixMe } from '../../../../types';
 import useAppNavitation from '../../../useAppNavigation';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { cronoActions } from '../../../../modules/crono/redux/cronoActions';
+import { cronoActions, skipSet } from '../../../../modules/crono/redux/cronoActions';
+import { StoreThunkAction } from '../../../../redux/types';
 
 type UseButtonsHandlingInput = {
   crono: CronoStateType;
@@ -45,17 +46,18 @@ const handleStartAuto = () => handleStart(CronoModeEnum.CRONO_MODE_AUTO);
 
 const handleStartCoach = () => handleStart(CronoModeEnum.CRONO_MODE_COACH);
 
-const handleSkip = (current: CronoSetType) => {
+const handleSkip = (current: CronoSetType): StoreThunkAction | undefined => {
   if (current != null) {
-    return cronoActions.skipSet(current.pos);
+    return skipSet(current.pos);
   }
+  return undefined;
 };
 
 const handleContraction = () => cronoActions.trackContraction();
 
-const handleFinish = (cronoActions: CronoActionsTypes, navigation: NativeStackNavigationProp<FixMe, string>) => {
+const handleFinish = (actions: CronoActionsTypes, navigation: NativeStackNavigationProp<FixMe, string>) => {
   navigation.pop();
-  cronoActions.clearCrono();
+  actions.clearCrono();
 };
 
 export default function useButtonsHandling(input: UseButtonsHandlingInput): UseButtonsHandlingOutput {

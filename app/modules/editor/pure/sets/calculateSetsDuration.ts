@@ -1,7 +1,7 @@
 import { CronoSetType } from '../../../crono/redux/CronoTypes';
 import { SetModeEnum } from '../../enums';
 
-function getSingleSetDuration(set: CronoSetType) {
+const getSingleSetDuration = (set: CronoSetType) => {
   // use running wrapper if exists
   // it means the table is running
   const running = set.get('running');
@@ -13,7 +13,7 @@ function getSingleSetDuration(set: CronoSetType) {
   // do not include zombie sets
   const zombie = set.get('zombie');
   return zombie === true ? 0 : set.get('duration');
-}
+};
 
 const reducer = (prev: number, next: CronoSetType) => prev + getSingleSetDuration(next);
 

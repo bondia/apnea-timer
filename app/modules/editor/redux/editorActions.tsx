@@ -1,4 +1,3 @@
-import { ThunkAction } from 'redux-thunk';
 import { TableTypeEnum } from '../enums';
 import createTable from '../pure/createTable';
 import calculateSetsDuration from '../pure/sets/calculateSetsDuration';
@@ -14,10 +13,10 @@ import { ImmutableJSEditorSetType } from './editorTypes';
 /**
  * Given some sets alculate table duration and update it.
  */
-function updateTableDurationBySets(sets) {
+const updateTableDurationBySets = sets => {
   const duration = calculateSetsDuration(sets);
   return setEditorTableDuration(duration);
-}
+};
 
 /**
  * Create Endurance table

@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { ThunkAction } from 'redux-thunk';
+import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { ImmutableJSCronoType } from '../modules/crono/redux/CronoTypes';
 import { ImmutableJSEditorStateType } from '../modules/editor/redux/editorTypes';
 
@@ -9,3 +9,4 @@ export type RootState = {
 };
 
 export type StoreThunkAction = ThunkAction<void, RootState, undefined, AnyAction>;
+export type StoreThunkDispatch = ThunkDispatch<RootState, undefined, AnyAction>;
