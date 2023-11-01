@@ -2,7 +2,6 @@ import { FixMe } from '../../../types';
 import { TableTypeEnum, SetTypeEnum } from '../enums';
 import {
   ChangeEnduranceLapsType,
-  ChangeTableBaseBreaksType,
   EditorChangeTableBaseAction,
   ChangeTableTypeType,
   CreateEnduranceTableType,
@@ -33,7 +32,6 @@ export type TableSetType = {
 export type EditorActionsTypes = {
   changeTableType: ChangeTableTypeType;
   changeTableBase: EditorChangeTableBaseAction;
-  changeTableBaseBreaks: ChangeTableBaseBreaksType;
   createEnduranceTable: CreateEnduranceTableType;
   changeEnduranceLaps: ChangeEnduranceLapsType;
 };

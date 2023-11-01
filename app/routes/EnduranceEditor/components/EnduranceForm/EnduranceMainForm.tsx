@@ -1,14 +1,23 @@
 import React, { FC } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import * as editorActions from '../../../../modules/editor/redux/editorActions';
-import { EditorActionsTypes, ImmutableJSEditorType } from '../../../../modules/editor/redux/editorTypes';
+import { ImmutableJSEditorType } from '../../../../modules/editor/redux/editorTypes';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EnduranceForm.styled';
+import {
+  ChangeTableBaseBreaksType,
+  changeTableBaseBreaks,
+} from '../../../../modules/editor/redux/tunk/changeTableBaseBreaks';
+import {
+  ChangeEnduranceLapsType,
+  EditorChangeTableBaseAction,
+  changeEnduranceLaps,
+  changeTableBase,
+} from '../../../../modules/editor/redux/editorActions';
+import { useAppDispatch } from '../../../../redux/hooks';
+import { AppDispatch } from '../../../../../App';
 
 /**
  * Handle action to dispatch
@@ -17,19 +26,18 @@ import * as SC from './EnduranceForm.styled';
 type HandleActionParams = {
   original: number;
   increase: number;
-  dispatchAction:
-    | editorActions.ChangeEnduranceLapsType
-    | editorActions.EditorChangeTableBaseAction
-    | editorActions.ChangeTableBaseBreaksType;
+  action: ChangeTableBaseBreaksType | ChangeEnduranceLapsType | EditorChangeTableBaseAction;
 };
 
-function handleAction(params: HandleActionParams): void {
-  const { original, increase, dispatchAction } = params;
-  const newValue = original + increase;
-  if (newValue > 0) {
-    dispatchAction(newValue);
-  }
-}
+const handleAction =
+  (dispatch: AppDispatch) =>
+  (params: HandleActionParams): void => {
+    const { original, increase, action } = params;
+    const newValue = original + increase;
+    if (newValue > 0) {
+      dispatch(action(newValue));
+    }
+  };
 
 /**
  * TODO: Style sheets to be replaced
@@ -50,11 +58,12 @@ const baseStyles = StyleSheet.create({
 });
 type EditorEnduranceProps = {
   editor: ImmutableJSEditorType;
-  actions: EditorActionsTypes;
 };
 
 const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
-  const { editor, actions } = props;
+  const dispatch = useAppDispatch();
+  const actionHandler = handleAction(dispatch);
+  const { editor } = props;
   const enduranceLaps = editor.getIn(['trainingTable', 'enduranceLaps']);
   const base = editor.getIn(['trainingTable', 'base']);
   const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
@@ -76,10 +85,10 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             <LongTouchButton
               title="-"
               onPressStart={() =>
-                handleAction({
+                actionHandler({
                   original: enduranceLaps,
                   increase: -1,
-                  dispatchAction: actions.changeEnduranceLaps,
+                  action: changeEnduranceLaps,
                 })
               }
             />
@@ -89,10 +98,10 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             <LongTouchButton
               title="+"
               onPressStart={() =>
-                handleAction({
+                actionHandler({
                   original: enduranceLaps,
                   increase: 1,
-                  dispatchAction: actions.changeEnduranceLaps,
+                  action: changeEnduranceLaps,
                 })
               }
             />
@@ -105,17 +114,17 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             <LongTouchButton
               title="-"
               onPressStart={() =>
-                handleAction({
+                actionHandler({
                   original: base,
                   increase: -1,
-                  dispatchAction: actions.changeTableBase,
+                  action: changeTableBase,
                 })
               }
               onPressInterval={() =>
-                handleAction({
+                actionHandler({
                   original: base,
                   increase: -5,
-                  dispatchAction: actions.changeTableBase,
+                  action: changeTableBase,
                 })
               }
             />
@@ -125,17 +134,17 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             <LongTouchButton
               title="+"
               onPressStart={() =>
-                handleAction({
+                actionHandler({
                   original: base,
                   increase: 1,
-                  dispatchAction: actions.changeTableBase,
+                  action: changeTableBase,
                 })
               }
               onPressInterval={() =>
-                handleAction({
+                actionHandler({
                   original: base,
                   increase: 5,
-                  dispatchAction: actions.changeTableBase,
+                  action: changeTableBase,
                 })
               }
             />
@@ -148,17 +157,17 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             <LongTouchButton
               title="-"
               onPressStart={() =>
-                handleAction({
+                actionHandler({
                   original: baseBreaks,
                   increase: -1,
-                  dispatchAction: actions.changeTableBaseBreaks,
+                  action: changeTableBaseBreaks,
                 })
               }
               onPressInterval={() =>
-                handleAction({
+                actionHandler({
                   original: baseBreaks,
                   increase: -5,
-                  dispatchAction: actions.changeTableBaseBreaks,
+                  action: changeTableBaseBreaks,
                 })
               }
             />
@@ -168,17 +177,17 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             <LongTouchButton
               title="+"
               onPressStart={() =>
-                handleAction({
+                actionHandler({
                   original: baseBreaks,
                   increase: 1,
-                  dispatchAction: actions.changeTableBaseBreaks,
+                  action: changeTableBaseBreaks,
                 })
               }
               onPressInterval={() =>
-                handleAction({
+                actionHandler({
                   original: baseBreaks,
                   increase: 5,
-                  dispatchAction: actions.changeTableBaseBreaks,
+                  action: changeTableBaseBreaks,
                 })
               }
             />
@@ -189,12 +198,4 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   );
 };
 
-/**
- * REDUX STORE
- */
-
-const dispatchToProps = dispatch => {
-  return { editorActions: bindActionCreators(editorActions, dispatch) };
-};
-
-export default connect(null, dispatchToProps)(EditorEnduranceInputs);
+export default EditorEnduranceInputs;

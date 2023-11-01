@@ -1,29 +1,19 @@
 import React, { FC, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
-import * as editorActions from '../../../../modules/editor/redux/editorActions';
-import {
-  EditorActionsTypes,
-  ImmutableJSEditorSetType,
-  ImmutableJSEditorType,
-} from '../../../../modules/editor/redux/editorTypes';
-import { RootState } from '../../../../redux/types';
+import { ImmutableJSEditorSetType } from '../../../../modules/editor/redux/editorTypes';
 import { Wrapper } from './EnduranceForm.styled';
 import EnduranceMainForm from './EnduranceMainForm';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
+import { createEnduranceTable } from '../../../../modules/editor/redux/editorActions';
+import { editorSelector } from '../../../../modules/editor/redux/editorSelectors';
 
-type EditorEnudrancePaneProps = {
-  editor: ImmutableJSEditorType;
-  actions: EditorActionsTypes;
-};
-
-const EditorEndurancePane: FC<EditorEnudrancePaneProps> = (props: EditorEnudrancePaneProps) => {
-  const { editor, actions } = props;
-  const { createEnduranceTable } = actions;
+const EditorEndurancePane: FC = () => {
+  const dispatch = useAppDispatch();
+  const editor = useAppSelector(editorSelector);
 
   useEffect(() => {
-    createEnduranceTable(35, 35, 8);
-  }, [createEnduranceTable]);
+    dispatch(createEnduranceTable(35, 35, 8));
+  }, [dispatch]);
 
   if (editor === null) {
     return null;
@@ -33,22 +23,10 @@ const EditorEndurancePane: FC<EditorEnudrancePaneProps> = (props: EditorEnudranc
 
   return (
     <Wrapper>
-      <EnduranceMainForm editor={editor} actions={actions} />
+      <EnduranceMainForm editor={editor} />
       <CronoStartButton data={crono} />
     </Wrapper>
   );
 };
 
-// REDUX
-
-const stateToProps = (state: RootState) => {
-  return {
-    editor: state.editor,
-  };
-};
-
-const dispatchToProps = dispatch => {
-  return { actions: bindActionCreators(editorActions, dispatch) };
-};
-
-export default connect(stateToProps, dispatchToProps)(EditorEndurancePane);
+export default EditorEndurancePane;
