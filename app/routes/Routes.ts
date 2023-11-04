@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { EditorStateType } from '../modules/editor/redux/editorTypes';
+import { CronoSceneParamList } from './Crono/CronoScene';
 
 export enum RoutesEnum {
   MENU = 'MENU',
@@ -13,7 +13,7 @@ export type RootStackParamList = {
   [RoutesEnum.MENU]: undefined;
   [RoutesEnum.CREATE_TABLE_SCENE]: undefined;
   [RoutesEnum.ENDURANCE_TABLE_SCENE]: undefined;
-  [RoutesEnum.CRONO_SCENE]: { initialData: EditorStateType };
+  [RoutesEnum.CRONO_SCENE]: CronoSceneParamList;
   [RoutesEnum.MF_DEPTH]: undefined;
 };
 

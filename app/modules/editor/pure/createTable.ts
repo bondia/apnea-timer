@@ -5,7 +5,7 @@ import createEnduranceSets from './sets/createEnduranceSets';
 import createInitialSets from './sets/createInitialSets';
 import { CronoSetType } from '../../crono/redux/CronoTypes';
 
-function createEditorSkeleton(base = 1, baseBreaks = 1, type = TableTypeEnum.TABLE_TYPE_CO2, enduranceLaps = null) {
+const createEditorSkeleton = (base = 1, baseBreaks = 1, type = TableTypeEnum.TABLE_TYPE_CO2, enduranceLaps = null) => {
   return Immutable.fromJS({
     trainingTable: {
       base,
@@ -16,7 +16,7 @@ function createEditorSkeleton(base = 1, baseBreaks = 1, type = TableTypeEnum.TAB
     },
     sets: [],
   });
-}
+};
 
 /**
  * Table Creation

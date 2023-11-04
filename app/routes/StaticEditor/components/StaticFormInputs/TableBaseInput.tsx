@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { useEditorBaseSelector } from '../../../../modules/editor/redux/editorSelectors';
-import { changeTableBase } from '../../../../modules/editor/redux/editorActions';
+import { changeTableBase } from '../../../../modules/editor/redux/actions/composed/changeTableBase';
 
 export const ButtonsSet = styled.View`
   flex: 1;

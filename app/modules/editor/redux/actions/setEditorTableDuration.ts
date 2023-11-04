@@ -6,8 +6,9 @@ export type SetEditorTableDurationAction = AnyAction & {
   duration: number;
 };
 
-const setEditorTableDuration = (duration: number): SetEditorTableDurationAction => {
-  return { type: SET_EDITOR_TABLE_DURATION, duration };
-};
+const setEditorTableDuration = (duration: number): SetEditorTableDurationAction => ({
+  type: SET_EDITOR_TABLE_DURATION,
+  duration,
+});
 
 export default setEditorTableDuration;

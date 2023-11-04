@@ -9,15 +9,17 @@ import * as SC from './EnduranceForm.styled';
 import {
   ChangeTableBaseBreaksType,
   changeTableBaseBreaks,
-} from '../../../../modules/editor/redux/tunk/changeTableBaseBreaks';
-import {
-  ChangeEnduranceLapsType,
-  EditorChangeTableBaseAction,
-  changeEnduranceLaps,
-  changeTableBase,
-} from '../../../../modules/editor/redux/editorActions';
+} from '../../../../modules/editor/redux/actions/composed/changeTableBaseBreaks';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { AppDispatch } from '../../../../../App';
+import {
+  EditorChangeTableBaseAction,
+  changeTableBase,
+} from '../../../../modules/editor/redux/actions/composed/changeTableBase';
+import {
+  ChangeEnduranceLapsType,
+  changeEnduranceLaps,
+} from '../../../../modules/editor/redux/actions/composed/changeEnduranceLaps';
 
 /**
  * Handle action to dispatch

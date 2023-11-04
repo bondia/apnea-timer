@@ -7,8 +7,9 @@ export type ReplaceEditorSetsAction = AnyAction & {
   sets: ImmutableJSEditorSetType[];
 };
 
-const replaceEditorSets = (sets: ImmutableJSEditorSetType[]): ReplaceEditorSetsAction => {
-  return { type: REPLACE_EDITOR_SETS, sets };
-};
+const replaceEditorSets = (sets: ImmutableJSEditorSetType[]): ReplaceEditorSetsAction => ({
+  type: REPLACE_EDITOR_SETS,
+  sets,
+});
 
 export default replaceEditorSets;

@@ -7,7 +7,7 @@ import { SetTypeEnum } from '../../../../modules/editor/enums';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EditorTimerInput.styled';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { decreaseTimeItem, increaseTimeItem } from '../../../../modules/editor/redux/tunk/changeTimeItem';
+import { decreaseTimeItem, increaseTimeItem } from '../../../../modules/editor/redux/actions/composed/changeTimeItem';
 
 type EditorTimerInputProps = {
   index: number;

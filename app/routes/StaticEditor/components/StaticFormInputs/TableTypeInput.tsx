@@ -2,13 +2,9 @@ import React, { FC } from 'react';
 import styled from 'styled-components/native';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { TableTypeEnum } from '../../../../modules/editor/enums';
-import { changeTableType } from '../../../../modules/editor/redux/editorActions';
-import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import {
-  editorSelector,
-  useEditorBaseSelector,
-  useEditorTypeSelector,
-} from '../../../../modules/editor/redux/editorSelectors';
+import { useAppDispatch } from '../../../../redux/hooks';
+import { useEditorBaseSelector, useEditorTypeSelector } from '../../../../modules/editor/redux/editorSelectors';
+import { changeTableType } from '../../../../modules/editor/redux/actions/composed/changeTableType';
 
 /**
  * STYLES

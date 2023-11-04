@@ -4,8 +4,8 @@ import { ImmutableJSEditorSetType } from '../../../../modules/editor/redux/edito
 import { Wrapper } from './EnduranceForm.styled';
 import EnduranceMainForm from './EnduranceMainForm';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import { createEnduranceTable } from '../../../../modules/editor/redux/editorActions';
 import { editorSelector } from '../../../../modules/editor/redux/editorSelectors';
+import { createEnduranceTable } from '../../../../modules/editor/redux/actions/composed/createEnduranceTable';
 
 const EditorEndurancePane: FC = () => {
   const dispatch = useAppDispatch();

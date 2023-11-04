@@ -1,11 +1,5 @@
 import { FixMe } from '../../../types';
 import { TableTypeEnum, SetTypeEnum } from '../enums';
-import {
-  ChangeEnduranceLapsType,
-  EditorChangeTableBaseAction,
-  ChangeTableTypeType,
-  CreateEnduranceTableType,
-} from './editorActions';
 
 export type EditorStateType = {
   trainingTable: TableType;
@@ -25,15 +19,6 @@ export type TableSetType = {
   duration: number;
   type: SetTypeEnum;
   pos: number;
-};
-
-// REDUX ACTIONS
-
-export type EditorActionsTypes = {
-  changeTableType: ChangeTableTypeType;
-  changeTableBase: EditorChangeTableBaseAction;
-  createEnduranceTable: CreateEnduranceTableType;
-  changeEnduranceLaps: ChangeEnduranceLapsType;
 };
 
 /**

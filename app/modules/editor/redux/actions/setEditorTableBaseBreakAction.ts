@@ -6,8 +6,9 @@ export type SetEditorTableBaseBreakAction = AnyAction & {
   baseBreaks: number;
 };
 
-const setEditorTableBaseBreakAction = (baseBreaks: number): SetEditorTableBaseBreakAction => {
-  return { type: SET_EDITOR_TABLE_BASE_BREAKS, baseBreaks };
-};
+const setEditorTableBaseBreakAction = (baseBreaks: number): SetEditorTableBaseBreakAction => ({
+  type: SET_EDITOR_TABLE_BASE_BREAKS,
+  baseBreaks,
+});
 
 export default setEditorTableBaseBreakAction;

@@ -6,11 +6,11 @@ import headlineByTableType from '../../utils/headlineByTableType';
 import setsByTableType from '../../utils/setsByTableType';
 import StaticSetsList from '../StaticSetsList/StaticSetsList';
 import StaticMainForm from './StaticMainForm';
-import { changeTableType } from '../../../../modules/editor/redux/editorActions';
 import { editorSelector } from '../../../../modules/editor/redux/editorSelectors';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 
 import * as SC from './StaticForm.styled';
+import { changeTableType } from '../../../../modules/editor/redux/actions/composed/changeTableType';
 
 const StaticForm: FC = () => {
   const dispatch = useAppDispatch();
