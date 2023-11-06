@@ -3,7 +3,6 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import { ImmutableJSEditorType } from '../../../../modules/editor/editorTypes';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EnduranceForm.styled';
 import {
@@ -20,6 +19,7 @@ import {
   ChangeEnduranceLapsType,
   changeEnduranceLaps,
 } from '../../../../modules/editor/redux/actions/composed/changeEnduranceLaps';
+import { ImmutableJSEditorStateType } from '../../../../modules/editor/editorTypes';
 
 /**
  * Handle action to dispatch
@@ -59,7 +59,7 @@ const baseStyles = StyleSheet.create({
   },
 });
 type EditorEnduranceProps = {
-  editor: ImmutableJSEditorType;
+  editor: ImmutableJSEditorStateType;
 };
 
 const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {

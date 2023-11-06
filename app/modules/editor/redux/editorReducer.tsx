@@ -1,6 +1,6 @@
 import { AnyAction } from 'redux';
 import { SET_EDITOR_INITIAL_STATE } from './actions/setEditorInitialStateAction';
-import { ImmutableJSEditorType } from '../editorTypes';
+import { ImmutableJSEditorStateType } from '../editorTypes';
 import { defaultEmptyAction } from '../../../redux/actions';
 import { SET_EDITOR_TABLE_BASE } from './actions/setEditorTableBase';
 import { SET_EDITOR_TABLE_BASE_BREAKS } from './actions/setEditorTableBaseBreakAction';
@@ -8,9 +8,9 @@ import { SET_EDITOR_TABLE_DURATION } from './actions/setEditorTableDuration';
 import { REPLACE_EDITOR_SETS } from './actions/replaceEditorSets';
 
 export default function editorReducer(
-  state: ImmutableJSEditorType = null,
+  state: ImmutableJSEditorStateType = null,
   action: AnyAction = defaultEmptyAction,
-): ImmutableJSEditorType {
+): ImmutableJSEditorStateType {
   // set initial state
   if (action.type === SET_EDITOR_INITIAL_STATE) {
     return action.state;

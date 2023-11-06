@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../../commonStyles';
 import InfoBlock from '../../../../components/InfoBlock';
-import TableBaseInput from '../StaticFormInputs/TableBaseInput';
-import TableTypeInput from '../StaticFormInputs/TableTypeInput';
+import TableBaseInput from '../../../../modules/editor/components/StaticFormInputs/TableBaseInput';
+import TableTypeInput from '../../../../modules/editor/components/StaticFormInputs/TableTypeInput';
 import { TableTypeEnum } from '../../../../modules/editor/enums';
 import { ImmutableJSEditorStateType } from '../../../../modules/editor/editorTypes';
 import * as SC from './StaticForm.styled';

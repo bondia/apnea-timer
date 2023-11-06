@@ -4,6 +4,13 @@ import calculateSetsDuration from './sets/calculateSetsDuration';
 import createEnduranceSets from './sets/createEnduranceSets';
 import createInitialSets from './sets/createInitialSets';
 
+const createSetsByTableType = (base: number, baseBreaks: number, type: TableTypeEnum, enduranceLaps: number) => {
+  if (type === TableTypeEnum.TABLE_TYPE_ENDURANCE) {
+    return createEnduranceSets(base, baseBreaks, enduranceLaps);
+  }
+  return createInitialSets(base, type);
+};
+
 /**
  * Table Creation
  * @param  Integer base
@@ -11,10 +18,7 @@ import createInitialSets from './sets/createInitialSets';
  * @return Immutable
  */
 const createTable = (base: number, baseBreaks: number, type: TableTypeEnum, enduranceLaps: number) => {
-  const sets =
-    type === TableTypeEnum.TABLE_TYPE_ENDURANCE
-      ? createEnduranceSets(base, baseBreaks, enduranceLaps)
-      : createInitialSets(base, type);
+  const sets = createSetsByTableType(base, baseBreaks, type, enduranceLaps);
 
   // skeleton
   let state = Immutable.fromJS({

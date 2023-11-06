@@ -1,9 +1,10 @@
 import { FixMe } from '../../../../types';
+import { ImmutableJSEditorSetType } from '../../editorTypes';
 import { SetTypeEnum, TableTypeEnum } from '../../enums';
 import createInitialSets from './createInitialSets';
 
 export default function updateSetsForTableType(
-  sets = null,
+  sets: ImmutableJSEditorSetType[] = null,
   base = 5,
   baseBreaks = null,
   tableType = TableTypeEnum.TABLE_TYPE_CO2,
@@ -14,7 +15,7 @@ export default function updateSetsForTableType(
   }
   // update sets for co2
   if (TableTypeEnum.TABLE_TYPE_CO2 === tableType) {
-    return sets.map((s: FixMe) => (s.get('type') === SetTypeEnum.SET_TYPE_HOLD ? s.set('duration', base) : s));
+    return sets.map(s => (s.get('type') === SetTypeEnum.SET_TYPE_HOLD ? s.set('duration', base) : s));
   }
   // update sets for o2
   if (TableTypeEnum.TABLE_TYPE_O2 === tableType) {

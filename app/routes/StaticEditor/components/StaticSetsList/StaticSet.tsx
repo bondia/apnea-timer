@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import EditorTimerInput from '../StaticFormInputs/EditorTimerInput';
+import EditorTimerInput from '../../../../modules/editor/components/StaticFormInputs/EditorTimerInput';
 import { ImmutableJSEditorSetType } from '../../../../modules/editor/editorTypes';
 
 type Props = {

@@ -3,11 +3,11 @@ import { StyleSheet } from 'react-native';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import { SetTypeEnum } from '../../../../modules/editor/enums';
+import { SetTypeEnum } from '../../enums';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EditorTimerInput.styled';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { decreaseTimeItem, increaseTimeItem } from '../../../../modules/editor/redux/actions/composed/changeTimeItem';
+import { decreaseTimeItem, increaseTimeItem } from '../../redux/actions/composed/changeTimeItem';
 
 type EditorTimerInputProps = {
   index: number;

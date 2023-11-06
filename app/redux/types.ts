@@ -19,6 +19,7 @@ export type ImmutableJSType = {
   get: (prop: string) => FixMe;
   getIn: (stack: string[]) => FixMe;
   setIn: (stack: string[], data: FixMe) => FixMe;
+  set: (prop: string, data: FixMe) => FixMe;
   update: (stack: string[] | string, cb: (data: FixMe) => FixMe) => FixMe;
   toJS: () => EditorStateType;
 };
