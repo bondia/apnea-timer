@@ -1,5 +1,6 @@
 import { SetTypeEnum, TableTypeEnum } from '../../../modules/editor/enums';
-import { ImmutableJSEditorSetType, ImmutableJSType } from '../../../modules/editor/redux/editorTypes';
+import { ImmutableJSEditorSetType } from '../../../modules/editor/editorTypes';
+import { ImmutableJSType } from '../../../redux/types';
 
 const setsByTableType = (editor: ImmutableJSType, tableType: TableTypeEnum): ImmutableJSEditorSetType[] =>
   editor.getIn(['sets']).filter((set: ImmutableJSEditorSetType) => {

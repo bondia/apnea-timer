@@ -21,7 +21,7 @@ const TableTypeInput: FC = () => {
   const type = useEditorTypeSelector();
   const base = useEditorBaseSelector();
 
-  const changeType = (newType: string) => {
+  const changeType = (newType: TableTypeEnum) => {
     if (type !== newType) {
       dispatch(changeTableType(base, newType));
     }

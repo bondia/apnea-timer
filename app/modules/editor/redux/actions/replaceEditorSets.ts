@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { ImmutableJSEditorSetType } from '../editorTypes';
+import { ImmutableJSEditorSetType } from '../../editorTypes';
 
 export const REPLACE_EDITOR_SETS = 'REPLACE_EDITOR_SETS';
 

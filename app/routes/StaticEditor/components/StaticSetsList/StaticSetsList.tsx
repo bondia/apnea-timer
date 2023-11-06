@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import { ImmutableJSEditorSetType } from '../../../../modules/editor/redux/editorTypes';
+import { ImmutableJSEditorSetType } from '../../../../modules/editor/editorTypes';
 import EditorSet from './StaticSet';
 
 type Props = {

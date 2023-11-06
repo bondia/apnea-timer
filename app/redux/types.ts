@@ -1,7 +1,8 @@
 import { AnyAction } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { ImmutableJSCronoType } from '../modules/crono/redux/CronoTypes';
-import { ImmutableJSEditorStateType } from '../modules/editor/redux/editorTypes';
+import { EditorStateType, ImmutableJSEditorStateType } from '../modules/editor/editorTypes';
+import { FixMe } from '../types';
 
 export type RootState = {
   editor: ImmutableJSEditorStateType;
@@ -10,3 +11,14 @@ export type RootState = {
 
 export type StoreThunkAction = ThunkAction<void, RootState, undefined, AnyAction>;
 export type StoreThunkDispatch = ThunkDispatch<RootState, undefined, AnyAction>;
+
+/**
+ * TODO: Remove immutable js
+ */
+export type ImmutableJSType = {
+  get: (prop: string) => FixMe;
+  getIn: (stack: string[]) => FixMe;
+  setIn: (stack: string[], data: FixMe) => FixMe;
+  update: (stack: string[] | string, cb: (data: FixMe) => FixMe) => FixMe;
+  toJS: () => EditorStateType;
+};

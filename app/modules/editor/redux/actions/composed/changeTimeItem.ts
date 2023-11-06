@@ -1,5 +1,5 @@
 import { StoreThunkAction } from '../../../../../redux/types';
-import { ImmutableJSEditorSetType } from '../../editorTypes';
+import { ImmutableJSEditorSetType } from '../../../editorTypes';
 import updateSetDurationForKey from '../../../pure/sets/updateSetDurationForKey';
 import { updateTableDurationBySets } from '../../updateTableDurationBySets';
 import replaceEditorSets from '../replaceEditorSets';

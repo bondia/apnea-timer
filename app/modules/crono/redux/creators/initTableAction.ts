@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { EditorStateType } from '../../../editor/redux/editorTypes';
+import { EditorStateType } from '../../../editor/editorTypes';
 import { StoreThunkAction } from '../../../../redux/types';
 import editorToCrono from '../../pure/editorToCrono';
 import setInitialStateAction from '../actions/setInitialStateAction';

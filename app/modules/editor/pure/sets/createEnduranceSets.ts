@@ -1,23 +1,27 @@
-import Immutable from 'immutable';
 import { SetTypeEnum } from '../../enums';
+import { TableSetType } from '../../editorTypes';
 
-export default function createEnduranceSets(base = 5, baseBreaks = 5, laps = 16) {
-  let sets = Immutable.List();
+const createEnduranceSets = (base = 5, baseBreaks = 5, laps = 16): TableSetType[] => {
+  const sets = [];
+
   for (let i = 0; i < laps * 2; i += 2) {
-    const holdSet = Immutable.fromJS({
+    sets.push({
       duration: base,
       type: SetTypeEnum.SET_TYPE_HOLD,
       pos: i,
     });
-    sets = sets.push(holdSet);
+
     if (i < laps * 2 - 2) {
-      const prepSet = Immutable.fromJS({
+      const prepSet = {
         duration: baseBreaks,
         type: SetTypeEnum.SET_TYPE_PREPARE,
         pos: i + 1,
-      });
-      sets = sets.push(prepSet);
+      };
+      sets.push(prepSet);
     }
   }
+
   return sets;
-}
+};
+
+export default createEnduranceSets;

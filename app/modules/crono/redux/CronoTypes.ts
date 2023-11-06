@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
-import { TableSetType, TableType } from '../../editor/redux/editorTypes';
+import { TableSetType, TableType } from '../../editor/editorTypes';
 import { InitTableAction } from './creators/initTableAction';
 import { TrackContractionType } from './creators/trackContractionAction';
 import { SkipSetType, StartCronoType } from './cronoActions';

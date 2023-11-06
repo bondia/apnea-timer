@@ -5,7 +5,7 @@ import SingleBar from '../../../../components/CountdownBar/SingleBar';
 import SetsList from '../../../../components/CronoSetsList.tsx';
 import findRunningSet from '../../../../modules/crono/pure/findRunningSet';
 import { CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
-import { EditorStateType } from '../../../../modules/editor/redux/editorTypes';
+import { EditorStateType } from '../../../../modules/editor/editorTypes';
 import CronoButtonsSet from '../ActionButtonsSet';
 import LiveCounter from '../LiveCounter';
 import * as SC from './CronoPane.styled';

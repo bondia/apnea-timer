@@ -21,7 +21,6 @@ const calculateTableDuration = (sets: CronoSetType[] = null): number => {
   if (!sets) {
     return 0;
   }
-
   return sets.reduce(reducer, 0);
 };
 

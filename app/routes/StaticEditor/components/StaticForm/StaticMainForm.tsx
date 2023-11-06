@@ -4,7 +4,7 @@ import InfoBlock from '../../../../components/InfoBlock';
 import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 import { TableTypeEnum } from '../../../../modules/editor/enums';
-import { ImmutableJSEditorStateType } from '../../../../modules/editor/redux/editorTypes';
+import { ImmutableJSEditorStateType } from '../../../../modules/editor/editorTypes';
 import * as SC from './StaticForm.styled';
 
 const titleByType = {

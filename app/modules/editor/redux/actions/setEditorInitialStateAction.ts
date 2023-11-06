@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { ImmutableTrainingTableType } from '../editorTypes';
+import { ImmutableTrainingTableType } from '../../editorTypes';
 
 export const SET_EDITOR_INITIAL_STATE = 'SET_EDITOR_INITIAL_STATE';
 

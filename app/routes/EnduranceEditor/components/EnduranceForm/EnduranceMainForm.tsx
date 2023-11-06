@@ -3,7 +3,7 @@ import { ScrollView, StyleSheet } from 'react-native';
 import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
-import { ImmutableJSEditorType } from '../../../../modules/editor/redux/editorTypes';
+import { ImmutableJSEditorType } from '../../../../modules/editor/editorTypes';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EnduranceForm.styled';
 import {

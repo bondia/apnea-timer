@@ -3,20 +3,6 @@ import { TableTypeEnum } from '../enums';
 import calculateSetsDuration from './sets/calculateSetsDuration';
 import createEnduranceSets from './sets/createEnduranceSets';
 import createInitialSets from './sets/createInitialSets';
-import { CronoSetType } from '../../crono/redux/CronoTypes';
-
-const createEditorSkeleton = (base = 1, baseBreaks = 1, type = TableTypeEnum.TABLE_TYPE_CO2, enduranceLaps = null) => {
-  return Immutable.fromJS({
-    trainingTable: {
-      base,
-      baseBreaks,
-      type,
-      duration: 0,
-      enduranceLaps,
-    },
-    sets: [],
-  });
-};
 
 /**
  * Table Creation
@@ -24,17 +10,29 @@ const createEditorSkeleton = (base = 1, baseBreaks = 1, type = TableTypeEnum.TAB
  * @param  String type
  * @return Immutable
  */
-export default function createTable(base, baseBreaks, type, enduranceLaps) {
-  // skeleton
-  let state = createEditorSkeleton(base, baseBreaks, type, enduranceLaps);
-  // sets
+const createTable = (base: number, baseBreaks: number, type: TableTypeEnum, enduranceLaps: number) => {
   const sets =
     type === TableTypeEnum.TABLE_TYPE_ENDURANCE
       ? createEnduranceSets(base, baseBreaks, enduranceLaps)
       : createInitialSets(base, type);
-  state = state.set('sets', sets);
+
+  // skeleton
+  let state = Immutable.fromJS({
+    trainingTable: {
+      base,
+      baseBreaks,
+      type,
+      duration: 0,
+      enduranceLaps,
+    },
+    sets,
+  });
+
   // calculate table duration
-  const duration = calculateSetsDuration(sets as unknown as CronoSetType[]);
+  // TODO: Remove immutable js
+  const duration = calculateSetsDuration(state.get('sets'));
   state = state.setIn(['trainingTable', 'duration'], duration);
   return state;
-}
+};
+
+export default createTable;
