@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
-import { ImmutableJSEditorSetType } from '../../../../modules/editor/editorTypes';
+import { ImmutableJSTableSetType } from '../../../../modules/editor/editorTypes';
 import { Wrapper } from './EnduranceForm.styled';
 import EnduranceMainForm from './EnduranceMainForm';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
@@ -19,7 +19,7 @@ const EditorEndurancePane: FC = () => {
     return null;
   }
 
-  const crono = editor.update('sets', (sets: ImmutableJSEditorSetType[]) => sets.filter(s => !s.get('zombie')));
+  const crono = editor.update('sets', (sets: ImmutableJSTableSetType[]) => sets.filter(s => !s.get('zombie')));
 
   return (
     <Wrapper>

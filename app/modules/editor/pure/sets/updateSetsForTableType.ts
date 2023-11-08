@@ -1,10 +1,10 @@
 import { FixMe } from '../../../../types';
-import { ImmutableJSEditorSetType } from '../../editorTypes';
+import { ImmutableJSTableSetType } from '../../editorTypes';
 import { SetTypeEnum, TableTypeEnum } from '../../enums';
 import createInitialSets from './createInitialSets';
 
 export default function updateSetsForTableType(
-  sets: ImmutableJSEditorSetType[] = null,
+  sets: ImmutableJSTableSetType[] = null,
   base = 5,
   baseBreaks = null,
   tableType = TableTypeEnum.TABLE_TYPE_CO2,

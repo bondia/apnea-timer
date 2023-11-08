@@ -4,13 +4,14 @@ import TextComponent from '../../../../components/TextComponent/OldTextComponent
 import { TableTypeEnum } from '../../../../modules/editor/enums';
 import headlineByTableType from '../../utils/headlineByTableType';
 import setsByTableType from '../../utils/setsByTableType';
-import StaticSetsList from '../StaticSetsList/StaticSetsList';
+import StaticSetsList from '../../../EnduranceEditor/components/StaticSetsList/StaticSetsList';
 import StaticMainForm from './StaticMainForm';
 import { editorSelector } from '../../../../modules/editor/redux/editorSelectors';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
+import { changeTableType } from '../../../../modules/editor/redux/actions/composed/changeTableType';
 
 import * as SC from './StaticForm.styled';
-import { changeTableType } from '../../../../modules/editor/redux/actions/composed/changeTableType';
+import { TableSetListType } from '../../../../modules/editor/editorTypes';
 
 const StaticForm: FC = () => {
   const dispatch = useAppDispatch();
@@ -36,7 +37,7 @@ const StaticForm: FC = () => {
 
       <SC.SetsListWrapper fullHeight={!showStartButton}>
         <TextComponent style={SC.baseStyles.label}>{headline}</TextComponent>
-        <StaticSetsList sets={sets} />
+        <StaticSetsList sets={sets.toJS() as TableSetListType} />
       </SC.SetsListWrapper>
 
       {showStartButton && <CronoStartButton data={crono} />}

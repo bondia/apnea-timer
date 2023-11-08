@@ -21,7 +21,11 @@ export type TableSetType = {
   duration: number;
   type: SetTypeEnum;
   pos: number;
+  zombie: boolean;
 };
-export type ImmutableJSEditorSetType = TableSetType & ImmutableJSType;
+export type ImmutableJSTableSetType = ImmutableJSType;
 
-// TODO: Removing immubtale
+export type TableSetListType = TableSetType[];
+export type ImmutableJSTableSetListType = ImmutableJSType;
+
+// TODO: Remove immubtale

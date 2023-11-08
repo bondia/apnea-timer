@@ -1,5 +1,5 @@
 import { StoreThunkAction } from '../../../../../redux/types';
-import { ImmutableJSEditorSetType } from '../../../editorTypes';
+import { ImmutableJSTableSetType } from '../../../editorTypes';
 import updateSetDurationForKey from '../../../pure/sets/updateSetDurationForKey';
 import { updateTableDurationBySets } from '../../updateTableDurationBySets';
 import replaceEditorSets from '../replaceEditorSets';
@@ -10,7 +10,7 @@ const changeTimeItem =
     const { editor } = getState();
 
     // find item
-    const item = editor.getIn(['sets']).find((set: ImmutableJSEditorSetType) => set.get('pos') === key);
+    const item = editor.getIn(['sets']).find((set: ImmutableJSTableSetType) => set.get('pos') === key);
 
     if (!item) {
       return;
