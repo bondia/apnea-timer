@@ -1,4 +1,4 @@
-import { TableTypeEnum } from '../../../modules/editor/enums';
+import { TableTypeEnum } from '../../enums';
 
 const headlineByTableType = (tableType: TableTypeEnum): string => {
   switch (tableType) {

@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../../commonStyles';
 import InfoBlock from '../../../../components/InfoBlock';
-import TableBaseInput from '../../../../modules/editor/components/StaticFormInputs/TableBaseInput';
-import TableTypeInput from '../../../../modules/editor/components/StaticFormInputs/TableTypeInput';
-import { TableTypeEnum } from '../../../../modules/editor/enums';
+import TableBaseInput from '../StaticFormInputs/TableBaseInput';
+import TableTypeInput from '../StaticFormInputs/TableTypeInput';
+import { TableTypeEnum } from '../../enums';
 
 import * as SC from './StaticForm.styled';
-import { EditorStateType } from '../../../../modules/editor/editorTypes';
+import { EditorStateType } from '../../editorTypes';
 
 const titleByType = {
   [TableTypeEnum.TABLE_TYPE_CO2]: 'Breath Hold',

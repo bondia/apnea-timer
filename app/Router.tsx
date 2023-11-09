@@ -7,7 +7,7 @@ import EditorEnduranceScene from './routes/EnduranceEditor/EditorEnduranceScene'
 import MainScene from './routes/Main/MainScene';
 import MouthfillScene from './routes/Mouthfill/MouthfillScene';
 import { RoutesEnum } from './routes/Routes';
-import EditorStaticScene from './routes/StaticEditor/StaticEditorScene';
+import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
