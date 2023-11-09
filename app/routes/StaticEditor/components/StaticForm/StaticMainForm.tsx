@@ -4,8 +4,9 @@ import InfoBlock from '../../../../components/InfoBlock';
 import TableBaseInput from '../../../../modules/editor/components/StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../../../../modules/editor/components/StaticFormInputs/TableTypeInput';
 import { TableTypeEnum } from '../../../../modules/editor/enums';
-import { ImmutableJSEditorStateType } from '../../../../modules/editor/editorTypes';
+
 import * as SC from './StaticForm.styled';
+import { EditorStateType } from '../../../../modules/editor/editorTypes';
 
 const titleByType = {
   [TableTypeEnum.TABLE_TYPE_CO2]: 'Breath Hold',
@@ -18,15 +19,14 @@ const colorByType = {
 };
 
 type Props = {
-  editor: ImmutableJSEditorStateType;
+  editor: EditorStateType;
 };
 
-const StaticMainForm: FC<Props> = props => {
-  const { editor } = props;
-  const base = editor.getIn(['trainingTable', 'base']);
-  const type = editor.getIn(['trainingTable', 'type']);
-  const totalTime = editor.getIn(['trainingTable', 'duration']);
-
+const StaticMainForm: FC<Props> = ({
+  editor: {
+    trainingTable: { base, type, duration: totalTime },
+  },
+}) => {
   const compact = TableTypeEnum.TABLE_TYPE_FREE === type;
 
   return (
