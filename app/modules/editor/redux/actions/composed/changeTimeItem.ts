@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import { StoreThunkAction } from '../../../../../redux/types';
 import { ImmutableJSTableSetType } from '../../../editorTypes';
 import updateSetDurationForKey from '../../../pure/sets/updateSetDurationForKey';
@@ -19,11 +20,12 @@ const changeTimeItem =
     // decide new duration
     const duration = amount + item.get('duration');
     const tableType = editor.getIn(['trainingTable', 'type']);
-    const sets = updateSetDurationForKey(editor.get('sets'), tableType, key, duration);
-    dispatch(replaceEditorSets(sets));
+    const sets = updateSetDurationForKey(editor.get('sets').toJS(), tableType, key, duration);
+    const newSets = Immutable.fromJS(sets);
+    dispatch(replaceEditorSets(newSets));
 
     // update table duration
-    dispatch(updateTableDurationBySets(sets));
+    dispatch(updateTableDurationBySets(newSets));
   };
 
 export const increaseTimeItem = (key: number, amount: number) => changeTimeItem(key, amount);

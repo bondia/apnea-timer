@@ -5,7 +5,6 @@ export type EditorStateType = {
   trainingTable: TrainingTableType;
   sets: TableSetType[];
 };
-export type ImmutableJSEditorStateType = EditorStateType & ImmutableJSType;
 
 export type TrainingTableType = {
   base: number;
@@ -15,7 +14,6 @@ export type TrainingTableType = {
   baseBreaks?: number;
   enduranceLaps?: number;
 };
-export type ImmutableTrainingTableType = TrainingTableType & ImmutableJSType;
 
 export type TableSetType = {
   duration: number;
@@ -23,9 +21,11 @@ export type TableSetType = {
   pos: number;
   zombie: boolean;
 };
-export type ImmutableJSTableSetType = ImmutableJSType;
 
 export type TableSetListType = TableSetType[];
-export type ImmutableJSTableSetListType = ImmutableJSType;
 
 // TODO: Remove immubtale
+export type ImmutableJSEditorStateType = ImmutableJSType;
+export type ImmutableTrainingTableType = ImmutableJSType;
+export type ImmutableJSTableSetType = ImmutableJSType;
+export type ImmutableJSTableSetListType = ImmutableJSType;

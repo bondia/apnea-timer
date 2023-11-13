@@ -1,65 +1,53 @@
+import { TableSetListType, TableSetType } from '../../editorTypes';
 import { SetTypeEnum, TableTypeEnum } from '../../enums';
 
-function decideSetDuration(tableType, item, key, duration) {
+const decideSetDuration = (
+  tableType: TableTypeEnum,
+  item: TableSetType,
+  key: number,
+  newDuration: number,
+): TableSetType => {
+  const { type, pos, duration } = item;
+
   // never less than 0
-  if (duration < 0) {
+  if (newDuration < 0) {
     return item;
   }
 
-  const type = item.get('type');
-
   // UPDATE FOR O2 TABLES
   if (TableTypeEnum.TABLE_TYPE_O2 === tableType && SetTypeEnum.SET_TYPE_HOLD === type) {
-    if (
-      (item.get('pos') < key && item.get('duration') > duration) ||
-      item.get('pos') === key ||
-      (item.get('pos') > key && item.get('duration') < duration)
-    ) {
-      return item.set('duration', duration);
+    if ((pos < key && duration > newDuration) || pos === key || (pos > key && duration < newDuration)) {
+      return { ...item, duration: newDuration };
     }
   }
 
   // UPDATE FOR CO2 TABLES
   if (TableTypeEnum.TABLE_TYPE_CO2 === tableType && SetTypeEnum.SET_TYPE_PREPARE === type) {
-    if (
-      (item.get('pos') < key && item.get('duration') < duration) ||
-      item.get('pos') === key ||
-      (item.get('pos') > key && item.get('duration') > duration)
-    ) {
-      return item.set('duration', duration);
+    if ((pos < key && duration < newDuration) || pos === key || (pos > key && duration > newDuration)) {
+      return { ...item, duration: newDuration };
     }
   }
 
   // UPDATE FOR FREE TABLES
-  return item.get('pos') === key ? item.set('duration', duration) : item;
-}
+  return pos === key ? { ...item, duration: newDuration } : item;
+};
 
-function findZombies(sets) {
-  let newSets = sets;
-  newSets.forEach((item, key) => {
-    const duration = item.get('duration');
-    const type = item.get('type');
-
-    let relationKey = null;
-    let isZombie = duration <= 0;
-
-    if (SetTypeEnum.SET_TYPE_PREPARE === type) {
-      relationKey = key + 1;
-    }
-
-    if (SetTypeEnum.SET_TYPE_HOLD === type) {
-      relationKey = key - 1;
-      isZombie = isZombie || newSets.getIn([relationKey, 'zombie']) === true;
-    }
-
-    newSets = newSets.setIn([key, 'zombie'], isZombie);
-    newSets = newSets.setIn([relationKey, 'zombie'], isZombie);
+const findZombies = (sets: TableSetListType): TableSetListType =>
+  sets.map((item, key) => {
+    const { duration, type } = item;
+    const siblingKey = SetTypeEnum.SET_TYPE_HOLD === type ? key - 1 : key + 1;
+    return { ...item, zombie: duration <= 0 || sets[siblingKey].duration <= 0 };
   });
-  return newSets;
-}
 
-export default function updateSetDurationForKey(sets, tableType, key, newDuration) {
+const updateSetDurationForKey = (
+  sets: TableSetListType,
+  tableType: TableTypeEnum,
+  key: number,
+  newDuration: number,
+) => {
   let newSets = sets.map(i => decideSetDuration(tableType, i, key, newDuration));
   newSets = findZombies(newSets);
   return newSets;
-}
+};
+
+export default updateSetDurationForKey;
