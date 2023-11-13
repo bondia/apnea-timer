@@ -1,5 +1,6 @@
+import Immutable from 'immutable';
 import { StoreThunkAction } from '../../../../../redux/types';
-import updateSetsForTableType from '../../../pure/sets/updateSetsForTableType';
+import updateSetsForTableType from '../../../helpers/sets/updateSetsForTableType';
 import replaceEditorSets from '../replaceEditorSets';
 import setEditorTableBaseBreakAction from '../setEditorTableBaseBreakAction';
 import { updateTableDurationBySets } from './updateTableDurationBySets';
@@ -16,10 +17,10 @@ export const changeTableBaseBreaks: ChangeTableBaseBreaksType = value => (dispat
 
   // update sets with new base
   const tableType = editor.getIn(['trainingTable', 'type']);
-  let sets = editor.get('sets');
-  sets = updateSetsForTableType(sets, base, baseBreaks, tableType);
-  dispatch(replaceEditorSets(sets));
+  const newSets = updateSetsForTableType(editor.get('sets').toJS(), base, baseBreaks, tableType);
+  const immutableSets = Immutable.fromJS(newSets);
+  dispatch(replaceEditorSets(immutableSets));
 
   // update table duration
-  dispatch(updateTableDurationBySets(sets));
+  dispatch(updateTableDurationBySets(immutableSets));
 };

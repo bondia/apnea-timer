@@ -28,4 +28,3 @@ export type TableSetListType = TableSetType[];
 export type ImmutableJSEditorStateType = ImmutableJSType;
 export type ImmutableTrainingTableType = ImmutableJSType;
 export type ImmutableJSTableSetType = ImmutableJSType;
-export type ImmutableJSTableSetListType = ImmutableJSType;
