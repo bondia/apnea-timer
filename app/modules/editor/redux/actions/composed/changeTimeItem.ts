@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 import { StoreThunkAction } from '../../../../../redux/types';
 import { ImmutableJSTableSetType } from '../../../editorTypes';
-import updateSetDurationForKey from '../../../pure/sets/updateSetDurationForKey';
+import updateSetDurationForKey from '../../../helpers/sets/updateSetDurationForKey';
 import { updateTableDurationBySets } from './updateTableDurationBySets';
 import replaceEditorSets from '../replaceEditorSets';
 
