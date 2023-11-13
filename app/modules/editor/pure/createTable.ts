@@ -1,8 +1,8 @@
 import Immutable from 'immutable';
 import { TableTypeEnum } from '../enums';
 import calculateSetsDuration from './sets/calculateSetsDuration';
-import createEnduranceSets from './sets/createEnduranceSets';
-import createInitialSets from './sets/createInitialSets';
+import createEnduranceSets from '../helpers/sets/createEnduranceSets';
+import createInitialSets from '../helpers/sets/createInitialSets';
 
 const createSetsByTableType = (base: number, baseBreaks: number, type: TableTypeEnum, enduranceLaps: number) => {
   if (type === TableTypeEnum.TABLE_TYPE_ENDURANCE) {

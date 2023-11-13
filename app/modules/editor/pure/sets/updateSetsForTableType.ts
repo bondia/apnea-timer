@@ -1,7 +1,7 @@
 import { FixMe } from '../../../../types';
 import { ImmutableJSTableSetType } from '../../editorTypes';
 import { SetTypeEnum, TableTypeEnum } from '../../enums';
-import createInitialSets from './createInitialSets';
+import createInitialSets from '../../helpers/sets/createInitialSets';
 
 export default function updateSetsForTableType(
   sets: ImmutableJSTableSetType[] = null,

@@ -6,7 +6,7 @@ import headlineByTableType from './headlineByTableType';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
 import { TableTypeEnum } from '../../enums';
 import { EditorStateType } from '../../editorTypes';
-import setsByTableType from '../../pure/sets/setsByTableType';
+import setsByTableType from '../../helpers/sets/setsByTableType';
 import StaticSetsList from '../../../../routes/EnduranceEditor/components/StaticSetsList/StaticSetsList';
 import StaticMainForm from './StaticMainForm';
 import { editorSelector } from '../../redux/editorSelectors';
