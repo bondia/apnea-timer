@@ -3,11 +3,11 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC } from 'react';
 import CronoScene from './routes/Crono/CronoScene';
-import EditorEnduranceScene from './routes/EnduranceEditor/EditorEnduranceScene';
+import EditorEnduranceScene from './modules/editor/scenes/EditorEnduranceScene';
 import MainScene from './routes/Main/MainScene';
 import MouthfillScene from './routes/Mouthfill/MouthfillScene';
 import { RoutesEnum } from './routes/Routes';
-import EditorStaticScene from './routes/StaticEditor/StaticEditorScene';
+import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

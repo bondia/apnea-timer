@@ -1,14 +1,23 @@
 import { AnyAction } from 'redux';
-import { ImmutableJSEditorSetType } from '../editorTypes';
+import { EditorStateType, TableSetListType } from '../../editorTypes';
 
 export const REPLACE_EDITOR_SETS = 'REPLACE_EDITOR_SETS';
 
 export type ReplaceEditorSetsAction = AnyAction & {
-  sets: ImmutableJSEditorSetType[];
+  sets: TableSetListType;
 };
 
-const replaceEditorSets = (sets: ImmutableJSEditorSetType[]): ReplaceEditorSetsAction => {
-  return { type: REPLACE_EDITOR_SETS, sets };
-};
+const replaceEditorSets = (sets: TableSetListType): ReplaceEditorSetsAction => ({
+  type: REPLACE_EDITOR_SETS,
+  sets,
+});
+
+export const reduceReplaceEditorSetsAction = (
+  state: EditorStateType,
+  action: ReplaceEditorSetsAction,
+): EditorStateType => ({
+  ...state,
+  sets: action.sets,
+});
 
 export default replaceEditorSets;

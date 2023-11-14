@@ -3,11 +3,10 @@ import cronoReducer from '../modules/crono/redux/cronoReducer';
 import editorReducer from '../modules/editor/redux/editorReducer';
 import { RootState } from './types';
 
-const initReducers = () => {
-  return combineReducers<RootState>({
+const initReducers = () =>
+  combineReducers<RootState>({
     editor: editorReducer,
     crono: cronoReducer,
   });
-};
 
 export default initReducers;

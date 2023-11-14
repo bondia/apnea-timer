@@ -1,20 +1,16 @@
 import { Action } from 'redux';
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
-import { TableSetType, TableType } from '../../editor/redux/editorTypes';
+import { TableSetType, TrainingTableType } from '../../editor/editorTypes';
 import { InitTableAction } from './creators/initTableAction';
 import { TrackContractionType } from './creators/trackContractionAction';
 import { SkipSetType, StartCronoType } from './cronoActions';
-import { FixMe } from '../../../types';
-
-// TYPES
+import { ImmutableJSType } from '../../../redux/types';
 
 export type CronoStateType = {
-  trainingTable: CronoType;
+  trainingTable: TrainingTableType;
   running: CronoRunningType;
-  sets: CronoSetType[];
+  sets: CronoSetListType;
 };
-
-export type CronoType = TableType;
 
 export type CronoRunningType = {
   startTimestamp?: number;
@@ -25,10 +21,11 @@ export type CronoRunningType = {
   contractions: number;
 };
 
-export type CronoSetType = TableSetType &
-  ImmutableJSObject & {
-    running: CronoSetRunningType;
-  };
+export type CronoSetListType = CronoSetType[];
+
+export type CronoSetType = TableSetType & {
+  running: CronoSetRunningType;
+};
 
 export type CronoSetRunningType = {
   startTimestamp?: number;
@@ -39,6 +36,13 @@ export type CronoSetRunningType = {
   contraction: number;
 };
 
+/**
+ * TODO: Remove immutable js
+ */
+export type ImmutableJSCronoStateType = ImmutableJSType;
+export type ImmutableJSCronoType = ImmutableJSType;
+export type ImmutableJSCronoSetType = ImmutableJSType;
+
 // REDUX ACTIONS
 
 export type CronoActionsTypes = {
@@ -47,19 +51,4 @@ export type CronoActionsTypes = {
   skipSet: SkipSetType;
   trackContraction: TrackContractionType;
   clearCrono: () => Action;
-};
-
-/**
- * TODO: Remove immutable js
- */
-export type ImmutableJSCronoType = ImmutableJSObject;
-
-export type ImmutableJSSetType = ImmutableJSObject;
-
-export type ImmutableJSObject = {
-  get: (prop: string) => FixMe;
-  getIn: (stack: string[]) => FixMe;
-  setIn: (stack: string[], value: unknown) => FixMe;
-  toJS: <T>() => T;
-  updateIn(arg0: string[], arg1: (sets: FixMe) => FixMe): ImmutableJSCronoType;
 };

@@ -1,5 +1,5 @@
 import Immutable from 'immutable';
-import { StoreThunkAction } from '../../../../redux/types';
+import { ImmutableJSType, StoreThunkAction } from '../../../../redux/types';
 import findRunningSet from '../../pure/findRunningSet';
 import replaceSetAction from '../actions/replaceSetAction';
 import { CronoSetType } from '../CronoTypes';
@@ -11,7 +11,7 @@ const trackContractionAction: TrackContractionType = () => {
   return (dispatch, getState) => {
     const { crono } = getState();
 
-    const sets: CronoSetType[] = crono.get('sets').toJS() as CronoSetType[];
+    const sets = crono.get<ImmutableJSType>('sets').toJS<CronoSetType[]>();
     const current: CronoSetType = findRunningSet(sets);
     let immutableCurrentSet = Immutable.fromJS(current);
 
