@@ -1,45 +1,59 @@
 import { AnyAction } from 'redux';
-import { SET_EDITOR_INITIAL_STATE } from './actions/setEditorInitialStateAction';
-import { ImmutableJSEditorStateType } from '../editorTypes';
 import { defaultEmptyAction } from '../../../redux/actions';
-import { SET_EDITOR_TABLE_BASE } from './actions/setEditorTableBase';
-import { SET_EDITOR_TABLE_BASE_BREAKS } from './actions/setEditorTableBaseBreakAction';
-import { SET_EDITOR_TABLE_DURATION } from './actions/setEditorTableDuration';
-import { REPLACE_EDITOR_SETS } from './actions/replaceEditorSets';
+import { EditorStateType } from '../editorTypes';
+import {
+  SET_EDITOR_INITIAL_STATE,
+  SetEditorInitialStateAction,
+  reduceSetEditorInitialStateAction,
+} from './actions/setEditorInitialStateAction';
+import {
+  SET_EDITOR_TABLE_BASE,
+  SetEditorTableBaseAction,
+  reduceSetEditorTableBaseAction,
+} from './actions/setEditorTableBase';
+import {
+  SET_EDITOR_TABLE_BASE_BREAKS,
+  SetEditorTableBaseBreakAction,
+  reduceSetEditorTableBaseBreakAction,
+} from './actions/setEditorTableBaseBreakAction';
+import {
+  SET_EDITOR_TABLE_DURATION,
+  SetEditorTableDurationAction,
+  reduceSetEditorTableDurationAction,
+} from './actions/setEditorTableDuration';
+import {
+  REPLACE_EDITOR_SETS,
+  ReplaceEditorSetsAction,
+  reduceReplaceEditorSetsAction,
+} from './actions/replaceEditorSets';
 
-export default function editorReducer(
-  state: ImmutableJSEditorStateType = null,
-  action: AnyAction = defaultEmptyAction,
-): ImmutableJSEditorStateType {
+const editorReducer = (state: EditorStateType = null, action: AnyAction = defaultEmptyAction): EditorStateType => {
   // set initial state
   if (action.type === SET_EDITOR_INITIAL_STATE) {
-    return action.state;
-  }
-
-  // set type
-  if (action.type === SET_EDITOR_INITIAL_STATE) {
-    return state.setIn(['trainingTable', 'type'], action.type);
+    return reduceSetEditorInitialStateAction(state, action as SetEditorInitialStateAction);
   }
 
   // set base
   if (action.type === SET_EDITOR_TABLE_BASE) {
-    return state.setIn(['trainingTable', 'base'], action.base);
+    return reduceSetEditorTableBaseAction(state, action as SetEditorTableBaseAction);
   }
 
   // set base breaks
   if (action.type === SET_EDITOR_TABLE_BASE_BREAKS) {
-    return state.setIn(['trainingTable', 'baseBreaks'], action.baseBreaks);
+    return reduceSetEditorTableBaseBreakAction(state, action as SetEditorTableBaseBreakAction);
   }
 
   // set duration
   if (action.type === SET_EDITOR_TABLE_DURATION) {
-    return state.setIn(['trainingTable', 'duration'], action.duration);
+    return reduceSetEditorTableDurationAction(state, action as SetEditorTableDurationAction);
   }
 
   // set sets
   if (action.type === REPLACE_EDITOR_SETS) {
-    return state.setIn(['sets'], action.sets);
+    return reduceReplaceEditorSetsAction(state, action as ReplaceEditorSetsAction);
   }
 
   return state;
-}
+};
+
+export default editorReducer;

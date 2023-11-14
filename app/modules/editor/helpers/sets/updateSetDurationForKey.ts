@@ -44,7 +44,7 @@ const updateSetDurationForKey = (
   tableType: TableTypeEnum,
   key: number,
   newDuration: number,
-) => {
+): TableSetListType => {
   let newSets = sets.map(i => decideSetDuration(tableType, i, key, newDuration));
   newSets = findZombies(newSets);
   return newSets;

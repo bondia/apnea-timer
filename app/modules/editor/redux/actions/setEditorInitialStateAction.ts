@@ -1,15 +1,20 @@
 import { AnyAction } from 'redux';
-import { ImmutableTrainingTableType } from '../../editorTypes';
+import { EditorStateType } from '../../editorTypes';
 
 export const SET_EDITOR_INITIAL_STATE = 'SET_EDITOR_INITIAL_STATE';
 
 export type SetEditorInitialStateAction = AnyAction & {
-  state: ImmutableTrainingTableType;
+  state: EditorStateType;
 };
 
-const setEditorInitialStateAction = (state: ImmutableTrainingTableType): SetEditorInitialStateAction => ({
+const setEditorInitialStateAction = (state: EditorStateType): SetEditorInitialStateAction => ({
   type: SET_EDITOR_INITIAL_STATE,
   state,
 });
+
+export const reduceSetEditorInitialStateAction = (
+  _state: EditorStateType,
+  action: SetEditorInitialStateAction,
+): EditorStateType => action.state;
 
 export default setEditorInitialStateAction;

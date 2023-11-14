@@ -1,12 +1,11 @@
 import { AnyAction } from 'redux';
 import calculateSetsDuration from '../../../helpers/sets/calculateSetsDuration';
 import setEditorTableDuration from '../setEditorTableDuration';
-import { ImmutableJSType } from '../../../../../redux/types';
 import { TableSetListType } from '../../../editorTypes';
 
-export type UpdateTableDurationBySetsType = (sets: ImmutableJSType) => AnyAction;
+export type UpdateTableDurationBySetsType = (sets: TableSetListType) => AnyAction;
 
 export const updateTableDurationBySets: UpdateTableDurationBySetsType = sets => {
-  const duration = calculateSetsDuration(sets.toJS<TableSetListType>());
+  const duration = calculateSetsDuration(sets);
   return setEditorTableDuration(duration);
 };

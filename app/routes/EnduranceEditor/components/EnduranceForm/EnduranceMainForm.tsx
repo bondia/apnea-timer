@@ -19,11 +19,7 @@ import {
   ChangeEnduranceLapsType,
   changeEnduranceLaps,
 } from '../../../../modules/editor/redux/actions/composed/changeEnduranceLaps';
-import { ImmutableJSEditorStateType } from '../../../../modules/editor/editorTypes';
-
-/**
- * Handle action to dispatch
- */
+import { EditorStateType } from '../../../../modules/editor/editorTypes';
 
 type HandleActionParams = {
   original: number;
@@ -59,17 +55,19 @@ const baseStyles = StyleSheet.create({
   },
 });
 type EditorEnduranceProps = {
-  editor: ImmutableJSEditorStateType;
+  editor: EditorStateType;
 };
 
 const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const dispatch = useAppDispatch();
   const actionHandler = handleAction(dispatch);
-  const { editor } = props;
-  const enduranceLaps = editor.getIn<number>(['trainingTable', 'enduranceLaps']);
-  const base = editor.getIn<number>(['trainingTable', 'base']);
-  const baseBreaks = editor.getIn<number>(['trainingTable', 'baseBreaks']);
-  const totalTime = editor.getIn<number>(['trainingTable', 'duration']);
+
+  const {
+    editor: {
+      trainingTable: { enduranceLaps, base, baseBreaks, duration: totalTime },
+    },
+  } = props;
+
   return (
     <SC.MainWrapper>
       <SC.Block>

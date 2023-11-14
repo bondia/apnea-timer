@@ -12,6 +12,9 @@ import trackContractionAction from './creators/trackContractionAction';
 import updateTableDurationBySetsAction from './creators/updateTableDurationBySetsAction';
 import { CronoActionsTypes, CronoStateType } from './CronoTypes';
 import { startTimer, stopTimer } from '../timer';
+import handleTick from './actions/handleTick';
+
+const startTimerDispatch = () => dispatch => startTimer(() => dispatch(handleTick()));
 
 /**
  * Start crono
@@ -23,7 +26,7 @@ const startCrono: StartCronoType = (mode: CronoModeEnum) => {
     stopTimer();
     dispatch(setCronoStartTimestampAction(generateTimestamp()));
     dispatch(setCronoModeAction(mode));
-    dispatch(startTimer());
+    dispatch(startTimerDispatch());
   };
 };
 
@@ -69,7 +72,7 @@ export const skipSet = (key: number): StoreThunkAction => {
       dispatch(setCronoModeAction(CronoModeEnum.CRONO_MODE_FINISHED));
       return;
     }
-    dispatch(startTimer());
+    dispatch(startTimerDispatch());
   };
 };
 

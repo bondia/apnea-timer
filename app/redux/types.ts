@@ -1,11 +1,11 @@
 import { AnyAction } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { ImmutableJSCronoType } from '../modules/crono/redux/CronoTypes';
-import { ImmutableJSEditorStateType } from '../modules/editor/editorTypes';
+import { EditorStateType } from '../modules/editor/editorTypes';
 import { FixMe } from '../types';
 
 export type RootState = {
-  editor: ImmutableJSEditorStateType;
+  editor: EditorStateType;
   crono: ImmutableJSCronoType;
 };
 

@@ -3,23 +3,23 @@ import { EditorStateType, TableSetType } from '../../editor/editorTypes';
 import { CronoRunningType, CronoSetType, CronoStateType } from '../redux/CronoTypes';
 
 function initSet(originalSet: TableSetType): CronoSetType {
-  const { pos } = originalSet;
-  const originalSetDuration = originalSet.duration;
-  const set = originalSet as CronoSetType;
-  set.running = {
-    startTimestamp: null,
-    endTimestamp: null,
-    mode: pos === 0 ? SetModeEnum.SET_MODE_RUNNING : SetModeEnum.SET_MODE_INITIAL,
-    originalCountdown: originalSetDuration,
-    countdown: originalSetDuration,
-    contraction: -1,
+  const { pos, duration: originalSetDuration } = originalSet;
+  return {
+    ...originalSet,
+    running: {
+      startTimestamp: null,
+      endTimestamp: null,
+      mode: pos === 0 ? SetModeEnum.SET_MODE_RUNNING : SetModeEnum.SET_MODE_INITIAL,
+      originalCountdown: originalSetDuration,
+      countdown: originalSetDuration,
+      contraction: -1,
+    },
   };
-  return set;
 }
 
 function createSets(originalSets: TableSetType[]): CronoSetType[] {
   const sets: CronoSetType[] = originalSets.map(initSet);
-  return sets;
+  return [...sets];
 }
 
 function createDefaultRunningProp(): CronoRunningType {
@@ -38,7 +38,7 @@ function createDefaultRunningProp(): CronoRunningType {
 
 export default function editorToCrono(editor: EditorStateType): CronoStateType {
   return {
-    trainingTable: editor.trainingTable,
+    trainingTable: { ...editor.trainingTable },
     running: createDefaultRunningProp(),
     sets: createSets(editor.sets),
   };

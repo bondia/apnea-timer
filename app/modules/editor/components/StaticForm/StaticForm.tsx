@@ -1,11 +1,9 @@
 import React, { FC, useEffect } from 'react';
-import Immutable from 'immutable';
 
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
 import headlineByTableType from './headlineByTableType';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
 import { TableTypeEnum } from '../../enums';
-import { EditorStateType } from '../../editorTypes';
 import setsByTableType from '../../helpers/sets/setsByTableType';
 import StaticSetsList from '../../../../routes/EnduranceEditor/components/StaticSetsList/StaticSetsList';
 import StaticMainForm from './StaticMainForm';
@@ -17,26 +15,24 @@ import * as SC from './StaticForm.styled';
 
 const StaticForm: FC = () => {
   const dispatch = useAppDispatch();
-  // TODO: Remove immutable js
-  const immutableEditor = useAppSelector(editorSelector);
+  const editor = useAppSelector(editorSelector);
 
   useEffect(() => {
     dispatch(changeTableType(120, TableTypeEnum.TABLE_TYPE_CO2));
   }, [dispatch]);
 
-  if (immutableEditor === null) {
+  if (!editor) {
     return null;
   }
 
-  // TODO: Remove immutable js
-  const editor = immutableEditor?.toJS() as EditorStateType;
   const {
     trainingTable: { type: tableType },
   } = editor;
 
   const headline = headlineByTableType(tableType);
   const setsList = setsByTableType(editor, tableType);
-  const crono = { ...editor, sets: editor.sets.filter(item => !item.zombie) };
+  const newSets = editor.sets.filter(s => !s.zombie);
+  const crono = { ...editor, sets: [...newSets] };
   const showStartButton = crono.sets.length > 0;
 
   return (
@@ -49,7 +45,7 @@ const StaticForm: FC = () => {
       </SC.SetsListWrapper>
 
       {/* TODO: remove immutable */}
-      {showStartButton && <CronoStartButton data={Immutable.fromJS(crono)} />}
+      {showStartButton && <CronoStartButton data={crono} />}
     </SC.FormWrapper>
   );
 };
