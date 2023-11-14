@@ -35,8 +35,8 @@ const StaticForm: FC = () => {
   } = editor;
 
   const headline = headlineByTableType(tableType);
-  const sets = setsByTableType(editor, tableType);
-  const crono = { ...editor, sets: sets.filter(item => !item.zombie) };
+  const setsList = setsByTableType(editor, tableType);
+  const crono = { ...editor, sets: editor.sets.filter(item => !item.zombie) };
   const showStartButton = crono.sets.length > 0;
 
   return (
@@ -45,7 +45,7 @@ const StaticForm: FC = () => {
 
       <SC.SetsListWrapper fullHeight={!showStartButton}>
         <TextComponent style={SC.baseStyles.label}>{headline}</TextComponent>
-        <StaticSetsList sets={sets} />
+        <StaticSetsList sets={setsList} />
       </SC.SetsListWrapper>
 
       {/* TODO: remove immutable */}
