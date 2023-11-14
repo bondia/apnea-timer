@@ -1,5 +1,6 @@
+import Immutable from 'immutable';
 import { AnyAction } from 'redux';
-import createTable from '../../../pure/createTable';
+import createTable from '../../../helpers/createTable';
 import setEditorInitialStateAction from '../setEditorInitialStateAction';
 import { TableTypeEnum } from '../../../enums';
 
@@ -7,5 +8,5 @@ export type ChangeTableTypeType = (base: number, tableType: TableTypeEnum) => An
 
 export const changeTableType: ChangeTableTypeType = (base, tableType) => {
   const newState = createTable(base, null, tableType, 6);
-  return setEditorInitialStateAction(newState);
+  return setEditorInitialStateAction(Immutable.fromJS(newState));
 };
