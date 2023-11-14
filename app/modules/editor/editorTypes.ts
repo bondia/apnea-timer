@@ -3,7 +3,7 @@ import { TableTypeEnum, SetTypeEnum } from './enums';
 
 export type EditorStateType = {
   trainingTable: TrainingTableType;
-  sets: TableSetType[];
+  sets: TableSetListType;
 };
 
 export type TrainingTableType = {

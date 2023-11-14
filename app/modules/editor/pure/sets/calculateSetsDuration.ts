@@ -1,18 +1,19 @@
+import { ImmutableJSType } from '../../../../redux/types';
 import { CronoSetType } from '../../../crono/redux/CronoTypes';
 import { SetModeEnum } from '../../enums';
 
 const getSingleSetDuration = (set: CronoSetType) => {
   // use running wrapper if exists
   // it means the table is running
-  const running = set.get('running');
+  const running = set.get<ImmutableJSType>('running');
   if (running) {
-    const countdown = running.get('countdown');
-    return running.get('mode') !== SetModeEnum.SET_MODE_SKIPED && countdown > 0 ? countdown : 0;
+    const countdown = running.get<number>('countdown');
+    return running.get<SetModeEnum>('mode') !== SetModeEnum.SET_MODE_SKIPED && countdown > 0 ? countdown : 0;
   }
 
   // do not include zombie sets
-  const zombie = set.get('zombie');
-  return zombie === true ? 0 : set.get('duration');
+  const zombie = set.get<boolean>('zombie');
+  return zombie === true ? 0 : set.get<number>('duration');
 };
 
 const reducer = (prev: number, next: CronoSetType) => prev + getSingleSetDuration(next);

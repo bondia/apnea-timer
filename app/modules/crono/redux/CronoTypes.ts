@@ -4,7 +4,7 @@ import { TableSetType, TrainingTableType } from '../../editor/editorTypes';
 import { InitTableAction } from './creators/initTableAction';
 import { TrackContractionType } from './creators/trackContractionAction';
 import { SkipSetType, StartCronoType } from './cronoActions';
-import { FixMe } from '../../../types';
+import { ImmutableJSType } from '../../../redux/types';
 
 // TYPES
 
@@ -26,7 +26,7 @@ export type CronoRunningType = {
 };
 
 export type CronoSetType = TableSetType &
-  ImmutableJSObject & {
+  ImmutableJSType & {
     running: CronoSetRunningType;
   };
 
@@ -52,14 +52,6 @@ export type CronoActionsTypes = {
 /**
  * TODO: Remove immutable js
  */
-export type ImmutableJSCronoType = ImmutableJSObject;
+export type ImmutableJSCronoType = ImmutableJSType;
 
-export type ImmutableJSSetType = ImmutableJSObject;
-
-export type ImmutableJSObject = {
-  get: (prop: string) => FixMe;
-  getIn: (stack: string[]) => FixMe;
-  setIn: (stack: string[], value: unknown) => FixMe;
-  toJS: <T>() => T;
-  updateIn(arg0: string[], arg1: (sets: FixMe) => FixMe): ImmutableJSCronoType;
-};
+export type ImmutableJSSetType = ImmutableJSType;

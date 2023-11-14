@@ -66,10 +66,10 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const dispatch = useAppDispatch();
   const actionHandler = handleAction(dispatch);
   const { editor } = props;
-  const enduranceLaps = editor.getIn(['trainingTable', 'enduranceLaps']);
-  const base = editor.getIn(['trainingTable', 'base']);
-  const baseBreaks = editor.getIn(['trainingTable', 'baseBreaks']);
-  const totalTime = editor.getIn(['trainingTable', 'duration']);
+  const enduranceLaps = editor.getIn<number>(['trainingTable', 'enduranceLaps']);
+  const base = editor.getIn<number>(['trainingTable', 'base']);
+  const baseBreaks = editor.getIn<number>(['trainingTable', 'baseBreaks']);
+  const totalTime = editor.getIn<number>(['trainingTable', 'duration']);
   return (
     <SC.MainWrapper>
       <SC.Block>
