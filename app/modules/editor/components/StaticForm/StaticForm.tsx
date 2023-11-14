@@ -5,7 +5,7 @@ import headlineByTableType from './headlineByTableType';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
 import { TableTypeEnum } from '../../enums';
 import setsByTableType from '../../helpers/sets/setsByTableType';
-import StaticSetsList from '../../../../routes/EnduranceEditor/components/StaticSetsList/StaticSetsList';
+import StaticSetsList from '../StaticSetsList/StaticSetsList';
 import StaticMainForm from './StaticMainForm';
 import { editorSelector } from '../../redux/editorSelectors';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';

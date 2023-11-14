@@ -5,21 +5,12 @@ import LongTouchButton from '../../../../components/LongTouchButton';
 import TextComponent from '../../../../components/TextComponent/OldTextComponent';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EnduranceForm.styled';
-import {
-  ChangeTableBaseBreaksType,
-  changeTableBaseBreaks,
-} from '../../../../modules/editor/redux/actions/composed/changeTableBaseBreaks';
+import { ChangeTableBaseBreaksType, changeTableBaseBreaks } from '../../redux/actions/composed/changeTableBaseBreaks';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { AppDispatch } from '../../../../../App';
-import {
-  EditorChangeTableBaseAction,
-  changeTableBase,
-} from '../../../../modules/editor/redux/actions/composed/changeTableBase';
-import {
-  ChangeEnduranceLapsType,
-  changeEnduranceLaps,
-} from '../../../../modules/editor/redux/actions/composed/changeEnduranceLaps';
-import { EditorStateType } from '../../../../modules/editor/editorTypes';
+import { EditorChangeTableBaseAction, changeTableBase } from '../../redux/actions/composed/changeTableBase';
+import { ChangeEnduranceLapsType, changeEnduranceLaps } from '../../redux/actions/composed/changeEnduranceLaps';
+import { EditorStateType, EnduranceTrainingTableType } from '../../editorTypes';
 
 type HandleActionParams = {
   original: number;
@@ -63,10 +54,10 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const actionHandler = handleAction(dispatch);
 
   const {
-    editor: {
-      trainingTable: { enduranceLaps, base, baseBreaks, duration: totalTime },
-    },
+    editor: { trainingTable },
   } = props;
+
+  const { enduranceLaps, base, baseBreaks, duration: totalTime } = trainingTable as EnduranceTrainingTableType;
 
   return (
     <SC.MainWrapper>

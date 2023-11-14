@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import { TableSetType } from '../../../../modules/editor/editorTypes';
-import EditorTimerInput from '../../../../modules/editor/components/StaticFormInputs/EditorTimerInput';
+import { TableSetType } from '../../editorTypes';
+import EditorTimerInput from '../StaticFormInputs/EditorTimerInput';
 
 type Props = {
   set: TableSetType;

@@ -3,9 +3,9 @@ import CronoStartButton from '../../../../components/CronoStartButton/CronoStart
 import { Wrapper } from './EnduranceForm.styled';
 import EnduranceMainForm from './EnduranceMainForm';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import { editorSelector } from '../../../../modules/editor/redux/editorSelectors';
-import { createEnduranceTable } from '../../../../modules/editor/redux/actions/composed/createEnduranceTable';
-import { EditorStateType } from '../../../../modules/editor/editorTypes';
+import { editorSelector } from '../../redux/editorSelectors';
+import { createEnduranceTable } from '../../redux/actions/composed/createEnduranceTable';
+import { EditorStateType } from '../../editorTypes';
 
 const EditorEndurancePane: FC = () => {
   const dispatch = useAppDispatch();

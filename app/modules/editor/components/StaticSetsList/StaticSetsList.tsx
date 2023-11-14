@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import { TableSetListType } from '../../../../modules/editor/editorTypes';
+import { TableSetListType } from '../../editorTypes';
 import EditorSet from './StaticSet';
 
 type Props = {
@@ -12,7 +12,6 @@ const EditorSetsList: FC<Props> = props => {
   return (
     <ScrollView style={{ marginTop: 10, marginBottom: 0 }}>
       {sets.map(set => (
-        // TODO: check here the position whether it is the right way
         <EditorSet key={set.pos} set={set} />
       ))}
     </ScrollView>

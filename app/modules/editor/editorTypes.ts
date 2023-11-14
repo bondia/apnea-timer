@@ -1,7 +1,7 @@
 import { TableTypeEnum, SetTypeEnum } from './enums';
 
 export type EditorStateType = {
-  trainingTable: TrainingTableType;
+  trainingTable: TrainingTableType | EnduranceTrainingTableType;
   sets: TableSetListType;
 };
 
@@ -9,9 +9,11 @@ export type TrainingTableType = {
   base: number;
   type: TableTypeEnum;
   duration: number;
-  // TODO: endurance attributes
-  baseBreaks?: number;
-  enduranceLaps?: number;
+};
+
+export type EnduranceTrainingTableType = TrainingTableType & {
+  baseBreaks: number;
+  enduranceLaps: number;
 };
 
 export type TableSetListType = TableSetType[];

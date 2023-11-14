@@ -15,12 +15,14 @@ const setEditorTableBaseBreakAction = (baseBreaks: number): SetEditorTableBaseBr
 export const reduceSetEditorTableBaseBreakAction = (
   state: EditorStateType,
   action: SetEditorTableBaseBreakAction,
-): EditorStateType => ({
-  ...state,
-  trainingTable: {
-    ...state.trainingTable,
-    baseBreaks: action.baseBreaks,
-  },
-});
+): EditorStateType => {
+  return {
+    ...state,
+    trainingTable: {
+      ...state.trainingTable,
+      baseBreaks: action.baseBreaks,
+    },
+  };
+};
 
 export default setEditorTableBaseBreakAction;

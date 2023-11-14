@@ -1,4 +1,5 @@
 import { StoreThunkAction } from '../../../../../redux/types';
+import { EnduranceTrainingTableType } from '../../../editorTypes';
 import updateSetsForTableType from '../../../helpers/sets/updateSetsForTableType';
 import replaceEditorSets from '../replaceEditorSets';
 import setEditorTableBaseAction from '../setEditorTableBase';
@@ -8,11 +9,9 @@ export type EditorChangeTableBaseAction = (value: number) => StoreThunkAction;
 
 export const changeTableBase: EditorChangeTableBaseAction = value => (dispatch, getState) => {
   const {
-    editor: {
-      trainingTable: { baseBreaks, type: tableType },
-      sets,
-    },
+    editor: { trainingTable, sets },
   } = getState();
+  const { baseBreaks, type: tableType } = trainingTable as EnduranceTrainingTableType;
 
   // change table base
   const base = value < 5 ? 5 : value;
