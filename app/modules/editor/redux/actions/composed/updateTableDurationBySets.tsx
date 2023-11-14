@@ -1,11 +1,12 @@
 import { AnyAction } from 'redux';
-import { CronoSetType } from '../../../../crono/redux/CronoTypes';
-import calculateSetsDuration from '../../../pure/sets/calculateSetsDuration';
+import calculateSetsDuration from '../../../helpers/sets/calculateSetsDuration';
 import setEditorTableDuration from '../setEditorTableDuration';
+import { ImmutableJSType } from '../../../../../redux/types';
+import { TableSetListType } from '../../../editorTypes';
 
-export type UpdateTableDurationBySetsType = (sets: CronoSetType[]) => AnyAction;
+export type UpdateTableDurationBySetsType = (sets: ImmutableJSType) => AnyAction;
 
 export const updateTableDurationBySets: UpdateTableDurationBySetsType = sets => {
-  const duration = calculateSetsDuration(sets);
+  const duration = calculateSetsDuration(sets.toJS<TableSetListType>());
   return setEditorTableDuration(duration);
 };

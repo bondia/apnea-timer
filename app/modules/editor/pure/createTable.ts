@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import { TableTypeEnum } from '../enums';
-import calculateSetsDuration from './sets/calculateSetsDuration';
+import calculateSetsDuration from '../helpers/sets/calculateSetsDuration';
 import createEnduranceSets from '../helpers/sets/createEnduranceSets';
 import createInitialSets from '../helpers/sets/createInitialSets';
 
@@ -34,7 +34,7 @@ const createTable = (base: number, baseBreaks: number, type: TableTypeEnum, endu
 
   // calculate table duration
   // TODO: Remove immutable js
-  const duration = calculateSetsDuration(state.get('sets'));
+  const duration = calculateSetsDuration(state.get('sets').toJS());
   state = state.setIn(['trainingTable', 'duration'], duration);
   return state;
 };

@@ -6,15 +6,11 @@ import { TrackContractionType } from './creators/trackContractionAction';
 import { SkipSetType, StartCronoType } from './cronoActions';
 import { ImmutableJSType } from '../../../redux/types';
 
-// TYPES
-
 export type CronoStateType = {
-  trainingTable: CronoType;
+  trainingTable: TrainingTableType;
   running: CronoRunningType;
-  sets: CronoSetType[];
+  sets: CronoSetListType;
 };
-
-export type CronoType = TrainingTableType;
 
 export type CronoRunningType = {
   startTimestamp?: number;
@@ -25,10 +21,11 @@ export type CronoRunningType = {
   contractions: number;
 };
 
-export type CronoSetType = TableSetType &
-  ImmutableJSType & {
-    running: CronoSetRunningType;
-  };
+export type CronoSetListType = CronoSetType[];
+
+export type CronoSetType = TableSetType & {
+  running: CronoSetRunningType;
+};
 
 export type CronoSetRunningType = {
   startTimestamp?: number;
@@ -39,6 +36,13 @@ export type CronoSetRunningType = {
   contraction: number;
 };
 
+/**
+ * TODO: Remove immutable js
+ */
+export type ImmutableJSCronoStateType = ImmutableJSType;
+export type ImmutableJSCronoType = ImmutableJSType;
+export type ImmutableJSCronoSetType = ImmutableJSType;
+
 // REDUX ACTIONS
 
 export type CronoActionsTypes = {
@@ -48,10 +52,3 @@ export type CronoActionsTypes = {
   trackContraction: TrackContractionType;
   clearCrono: () => Action;
 };
-
-/**
- * TODO: Remove immutable js
- */
-export type ImmutableJSCronoType = ImmutableJSType;
-
-export type ImmutableJSSetType = ImmutableJSType;
