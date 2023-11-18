@@ -2,13 +2,14 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { debounce } from 'lodash';
 import { useCallback } from 'react';
 import findRunningSet from '../../../../modules/crono/pure/findRunningSet';
-import { CronoActionsTypes, CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
+import { CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
 import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../../modules/editor/enums';
 import { FixMe } from '../../../../types';
 import useAppNavitation from '../../../useAppNavigation';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { cronoActions, skipSet } from '../../../../modules/crono/redux/cronoActions';
+import { clearCrono, skipSet, startCrono } from '../../../../modules/crono/redux/cronoActions';
 import { StoreThunkAction } from '../../../../redux/types';
+import trackContractionAction from '../../../../modules/crono/redux/creators/trackContractionAction';
 
 type UseButtonsHandlingInput = {
   crono: CronoStateType;
@@ -40,7 +41,7 @@ const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boo
   return current && SetTypeEnum.SET_TYPE_HOLD === current.type;
 };
 
-const handleStart = (mode: CronoModeEnum) => cronoActions.startCrono(mode);
+const handleStart = (mode: CronoModeEnum) => startCrono(mode);
 
 const handleStartAuto = () => handleStart(CronoModeEnum.CRONO_MODE_AUTO);
 
@@ -53,11 +54,11 @@ const handleSkip = (current: CronoSetType): StoreThunkAction | undefined => {
   return undefined;
 };
 
-const handleContraction = () => cronoActions.trackContraction();
+const handleContraction = () => trackContractionAction();
 
-const handleFinish = (actions: CronoActionsTypes, navigation: NativeStackNavigationProp<FixMe, string>) => {
+const handleFinish = (navigation: NativeStackNavigationProp<FixMe, string>) => {
   navigation.pop();
-  actions.clearCrono();
+  clearCrono();
 };
 
 export default function useButtonsHandling(input: UseButtonsHandlingInput): UseButtonsHandlingOutput {
@@ -90,6 +91,6 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
     handleStartCoach: (): void => dispatch(handleStartCoach()),
     handleSkip: () => deubuncedSkip(current),
     handleContraction: (): void => dispatch(handleContraction()),
-    handleFinish: (): void => handleFinish(cronoActions, navigation),
+    handleFinish: (): void => handleFinish(navigation),
   };
 }

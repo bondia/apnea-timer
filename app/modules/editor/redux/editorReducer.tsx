@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { defaultEmptyAction } from '../../../redux/actions';
+import { defaultEmptyAction } from '../../../redux/types';
 import { EditorStateType } from '../editorTypes';
 import {
   SET_EDITOR_INITIAL_STATE,

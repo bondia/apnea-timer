@@ -3,8 +3,8 @@ import { ImmutableJSType, StoreThunkAction } from '../../../../redux/types';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
 import { CronoStateType } from '../CronoTypes';
 import decideCurrentSet from '../../pure/decideCurrentSet';
-import setInitialStateAction from './setInitialStateAction';
-import updateTableDurationBySetsAction from '../creators/updateTableDurationBySetsAction';
+import setInitialStateAction from '../actions/setInitialStateAction';
+import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 import { stopTimer } from '../../timer';
 
 const handleTick = (): StoreThunkAction => {

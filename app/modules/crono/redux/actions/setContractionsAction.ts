@@ -1,12 +1,13 @@
 import { Action } from 'redux';
-import * as reduxActions from '../../../../redux/actions';
+
+export const CRONO_SET_RUNNING_CONTRACTIONS = 'CRONO_SET_RUNNING_CONTRACTIONS';
 
 type SetContractionsAction = Action & {
   contractions: number;
 };
 
 const setContractionsAction = (contractions: number): SetContractionsAction => {
-  return { type: reduxActions.CRONO_SET_RUNNING_CONTRACTIONS, contractions };
+  return { type: CRONO_SET_RUNNING_CONTRACTIONS, contractions };
 };
 
 export default setContractionsAction;

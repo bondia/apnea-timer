@@ -1,12 +1,13 @@
 import { Action } from 'redux';
-import * as reduxActions from '../../../../redux/actions';
+
+export const CRONO_SET_START_TIMESTAMP = 'CRONO_SET_START_TIMESTAMP';
 
 type SetCronoStartTimestampAction = Action & {
   startTimestamp: number;
 };
 
 const setCronoStartTimestampAction = (startTimestamp: number): SetCronoStartTimestampAction => {
-  return { type: reduxActions.CRONO_SET_START_TIMESTAMP, startTimestamp };
+  return { type: CRONO_SET_START_TIMESTAMP, startTimestamp };
 };
 
 export default setCronoStartTimestampAction;

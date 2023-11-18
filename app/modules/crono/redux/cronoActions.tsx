@@ -7,12 +7,10 @@ import decideCurrentSet from '../pure/decideCurrentSet';
 import setCronoModeAction from './actions/setCronoModeAction';
 import setCronoStartTimestampAction from './actions/setCronoStartTimestampAction';
 import setInitialStateAction from './actions/setInitialStateAction';
-import initTableAction from './creators/initTableAction';
-import trackContractionAction from './creators/trackContractionAction';
 import updateTableDurationBySetsAction from './creators/updateTableDurationBySetsAction';
-import { CronoActionsTypes, CronoStateType } from './CronoTypes';
+import { CronoStateType } from './CronoTypes';
 import { startTimer, stopTimer } from '../timer';
-import handleTick from './actions/handleTick';
+import handleTick from './creators/handleTick';
 
 const startTimerDispatch = () => dispatch => startTimer(() => dispatch(handleTick()));
 
@@ -21,7 +19,7 @@ const startTimerDispatch = () => dispatch => startTimer(() => dispatch(handleTic
  */
 export type StartCronoType = (mode: CronoModeEnum) => StoreThunkAction;
 
-const startCrono: StartCronoType = (mode: CronoModeEnum) => {
+export const startCrono: StartCronoType = (mode: CronoModeEnum) => {
   return dispatch => {
     stopTimer();
     dispatch(setCronoStartTimestampAction(generateTimestamp()));
@@ -81,15 +79,7 @@ export type SkipSetType = typeof skipSet;
 /**
  * Clean state
  */
-const clearCrono = (): Action => {
+export const clearCrono = (): Action => {
   stopTimer();
   return setInitialStateAction(null);
-};
-
-export const cronoActions: CronoActionsTypes = {
-  initTable: initTableAction,
-  startCrono,
-  skipSet,
-  trackContraction: trackContractionAction,
-  clearCrono,
 };

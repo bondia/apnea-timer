@@ -1,9 +1,5 @@
-import { Action } from 'redux';
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { TableSetType, TrainingTableType } from '../../editor/editorTypes';
-import { InitTableAction } from './creators/initTableAction';
-import { TrackContractionType } from './creators/trackContractionAction';
-import { SkipSetType, StartCronoType } from './cronoActions';
 import { ImmutableJSType } from '../../../redux/types';
 
 export type CronoStateType = {
@@ -42,13 +38,3 @@ export type CronoSetRunningType = {
 export type ImmutableJSCronoStateType = ImmutableJSType;
 export type ImmutableJSCronoType = ImmutableJSType;
 export type ImmutableJSCronoSetType = ImmutableJSType;
-
-// REDUX ACTIONS
-
-export type CronoActionsTypes = {
-  initTable: InitTableAction;
-  startCrono: StartCronoType;
-  skipSet: SkipSetType;
-  trackContraction: TrackContractionType;
-  clearCrono: () => Action;
-};
