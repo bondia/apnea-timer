@@ -1,7 +1,7 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { debounce } from 'lodash';
 import { useCallback } from 'react';
-import findRunningSet from '../../../../modules/crono/pure/findRunningSet';
+import findRunningSet from '../../../../modules/crono/helpers/findRunningSet';
 import { CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
 import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../../modules/editor/enums';
 import { FixMe } from '../../../../types';

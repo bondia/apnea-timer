@@ -1,4 +1,4 @@
-import calculateAverageContractions from '../../pure/calculateAverageContractions';
+import calculateAverageContractions from '../../helpers/calculateAverageContractions';
 import setContractionsAction from '../actions/setContractionsAction';
 
 const updateContractionsAverageAction = () => {

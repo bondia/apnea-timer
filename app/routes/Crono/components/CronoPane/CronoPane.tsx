@@ -3,7 +3,7 @@ import React, { FC, useEffect, useMemo } from 'react';
 import MultipleBar from '../../../../components/CountdownBar/MultipleBar';
 import SingleBar from '../../../../components/CountdownBar/SingleBar';
 import SetsList from '../../../../components/CronoSetsList.tsx';
-import findRunningSet from '../../../../modules/crono/pure/findRunningSet';
+import findRunningSet from '../../../../modules/crono/helpers/findRunningSet';
 import { CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
 import { EditorStateType } from '../../../../modules/editor/editorTypes';
 import CronoButtonsSet from '../ActionButtonsSet';

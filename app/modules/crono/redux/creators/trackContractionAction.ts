@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import { ImmutableJSType, StoreThunkAction } from '../../../../redux/types';
-import findRunningSet from '../../pure/findRunningSet';
+import findRunningSet from '../../helpers/findRunningSet';
 import replaceSetAction from '../actions/replaceSetAction';
 import { CronoSetType } from '../CronoTypes';
 import updateContractionsAverageAction from './updateContractionsAverageAction';
