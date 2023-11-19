@@ -3,15 +3,15 @@ import React, { FC, useEffect, useMemo } from 'react';
 import MultipleBar from '../../../../components/CountdownBar/MultipleBar';
 import SingleBar from '../../../../components/CountdownBar/SingleBar';
 import SetsList from '../../../../components/CronoSetsList.tsx';
-import findRunningSet from '../../../../modules/crono/helpers/findRunningSet';
-import { CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
-import { EditorStateType } from '../../../../modules/editor/editorTypes';
+import findRunningSet from '../../helpers/findRunningSet';
+import { CronoSetType, CronoStateType } from '../../redux/CronoTypes';
+import { EditorStateType } from '../../../editor/editorTypes';
 import CronoButtonsSet from '../ActionButtonsSet';
 import LiveCounter from '../LiveCounter';
 import * as SC from './CronoPane.styled';
 import { useAppDispatch } from '../../../../redux/hooks';
-import initTableAction from '../../../../modules/crono/redux/creators/initTableAction';
-import { useCronoSelector } from '../../../../modules/crono/redux/cronoSelectors';
+import initTableAction from '../../redux/creators/initTableAction';
+import { useCronoSelector } from '../../redux/cronoSelectors';
 
 type CoronoPaneProps = {
   initialData: EditorStateType;
@@ -32,7 +32,7 @@ const CronoPane: FC<CoronoPaneProps> = props => {
     return () => {
       deactivateKeepAwake();
     };
-  }, [rawCrono, initialData]);
+  }, [rawCrono, initialData, dispatch]);
 
   if (!rawCrono || rawCrono.sets.length <= 0) {
     return null;

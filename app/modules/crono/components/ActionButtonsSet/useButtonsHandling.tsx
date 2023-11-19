@@ -1,15 +1,14 @@
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { debounce } from 'lodash';
 import { useCallback } from 'react';
-import findRunningSet from '../../../../modules/crono/helpers/findRunningSet';
-import { CronoSetType, CronoStateType } from '../../../../modules/crono/redux/CronoTypes';
-import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../../modules/editor/enums';
+import findRunningSet from '../../helpers/findRunningSet';
+import { CronoSetType, CronoStateType } from '../../redux/CronoTypes';
+import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../editor/enums';
 import { FixMe } from '../../../../types';
-import useAppNavitation from '../../../useAppNavigation';
+import useAppNavitation from '../../../../routes/useAppNavigation';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { clearCrono, skipSet, startCrono } from '../../../../modules/crono/redux/cronoActions';
-import { StoreThunkAction } from '../../../../redux/types';
-import trackContractionAction from '../../../../modules/crono/redux/creators/trackContractionAction';
+import { clearCrono, skipSet, startCrono } from '../../redux/cronoActions';
+import trackContractionAction from '../../redux/creators/trackContractionAction';
 
 type UseButtonsHandlingInput = {
   crono: CronoStateType;
@@ -41,21 +40,6 @@ const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boo
   return current && SetTypeEnum.SET_TYPE_HOLD === current.type;
 };
 
-const handleStart = (mode: CronoModeEnum) => startCrono(mode);
-
-const handleStartAuto = () => handleStart(CronoModeEnum.CRONO_MODE_AUTO);
-
-const handleStartCoach = () => handleStart(CronoModeEnum.CRONO_MODE_COACH);
-
-const handleSkip = (current: CronoSetType): StoreThunkAction | undefined => {
-  if (current != null) {
-    return skipSet(current.pos);
-  }
-  return undefined;
-};
-
-const handleContraction = () => trackContractionAction();
-
 const handleFinish = (navigation: NativeStackNavigationProp<FixMe, string>) => {
   navigation.pop();
   clearCrono();
@@ -71,7 +55,15 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
 
   const current: CronoSetType = findRunningSet(crono.sets);
 
-  const skip = useCallback((set: CronoSetType) => dispatch(handleSkip(set)), []);
+  const skip = useCallback(
+    (set: CronoSetType) => {
+      if (set != null) {
+        return dispatch(skipSet(set.pos));
+      }
+      return undefined;
+    },
+    [dispatch],
+  );
 
   // TODO: Check that callback
   const deubuncedSkip = useCallback(
@@ -87,10 +79,10 @@ export default function useButtonsHandling(input: UseButtonsHandlingInput): UseB
     tableType,
     tableMode,
     canTrackContractions: (): boolean => canTrackContractions(crono, current),
-    handleStartAuto: (): void => dispatch(handleStartAuto()),
-    handleStartCoach: (): void => dispatch(handleStartCoach()),
+    handleStartAuto: (): void => dispatch(startCrono(CronoModeEnum.CRONO_MODE_AUTO)),
+    handleStartCoach: (): void => dispatch(startCrono(CronoModeEnum.CRONO_MODE_COACH)),
     handleSkip: () => deubuncedSkip(current),
-    handleContraction: (): void => dispatch(handleContraction()),
+    handleContraction: (): void => dispatch(trackContractionAction()),
     handleFinish: (): void => handleFinish(navigation),
   };
 }
