@@ -86,6 +86,10 @@ const decideCurrentSet = (state: CronoStateType, currentTimestamp: number) => {
     running: { step, mode: cronoMode },
   } = state;
 
+  if (step < 0) {
+    return state;
+  }
+
   const {
     running: { countdown, mode: setMode },
   } = sets[step];
