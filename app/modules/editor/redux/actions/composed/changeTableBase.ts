@@ -3,7 +3,7 @@ import { EnduranceTrainingTableType } from '../../../editorTypes';
 import updateSetsForTableType from '../../../helpers/sets/updateSetsForTableType';
 import replaceEditorSets from '../replaceEditorSets';
 import setEditorTableBaseAction from '../setEditorTableBase';
-import { updateTableDurationBySets } from './updateTableDurationBySets';
+import { updateTableDurationBySetsAction } from './updateTableDurationBySetsAction';
 
 export type EditorChangeTableBaseAction = (value: number) => StoreThunkAction;
 
@@ -22,5 +22,5 @@ export const changeTableBase: EditorChangeTableBaseAction = value => (dispatch, 
   dispatch(replaceEditorSets(newSets));
 
   // update table duration
-  dispatch(updateTableDurationBySets(newSets));
+  dispatch(updateTableDurationBySetsAction(newSets));
 };
