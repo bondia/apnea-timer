@@ -1,15 +1,26 @@
-import { CronoSetType } from '../redux/CronoTypes';
+import { CronoSetListType, CronoSetType } from '../redux/CronoTypes';
+
+type AccumulatedContractions = { items: number; sum: number };
+
+const accumulateContractions = (sets: CronoSetListType): AccumulatedContractions =>
+  sets.reduce<AccumulatedContractions>(
+    ({ items, sum }, set: CronoSetType) => {
+      const {
+        running: { contraction },
+      } = set;
+      if (contraction <= 0) {
+        return { items, sum };
+      }
+      return {
+        items: items + 1,
+        sum: sum + contraction,
+      };
+    },
+    { items: 0, sum: 0 },
+  );
 
 const calculateAverageContractions = (sets: CronoSetType[]): number => {
-  let items = 0;
-  const sum: number = sets.reduce((total: number, set: CronoSetType) => {
-    const value: number = set.running.contraction;
-    if (value > 0) {
-      items += 1;
-      return total + value;
-    }
-    return total;
-  }, 0);
+  const { items, sum } = accumulateContractions(sets);
   return items > 0 && sum > 0 ? Math.round(sum / items) : 0;
 };
 
