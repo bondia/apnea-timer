@@ -37,4 +37,3 @@ export type CronoSetRunningType = {
  */
 export type ImmutableJSCronoStateType = ImmutableJSType;
 export type ImmutableJSCronoType = ImmutableJSType;
-export type ImmutableJSCronoSetType = ImmutableJSType;

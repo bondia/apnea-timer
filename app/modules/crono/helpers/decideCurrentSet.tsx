@@ -2,7 +2,7 @@ import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import playSound, { A2, C3, F2 } from '../../../utils/playSound';
 import { CronoStateType } from '../redux/CronoTypes';
 
-function skipSet(state: CronoStateType, step: number, setMode: string, currentTimestamp: number) {
+const skipSet = (state: CronoStateType, step: number, setMode: string, currentTimestamp: number) => {
   const newState = state;
   let newStep = step;
   // change set mode
@@ -22,9 +22,9 @@ function skipSet(state: CronoStateType, step: number, setMode: string, currentTi
   }
 
   return newState;
-}
+};
 
-function playNotificationSound(countdown: number): void {
+const playNotificationSound = (countdown: number): void => {
   switch (countdown) {
     case 30:
     case 20:
@@ -40,13 +40,18 @@ function playNotificationSound(countdown: number): void {
     default:
       break;
   }
-}
+};
 
-// TODO: This is tight coupled with the newState.
-export default function decideCurrentSet(state: CronoStateType, currentTimestamp: number) {
-  const { step } = state.running;
-  const { countdown } = state.sets[step].running;
-  const setMode: string = state.sets[step].running.mode;
+// TODO: Decouple state mutation
+const decideCurrentSet = (state: CronoStateType, currentTimestamp: number) => {
+  const {
+    sets,
+    running: { step, mode: cronoMode },
+  } = state;
+
+  const {
+    running: { countdown, mode: setMode },
+  } = sets[step];
 
   playNotificationSound(countdown);
 
@@ -56,10 +61,11 @@ export default function decideCurrentSet(state: CronoStateType, currentTimestamp
   }
 
   // do not change current set if not skiped and stil countdown available
-  const cronoMode: string = state.running.mode;
   if (countdown <= 0 && CronoModeEnum.CRONO_MODE_AUTO === cronoMode) {
     return skipSet(state, step, setMode, currentTimestamp);
   }
 
   return state;
-}
+};
+
+export default decideCurrentSet;

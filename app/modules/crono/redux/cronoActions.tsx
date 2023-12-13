@@ -3,7 +3,7 @@ import { Action } from 'redux';
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { ImmutableJSType, StoreThunkAction } from '../../../redux/types';
 import generateTimestamp from '../../../utils/time/generateTimestamp';
-import decideCurrentSet from '../pure/decideCurrentSet';
+import decideCurrentSet from '../helpers/decideCurrentSet';
 import setCronoModeAction from './actions/setCronoModeAction';
 import setCronoStartTimestampAction from './actions/setCronoStartTimestampAction';
 import setInitialStateAction from './actions/setInitialStateAction';
