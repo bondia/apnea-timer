@@ -5,7 +5,7 @@ import { CronoStateType } from '../../CronoTypes';
 import decideCurrentSet from '../../../helpers/decideCurrentSet';
 import setInitialStateAction from '../setInitialStateAction';
 import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
-import { stopTimer } from '../../../timer';
+import { stopTimer } from '../../../cronoTimer';
 
 export type HandleTickAction = () => StoreThunkAction;
 
