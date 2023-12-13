@@ -28,9 +28,8 @@ type CoronoPaneProps = {
 const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   const dispatch = useAppDispatch();
   const navigation = useAppNavitation();
-  const crono = useCronoSelector();
-
-  const rawCrono: CronoStateType = useMemo(() => crono?.toJS<CronoStateType>(), [crono]);
+  const cronoImmutable = useCronoSelector();
+  const crono: CronoStateType = useMemo(() => cronoImmutable?.toJS<CronoStateType>(), [cronoImmutable]);
 
   const startCrono = useCallback(
     (cronoMode: CronoModeEnum) => {
@@ -49,20 +48,20 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   }, [dispatch, navigation]);
 
   useEffect(() => {
-    if (!rawCrono) {
+    if (!crono) {
       dispatch(initTableAction(initialData));
     }
     activateKeepAwakeAsync();
     return () => {
       deactivateKeepAwake();
     };
-  }, [rawCrono, initialData, dispatch]);
+  }, [crono, initialData, dispatch]);
 
-  if (!rawCrono || rawCrono.sets.length <= 0) {
+  if (!crono || crono.sets.length <= 0) {
     return null;
   }
 
-  const { sets } = rawCrono;
+  const { sets } = crono;
   const current: CronoSetType = findRunningSet(sets);
 
   return (
@@ -71,17 +70,17 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
         <MultipleBar sets={sets} />
 
         <SC.ContentWrapper>
-          <LiveCounter crono={rawCrono} set={current} />
+          <LiveCounter crono={crono} set={current} />
 
           <SC.SetsWrapper>
-            <SetsList sets={rawCrono.sets} />
+            <SetsList sets={crono.sets} />
           </SC.SetsWrapper>
         </SC.ContentWrapper>
 
         <SingleBar set={current} />
       </SC.CountersWrapper>
 
-      <CronoButtonsSet crono={rawCrono} start={startCrono} end={endCrono} />
+      <CronoButtonsSet crono={crono} start={startCrono} end={endCrono} />
     </SC.PaneWrapper>
   );
 };
