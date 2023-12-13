@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
-import { ImmutableJSType, StoreThunkAction } from '../../../redux/types';
+import { StoreThunkAction } from '../../../redux/types';
 import generateTimestamp from '../../../utils/time/generateTimestamp';
 import decideCurrentSet from '../helpers/decideCurrentSet';
 import setCronoModeAction from './actions/setCronoModeAction';
