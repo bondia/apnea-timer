@@ -1,27 +1,64 @@
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import playSound, { A2, C3, F2 } from '../../../utils/playSound';
-import { CronoStateType } from '../redux/CronoTypes';
+import { CronoSetListType, CronoSetType, CronoStateType } from '../redux/CronoTypes';
 
-const skipSet = (state: CronoStateType, step: number, setMode: string, currentTimestamp: number) => {
-  const newState = state;
-  let newStep = step;
-  // change set mode
-  if (SetModeEnum.SET_MODE_SKIPED !== setMode) {
-    newState.sets[newStep].running.endTimestamp = currentTimestamp;
-    newState.sets[newStep].running.mode = SetModeEnum.SET_MODE_FINISHED;
+const mapSet = (
+  set: CronoSetType,
+  step: number,
+  newStep: number,
+  setMode: SetModeEnum,
+  currentTimestamp: number,
+): CronoSetType => {
+  const { pos, running } = set;
+
+  // skip current set if needed
+  if (SetModeEnum.SET_MODE_SKIPED !== setMode && pos === step) {
+    return {
+      ...set,
+      running: {
+        ...running,
+        endTimestamp: currentTimestamp,
+        mode: SetModeEnum.SET_MODE_FINISHED,
+      },
+    };
   }
 
-  // decide next step
-  newStep = newStep >= newState.sets.length - 1 ? -1 : newStep + 1;
-  newState.running.step = newStep;
-
-  // update next set
-  if (newStep >= 0) {
-    newState.sets[newStep].running.startTimestamp = currentTimestamp;
-    newState.sets[newStep].running.mode = SetModeEnum.SET_MODE_RUNNING;
+  // start new set
+  if (newStep >= 0 && pos === newStep) {
+    return {
+      ...set,
+      running: {
+        ...running,
+        startTimestamp: currentTimestamp,
+        mode: SetModeEnum.SET_MODE_RUNNING,
+      },
+    };
   }
 
-  return newState;
+  return set;
+};
+
+const skipSet = (
+  state: CronoStateType,
+  step: number,
+  setMode: SetModeEnum,
+  currentTimestamp: number,
+): CronoStateType => {
+  const { sets } = state;
+  const newStep = step >= sets.length - 1 ? -1 : step + 1;
+
+  // update sets
+  const newSets: CronoSetListType = sets.map(set => mapSet(set, step, newStep, setMode, currentTimestamp));
+
+  return {
+    ...state,
+    running: {
+      ...state.running,
+      // update new step
+      step: newStep,
+    },
+    sets: newSets,
+  };
 };
 
 const playNotificationSound = (countdown: number): void => {
