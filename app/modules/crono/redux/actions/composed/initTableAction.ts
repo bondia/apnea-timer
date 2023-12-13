@@ -1,9 +1,9 @@
 import Immutable from 'immutable';
-import { EditorStateType } from '../../../editor/editorTypes';
-import { ImmutableJSType, StoreThunkAction } from '../../../../redux/types';
-import editorToCrono from '../../helpers/editorToCrono';
-import setInitialStateAction from '../actions/setInitialStateAction';
-import updateTableDurationBySetsAction from '../actions/composed/updateTableDurationBySetsAction';
+import { EditorStateType } from '../../../../editor/editorTypes';
+import { ImmutableJSType, StoreThunkAction } from '../../../../../redux/types';
+import editorToCrono from '../../../helpers/editorToCrono';
+import setInitialStateAction from '../setInitialStateAction';
+import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 
 /**
  * Prepare initial crono

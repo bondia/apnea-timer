@@ -10,7 +10,7 @@ import setInitialStateAction from './actions/setInitialStateAction';
 import updateTableDurationBySetsAction from './actions/composed/updateTableDurationBySetsAction';
 import { CronoStateType } from './CronoTypes';
 import { startTimer, stopTimer } from '../timer';
-import handleTick from './creators/handleTick';
+import handleTick from './actions/composed/handleTick';
 
 /**
  * Start crono

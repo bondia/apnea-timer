@@ -10,7 +10,7 @@ import CronoButtonsSet from '../ActionButtonsSet';
 import LiveCounter from '../LiveCounter';
 import * as SC from './CronoPane.styled';
 import { useAppDispatch } from '../../../../redux/hooks';
-import initTableAction from '../../redux/creators/initTableAction';
+import initTableAction from '../../redux/actions/composed/initTableAction';
 import { useCronoSelector } from '../../redux/cronoSelectors';
 
 type CoronoPaneProps = {
