@@ -1,13 +1,13 @@
 import { Action } from 'redux';
-import { CronoSetType } from '../CronoTypes';
+import { ImmutableJSType } from '../../../../redux/types';
 
 export const CRONO_REPLACE_SET = 'CRONO_REPLACE_SET';
 
 type ReplaceSetAction = Action & {
-  set: CronoSetType;
+  set: ImmutableJSType;
 };
 
-const replaceSetAction = (set: CronoSetType): ReplaceSetAction => {
+const replaceSetAction = (set: ImmutableJSType): ReplaceSetAction => {
   return { type: CRONO_REPLACE_SET, set };
 };
 

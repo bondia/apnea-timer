@@ -8,7 +8,7 @@ import { FixMe } from '../../../../types';
 import useAppNavitation from '../../../../routes/useAppNavigation';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { clearCrono, skipSet, startCrono } from '../../redux/cronoActions';
-import trackContractionAction from '../../redux/creators/trackContractionAction';
+import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
 
 type UseButtonsHandlingInput = {
   crono: CronoStateType;

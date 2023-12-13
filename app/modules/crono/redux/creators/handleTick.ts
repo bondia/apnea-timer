@@ -1,10 +1,10 @@
 import Immutable from 'immutable';
 import { ImmutableJSType, StoreThunkAction } from '../../../../redux/types';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
-import { CronoSetListType, CronoStateType } from '../CronoTypes';
+import { CronoStateType } from '../CronoTypes';
 import decideCurrentSet from '../../helpers/decideCurrentSet';
 import setInitialStateAction from '../actions/setInitialStateAction';
-import { updateTableDurationBySetsAction } from '../actions/composed/updateTableDurationBySetsAction';
+import updateTableDurationBySetsAction from '../actions/composed/updateTableDurationBySetsAction';
 import { stopTimer } from '../../timer';
 
 const handleTick = (): StoreThunkAction => {
@@ -50,7 +50,7 @@ const handleTick = (): StoreThunkAction => {
     dispatch(setInitialStateAction(crono));
 
     // recalculate table duration
-    dispatch(updateTableDurationBySetsAction(crono.get<ImmutableJSType>('sets').toJS<CronoSetListType>()));
+    dispatch(updateTableDurationBySetsAction());
   };
 };
 

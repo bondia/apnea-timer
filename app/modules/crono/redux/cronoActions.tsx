@@ -7,12 +7,10 @@ import decideCurrentSet from '../helpers/decideCurrentSet';
 import setCronoModeAction from './actions/setCronoModeAction';
 import setCronoStartTimestampAction from './actions/setCronoStartTimestampAction';
 import setInitialStateAction from './actions/setInitialStateAction';
-import { updateTableDurationBySetsAction } from './actions/composed/updateTableDurationBySetsAction';
-import { CronoSetListType, CronoStateType } from './CronoTypes';
+import updateTableDurationBySetsAction from './actions/composed/updateTableDurationBySetsAction';
+import { CronoStateType } from './CronoTypes';
 import { startTimer, stopTimer } from '../timer';
 import handleTick from './creators/handleTick';
-
-const startTimerDispatch = () => dispatch => startTimer(() => dispatch(handleTick()));
 
 /**
  * Start crono
@@ -24,7 +22,7 @@ export const startCrono: StartCronoType = (mode: CronoModeEnum) => {
     stopTimer();
     dispatch(setCronoStartTimestampAction(generateTimestamp()));
     dispatch(setCronoModeAction(mode));
-    dispatch(startTimerDispatch());
+    startTimer(() => dispatch(handleTick()));
   };
 };
 
@@ -60,7 +58,7 @@ export const skipSet = (key: number): StoreThunkAction => {
     dispatch(setInitialStateAction(newCronoImmutable));
 
     // recalculate table duration
-    dispatch(updateTableDurationBySetsAction(crono.get<ImmutableJSType>('sets').toJS<CronoSetListType>()));
+    dispatch(updateTableDurationBySetsAction());
 
     // check if there are some sets still in initial mode
     const found = crono
@@ -70,7 +68,7 @@ export const skipSet = (key: number): StoreThunkAction => {
       dispatch(setCronoModeAction(CronoModeEnum.CRONO_MODE_FINISHED));
       return;
     }
-    dispatch(startTimerDispatch());
+    startTimer(() => dispatch(handleTick()));
   };
 };
 
