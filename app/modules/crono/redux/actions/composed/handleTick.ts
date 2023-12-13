@@ -28,10 +28,11 @@ const handleTick: HandleTickAction = () => {
         return set;
       }
 
-      const { startTimestamp: setStartTimestamp } = running;
+      const { startTimestamp } = running;
+      const setStartTimestamp = startTimestamp === null ? cronoStartTimestamp : startTimestamp;
 
       // current timestamp
-      const setTimeSpent = Math.round((currentTimestamp - cronoStartTimestamp) / 1000);
+      const setTimeSpent = Math.round((currentTimestamp - setStartTimestamp) / 1000);
 
       return {
         ...set,
@@ -39,7 +40,7 @@ const handleTick: HandleTickAction = () => {
           ...set.running,
           // make sure set has a start timestamp
           // TODO: Why the cronoStartTimestamp?
-          startTimestamp: setStartTimestamp === null ? cronoStartTimestamp : setStartTimestamp,
+          startTimestamp: setStartTimestamp,
           // calculate countdown
           countdown: duration - setTimeSpent,
         },
