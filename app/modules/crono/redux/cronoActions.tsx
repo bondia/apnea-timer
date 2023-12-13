@@ -7,8 +7,8 @@ import decideCurrentSet from '../helpers/decideCurrentSet';
 import setCronoModeAction from './actions/setCronoModeAction';
 import setCronoStartTimestampAction from './actions/setCronoStartTimestampAction';
 import setInitialStateAction from './actions/setInitialStateAction';
-import updateTableDurationBySetsAction from './creators/updateTableDurationBySetsAction';
-import { CronoStateType } from './CronoTypes';
+import { updateTableDurationBySetsAction } from './actions/composed/updateTableDurationBySetsAction';
+import { CronoSetListType, CronoStateType } from './CronoTypes';
 import { startTimer, stopTimer } from '../timer';
 import handleTick from './creators/handleTick';
 
@@ -60,7 +60,7 @@ export const skipSet = (key: number): StoreThunkAction => {
     dispatch(setInitialStateAction(newCronoImmutable));
 
     // recalculate table duration
-    dispatch(updateTableDurationBySetsAction(crono.get('sets')));
+    dispatch(updateTableDurationBySetsAction(crono.get<ImmutableJSType>('sets').toJS<CronoSetListType>()));
 
     // check if there are some sets still in initial mode
     const found = crono

@@ -1,9 +1,8 @@
-import { AnyAction } from 'redux';
 import calculateSetsDuration from '../../../helpers/sets/calculateSetsDuration';
-import setEditorTableDuration from '../setEditorTableDuration';
 import { TableSetListType } from '../../../editorTypes';
+import setEditorTableDuration, { SetEditorTableDurationAction } from '../setEditorTableDuration';
 
-export type UpdateTableDurationBySetsTypeAction = (sets: TableSetListType) => AnyAction;
+export type UpdateTableDurationBySetsTypeAction = (sets: TableSetListType) => SetEditorTableDurationAction;
 
 export const updateTableDurationBySetsAction: UpdateTableDurationBySetsTypeAction = sets => {
   const duration = calculateSetsDuration(sets);
