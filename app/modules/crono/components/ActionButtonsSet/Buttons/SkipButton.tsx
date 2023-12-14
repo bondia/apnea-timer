@@ -1,8 +1,8 @@
 import React, { FC, useCallback } from 'react';
 import { debounce } from 'lodash';
 import { useAppDispatch } from '../../../../../redux/hooks';
-import { skipSet } from '../../../redux/cronoActions';
 import { CronoSetType } from '../../../redux/CronoTypes';
+import skipSetAction from '../../../redux/skipSetAction';
 import ActionButton from './ActionButton';
 
 type SkipButtonProps = {
@@ -15,7 +15,7 @@ const SkipButton: FC<SkipButtonProps> = ({ set }) => {
   const skip = useCallback(
     (currentSet: CronoSetType) => {
       if (set != null) {
-        return dispatch(skipSet(currentSet.pos));
+        return dispatch(skipSetAction(currentSet.pos));
       }
       return undefined;
     },
