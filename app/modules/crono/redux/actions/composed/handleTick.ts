@@ -1,4 +1,3 @@
-import Immutable from 'immutable';
 import { StoreThunkAction } from '../../../../../redux/types';
 import generateTimestamp from '../../../../../utils/time/generateTimestamp';
 import { CronoStateType } from '../../CronoTypes';
@@ -9,11 +8,9 @@ import { stopTimer } from '../../../cronoTimer';
 
 export type HandleTickAction = () => StoreThunkAction;
 
-// remove immutable js
 const handleTick: HandleTickAction = () => {
   return (dispatch, getState): void => {
-    const { crono: cronoImmutable } = getState();
-    const crono = cronoImmutable.toJS<CronoStateType>();
+    const { crono } = getState();
 
     const currentTimestamp = generateTimestamp();
 
@@ -64,7 +61,7 @@ const handleTick: HandleTickAction = () => {
       stopTimer();
     }
 
-    dispatch(setInitialStateAction(Immutable.fromJS(newCrono)));
+    dispatch(setInitialStateAction(newCrono));
 
     // recalculate table duration
     dispatch(updateTableDurationBySetsAction());

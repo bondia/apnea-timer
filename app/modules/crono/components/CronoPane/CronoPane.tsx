@@ -1,10 +1,10 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
-import React, { FC, useCallback, useEffect, useMemo } from 'react';
+import React, { FC, useCallback, useEffect } from 'react';
 import MultipleBar from '../../../../components/CountdownBar/MultipleBar';
 import SingleBar from '../../../../components/CountdownBar/SingleBar';
 import SetsList from '../../../../components/CronoSetsList.tsx';
 import findRunningSet from '../../helpers/findRunningSet';
-import { CronoSetType, CronoStateType } from '../../redux/CronoTypes';
+import { CronoSetType } from '../../redux/CronoTypes';
 import { EditorStateType } from '../../../editor/editorTypes';
 import CronoButtonsSet from '../ActionButtonsSet';
 import LiveCounter from '../LiveCounter';
@@ -28,8 +28,7 @@ type CoronoPaneProps = {
 const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   const dispatch = useAppDispatch();
   const navigation = useAppNavitation();
-  const cronoImmutable = useCronoSelector();
-  const crono: CronoStateType = useMemo(() => cronoImmutable?.toJS<CronoStateType>(), [cronoImmutable]);
+  const crono = useCronoSelector();
 
   const startCrono = useCallback(
     (cronoMode: CronoModeEnum) => {
@@ -57,7 +56,7 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
     };
   }, [crono, initialData, dispatch]);
 
-  if (!crono || crono.sets.length <= 0) {
+  if (!crono || !crono.sets || crono.sets.length <= 0) {
     return null;
   }
 

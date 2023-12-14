@@ -1,6 +1,5 @@
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { TableSetType, TrainingTableType } from '../../editor/editorTypes';
-import { ImmutableJSType } from '../../../redux/types';
 
 export type CronoStateType = {
   trainingTable: TrainingTableType;
@@ -31,9 +30,3 @@ export type CronoSetRunningType = {
   countdown: number;
   contraction: number;
 };
-
-/**
- * TODO: Remove immutable js
- */
-export type ImmutableJSCronoStateType = ImmutableJSType;
-export type ImmutableJSCronoType = ImmutableJSType;
