@@ -36,7 +36,6 @@ const handleTick: HandleTickAction = () => {
         running: {
           ...set.running,
           // make sure set has a start timestamp
-          // TODO: Why the cronoStartTimestamp?
           startTimestamp: setStartTimestamp,
           // calculate countdown
           countdown: duration - setTimeSpent,
@@ -62,8 +61,6 @@ const handleTick: HandleTickAction = () => {
     }
 
     dispatch(setInitialStateAction(newCrono));
-
-    // recalculate table duration
     dispatch(updateTableDurationBySetsAction());
   };
 };

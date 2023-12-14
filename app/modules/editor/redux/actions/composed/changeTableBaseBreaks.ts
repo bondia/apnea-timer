@@ -1,6 +1,6 @@
 import { StoreThunkAction } from '../../../../../redux/types';
 import updateSetsForTableType from '../../../helpers/sets/updateSetsForTableType';
-import replaceEditorSets from '../replaceEditorSets';
+import replaceEditorSetsAction from '../replaceEditorSetsAction';
 import setEditorTableBaseBreakAction from '../setEditorTableBaseBreakAction';
 import { updateTableDurationBySetsAction } from './updateTableDurationBySetsAction';
 
@@ -20,7 +20,7 @@ export const changeTableBaseBreaks: ChangeTableBaseBreaksType = value => (dispat
 
   // update sets with new base
   const newSets = updateSetsForTableType([...sets], base, baseBreaks, tableType);
-  dispatch(replaceEditorSets(newSets));
+  dispatch(replaceEditorSetsAction(newSets));
 
   // update table duration
   dispatch(updateTableDurationBySetsAction(newSets));

@@ -11,5 +11,4 @@ export type RootState = {
 export type StoreThunkAction = ThunkAction<void, RootState, undefined, AnyAction>;
 export type StoreThunkDispatch = ThunkDispatch<RootState, undefined, AnyAction>;
 
-// TODO: Find better place
 export const defaultEmptyAction = { type: undefined };

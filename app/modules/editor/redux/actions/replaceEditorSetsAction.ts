@@ -7,7 +7,7 @@ export type ReplaceEditorSetsAction = AnyAction & {
   sets: TableSetListType;
 };
 
-const replaceEditorSets = (sets: TableSetListType): ReplaceEditorSetsAction => ({
+const replaceEditorSetsAction = (sets: TableSetListType): ReplaceEditorSetsAction => ({
   type: REPLACE_EDITOR_SETS,
   sets,
 });
@@ -20,4 +20,4 @@ export const reduceReplaceEditorSetsAction = (
   sets: action.sets,
 });
 
-export default replaceEditorSets;
+export default replaceEditorSetsAction;

@@ -1,8 +1,8 @@
 import { StoreThunkAction } from '../../../../../redux/types';
 import { EnduranceTrainingTableType } from '../../../editorTypes';
 import updateSetsForTableType from '../../../helpers/sets/updateSetsForTableType';
-import replaceEditorSets from '../replaceEditorSets';
-import setEditorTableBaseAction from '../setEditorTableBase';
+import replaceEditorSetsAction from '../replaceEditorSetsAction';
+import setEditorTableBaseAction from '../setEditorTableBaseAction';
 import { updateTableDurationBySetsAction } from './updateTableDurationBySetsAction';
 
 export type EditorChangeTableBaseAction = (value: number) => StoreThunkAction;
@@ -19,7 +19,7 @@ export const changeTableBase: EditorChangeTableBaseAction = value => (dispatch, 
 
   // update sets with new base
   const newSets = updateSetsForTableType([...sets], base, baseBreaks, tableType);
-  dispatch(replaceEditorSets(newSets));
+  dispatch(replaceEditorSetsAction(newSets));
 
   // update table duration
   dispatch(updateTableDurationBySetsAction(newSets));

@@ -17,7 +17,7 @@ import setCronoStartTimestampAction from '../../redux/actions/setCronoStartTimes
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
 import setCronoModeAction from '../../redux/actions/setCronoModeAction';
 import { CronoModeEnum } from '../../../editor/enums';
-import handleTick from '../../redux/actions/composed/handleTick';
+import handleTickAction from '../../redux/actions/composed/handleTickAction';
 import useAppNavitation from '../../../../routes/useAppNavigation';
 import setInitialStateAction from '../../redux/actions/setInitialStateAction';
 
@@ -35,7 +35,7 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
       stopTimer();
       dispatch(setCronoStartTimestampAction(generateTimestamp()));
       dispatch(setCronoModeAction(cronoMode));
-      startTimer(() => dispatch(handleTick()));
+      startTimer(() => dispatch(handleTickAction()));
     },
     [dispatch],
   );
