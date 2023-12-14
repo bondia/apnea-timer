@@ -1,9 +1,9 @@
-import { StoreThunkAction } from '../../../redux/types';
-import generateTimestamp from '../../../utils/time/generateTimestamp';
-import decideCurrentSet from '../helpers/decideCurrentSet';
-import setInitialStateAction from './actions/setInitialStateAction';
-import updateTableDurationBySetsAction from './actions/composed/updateTableDurationBySetsAction';
-import handleFinishTableAction from './actions/composed/handleFinishTableAction';
+import { StoreThunkAction } from '../../../../../redux/types';
+import generateTimestamp from '../../../../../utils/time/generateTimestamp';
+import decideCurrentSet from '../../../helpers/decideCurrentSet';
+import setInitialStateAction from '../setInitialStateAction';
+import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
+import handleFinishTableAction from './handleFinishTableAction';
 
 /**
  * Skips a single set

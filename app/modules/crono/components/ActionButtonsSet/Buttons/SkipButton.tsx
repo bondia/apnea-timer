@@ -2,7 +2,7 @@ import React, { FC, useCallback } from 'react';
 import { debounce } from 'lodash';
 import { useAppDispatch } from '../../../../../redux/hooks';
 import { CronoSetType } from '../../../redux/CronoTypes';
-import skipSetAction from '../../../redux/skipSetAction';
+import skipSetAction from '../../../redux/actions/composed/skipSetAction';
 import ActionButton from './ActionButton';
 
 type SkipButtonProps = {
