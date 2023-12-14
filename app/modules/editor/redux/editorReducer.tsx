@@ -1,5 +1,5 @@
 import { AnyAction } from 'redux';
-import { defaultEmptyAction } from '../../../redux/actions';
+import { defaultEmptyAction } from '../../../redux/types';
 import { EditorStateType } from '../editorTypes';
 import {
   SET_EDITOR_INITIAL_STATE,
@@ -10,7 +10,7 @@ import {
   SET_EDITOR_TABLE_BASE,
   SetEditorTableBaseAction,
   reduceSetEditorTableBaseAction,
-} from './actions/setEditorTableBase';
+} from './actions/setEditorTableBaseAction';
 import {
   SET_EDITOR_TABLE_BASE_BREAKS,
   SetEditorTableBaseBreakAction,
@@ -20,12 +20,12 @@ import {
   SET_EDITOR_TABLE_DURATION,
   SetEditorTableDurationAction,
   reduceSetEditorTableDurationAction,
-} from './actions/setEditorTableDuration';
+} from './actions/setEditorTableDurationAction';
 import {
   REPLACE_EDITOR_SETS,
   ReplaceEditorSetsAction,
   reduceReplaceEditorSetsAction,
-} from './actions/replaceEditorSets';
+} from './actions/replaceEditorSetsAction';
 
 const editorReducer = (state: EditorStateType = null, action: AnyAction = defaultEmptyAction): EditorStateType => {
   // set initial state

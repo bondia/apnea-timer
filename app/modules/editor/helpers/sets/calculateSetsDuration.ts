@@ -1,5 +1,5 @@
 import { TableSetListType, TableSetType } from '../../editorTypes';
-import { CronoSetListType, CronoSetType } from '../../../crono/redux/CronoTypes';
+import { CronoSetListType, CronoSetType } from '../../../crono/cronoTypes';
 import { SetModeEnum } from '../../enums';
 
 const getSingleSetDuration = (set: TableSetType | CronoSetType) => {

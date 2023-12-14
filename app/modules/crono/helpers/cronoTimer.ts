@@ -10,6 +10,6 @@ export const stopTimer = () => {
   timer = null;
 };
 
-export const startTimer = callback => {
+export const startTimer = (callback: () => void) => {
   timer = setInterval(() => callback(), TIMER_REFRESH);
 };

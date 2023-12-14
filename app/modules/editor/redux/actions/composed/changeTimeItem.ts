@@ -1,7 +1,7 @@
 import { StoreThunkAction } from '../../../../../redux/types';
 import updateSetDurationForKey from '../../../helpers/sets/updateSetDurationForKey';
-import { updateTableDurationBySets } from './updateTableDurationBySets';
-import replaceEditorSets from '../replaceEditorSets';
+import { updateTableDurationBySetsAction } from './updateTableDurationBySetsAction';
+import replaceEditorSetsAction from '../replaceEditorSetsAction';
 
 const changeTimeItem =
   (key: number, amount: number): StoreThunkAction =>
@@ -23,10 +23,10 @@ const changeTimeItem =
     // decide new duration
     const duration = amount + item.duration;
     const newSets = updateSetDurationForKey([...sets], tableType, key, duration);
-    dispatch(replaceEditorSets(newSets));
+    dispatch(replaceEditorSetsAction(newSets));
 
     // update table duration
-    dispatch(updateTableDurationBySets(newSets));
+    dispatch(updateTableDurationBySetsAction(newSets));
   };
 
 export const increaseTimeItem = (key: number, amount: number) => changeTimeItem(key, amount);

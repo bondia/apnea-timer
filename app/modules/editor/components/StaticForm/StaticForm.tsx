@@ -44,7 +44,6 @@ const StaticForm: FC = () => {
         <StaticSetsList sets={setsList} />
       </SC.SetsListWrapper>
 
-      {/* TODO: remove immutable */}
       {showStartButton && <CronoStartButton data={crono} />}
     </SC.FormWrapper>
   );

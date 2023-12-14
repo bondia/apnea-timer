@@ -1,13 +1,14 @@
 import { Action } from 'redux';
-import * as reduxActions from '../../../../redux/actions';
-import { CronoSetType } from '../CronoTypes';
+import { CronoSetType } from '../../cronoTypes';
+
+export const CRONO_REPLACE_SET = 'CRONO_REPLACE_SET';
 
 type ReplaceSetAction = Action & {
   set: CronoSetType;
 };
 
 const replaceSetAction = (set: CronoSetType): ReplaceSetAction => {
-  return { type: reduxActions.CRONO_REPLACE_SET, set };
+  return { type: CRONO_REPLACE_SET, set };
 };
 
 export default replaceSetAction;

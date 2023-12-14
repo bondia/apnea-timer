@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { CronoSetType } from '../../modules/crono/redux/CronoTypes';
+import { CronoSetType } from '../../modules/crono/cronoTypes';
 import SetItem from './SetItem';
 import { Grid } from './SetsList.styled';
 

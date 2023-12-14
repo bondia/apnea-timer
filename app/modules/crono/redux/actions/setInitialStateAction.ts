@@ -1,13 +1,14 @@
 import { Action } from 'redux';
-import * as reduxActions from '../../../../redux/actions';
-import { ImmutableJSCronoType } from '../CronoTypes';
+import { CronoStateType } from '../../cronoTypes';
+
+export const CRONO_SET_INITIAL_STATE = 'CRONO_SET_INITIAL_STATE';
 
 export type InitialStateAction = Action & {
-  state: ImmutableJSCronoType;
+  state: CronoStateType;
 };
 
-const setInitialStateAction = (state: ImmutableJSCronoType): InitialStateAction => {
-  return { type: reduxActions.CRONO_SET_INITIAL_STATE, state };
+const setInitialStateAction = (state: CronoStateType): InitialStateAction => {
+  return { type: CRONO_SET_INITIAL_STATE, state };
 };
 
 export default setInitialStateAction;

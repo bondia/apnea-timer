@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { CronoSetType } from '../../modules/crono/redux/CronoTypes';
+import { CronoSetType } from '../../modules/crono/cronoTypes';
 import * as SC from './Bar.styled';
 
 export type SingleBarProps = {

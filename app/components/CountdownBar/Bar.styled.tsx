@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { COLOR_GREEN_LIGHT, COLOR_RED_NORMAL, FONT_CLOLR_GREY_LIGHT } from '../../commonStyles';
-import { CronoSetType } from '../../modules/crono/redux/CronoTypes';
+import { CronoSetType } from '../../modules/crono/cronoTypes';
 import { SetModeEnum, SetTypeEnum } from '../../modules/editor/enums';
 
 const decideBackgroundColor = (props: SingleBarInnerProps): string =>
