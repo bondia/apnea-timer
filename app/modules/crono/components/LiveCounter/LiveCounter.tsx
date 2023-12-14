@@ -2,7 +2,7 @@ import React, { FC, useMemo } from 'react';
 import styled from 'styled-components/native';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import InfoBlock from '../../../../components/InfoBlock';
-import { CronoSetType, CronoStateType } from '../../redux/CronoTypes';
+import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import { SetModeEnum, SetTypeEnum, TableTypeEnum } from '../../../editor/enums';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
 

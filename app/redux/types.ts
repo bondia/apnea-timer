@@ -1,7 +1,7 @@
 import { AnyAction } from 'redux';
 import { ThunkAction, ThunkDispatch } from 'redux-thunk';
 import { EditorStateType } from '../modules/editor/editorTypes';
-import { CronoStateType } from '../modules/crono/redux/CronoTypes';
+import { CronoStateType } from '../modules/crono/cronoTypes';
 
 export type RootState = {
   editor: EditorStateType;

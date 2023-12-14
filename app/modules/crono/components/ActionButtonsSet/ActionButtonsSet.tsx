@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { CronoSetType, CronoStateType } from '../../redux/CronoTypes';
+import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../editor/enums';
 import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
 

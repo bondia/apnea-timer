@@ -1,7 +1,7 @@
 import { StoreThunkAction } from '../../../../../redux/types';
 import findRunningSet from '../../../helpers/findRunningSet';
 import replaceSetAction from '../replaceSetAction';
-import { CronoSetType } from '../../CronoTypes';
+import { CronoSetType } from '../../../cronoTypes';
 import updateContractionsAverageAction from './updateContractionsAverageAction';
 
 export type TrackContractionType = () => StoreThunkAction;

@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { CronoStateType } from '../CronoTypes';
+import { CronoStateType } from '../../cronoTypes';
 
 export const CRONO_SET_INITIAL_STATE = 'CRONO_SET_INITIAL_STATE';
 

@@ -1,6 +1,6 @@
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { EditorStateType, TableSetType } from '../../editor/editorTypes';
-import { CronoRunningType, CronoSetType, CronoStateType } from '../redux/CronoTypes';
+import { CronoRunningType, CronoSetType, CronoStateType } from '../cronoTypes';
 
 const initSet = (originalSet: TableSetType): CronoSetType => {
   const { pos, duration: originalSetDuration } = originalSet;

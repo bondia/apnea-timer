@@ -1,5 +1,5 @@
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
-import { CronoSetType, CronoStateType } from '../redux/CronoTypes';
+import { CronoSetType, CronoStateType } from '../cronoTypes';
 import playNotificationSound from './playNotificationSound';
 
 const mutateSet = (set: CronoSetType, mode: SetModeEnum, startTimestamp: number, endTimestamp: number) => ({

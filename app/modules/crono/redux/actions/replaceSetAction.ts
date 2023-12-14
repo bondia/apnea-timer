@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { CronoSetType } from '../CronoTypes';
+import { CronoSetType } from '../../cronoTypes';
 
 export const CRONO_REPLACE_SET = 'CRONO_REPLACE_SET';
 

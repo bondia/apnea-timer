@@ -1,4 +1,4 @@
-import { CronoSetListType, CronoSetType } from '../redux/CronoTypes';
+import { CronoSetListType, CronoSetType } from '../cronoTypes';
 
 type AccumulatedContractions = { items: number; sum: number };
 

@@ -1,10 +1,10 @@
 import { StoreThunkAction } from '../../../../../redux/types';
 import generateTimestamp from '../../../../../utils/time/generateTimestamp';
-import { CronoStateType } from '../../CronoTypes';
+import { CronoStateType } from '../../../cronoTypes';
 import decideCurrentSet from '../../../helpers/decideCurrentSet';
 import setInitialStateAction from '../setInitialStateAction';
 import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
-import { stopTimer } from '../../../cronoTimer';
+import { stopTimer } from '../../../helpers/cronoTimer';
 
 export type HandleTickAction = () => StoreThunkAction;
 

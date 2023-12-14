@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { View } from 'react-native';
-import { CronoSetType } from '../../modules/crono/redux/CronoTypes';
+import { CronoSetType } from '../../modules/crono/cronoTypes';
 import SingleBar from './SingleBar';
 
 type MultipleBarProps = {

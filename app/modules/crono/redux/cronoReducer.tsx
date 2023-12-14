@@ -6,7 +6,7 @@ import { CRONO_SET_RUNNING_MODE } from './actions/setCronoModeAction';
 import { CRONO_SET_RUNNING_TABLE_DURATION } from './actions/setTableDurationAction';
 import { CRONO_SET_RUNNING_CONTRACTIONS } from './actions/setContractionsAction';
 import { CRONO_REPLACE_SET } from './actions/replaceSetAction';
-import { CronoStateType } from './CronoTypes';
+import { CronoStateType } from '../cronoTypes';
 
 const cronoReducer = (state: CronoStateType = null, action: AnyAction = defaultEmptyAction): CronoStateType => {
   // set initial state

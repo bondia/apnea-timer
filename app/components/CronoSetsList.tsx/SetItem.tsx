@@ -1,7 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../commonStyles';
-import { CronoSetType } from '../../modules/crono/redux/CronoTypes';
+import { CronoSetType } from '../../modules/crono/cronoTypes';
 import { SetModeEnum, SetTypeEnum } from '../../modules/editor/enums';
 import generateTimestamp from '../../utils/time/generateTimestamp';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
