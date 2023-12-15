@@ -1,9 +1,9 @@
 import React, { FC, useCallback } from 'react';
-import SceneWrapper from './components/SceneWrapper/SceneWrapper';
-import { AppScreenType, RoutesEnum } from './Routes';
-import { Menu, MenuItem } from './components/Menu';
-import { COLOR_DARK, COLOR_LIGHT, COLOR_NORMAL } from './commonStyles';
-import useAppNavitation from './useAppNavigation';
+import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
+import { AppScreenType, RoutesEnum } from '../../Routes';
+import { Menu, MenuItem } from '../../components/Menu';
+import { COLOR_DARK, COLOR_LIGHT, COLOR_NORMAL } from '../../commonStyles';
+import useAppNavitation from '../../useAppNavigation';
 
 const SelectorScene: FC<AppScreenType<RoutesEnum.MENU>> = () => {
   const navigation = useAppNavitation();
