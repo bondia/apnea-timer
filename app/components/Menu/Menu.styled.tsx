@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
-import { FONT_COLOR_LIGHT } from '../../../../commonStyles';
+import { FONT_COLOR_LIGHT } from '../../commonStyles';
 
 export const MenuWrapper = styled.ScrollView`
   flex: 1;

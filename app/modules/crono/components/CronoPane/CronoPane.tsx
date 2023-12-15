@@ -18,7 +18,7 @@ import generateTimestamp from '../../../../utils/time/generateTimestamp';
 import setCronoModeAction from '../../redux/actions/setCronoModeAction';
 import { CronoModeEnum } from '../../../editor/enums';
 import handleTickAction from '../../redux/actions/composed/handleTickAction';
-import useAppNavitation from '../../../../routes/useAppNavigation';
+import useAppNavitation from '../../../../useAppNavigation';
 import setInitialStateAction from '../../redux/actions/setInitialStateAction';
 
 type CoronoPaneProps = {
