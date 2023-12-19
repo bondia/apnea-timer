@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
-import TextComponent from '../../../../components/TextComponent/OldTextComponent';
+import TextComponent from '../../../../components/TextComponent/TextComponent';
 import { SetTypeEnum } from '../../enums';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EditorTimerInput.styled';

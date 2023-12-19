@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { CronoSceneParamList } from '../modules/crono/CronoScene';
+import { CronoSceneParamList } from './modules/crono/CronoScene';
 
 export enum RoutesEnum {
   MENU = 'MENU',

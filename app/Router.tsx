@@ -4,9 +4,9 @@ import { deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC } from 'react';
 import CronoScene from './modules/crono/CronoScene';
 import EditorEnduranceScene from './modules/editor/scenes/EditorEnduranceScene';
-import MainScene from './routes/Main/MainScene';
-import MouthfillScene from './routes/Mouthfill/MouthfillScene';
-import { RoutesEnum } from './routes/Routes';
+import SelectorScene from './modules/selector/SelectorScene';
+import MouthfillScene from './modules/mouthfill/MouthfillScene';
+import { RoutesEnum } from './Routes';
 import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
@@ -17,7 +17,7 @@ const AppRouter: FC = () => {
     <NavigationContainer>
       <Navigator initialRouteName={RoutesEnum.MENU} screenOptions={{ headerShown: false }}>
         {/* Main */}
-        <Screen name={RoutesEnum.MENU} component={MainScene} options={{ title: 'Apnea' }} />
+        <Screen name={RoutesEnum.MENU} component={SelectorScene} options={{ title: 'Apnea' }} />
 
         {/* Create tables */}
         <Screen name={RoutesEnum.CREATE_TABLE_SCENE} component={EditorStaticScene} options={{ title: 'CO2/O2' }} />

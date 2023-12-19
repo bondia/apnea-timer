@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
 import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
 import LongTouchButton from '../../../../components/LongTouchButton';
-import TextComponent from '../../../../components/TextComponent/OldTextComponent';
+import TextComponent from '../../../../components/TextComponent/TextComponent';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import * as SC from './EnduranceForm.styled';
 import { ChangeTableBaseBreaksType, changeTableBaseBreaks } from '../../redux/actions/composed/changeTableBaseBreaks';

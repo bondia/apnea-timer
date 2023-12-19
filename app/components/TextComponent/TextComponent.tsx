@@ -14,8 +14,11 @@ const styles = StyleSheet.create({
   },
 });
 
-// TODO: Refactor to use only styled components
-
+/**
+ * TODO: Refactor to use only styled components
+ *
+ * @deprecated
+ */
 const TextComponent: FC<TextComponentProps> = (props: TextComponentProps) => {
   const { children, style } = props;
   return (
