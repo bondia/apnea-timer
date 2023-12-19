@@ -1,6 +1,6 @@
 import React, { FC, useEffect } from 'react';
 
-import TextComponent from '../../../../components/TextComponent/OldTextComponent';
+import TextComponent from '../../../../components/TextComponent/TextComponent';
 import headlineByTableType from './headlineByTableType';
 import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
 import { TableTypeEnum } from '../../enums';

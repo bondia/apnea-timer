@@ -5,7 +5,7 @@ import { CronoSetType } from '../../modules/crono/cronoTypes';
 import { SetModeEnum, SetTypeEnum } from '../../modules/editor/enums';
 import generateTimestamp from '../../utils/time/generateTimestamp';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
-import TextComponent from '../TextComponent/OldTextComponent';
+import TextComponent from '../TextComponent/TextComponent';
 import * as SC from './SetsList.styled';
 
 // TODO: Migrate to styled components
