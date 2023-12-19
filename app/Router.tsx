@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 import CronoScene from './modules/crono/CronoScene';
 import EditorEnduranceScene from './modules/editor/scenes/EditorEnduranceScene';
 import SelectorScene from './modules/selector/SelectorScene';
-import MouthfillScene from './routes/Mouthfill/MouthfillScene';
+import MouthfillScene from './modules/mouthfill/MouthfillScene';
 import { RoutesEnum } from './Routes';
 import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
 
