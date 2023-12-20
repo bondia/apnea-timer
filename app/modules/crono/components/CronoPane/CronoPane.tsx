@@ -1,13 +1,11 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC, useCallback, useEffect } from 'react';
-import MultipleBar from '../../../../components/CountdownBar/MultipleBar';
-import SingleBar from '../../../../components/CountdownBar/SingleBar';
 import SetsList from '../../../../components/CronoSetsList.tsx';
 import findRunningSet from '../../helpers/findRunningSet';
 import { CronoSetType } from '../../cronoTypes';
 import { EditorStateType } from '../../../editor/editorTypes';
 import CronoButtonsSet from '../ActionButtonsSet';
-import LiveCounter from '../LiveCounter';
+import LiveCounter from '../LiveCounter/LiveCounter';
 import * as SC from './CronoPane.styled';
 import { useAppDispatch } from '../../../../redux/hooks';
 import initTableAction from '../../redux/actions/composed/initTableAction';
@@ -66,19 +64,13 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   return (
     <SC.PaneWrapper>
       <SC.CountersWrapper>
-        <MultipleBar sets={sets} />
-
         <SC.ContentWrapper>
           <LiveCounter crono={crono} set={current} />
-
           <SC.SetsWrapper>
             <SetsList sets={crono.sets} />
           </SC.SetsWrapper>
         </SC.ContentWrapper>
-
-        <SingleBar set={current} />
       </SC.CountersWrapper>
-
       <CronoButtonsSet crono={crono} start={startCrono} end={endCrono} />
     </SC.PaneWrapper>
   );

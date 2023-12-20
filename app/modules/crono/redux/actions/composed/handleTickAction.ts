@@ -50,7 +50,7 @@ const handleTick: HandleTickAction = () => {
       running: {
         ...crono.running,
         // add clock tick
-        clock: Math.round((currentTimestamp - cronoStartTimestamp) / 1000),
+        clock: (currentTimestamp - cronoStartTimestamp) / 1000,
       },
     };
 

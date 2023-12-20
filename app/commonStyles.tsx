@@ -3,6 +3,8 @@ export const FONT_FAMILY = 'Futura';
 export const FONT_COLOR_LIGHT = 'azure';
 
 export enum FONT_SIZE {
+  FONT_SIZE_XS = 12,
+  FONT_SIZE_S = 14,
   FONT_SIZE_M = 20,
   FONT_SIZE_L = 30,
   FONT_SIZE_XL = 40,

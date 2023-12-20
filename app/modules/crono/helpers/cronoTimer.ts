@@ -1,6 +1,6 @@
 let timer = null;
 
-const TIMER_REFRESH = 200;
+const TIMER_REFRESH = 100;
 
 export const stopTimer = () => {
   if (timer === null) {

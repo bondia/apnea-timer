@@ -1,6 +1,7 @@
 import React, { FC, useMemo } from 'react';
 import { StyleSheet } from 'react-native';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../commonStyles';
+import { round } from 'lodash';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_COLOR_LIGHT, FONT_SIZE } from '../../commonStyles';
 import { CronoSetType } from '../../modules/crono/cronoTypes';
 import { SetModeEnum, SetTypeEnum } from '../../modules/editor/enums';
 import generateTimestamp from '../../utils/time/generateTimestamp';
@@ -14,20 +15,20 @@ const getSetItemStyles = (type: SetTypeEnum, active: boolean) => {
   return StyleSheet.create({
     clock: {
       color: active ? mainColor : FONT_COLOR_GREY,
-      fontSize: 22,
-      lineHeight: 24,
+      fontSize: FONT_SIZE.FONT_SIZE_M,
+      lineHeight: FONT_SIZE.FONT_SIZE_M + 4,
       textAlign: 'center',
     },
     result: {
-      color: !active ? mainColor : FONT_COLOR_GREY,
-      fontSize: 14,
-      lineHeight: 16,
+      color: !active ? mainColor : FONT_COLOR_LIGHT,
+      fontSize: FONT_SIZE.FONT_SIZE_S,
+      lineHeight: FONT_SIZE.FONT_SIZE_S + 4,
       textAlign: 'center',
     },
     contraction: {
-      color: FONT_COLOR_GREY,
-      fontSize: 14,
-      lineHeight: 16,
+      color: FONT_COLOR_LIGHT,
+      fontSize: FONT_SIZE.FONT_SIZE_XS,
+      lineHeight: FONT_SIZE.FONT_SIZE_XS + 4,
       textAlign: 'center',
     },
   });
@@ -41,6 +42,7 @@ const SetItemCrono: FC<Props> = props => {
   const {
     set: {
       type,
+      pos,
       running: { mode, countdown, contraction, startTimestamp, endTimestamp },
     },
   } = props;
@@ -55,7 +57,7 @@ const SetItemCrono: FC<Props> = props => {
   const isRunning = SetModeEnum.SET_MODE_RUNNING === mode;
 
   const styles = getSetItemStyles(type, active);
-  const spent = useMemo(() => (started > 0 && ended > 0 ? Math.round((ended - started) / 1000) : 0), [ended, started]);
+  const spent = useMemo(() => (started > 0 && ended > 0 ? round((ended - started) / 1000, 2) : 0), [ended, started]);
   const spentText = useMemo(() => secondsToTimeString(spent), [spent]);
   const durationText = useMemo(() => secondsToTimeString(duration), [duration]);
   const contractionsText = useMemo(() => secondsToTimeString(contraction), [contraction]);
@@ -63,6 +65,9 @@ const SetItemCrono: FC<Props> = props => {
   return (
     <SC.GridItem>
       <SC.Set isRunning={isRunning}>
+        <TextComponent style={{ position: 'absolute', left: 5, top: 5, fontSize: FONT_SIZE.FONT_SIZE_S }}>
+          {pos + 1}
+        </TextComponent>
         <TextComponent style={styles.clock}>{durationText}</TextComponent>
         {spent > 0 && <TextComponent style={styles.result}>{spentText}</TextComponent>}
         {contraction > 0 && <TextComponent style={styles.contraction}>{contractionsText}</TextComponent>}
