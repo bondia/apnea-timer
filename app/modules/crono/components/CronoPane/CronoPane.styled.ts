@@ -16,7 +16,3 @@ export const ContentWrapper = styled.View`
   flex: 1;
   margin-bottom: 10px;
 `;
-
-export const SetsWrapper = styled.View`
-  flex: 1 0 0;
-`;

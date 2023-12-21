@@ -1,6 +1,5 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC, useCallback, useEffect } from 'react';
-import SetsList from '../../../../components/CronoSetsList.tsx';
 import findRunningSet from '../../helpers/findRunningSet';
 import { CronoSetType } from '../../cronoTypes';
 import { EditorStateType } from '../../../editor/editorTypes';
@@ -18,6 +17,7 @@ import { CronoModeEnum } from '../../../editor/enums';
 import handleTickAction from '../../redux/actions/composed/handleTickAction';
 import useAppNavitation from '../../../../useAppNavigation';
 import setInitialStateAction from '../../redux/actions/setInitialStateAction';
+import Sets from '../Sets/Sets';
 
 type CoronoPaneProps = {
   initialData: EditorStateType;
@@ -69,9 +69,7 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
       <SC.CountersWrapper>
         <SC.ContentWrapper>
           <LiveCounter crono={crono} set={current} />
-          <SC.SetsWrapper>
-            <SetsList sets={crono.sets} />
-          </SC.SetsWrapper>
+          <Sets sets={sets} />
         </SC.ContentWrapper>
       </SC.CountersWrapper>
       <CronoButtonsSet crono={crono} start={onClickStart} end={endClickCrono} />
