@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import { CronoSetType } from '../../modules/crono/cronoTypes';
+import { CronoSetListType, CronoSetType } from '../../modules/crono/cronoTypes';
 import SetItem from './SetItem';
 import { Grid } from './SetsList.styled';
 
 type SetsListProps = {
-  sets: CronoSetType[];
+  sets: CronoSetListType;
 };
 
 const SetsList: FC<SetsListProps> = ({ sets }) => (

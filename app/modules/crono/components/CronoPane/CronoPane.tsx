@@ -28,7 +28,12 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   const navigation = useAppNavitation();
   const crono = useCronoSelector();
 
-  const startCrono = useCallback(
+  const endCrono = useCallback(() => {
+    stopTimer();
+    dispatch(setInitialStateAction(null));
+  }, [dispatch]);
+
+  const onClickStart = useCallback(
     (cronoMode: CronoModeEnum) => {
       stopTimer();
       dispatch(setCronoStartTimestampAction(generateTimestamp()));
@@ -38,23 +43,21 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
     [dispatch],
   );
 
-  const endCrono = useCallback(() => {
-    stopTimer();
-    dispatch(setInitialStateAction(null));
+  const endClickCrono = useCallback(() => {
+    endCrono();
     navigation.pop();
-  }, [dispatch, navigation]);
+  }, [endCrono, navigation]);
 
   useEffect(() => {
-    if (!crono) {
-      dispatch(initTableAction(initialData));
-    }
+    dispatch(initTableAction(initialData));
     activateKeepAwakeAsync();
     return () => {
+      endCrono();
       deactivateKeepAwake();
     };
-  }, [crono, initialData, dispatch]);
+  }, [dispatch, endCrono, initialData]);
 
-  if (!crono || !crono.sets || crono.sets.length <= 0) {
+  if (!crono?.sets) {
     return null;
   }
 
@@ -71,7 +74,7 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
           </SC.SetsWrapper>
         </SC.ContentWrapper>
       </SC.CountersWrapper>
-      <CronoButtonsSet crono={crono} start={startCrono} end={endCrono} />
+      <CronoButtonsSet crono={crono} start={onClickStart} end={endClickCrono} />
     </SC.PaneWrapper>
   );
 };
