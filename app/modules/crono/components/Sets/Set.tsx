@@ -4,12 +4,12 @@ import { SetModeEnum } from '../../../editor/enums';
 import { CronoSetType } from '../../cronoTypes';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
-import { Item } from '../../../../components/List';
 import { getSetItemStyles } from './Sets.styled';
 import TextComponent from '../../../../components/TextComponent/TextComponent';
 
 type Props = {
   set: CronoSetType;
+  accent?: boolean;
 };
 
 const Set: FC<Props> = props => {
@@ -19,7 +19,9 @@ const Set: FC<Props> = props => {
       pos,
       running: { mode, countdown, contraction, startTimestamp, endTimestamp },
     },
+    accent,
   } = props;
+  console.info(accent);
 
   const currentTimestamp = generateTimestamp();
 
@@ -36,12 +38,12 @@ const Set: FC<Props> = props => {
   const contractionsText = useMemo(() => secondsToTimeString(contraction), [contraction]);
 
   return (
-    <Item>
+    <>
       <TextComponent style={styles.setNumber}>{pos + 1}</TextComponent>
       <TextComponent style={styles.clock}>{durationText}</TextComponent>
       {spent > 0 && <TextComponent style={styles.result}>{spentText}</TextComponent>}
       {contraction > 0 && <TextComponent style={styles.contraction}>{contractionsText}</TextComponent>}
-    </Item>
+    </>
   );
 };
 
