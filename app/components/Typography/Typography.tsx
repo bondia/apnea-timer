@@ -17,14 +17,24 @@ export enum TypographyType {
   OVERLINE = 'Overline',
 }
 
-type TypographyProps = {
+type TypographyComponent = {
   children: ReactNode;
-  type?: TypographyType;
-};
+} & SC.TypographyStylesType;
 
-const Typography: FC<TypographyProps> = ({ children, type = TypographyType.BODY_1 }) => {
-  const Component = SC[type] || SC[TypographyType.BODY_1];
-  return Component ? <Component>{children}</Component> : null;
+type TypographyProps = {
+  type?: TypographyType;
+} & TypographyComponent;
+
+const Typography: FC<TypographyProps> = ({ children, type = TypographyType.BODY_1, color, centered }) => {
+  const Component: FC<TypographyComponent> = SC[type] || SC[TypographyType.BODY_1];
+  if (!Component) {
+    return null;
+  }
+  return (
+    <Component color={color} centered={centered}>
+      {children}
+    </Component>
+  );
 };
 
 export default Typography;
