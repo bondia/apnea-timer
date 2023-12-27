@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
 import { AppScreenType, RoutesEnum } from '../../Routes';
-import CronoPane from './components/CronoPane/CronoPane';
+import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
 import { EditorStateType } from '../editor/editorTypes';
+import CronoPane from './components/CronoPane/CronoPane';
 
 export type CronoSceneParamList = { initialData: EditorStateType };
 

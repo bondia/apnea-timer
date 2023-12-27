@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
+import List, { Item } from '../../../../components/List';
 import { CronoSetListType, CronoSetType } from '../../cronoTypes';
 import Set from './Set';
-import List, { Item } from '../../../../components/List';
 import * as SC from './Sets.styled';
 
 type SetsProps = {

@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../editor/enums';
+import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
 
+import findRunningSet from '../../helpers/findRunningSet';
 import ActionButton from './Buttons/ActionButton';
 import SkipButton from './Buttons/SkipButton';
-import findRunningSet from '../../helpers/findRunningSet';
 
 import * as SC from './ActionButtonsSet.styled';
 

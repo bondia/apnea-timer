@@ -1,13 +1,13 @@
-import React, { FC, useMemo } from 'react';
 import { round } from 'lodash';
-import { SetModeEnum, SetTypeEnum } from '../../../editor/enums';
-import { CronoSetType } from '../../cronoTypes';
-import generateTimestamp from '../../../../utils/time/generateTimestamp';
-import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
-import * as SC from './Sets.styled';
+import React, { FC, useMemo } from 'react';
+import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { SURFACE_COLORS } from '../../../../darkTheme';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
+import generateTimestamp from '../../../../utils/time/generateTimestamp';
+import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
+import { SetModeEnum, SetTypeEnum } from '../../../editor/enums';
+import { CronoSetType } from '../../cronoTypes';
+import * as SC from './Sets.styled';
 
 type SetProps = {
   set: CronoSetType;

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
-import { CronoSetType, CronoStateType } from '../../cronoTypes';
-import { TableTypeEnum } from '../../../editor/enums';
 import { Col, Grid } from '../../../../components/Grid';
 import InfoTimeBlock from '../../../../components/InfoTimeBlock/InfoTimeBlock';
+import { TableTypeEnum } from '../../../editor/enums';
+import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
 import * as SC from './LiveCounter.styled';
 

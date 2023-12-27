@@ -1,5 +1,5 @@
-import { CronoModeEnum, SetModeEnum } from '../editor/enums';
 import { TableSetType, TrainingTableType } from '../editor/editorTypes';
+import { CronoModeEnum, SetModeEnum } from '../editor/enums';
 
 export type CronoStateType = {
   trainingTable: TrainingTableType;

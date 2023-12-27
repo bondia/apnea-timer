@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import * as SC from '../ActionButtonsSet.styled';
 import LongTouchButton from '../../../../../components/LongTouchButton';
+import * as SC from '../ActionButtonsSet.styled';
 
 type ActionButtonProps = {
   title: string;
