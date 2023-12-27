@@ -6,8 +6,8 @@ export type TypographyStylesType = {
 };
 
 const Text = styled.Text<TypographyStylesType>`
-  color: ${({ color }) => color};
-  text-align: ${({ centered }) => (centered ? 'center' : undefined)};
+  color: ${({ color }) => color || 'black'};
+  text-align: ${({ centered }) => (centered ? 'center' : 'auto')};
   font-style: normal;
   font-weight: 400;
 `;

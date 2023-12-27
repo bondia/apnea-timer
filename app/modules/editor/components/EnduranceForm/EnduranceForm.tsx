@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
+import CronoStartButton from '../CronoStartButton/CronoStartButton';
 import { Wrapper } from './EnduranceForm.styled';
 import EnduranceMainForm from './EnduranceMainForm';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
