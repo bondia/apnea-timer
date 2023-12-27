@@ -6,6 +6,6 @@ export const Sets = styled.View`
 
 export const SetNumber = styled.View`
   position: absolute;
-  left: 5;
-  top: 5;
+  left: 5px;
+  top: 5px;
 `;
