@@ -6,6 +6,10 @@ type BlockWrapperProps = {
   width?: string;
 };
 
+/**
+ * TODO: Refactor to use only styled components
+ * @deprecated
+ */
 export const BlockWrapper = styled.View<BlockWrapperProps>`
   width: ${(props: BlockWrapperProps) => props.width || '50%'};
   margin: 10px 0;

@@ -1,8 +1,9 @@
 import React, { FC } from 'react';
-import { FONT_COLOR_LIGHT, FONT_SIZE } from '../../../../commonStyles';
-import InfoBlock from '../../../../components/InfoBlock';
+import { FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import { TableTypeEnum } from '../../../editor/enums';
+import { Col, Grid } from '../../../../components/Grid';
+import InfoTimeBlock from '../../../../components/InfoTimeBlock/InfoTimeBlock';
 
 import * as SC from './LiveCounter.styled';
 
@@ -26,35 +27,61 @@ const LiveCounter: FC<LiveCounterProps> = props => {
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
 
   return (
-    <SC.LiveCounterWrapper>
+    <Grid>
+      {/* STATIC */}
       {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
-        <InfoBlock
-          title="Time Left"
-          timeContent={totalTime}
-          textColor={FONT_COLOR_LIGHT}
-          labelTextSize={FONT_SIZE.FONT_SIZE_S}
-          textSize={FONT_SIZE.FONT_SIZE_L}
-        />
+        <SC.LiveCounterRow>
+          <Col>
+            <InfoTimeBlock
+              label="Time Left"
+              labelColor={FONT_COLOR_GREY}
+              timestamp={totalTime}
+              contentColor={FONT_COLOR_LIGHT}
+            />
+          </Col>
+
+          <Col>
+            <InfoTimeBlock
+              label="Contractions"
+              labelColor={FONT_COLOR_GREY}
+              timestamp={contractions}
+              contentColor={FONT_COLOR_LIGHT}
+            />
+          </Col>
+        </SC.LiveCounterRow>
       )}
 
-      {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
-        <InfoBlock
-          title="Contractions"
-          timeContent={contractions}
-          textColor={FONT_COLOR_LIGHT}
-          labelTextSize={FONT_SIZE.FONT_SIZE_S}
-          textSize={FONT_SIZE.FONT_SIZE_L}
-        />
-      )}
-
+      {/* ENDURANCE */}
+      {/* TODO: CLEAN UP FOR ENDURANCE */}
       {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
-        <>
-          <InfoBlock title="Targeting" timeContent={targeting} width="33%" />
-          <InfoBlock title="Spent Time" timeContent={spentTime > 0 ? spentTime : 0} width="33%" />
-          <InfoBlock title="Current Dive" rawContent={currentSet} width="33%" />
-        </>
+        <SC.LiveCounterRow>
+          <Col>
+            <InfoTimeBlock
+              label="Targeting"
+              labelColor={FONT_COLOR_GREY}
+              timestamp={targeting}
+              contentColor={FONT_COLOR_LIGHT}
+            />
+          </Col>
+          <Col>
+            <InfoTimeBlock
+              label="Spent Time"
+              labelColor={FONT_COLOR_GREY}
+              timestamp={spentTime > 0 ? spentTime : 0}
+              contentColor={FONT_COLOR_LIGHT}
+            />
+          </Col>
+          <Col>
+            <InfoTimeBlock
+              label="Current Dive"
+              labelColor={FONT_COLOR_GREY}
+              timestamp={currentSet}
+              contentColor={FONT_COLOR_LIGHT}
+            />
+          </Col>
+        </SC.LiveCounterRow>
       )}
-    </SC.LiveCounterWrapper>
+    </Grid>
   );
 };
 

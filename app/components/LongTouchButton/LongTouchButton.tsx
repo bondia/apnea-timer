@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import { TouchableHighlight } from 'react-native';
 import * as SC from './LongTouchButton.styled';
 import useLongTouchHandling from './useLongTouchHandling';
+import Typography, { TypographyType } from '../Typography/Typography';
 
 type LongTouchButtonProps = {
   title?: string;
@@ -49,7 +50,9 @@ const LongTouchButton: FC<LongTouchButtonProps> = props => {
         underlayColor="transparent"
       >
         <SC.ButtonWrapper active={active}>
-          <SC.ButtonText>{title}</SC.ButtonText>
+          <Typography type={TypographyType.BUTTON} centered>
+            {title}
+          </Typography>
         </SC.ButtonWrapper>
       </TouchableHighlight>
     </SC.LongTouchButtonContainer>

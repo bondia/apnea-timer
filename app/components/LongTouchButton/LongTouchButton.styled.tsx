@@ -16,9 +16,3 @@ export const ButtonWrapper = styled.View<ButtonWrapperProps>`
   border-radius: 3px;
   margin: 5px;
 `;
-
-export const ButtonText = styled.Text`
-  background-color: transparent;
-  text-align: center;
-  font-size: 20px;
-`;

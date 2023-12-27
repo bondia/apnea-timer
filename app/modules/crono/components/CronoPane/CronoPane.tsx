@@ -66,12 +66,10 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
 
   return (
     <SC.PaneWrapper>
-      <SC.CountersWrapper>
-        <SC.ContentWrapper>
-          <LiveCounter crono={crono} set={current} />
-          <Sets sets={sets} active={current} />
-        </SC.ContentWrapper>
-      </SC.CountersWrapper>
+      <SC.ContentWrapper>
+        <LiveCounter crono={crono} set={current} />
+        <Sets sets={sets} active={current} />
+      </SC.ContentWrapper>
       <CronoButtonsSet crono={crono} start={onClickStart} end={endClickCrono} />
     </SC.PaneWrapper>
   );

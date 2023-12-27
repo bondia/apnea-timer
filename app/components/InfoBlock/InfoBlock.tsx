@@ -15,6 +15,10 @@ type InfoBlockProps = {
   textSize?: FONT_SIZE;
 };
 
+/**
+ * TODO: Refactor to use only styled components
+ * @deprecated
+ */
 const InfoBlock: FC<InfoBlockProps> = props => {
   const {
     title,
