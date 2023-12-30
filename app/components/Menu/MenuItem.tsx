@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
-import * as SC from './Menu.styled';
-import Typography, { TypographyType } from '../Typography/Typography';
 import { FONT_COLOR_LIGHT } from '../../commonStyles';
+import Typography, { TypographyType } from '../Typography/Typography';
+import * as SC from './Menu.styled';
 
 type MenuItemProps = {
   title: string;
@@ -11,7 +11,7 @@ type MenuItemProps = {
 
 const MenuItem: FC<MenuItemProps> = ({ title, onPress, color }) => (
   <SC.ActionArea onPress={onPress} color={color}>
-    <Typography type={TypographyType.H2} color={FONT_COLOR_LIGHT} centered>
+    <Typography type={TypographyType.H3} color={FONT_COLOR_LIGHT} centered>
       {title}
     </Typography>
   </SC.ActionArea>

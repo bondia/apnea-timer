@@ -10,7 +10,7 @@ type SetsProps = {
 };
 
 const Sets: FC<SetsProps> = ({ sets, active }) => {
-  const pos = active?.pos || -1;
+  const pos = active?.pos === undefined ? -1 : active?.pos;
   const siblingPos = pos % 2 === 0 ? pos + 1 : pos - 1;
   return (
     <SC.Sets>

@@ -9,7 +9,7 @@ export const List = styled.View`
 
 export const ListItem = styled.View`
   width: 50%;
-  padding: 8px 10px;
+  padding: 8px 8px;
 `;
 
 type ListItemContent = {
@@ -17,8 +17,6 @@ type ListItemContent = {
 };
 
 export const ListItemContent = styled.View<ListItemContent>`
-  padding: 5px;
-  min-height: 70px;
   border-radius: 5px;
   background-color: ${({ active }: ListItemContent) =>
     active ? SURFACE_COLORS.ELEVATION_24 : SURFACE_COLORS.ELEVATION_01};

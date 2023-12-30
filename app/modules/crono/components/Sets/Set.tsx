@@ -23,7 +23,6 @@ const Set: FC<SetProps> = props => {
     },
     accent,
   } = props;
-  console.info(accent);
 
   const currentTimestamp = generateTimestamp();
 
@@ -43,27 +42,27 @@ const Set: FC<SetProps> = props => {
   const spentTextColor = !active ? mainColor : FONT_COLOR_LIGHT;
 
   return (
-    <>
+    <SC.Set>
       <SC.SetNumber>
         <Typography color={SURFACE_COLORS.ELEVATION_00}>{pos + 1}</Typography>
       </SC.SetNumber>
 
-      <Typography type={TypographyType.H6} color={durationTextColor} centered>
+      <Typography type={accent ? TypographyType.H4 : TypographyType.H6} color={durationTextColor} centered>
         {durationText}
       </Typography>
 
-      {spent > 0 && (
-        <Typography color={spentTextColor} centered>
+      {spent > 0 ? (
+        <Typography type={TypographyType.BODY_2} color={spentTextColor} centered>
           {spentText}
         </Typography>
-      )}
+      ) : null}
 
-      {contraction > 0 && (
-        <Typography color={FONT_COLOR_LIGHT} centered>
+      {contraction > 0 ? (
+        <Typography type={TypographyType.CAPTION} color={FONT_COLOR_LIGHT} centered>
           {contractionsText}
         </Typography>
-      )}
-    </>
+      ) : undefined}
+    </SC.Set>
   );
 };
 

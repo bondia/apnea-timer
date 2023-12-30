@@ -5,6 +5,7 @@ import InfoTimeBlock from '../../../../components/InfoTimeBlock/InfoTimeBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
+import { TypographyType } from '../../../../components/Typography/Typography';
 import * as SC from './LiveCounter.styled';
 
 type LiveCounterProps = {
@@ -35,8 +36,10 @@ const LiveCounter: FC<LiveCounterProps> = props => {
             <InfoTimeBlock
               label="Time Left"
               labelColor={FONT_COLOR_GREY}
+              labelType={TypographyType.SUBTITLE_1}
               timestamp={totalTime}
               contentColor={FONT_COLOR_LIGHT}
+              contentType={TypographyType.H6}
             />
           </Col>
 
@@ -44,8 +47,10 @@ const LiveCounter: FC<LiveCounterProps> = props => {
             <InfoTimeBlock
               label="Contractions"
               labelColor={FONT_COLOR_GREY}
+              labelType={TypographyType.SUBTITLE_1}
               timestamp={contractions}
               contentColor={FONT_COLOR_LIGHT}
+              contentType={TypographyType.H6}
             />
           </Col>
         </SC.LiveCounterRow>

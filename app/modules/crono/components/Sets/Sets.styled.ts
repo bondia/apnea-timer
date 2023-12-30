@@ -4,6 +4,10 @@ export const Sets = styled.View`
   flex: 1 0 0;
 `;
 
+export const Set = styled.View`
+  padding: 10px;
+`;
+
 export const SetNumber = styled.View`
   position: absolute;
   left: 5px;
