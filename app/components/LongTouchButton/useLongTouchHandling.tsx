@@ -97,7 +97,7 @@ type OnPressOutInput = {
 export default function useLongTouchHandling(input: UseLongTouchHandlingInput): UseLongTouchHandlingOutput {
   // check input with defaults
   const {
-    enabled,
+    enabled = false,
     onPressStart = () => undefined,
     onShortPressEnd = () => undefined,
     onLongPressStart = () => undefined,

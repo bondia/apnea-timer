@@ -29,7 +29,7 @@ const InfoTimeBlock: FC<InfoTimeBlockProps> = props => {
         </Typography>
       )}
       <Typography type={contentType} color={contentColor} centered>
-        {secondsToTimeString(timestamp)}
+        {timestamp ? secondsToTimeString(timestamp) : undefined}
       </Typography>
     </>
   );

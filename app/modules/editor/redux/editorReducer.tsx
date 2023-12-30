@@ -1,6 +1,13 @@
 import { AnyAction } from 'redux';
 import { defaultEmptyAction } from '../../../redux/types';
 import { EditorStateType } from '../editorTypes';
+import { TableTypeEnum } from '../enums';
+import createTable from '../helpers/createTable';
+import {
+  REPLACE_EDITOR_SETS,
+  ReplaceEditorSetsAction,
+  reduceReplaceEditorSetsAction,
+} from './actions/replaceEditorSetsAction';
 import {
   SET_EDITOR_INITIAL_STATE,
   SetEditorInitialStateAction,
@@ -21,20 +28,20 @@ import {
   SetEditorTableDurationAction,
   reduceSetEditorTableDurationAction,
 } from './actions/setEditorTableDurationAction';
-import {
-  REPLACE_EDITOR_SETS,
-  ReplaceEditorSetsAction,
-  reduceReplaceEditorSetsAction,
-} from './actions/replaceEditorSetsAction';
 
-const editorReducer = (state: EditorStateType = null, action: AnyAction = defaultEmptyAction): EditorStateType => {
+const defaultState = createTable(120, 5, TableTypeEnum.TABLE_TYPE_CO2, 6);
+
+const editorReducer = (
+  state: EditorStateType = defaultState,
+  action: AnyAction = defaultEmptyAction,
+): EditorStateType => {
   // set initial state
   if (action.type === SET_EDITOR_INITIAL_STATE) {
     return reduceSetEditorInitialStateAction(state, action as SetEditorInitialStateAction);
   }
 
   // set base
-  if (action.type === SET_EDITOR_TABLE_BASE) {
+  if (state && action.type === SET_EDITOR_TABLE_BASE) {
     return reduceSetEditorTableBaseAction(state, action as SetEditorTableBaseAction);
   }
 

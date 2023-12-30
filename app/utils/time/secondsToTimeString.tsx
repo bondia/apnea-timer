@@ -7,7 +7,7 @@ const secondsToMinutesRest = (seconds: number): number => {
 };
 
 const secondsToMinutesRestString = (seconds: number): string => {
-  const rest = round(secondsToMinutesRest(seconds), 2);
+  const rest = round(secondsToMinutesRest(seconds), 0);
   return rest < 10 ? `0${rest}` : rest.toString();
 };
 

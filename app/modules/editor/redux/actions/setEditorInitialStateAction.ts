@@ -13,7 +13,7 @@ const setEditorInitialStateAction = (state: EditorStateType): SetEditorInitialSt
 });
 
 export const reduceSetEditorInitialStateAction = (
-  _state: EditorStateType,
+  _state: EditorStateType | null,
   action: SetEditorInitialStateAction,
 ): EditorStateType => action.state;
 

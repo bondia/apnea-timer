@@ -9,7 +9,7 @@ export const List = styled.View`
 
 export const ListItem = styled.View`
   width: 50%;
-  padding: 8px 8px;
+  padding: 4px 4px;
 `;
 
 type ListItemContent = {

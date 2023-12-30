@@ -6,21 +6,28 @@ import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
 import { TypographyType } from '../../../../components/Typography/Typography';
+import useSetCalculations from '../../hooks/useSetCalculations';
 import * as SC from './LiveCounter.styled';
 
 type LiveCounterProps = {
   crono: CronoStateType;
-  set: CronoSetType;
+  set?: CronoSetType;
 };
 
 const LiveCounter: FC<LiveCounterProps> = props => {
   const {
     crono: {
       trainingTable: { type: tableTypeEnum },
-      running: { clock: spentTime, countdown: totalTime, contractions },
+      running: { clock: spentTime, countdown: totalTime = 0 },
     },
     set,
   } = props;
+
+  const {
+    setNumber,
+    spent,
+    status: { isDiving },
+  } = useSetCalculations(set);
 
   // set data
   const pos = set ? set.pos : 0;
@@ -34,15 +41,27 @@ const LiveCounter: FC<LiveCounterProps> = props => {
         <SC.LiveCounterRow>
           <Col>
             <InfoTimeBlock
-              label="Time Left"
+              label="Table duration"
               labelColor={FONT_COLOR_GREY}
-              labelType={TypographyType.SUBTITLE_1}
+              labelType={TypographyType.SUBTITLE_2}
               timestamp={totalTime}
               contentColor={FONT_COLOR_LIGHT}
-              contentType={TypographyType.H6}
+              contentType={TypographyType.H5}
             />
           </Col>
 
+          <Col>
+            <InfoTimeBlock
+              label={isDiving ? `Hold time (${setNumber})` : `Recovery time (${setNumber})`}
+              labelColor={FONT_COLOR_GREY}
+              labelType={TypographyType.SUBTITLE_2}
+              timestamp={spent}
+              contentColor={FONT_COLOR_LIGHT}
+              contentType={TypographyType.H5}
+            />
+          </Col>
+
+          {/* CONTRACTIONS
           <Col>
             <InfoTimeBlock
               label="Contractions"
@@ -53,6 +72,7 @@ const LiveCounter: FC<LiveCounterProps> = props => {
               contentType={TypographyType.H6}
             />
           </Col>
+          */}
         </SC.LiveCounterRow>
       )}
 

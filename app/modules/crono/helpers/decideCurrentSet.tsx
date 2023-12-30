@@ -22,17 +22,17 @@ const decideModeForSet = (
   const { pos, running } = set;
 
   // skip set logic
-  if (SetModeEnum.SET_MODE_SKIPED === setMode && pos === step) {
+  if (SetModeEnum.SET_MODE_SKIPED === setMode && pos === step && running.startTimestamp) {
     return mutateSet(set, SetModeEnum.SET_MODE_SKIPED, running.startTimestamp, currentTimestamp);
   }
 
   // finish set
-  if (SetModeEnum.SET_MODE_SKIPED !== setMode && pos === step) {
+  if (SetModeEnum.SET_MODE_SKIPED !== setMode && pos === step && running.startTimestamp) {
     return mutateSet(set, SetModeEnum.SET_MODE_FINISHED, running.startTimestamp, currentTimestamp);
   }
 
   // start new set
-  if (nextStep >= 0 && pos === nextStep) {
+  if (nextStep >= 0 && pos === nextStep && running.endTimestamp) {
     return mutateSet(set, SetModeEnum.SET_MODE_RUNNING, currentTimestamp, running.endTimestamp);
   }
 

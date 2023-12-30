@@ -8,7 +8,7 @@ export type CronoStateType = {
 };
 
 export type CronoRunningType = {
-  startTimestamp?: number;
+  startTimestamp: number;
   clock: number;
   step: number;
   mode: CronoModeEnum;

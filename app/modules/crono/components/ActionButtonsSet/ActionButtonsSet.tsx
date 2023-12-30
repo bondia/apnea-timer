@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
-import { useAppDispatch } from '../../../../redux/hooks';
 import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
-import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
 
 import findRunningSet from '../../helpers/findRunningSet';
 import ActionButton from './Buttons/ActionButton';
 import SkipButton from './Buttons/SkipButton';
 
+import { useAppDispatch } from '../../../../redux/hooks';
+import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
 import * as SC from './ActionButtonsSet.styled';
 
 const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boolean => {
@@ -38,22 +38,24 @@ const CronoButtonSet: FC<CronoButtonSetProps> = props => {
     trainingTable: { type },
   } = crono;
 
-  const current: CronoSetType = findRunningSet(crono.sets);
+  const current = findRunningSet(crono.sets);
   const isEndurance = TableTypeEnum.TABLE_TYPE_ENDURANCE === type;
   const isFinished = CronoModeEnum.CRONO_MODE_FINISHED === mode;
 
   const startAuto = () => start(CronoModeEnum.CRONO_MODE_AUTO);
   const startCoach = () => start(CronoModeEnum.CRONO_MODE_COACH);
 
-  const showContractionsButton = canTrackContractions(crono, current);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const showContractionsButton = current && canTrackContractions(crono, current);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const trackContraction = () => dispatch(trackContractionAction());
 
   return (
     <SC.ButtonSetWrapper>
       {clock < 0 && !isEndurance && <ActionButton title="Auto" action={startAuto} />}
       {clock < 0 && <ActionButton title="Coach" action={startCoach} />}
-      {clock >= 0 && !isFinished && <SkipButton set={current} />}
-      {clock >= 0 && showContractionsButton && <ActionButton title="1st Cont" action={trackContraction} />}
+      {current && clock >= 0 && !isFinished && <SkipButton set={current} />}
+      {/* {clock >= 0 && showContractionsButton && <ActionButton title="1st Cont" action={trackContraction} />} */}
       {isFinished && <ActionButton title="Finish" action={end} />}
     </SC.ButtonSetWrapper>
   );

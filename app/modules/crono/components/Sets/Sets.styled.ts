@@ -5,7 +5,7 @@ export const Sets = styled.View`
 `;
 
 export const Set = styled.View`
-  padding: 10px;
+  padding: 8px;
 `;
 
 export const SetNumber = styled.View`

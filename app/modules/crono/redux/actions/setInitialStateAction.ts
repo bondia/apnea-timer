@@ -4,10 +4,10 @@ import { CronoStateType } from '../../cronoTypes';
 export const CRONO_SET_INITIAL_STATE = 'CRONO_SET_INITIAL_STATE';
 
 export type InitialStateAction = Action & {
-  state: CronoStateType;
+  state: CronoStateType | null;
 };
 
-const setInitialStateAction = (state: CronoStateType): InitialStateAction => {
+const setInitialStateAction = (state: CronoStateType | null): InitialStateAction => {
   return { type: CRONO_SET_INITIAL_STATE, state };
 };
 

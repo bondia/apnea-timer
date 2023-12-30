@@ -5,7 +5,6 @@ import useAppNavitation from '../../../../useAppNavigation';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
 import { EditorStateType } from '../../../editor/editorTypes';
 import { CronoModeEnum } from '../../../editor/enums';
-import { CronoSetType } from '../../cronoTypes';
 import { startTimer, stopTimer } from '../../helpers/cronoTimer';
 import findRunningSet from '../../helpers/findRunningSet';
 import handleTickAction from '../../redux/actions/composed/handleTickAction';
@@ -62,13 +61,13 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   }
 
   const { sets } = crono;
-  const current: CronoSetType = findRunningSet(sets);
+  const current = findRunningSet(sets);
 
   return (
     <SC.PaneWrapper>
       <SC.ContentWrapper>
-        <LiveCounter crono={crono} set={current} />
-        <Sets sets={sets} active={current} />
+        <LiveCounter crono={crono} set={current || undefined} />
+        <Sets sets={sets} active={current || undefined} />
       </SC.ContentWrapper>
       <CronoButtonsSet crono={crono} start={onClickStart} end={endClickCrono} />
     </SC.PaneWrapper>

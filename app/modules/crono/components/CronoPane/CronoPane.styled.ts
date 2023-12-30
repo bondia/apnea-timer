@@ -3,7 +3,7 @@ import { SURFACE_COLORS } from '../../../../darkTheme';
 
 export const PaneWrapper = styled.View`
   flex: 1;
-  padding: 15px 0 10px;
+  padding: 10px 0 10px;
   background-color: ${SURFACE_COLORS.ELEVATION_00};
 `;
 

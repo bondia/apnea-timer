@@ -1,5 +1,5 @@
-import { TableSetListType, TableSetType } from '../../editorTypes';
 import { CronoSetListType, CronoSetType } from '../../../crono/cronoTypes';
+import { TableSetListType, TableSetType } from '../../editorTypes';
 import { SetModeEnum } from '../../enums';
 
 const getSingleSetDuration = (set: TableSetType | CronoSetType) => {
@@ -16,7 +16,7 @@ const getSingleSetDuration = (set: TableSetType | CronoSetType) => {
   return zombie === true ? 0 : duration;
 };
 
-const calculateTableDuration = (sets: TableSetListType | CronoSetListType = null): number => {
+const calculateTableDuration = (sets?: TableSetListType | CronoSetListType): number => {
   if (!sets) {
     return 0;
   }

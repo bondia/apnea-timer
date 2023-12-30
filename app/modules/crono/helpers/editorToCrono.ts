@@ -1,5 +1,5 @@
-import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { EditorStateType, TableSetType } from '../../editor/editorTypes';
+import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { CronoRunningType, CronoSetType, CronoStateType } from '../cronoTypes';
 
 const initSet = (originalSet: TableSetType): CronoSetType => {
@@ -7,8 +7,8 @@ const initSet = (originalSet: TableSetType): CronoSetType => {
   return {
     ...originalSet,
     running: {
-      startTimestamp: null,
-      endTimestamp: null,
+      startTimestamp: -1,
+      endTimestamp: -1,
       mode: pos === 0 ? SetModeEnum.SET_MODE_RUNNING : SetModeEnum.SET_MODE_INITIAL,
       originalCountdown: originalSetDuration,
       countdown: originalSetDuration,
@@ -20,7 +20,7 @@ const initSet = (originalSet: TableSetType): CronoSetType => {
 const createSets = (originalSets: TableSetType[]): CronoSetType[] => [...originalSets.map(initSet)];
 
 const createDefaultRunningProp = (): CronoRunningType => ({
-  startTimestamp: null,
+  startTimestamp: -1,
   // represents the seconds spend since the table started
   clock: -1,
   // table current step
