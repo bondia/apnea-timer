@@ -1,16 +1,23 @@
 import { StoreThunkAction } from '../../../../../redux/types';
 import generateTimestamp from '../../../../../utils/time/generateTimestamp';
+import { CronoModeEnum } from '../../../../editor/enums';
 import { CronoStateType } from '../../../cronoTypes';
+import { stopTimer } from '../../../helpers/cronoTimer';
 import decideCurrentSet from '../../../helpers/decideCurrentSet';
 import setInitialStateAction from '../setInitialStateAction';
+import handleFinishTableAction from './handleFinishTableAction';
 import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
-import { stopTimer } from '../../../helpers/cronoTimer';
 
 export type HandleTickAction = () => StoreThunkAction;
 
 const handleTick: HandleTickAction = () => {
   return (dispatch, getState): void => {
     const { crono } = getState();
+
+    if (crono.running.mode === CronoModeEnum.CRONO_MODE_FINISHED) {
+      stopTimer();
+      return;
+    }
 
     const currentTimestamp = generateTimestamp();
 
@@ -54,14 +61,10 @@ const handleTick: HandleTickAction = () => {
       },
     };
 
-    // decide current set
     const newCrono = decideCurrentSet(cronoState, currentTimestamp);
-    if (newCrono.running.step < 0) {
-      stopTimer();
-    }
-
     dispatch(setInitialStateAction(newCrono));
     dispatch(updateTableDurationBySetsAction());
+    dispatch(handleFinishTableAction());
   };
 };
 
