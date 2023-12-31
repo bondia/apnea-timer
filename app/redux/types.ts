@@ -5,7 +5,7 @@ import { EditorStateType } from '../modules/editor/editorTypes';
 
 export type RootState = {
   editor: EditorStateType;
-  crono: CronoStateType;
+  crono: CronoStateType | null;
 };
 
 export type StoreThunkAction = ThunkAction<void, RootState, undefined, AnyAction>;

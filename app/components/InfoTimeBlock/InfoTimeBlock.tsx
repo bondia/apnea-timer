@@ -12,27 +12,24 @@ type InfoTimeBlockProps = {
   contentColor?: string;
 };
 
-const InfoTimeBlock: FC<InfoTimeBlockProps> = props => {
-  const {
-    label,
-    labelType = TypographyType.BODY_1,
-    labelColor,
-    timestamp,
-    contentType = TypographyType.H4,
-    contentColor = COLOR_LIGHT,
-  } = props;
-  return (
-    <>
-      {label && (
-        <Typography type={labelType} color={labelColor} centered>
-          {label}
-        </Typography>
-      )}
-      <Typography type={contentType} color={contentColor} centered>
-        {timestamp ? secondsToTimeString(timestamp) : undefined}
+const InfoTimeBlock: FC<InfoTimeBlockProps> = ({
+  label,
+  labelType = TypographyType.BODY_1,
+  labelColor,
+  timestamp,
+  contentType = TypographyType.H4,
+  contentColor = COLOR_LIGHT,
+}) => (
+  <>
+    {label && (
+      <Typography type={labelType} color={labelColor} centered>
+        {label}
       </Typography>
-    </>
-  );
-};
+    )}
+    <Typography type={contentType} color={contentColor} centered>
+      {timestamp !== undefined ? secondsToTimeString(timestamp) : undefined}
+    </Typography>
+  </>
+);
 
 export default InfoTimeBlock;

@@ -2,8 +2,8 @@ import { StoreThunkAction } from '../../../../../redux/types';
 import generateTimestamp from '../../../../../utils/time/generateTimestamp';
 import decideCurrentSet from '../../../helpers/decideCurrentSet';
 import setInitialStateAction from '../setInitialStateAction';
-import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 import handleFinishTableAction from './handleFinishTableAction';
+import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 
 /**
  * Skips a single set
@@ -12,6 +12,9 @@ export type SkipSetActionType = (key: number) => StoreThunkAction;
 
 const skipSetAction: SkipSetActionType = (pos: number) => (dispatch, getState) => {
   const { crono } = getState();
+  if (!crono) {
+    return;
+  }
 
   // current timestamp
   const currentTimestamp = generateTimestamp();

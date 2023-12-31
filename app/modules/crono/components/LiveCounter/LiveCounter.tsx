@@ -14,20 +14,19 @@ type LiveCounterProps = {
   set?: CronoSetType;
 };
 
-const LiveCounter: FC<LiveCounterProps> = props => {
-  const {
-    crono: {
-      trainingTable: { type: tableTypeEnum },
-      running: { clock: spentTime, countdown: totalTime = 0 },
-    },
-    set,
-  } = props;
-
+const LiveCounter: FC<LiveCounterProps> = ({
+  crono: {
+    trainingTable: { type: tableTypeEnum },
+    running: { clock: spentTime, countdown: totalTime = 0 },
+    sets,
+  },
+  set,
+}) => {
   const {
     setNumber,
     spent,
     status: { isDiving },
-  } = useSetCalculations(set);
+  } = useSetCalculations(set || sets[0]);
 
   // set data
   const pos = set ? set.pos : 0;
@@ -51,14 +50,16 @@ const LiveCounter: FC<LiveCounterProps> = props => {
           </Col>
 
           <Col>
-            <InfoTimeBlock
-              label={isDiving ? `Hold time (${setNumber})` : `Recovery time (${setNumber})`}
-              labelColor={FONT_COLOR_GREY}
-              labelType={TypographyType.SUBTITLE_2}
-              timestamp={spent}
-              contentColor={FONT_COLOR_LIGHT}
-              contentType={TypographyType.H5}
-            />
+            {set ? (
+              <InfoTimeBlock
+                label={isDiving ? `Hold time (${setNumber})` : `Recovery time (${setNumber})`}
+                labelColor={FONT_COLOR_GREY}
+                labelType={TypographyType.SUBTITLE_2}
+                timestamp={spent}
+                contentColor={FONT_COLOR_LIGHT}
+                contentType={TypographyType.H5}
+              />
+            ) : undefined}
           </Col>
 
           {/* CONTRACTIONS

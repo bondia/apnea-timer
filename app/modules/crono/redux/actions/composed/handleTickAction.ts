@@ -13,6 +13,9 @@ export type HandleTickAction = () => StoreThunkAction;
 const handleTick: HandleTickAction = () => {
   return (dispatch, getState): void => {
     const { crono } = getState();
+    if (!crono) {
+      return;
+    }
 
     if (crono.running.mode === CronoModeEnum.CRONO_MODE_FINISHED) {
       stopTimer();
@@ -33,7 +36,7 @@ const handleTick: HandleTickAction = () => {
       }
 
       const { startTimestamp } = running;
-      const setStartTimestamp = startTimestamp === undefined ? cronoStartTimestamp : startTimestamp;
+      const setStartTimestamp = startTimestamp === -1 ? cronoStartTimestamp : startTimestamp;
 
       // current timestamp
       const setTimeSpent = Math.round((currentTimestamp - setStartTimestamp) / 1000);

@@ -8,9 +8,11 @@ export type TrackContractionType = () => StoreThunkAction;
 
 const trackContractionAction: TrackContractionType = () => {
   return (dispatch, getState) => {
-    const {
-      crono: { sets },
-    } = getState();
+    const { crono } = getState();
+    if (!crono) {
+      return;
+    }
+    const { sets } = crono;
 
     const current = findRunningSet(sets);
     if (!current) {
