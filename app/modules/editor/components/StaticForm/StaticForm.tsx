@@ -48,7 +48,11 @@ const StaticForm: FC = () => {
         </ScrollView>
       </SC.SetsListWrapper>
 
-      {showStartButton && <CronoStartButton data={crono} />}
+      {showStartButton && (
+        <SC.ButtonContainer>
+          <CronoStartButton data={crono} />
+        </SC.ButtonContainer>
+      )}
     </SC.FormWrapper>
   );
 };

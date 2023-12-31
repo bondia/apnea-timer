@@ -4,7 +4,6 @@ import { COLOR_LIGHT, FONT_CLOLR_GREY_LIGHT } from '../../commonStyles';
 export const LongTouchButtonContainer = styled.View`
   width: 100%;
   flex: 1;
-  min-height: 90px;
 `;
 
 type ButtonWrapperProps = {

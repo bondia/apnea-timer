@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 
 export const FormWrapper = styled.View`
   flex: 1;
-  padding: 5px;
+  justify-content: space-between;
 `;
 
 // FORM
@@ -31,4 +31,9 @@ type SetsListWrapperProps = {
 
 export const SetsListWrapper = styled.View<SetsListWrapperProps>`
   flex: ${(props: SetsListWrapperProps) => (props.fullHeight ? 5 : 4)};
+`;
+
+export const ButtonContainer = styled.View`
+  flex: 1;
+  max-height: 60px;
 `;

@@ -28,27 +28,36 @@ const EditorTimerInput: FC<EditorTimerInputProps> = props => {
   clockColor = zombie ? FONT_COLOR_GREY : clockColor;
 
   return (
-    <Row>
-      <Col>
-        <LongTouchButton title="-" onPressStart={decrease} onPressInterval={decrease} />
-      </Col>
+    <>
+      <Row>
+        <Col>
+          <LongTouchButton title="-" onPressStart={decrease} onPressInterval={decrease} />
+        </Col>
 
-      <Col flex={2}>
-        <Typography type={TypographyType.H3} color={clockColor} centered>
-          {secondsToTimeString(duration)}
-        </Typography>
-      </Col>
+        <Col flex={2}>
+          <Typography type={TypographyType.H3} color={clockColor} centered>
+            {secondsToTimeString(duration)}
+          </Typography>
+        </Col>
 
-      <Col flex={0.5}>
-        <Typography color={FONT_COLOR_GREY} centered>
-          ({setNumber})
-        </Typography>
-      </Col>
+        <Col flex={0.5}>
+          <Typography color={FONT_COLOR_GREY} centered>
+            ({setNumber})
+          </Typography>
+        </Col>
 
-      <Col>
-        <LongTouchButton title="+" onPressStart={increase} onPressInterval={increase} />
-      </Col>
-    </Row>
+        <Col>
+          <LongTouchButton title="+" onPressStart={increase} onPressInterval={increase} />
+        </Col>
+      </Row>
+
+      {/* TODO: Needs spacer component here */}
+      <Row>
+        <Col>
+          <Typography> </Typography>
+        </Col>
+      </Row>
+    </>
   );
 };
 

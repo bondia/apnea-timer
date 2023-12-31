@@ -1,14 +1,9 @@
 import React, { FC, useCallback } from 'react';
-import styled from 'styled-components/native';
 
-import { EditorStateType } from '../../editorTypes';
 import { RoutesEnum } from '../../../../Routes';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import useAppNavitation from '../../../../useAppNavigation';
-
-const ButtonContainer = styled.View`
-  flex-direction: row;
-`;
+import { EditorStateType } from '../../editorTypes';
 
 type CronoStartButtonProps = {
   data: EditorStateType;
@@ -22,11 +17,7 @@ const CronoStartButton: FC<CronoStartButtonProps> = props => {
     navigation.push(RoutesEnum.CRONO_SCENE, { initialData: data });
   }, [data, navigation]);
 
-  return (
-    <ButtonContainer>
-      <LongTouchButton title="Start" onPressStart={onPressStart} />
-    </ButtonContainer>
-  );
+  return <LongTouchButton title="Start" onPressStart={onPressStart} />;
 };
 
 export default CronoStartButton;
