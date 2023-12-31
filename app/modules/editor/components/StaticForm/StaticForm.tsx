@@ -40,14 +40,14 @@ const StaticForm: FC = () => {
     <Stack>
       <StaticMainForm editor={editor} />
 
-      <SC.SetsListWrapper fullHeight={!showStartButton}>
+      <Stack>
         <Typography type={TypographyType.H6} color={FONT_COLOR_GREY} centered>
           {headline}
         </Typography>
         <ScrollView key={tableType}>
           <StaticSetsList sets={setsList} />
         </ScrollView>
-      </SC.SetsListWrapper>
+      </Stack>
 
       {showStartButton && (
         <SC.ButtonContainer>

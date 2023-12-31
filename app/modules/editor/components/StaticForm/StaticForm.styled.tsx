@@ -11,16 +11,6 @@ export const StaticMainFormWrapper = styled.View<StaticMainFormWrapperProps>`
   max-height: ${(props: StaticMainFormWrapperProps) => (props.small ? '150px' : '225px')};
 `;
 
-// LIST
-
-type SetsListWrapperProps = {
-  fullHeight: boolean;
-};
-
-export const SetsListWrapper = styled.View<SetsListWrapperProps>`
-  flex: ${(props: SetsListWrapperProps) => (props.fullHeight ? 5 : 4)};
-`;
-
 export const ButtonContainer = styled.View`
   flex: 1;
   max-height: 60px;

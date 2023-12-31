@@ -1,7 +1,16 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { FC } from 'react';
-import { SafeAreaView } from 'react-native';
+import styled from 'styled-components/native';
 import { Stack } from '../Layout';
+
+type SafeAreaViewProps = {
+  backgroundColor?: string;
+};
+
+const SafeAreaView = styled.SafeAreaView<SafeAreaViewProps>`
+  flex: 1;
+  background-color: ${({ backgroundColor }) => backgroundColor};
+`;
 
 type Props = {
   children?: React.ReactNode;
@@ -9,7 +18,7 @@ type Props = {
 };
 
 const SceneWrapper: FC<Props> = ({ children, backgroundColor }) => (
-  <SafeAreaView style={{ flex: 1, backgroundColor }}>
+  <SafeAreaView backgroundColor={backgroundColor}>
     <Stack fullWidth>{children}</Stack>
     <StatusBar />
   </SafeAreaView>
