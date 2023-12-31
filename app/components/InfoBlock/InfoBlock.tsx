@@ -1,9 +1,17 @@
 import React, { FC } from 'react';
-import { TextStyle } from 'react-native';
-import { COLOR_LIGHT, FONT_SIZE } from '../../commonStyles';
+import styled from 'styled-components/native';
+import { COLOR_LIGHT } from '../../commonStyles';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
-import TextComponent from '../TextComponent/TextComponent';
-import * as SC from './InfoBlock.styled';
+import Typography, { TypographyType } from '../Typography/Typography';
+
+type BlockWrapperProps = {
+  width?: string;
+};
+
+export const BlockWrapper = styled.View<BlockWrapperProps>`
+  width: ${(props: BlockWrapperProps) => props.width || '50%'};
+  margin: 10px 0;
+`;
 
 type InfoBlockProps = {
   title?: string;
@@ -11,38 +19,23 @@ type InfoBlockProps = {
   rawContent?: number | string;
   textColor?: string;
   width?: string;
-  labelTextSize?: FONT_SIZE;
-  textSize?: FONT_SIZE;
 };
 
-/**
- * TODO: Refactor to use only styled components
- * @deprecated
- */
 const InfoBlock: FC<InfoBlockProps> = props => {
-  const {
-    title,
-    timeContent,
-    rawContent,
-    width,
-    textColor = COLOR_LIGHT,
-    labelTextSize = FONT_SIZE.FONT_SIZE_M,
-    textSize = FONT_SIZE.FONT_SIZE_L,
-  } = props;
-
-  const hederStyles: TextStyle = { ...SC.baseStyles.headerLabel, ...{ color: textColor, fontSize: labelTextSize } };
-
-  const styles: TextStyle = textColor
-    ? { ...SC.baseStyles.headerText, ...{ color: textColor, fontSize: textSize } }
-    : SC.baseStyles.headerText;
+  const { title, timeContent, rawContent, width, textColor = COLOR_LIGHT } = props;
 
   return (
-    <SC.BlockWrapper width={width}>
-      {title && <TextComponent style={hederStyles}>{title}</TextComponent>}
-      <TextComponent style={styles}>
+    <BlockWrapper width={width}>
+      {title && (
+        <Typography type={TypographyType.H6} color={textColor} centered>
+          {title}
+        </Typography>
+      )}
+
+      <Typography type={TypographyType.H3} color={textColor} centered>
         {timeContent !== undefined ? secondsToTimeString(timeContent) : rawContent}
-      </TextComponent>
-    </SC.BlockWrapper>
+      </Typography>
+    </BlockWrapper>
   );
 };
 

@@ -1,14 +1,10 @@
 import React, { FC } from 'react';
 import styled from 'styled-components/native';
 import LongTouchButton from '../../../../components/LongTouchButton';
-import { TableTypeEnum } from '../../enums';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { useEditorBaseSelector, useEditorTypeSelector } from '../../redux/editorSelectors';
+import { TableTypeEnum } from '../../enums';
 import { changeTableType } from '../../redux/actions/composed/changeTableType';
-
-/**
- * STYLES
- */
+import { useEditorBaseSelector, useEditorTypeSelector } from '../../redux/editorSelectors';
 
 export const ButtonsSetWrapper = styled.View`
   flex: 1;
