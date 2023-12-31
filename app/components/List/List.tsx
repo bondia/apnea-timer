@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import { ScrollView } from 'react-native';
-import * as SC from './List.styled';
+import { Stack } from '../Layout';
 
 type ListProps = {
   children: ReactNode;
@@ -8,7 +8,9 @@ type ListProps = {
 
 const List: FC<ListProps> = ({ children }) => (
   <ScrollView>
-    <SC.List>{children}</SC.List>
+    <Stack horizontal wrap>
+      {children}
+    </Stack>
   </ScrollView>
 );
 

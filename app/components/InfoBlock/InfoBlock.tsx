@@ -1,42 +1,27 @@
 import React, { FC } from 'react';
-import styled from 'styled-components/native';
+import { View } from 'react-native';
 import { COLOR_LIGHT } from '../../commonStyles';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
 import Typography, { TypographyType } from '../Typography/Typography';
 
-type BlockWrapperProps = {
-  width?: string;
-};
-
-export const BlockWrapper = styled.View<BlockWrapperProps>`
-  width: ${(props: BlockWrapperProps) => props.width || '50%'};
-  margin: 10px 0;
-`;
-
 type InfoBlockProps = {
   title?: string;
-  timeContent?: number;
-  rawContent?: number | string;
+  timeContent: number;
   textColor?: string;
-  width?: string;
 };
 
-const InfoBlock: FC<InfoBlockProps> = props => {
-  const { title, timeContent, rawContent, width, textColor = COLOR_LIGHT } = props;
-
-  return (
-    <BlockWrapper width={width}>
-      {title && (
-        <Typography type={TypographyType.H6} color={textColor} centered>
-          {title}
-        </Typography>
-      )}
-
-      <Typography type={TypographyType.H3} color={textColor} centered>
-        {timeContent !== undefined ? secondsToTimeString(timeContent) : rawContent}
+const InfoBlock: FC<InfoBlockProps> = ({ title, timeContent, textColor = COLOR_LIGHT }) => (
+  <View>
+    {title && (
+      <Typography type={TypographyType.H6} color={textColor} centered>
+        {title}
       </Typography>
-    </BlockWrapper>
-  );
-};
+    )}
+
+    <Typography type={TypographyType.H3} color={textColor} centered>
+      {secondsToTimeString(timeContent)}
+    </Typography>
+  </View>
+);
 
 export default InfoBlock;

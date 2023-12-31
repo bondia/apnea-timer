@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { ScrollView } from 'react-native';
 import { FONT_COLOR_GREY } from '../../../../commonStyles';
+import { Stack } from '../../../../components/Layout';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
@@ -36,7 +37,7 @@ const StaticForm: FC = () => {
   const showStartButton = crono.sets.length > 0;
 
   return (
-    <SC.FormWrapper>
+    <Stack>
       <StaticMainForm editor={editor} />
 
       <SC.SetsListWrapper fullHeight={!showStartButton}>
@@ -53,7 +54,7 @@ const StaticForm: FC = () => {
           <CronoStartButton data={crono} />
         </SC.ButtonContainer>
       )}
-    </SC.FormWrapper>
+    </Stack>
   );
 };
 

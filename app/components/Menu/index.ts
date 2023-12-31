@@ -1,4 +1,4 @@
-import { MenuWrapper } from './Menu.styled';
 import MenuItem from './MenuItem';
 
-export { MenuWrapper as Menu, MenuItem };
+// eslint-disable-next-line import/prefer-default-export
+export { MenuItem };

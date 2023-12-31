@@ -1,12 +1,6 @@
 import styled from 'styled-components/native';
 import { SURFACE_COLORS } from '../../darkTheme';
 
-export const List = styled.View`
-  flex: 1;
-  flex-direction: row;
-  flex-wrap: wrap;
-`;
-
 export const ListItem = styled.View`
   width: 50%;
   padding: 4px 4px;

@@ -1,10 +1,5 @@
 import styled from 'styled-components/native';
 
-export const FormWrapper = styled.View`
-  flex: 1;
-  justify-content: space-between;
-`;
-
 // FORM
 
 type StaticMainFormWrapperProps = {
@@ -18,9 +13,8 @@ export const StaticMainFormWrapper = styled.View<StaticMainFormWrapperProps>`
 
 export const MainInfoBlock = styled.View`
   flex: 1;
-  align-items: center;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-around;
 `;
 
 // LIST

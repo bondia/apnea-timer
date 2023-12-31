@@ -2,17 +2,13 @@ import React, { FC } from 'react';
 import styled from 'styled-components/native';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { useEditorBaseSelector } from '../../redux/editorSelectors';
 import { changeTableBase } from '../../redux/actions/composed/changeTableBase';
+import { useEditorBaseSelector } from '../../redux/editorSelectors';
 
 export const ButtonsSet = styled.View`
   flex: 1;
   flex-direction: row;
   align-items: center;
-`;
-
-export const ButtonWrapper = styled.View`
-  flex: 1;
 `;
 
 const TableBaseInput: FC = () => {
