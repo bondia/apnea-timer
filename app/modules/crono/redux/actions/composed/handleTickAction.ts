@@ -30,13 +30,16 @@ const handleTick: HandleTickAction = () => {
     } = crono;
 
     const newSets = sets.map(set => {
-      const { pos, running, duration } = set;
-      if (pos !== step) {
+      const {
+        pos,
+        running: { startTimestamp },
+        duration,
+      } = set;
+      if (pos !== step || !cronoStartTimestamp) {
         return set;
       }
 
-      const { startTimestamp } = running;
-      const setStartTimestamp = startTimestamp === -1 ? cronoStartTimestamp : startTimestamp;
+      const setStartTimestamp = startTimestamp === undefined ? cronoStartTimestamp : startTimestamp;
 
       // current timestamp
       const setTimeSpent = Math.round((currentTimestamp - setStartTimestamp) / 1000);
@@ -60,7 +63,7 @@ const handleTick: HandleTickAction = () => {
       running: {
         ...crono.running,
         // add clock tick
-        clock: (currentTimestamp - cronoStartTimestamp) / 1000,
+        clock: !cronoStartTimestamp ? -1 : (currentTimestamp - cronoStartTimestamp) / 1000,
       },
     };
 

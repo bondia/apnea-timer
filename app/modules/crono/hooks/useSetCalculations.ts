@@ -9,7 +9,7 @@ const useSetCalculations = (set: CronoSetType) => {
   const {
     pos,
     type,
-    running: { mode, startTimestamp, endTimestamp, countdown },
+    running: { mode, startTimestamp = -1, endTimestamp = -1, countdown },
   } = set;
 
   const currentTimestamp = generateTimestamp();

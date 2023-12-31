@@ -8,7 +8,7 @@ export type CronoStateType = {
 };
 
 export type CronoRunningType = {
-  startTimestamp: number;
+  startTimestamp?: number;
   clock: number;
   step: number;
   mode: CronoModeEnum;
@@ -23,8 +23,8 @@ export type CronoSetType = TableSetType & {
 };
 
 export type CronoSetRunningType = {
-  startTimestamp: number;
-  endTimestamp: number;
+  startTimestamp?: number;
+  endTimestamp?: number;
   mode: SetModeEnum;
   originalCountdown: number;
   countdown: number;

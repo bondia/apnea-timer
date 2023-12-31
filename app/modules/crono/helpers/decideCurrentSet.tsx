@@ -20,20 +20,22 @@ const decideModeForSet = (
   currentTimestamp: number,
 ): CronoSetType => {
   const { pos, running } = set;
+  const startTimestamp = running.startTimestamp || -1;
+  const endTimestamp = running.endTimestamp || -1;
 
   // skip set logic
   if (SetModeEnum.SET_MODE_SKIPED === setMode && pos === step) {
-    return mutateSet(set, SetModeEnum.SET_MODE_SKIPED, running.startTimestamp, currentTimestamp);
+    return mutateSet(set, SetModeEnum.SET_MODE_SKIPED, startTimestamp, currentTimestamp);
   }
 
   // finish set
   if (SetModeEnum.SET_MODE_SKIPED !== setMode && pos === step) {
-    return mutateSet(set, SetModeEnum.SET_MODE_FINISHED, running.startTimestamp, currentTimestamp);
+    return mutateSet(set, SetModeEnum.SET_MODE_FINISHED, startTimestamp, currentTimestamp);
   }
 
   // start new set
   if (nextStep >= 0 && pos === nextStep) {
-    return mutateSet(set, SetModeEnum.SET_MODE_RUNNING, currentTimestamp, running.endTimestamp);
+    return mutateSet(set, SetModeEnum.SET_MODE_RUNNING, currentTimestamp, endTimestamp);
   }
 
   return set;

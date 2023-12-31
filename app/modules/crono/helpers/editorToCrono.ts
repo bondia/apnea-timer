@@ -7,8 +7,8 @@ const initSet = (originalSet: TableSetType): CronoSetType => {
   return {
     ...originalSet,
     running: {
-      startTimestamp: -1,
-      endTimestamp: -1,
+      startTimestamp: undefined,
+      endTimestamp: undefined,
       mode: pos === 0 ? SetModeEnum.SET_MODE_RUNNING : SetModeEnum.SET_MODE_INITIAL,
       originalCountdown: originalSetDuration,
       countdown: originalSetDuration,
@@ -20,7 +20,7 @@ const initSet = (originalSet: TableSetType): CronoSetType => {
 const createSets = (originalSets: TableSetType[]): CronoSetType[] => [...originalSets.map(initSet)];
 
 const createDefaultRunningProp = (): CronoRunningType => ({
-  startTimestamp: -1,
+  startTimestamp: undefined,
   // represents the seconds spend since the table started
   clock: -1,
   // table current step
