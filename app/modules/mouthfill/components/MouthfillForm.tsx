@@ -1,108 +1,113 @@
 import React, { FC } from 'react';
-import { StyleSheet } from 'react-native';
 import { COLOR_DARK, COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
+import { Col, Grid, Row } from '../../../components/Grid';
 import LongTouchButton from '../../../components/LongTouchButton';
-import TextComponent from '../../../components/TextComponent/TextComponent';
+import Typography, { TypographyType } from '../../../components/Typography/Typography';
 import useMouthfill from '../hooks/useMouthfill';
-import * as SC from './MouthfillForm.styled';
-
-const styles = StyleSheet.create({
-  target: {
-    marginTop: 30,
-    marginBottom: 30,
-    color: COLOR_GREEN_NORMAL,
-    textAlign: 'center',
-    fontSize: 60,
-  },
-  label: {
-    paddingTop: 33,
-    lineHeight: 15,
-    fontSize: 25,
-    color: COLOR_DARK,
-  },
-  depth: {
-    paddingTop: 25,
-    flex: 1,
-    color: FONT_COLOR_GREY,
-    fontSize: 30,
-    lineHeight: 30,
-    textAlign: 'center',
-  },
-});
 
 const MouthfillForm: FC = () => {
   const { testPerformed, setTestPerformed, testFailed, setTestFailed, performed, setPerformed, maxDepth } =
     useMouthfill();
   return (
-    <SC.FormWrapper>
-      <TextComponent style={styles.target}>{maxDepth}m</TextComponent>
+    <Grid>
+      <Row>
+        <Col>
+          <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
+            {maxDepth}m
+          </Typography>
+        </Col>
+      </Row>
 
-      <SC.InputRow>
-        <TextComponent style={styles.label}>Test Mouthfill</TextComponent>
-      </SC.InputRow>
+      <Row>
+        <Col>
+          <Typography type={TypographyType.H5} color={COLOR_DARK}>
+            Test Mouthfill
+          </Typography>
+        </Col>
+      </Row>
 
-      <SC.InputRow>
-        <SC.ButtonWrapper>
+      <Row>
+        <Col>
           <LongTouchButton
             title="-"
             onPressStart={() => setTestPerformed(testPerformed - 1)}
             onPressInterval={() => setTestPerformed(testPerformed - 5)}
           />
-        </SC.ButtonWrapper>
-        <TextComponent style={styles.depth}>{testPerformed}m</TextComponent>
-        <SC.ButtonWrapper>
+        </Col>
+        <Col>
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {testPerformed}m
+          </Typography>
+        </Col>
+        <Col>
           <LongTouchButton
             title="+"
             onPressStart={() => setTestPerformed(testPerformed + 1)}
             onPressInterval={() => setTestPerformed(testPerformed + 5)}
           />
-        </SC.ButtonWrapper>
-      </SC.InputRow>
+        </Col>
+      </Row>
 
-      <SC.InputRow>
-        <TextComponent style={styles.label}>Failure Depth</TextComponent>
-      </SC.InputRow>
+      <Row>
+        <Col>
+          <Typography type={TypographyType.H5} color={COLOR_DARK}>
+            Failure Depth
+          </Typography>
+        </Col>
+      </Row>
 
-      <SC.InputRow>
-        <SC.ButtonWrapper>
+      <Row>
+        <Col>
           <LongTouchButton
             title="-"
             onPressStart={() => setTestFailed(testFailed - 1)}
             onPressInterval={() => setTestFailed(testFailed - 5)}
           />
-        </SC.ButtonWrapper>
-        <TextComponent style={styles.depth}>{testFailed}m</TextComponent>
-        <SC.ButtonWrapper>
+        </Col>
+        <Col>
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {testFailed}m
+          </Typography>
+        </Col>
+        <Col>
           <LongTouchButton
             title="+"
             onPressStart={() => setTestFailed(testFailed + 1)}
             onPressInterval={() => setTestFailed(testFailed + 5)}
           />
-        </SC.ButtonWrapper>
-      </SC.InputRow>
+        </Col>
+      </Row>
 
-      <SC.InputRow>
-        <TextComponent style={styles.label}>Mouthfill</TextComponent>
-      </SC.InputRow>
+      <Row>
+        <Col>
+          <Typography type={TypographyType.H5} color={COLOR_DARK}>
+            Mouthfill
+          </Typography>
+        </Col>
+      </Row>
 
-      <SC.InputRow>
-        <SC.ButtonWrapper>
+      <Row>
+        <Col>
           <LongTouchButton
             title="-"
             onPressStart={() => setPerformed(performed - 1)}
             onPressInterval={() => setPerformed(performed - 5)}
           />
-        </SC.ButtonWrapper>
-        <TextComponent style={styles.depth}>{performed}m</TextComponent>
-        <SC.ButtonWrapper>
+        </Col>
+        <Col>
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {performed}m
+          </Typography>
+        </Col>
+        <Col>
           <LongTouchButton
             title="+"
             onPressStart={() => setPerformed(performed + 1)}
             onPressInterval={() => setPerformed(performed + 5)}
           />
-        </SC.ButtonWrapper>
-      </SC.InputRow>
-    </SC.FormWrapper>
+        </Col>
+      </Row>
+    </Grid>
   );
 };
 
