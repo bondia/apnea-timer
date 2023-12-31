@@ -1,6 +1,7 @@
 import React, { FC, useEffect } from 'react';
 import { ScrollView } from 'react-native';
-import TextComponent from '../../../../components/TextComponent/TextComponent';
+import { FONT_COLOR_GREY } from '../../../../commonStyles';
+import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
 import setsByTableType from '../../helpers/sets/setsByTableType';
@@ -39,7 +40,9 @@ const StaticForm: FC = () => {
       <StaticMainForm editor={editor} />
 
       <SC.SetsListWrapper fullHeight={!showStartButton}>
-        <TextComponent style={SC.baseStyles.label}>{headline}</TextComponent>
+        <Typography type={TypographyType.H6} color={FONT_COLOR_GREY} centered>
+          {headline}
+        </Typography>
         <ScrollView key={tableType}>
           <StaticSetsList sets={setsList} />
         </ScrollView>
