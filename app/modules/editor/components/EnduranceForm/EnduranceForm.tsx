@@ -1,11 +1,11 @@
 import React, { FC, useEffect } from 'react';
-import CronoStartButton from '../CronoStartButton/CronoStartButton';
-import { Wrapper } from './EnduranceForm.styled';
-import EnduranceMainForm from './EnduranceMainForm';
+import { Stack } from '../../../../components/Layout';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import { editorSelector } from '../../redux/editorSelectors';
-import { createEnduranceTable } from '../../redux/actions/composed/createEnduranceTable';
 import { EditorStateType } from '../../editorTypes';
+import { createEnduranceTable } from '../../redux/actions/composed/createEnduranceTable';
+import { editorSelector } from '../../redux/editorSelectors';
+import CronoStartButton from '../CronoStartButton/CronoStartButton';
+import EnduranceMainForm from './EnduranceMainForm';
 
 const EditorEndurancePane: FC = () => {
   const dispatch = useAppDispatch();
@@ -26,10 +26,10 @@ const EditorEndurancePane: FC = () => {
   };
 
   return (
-    <Wrapper>
+    <Stack>
       <EnduranceMainForm editor={editor} />
       <CronoStartButton data={crono} />
-    </Wrapper>
+    </Stack>
   );
 };
 

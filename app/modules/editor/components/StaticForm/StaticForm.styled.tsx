@@ -11,12 +11,6 @@ export const StaticMainFormWrapper = styled.View<StaticMainFormWrapperProps>`
   max-height: ${(props: StaticMainFormWrapperProps) => (props.small ? '150px' : '225px')};
 `;
 
-export const MainInfoBlock = styled.View`
-  flex: 1;
-  flex-direction: row;
-  justify-content: space-around;
-`;
-
 // LIST
 
 type SetsListWrapperProps = {

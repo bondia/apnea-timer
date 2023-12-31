@@ -1,12 +1,13 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../../commonStyles';
 import InfoBlock from '../../../../components/InfoBlock';
+import { TableTypeEnum } from '../../enums';
 import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
-import { TableTypeEnum } from '../../enums';
 
-import * as SC from './StaticForm.styled';
+import { Stack } from '../../../../components/Layout';
 import { EditorStateType } from '../../editorTypes';
+import * as SC from './StaticForm.styled';
 
 const titleByType = {
   [TableTypeEnum.TABLE_TYPE_CO2]: 'Breath Hold',
@@ -33,10 +34,10 @@ const StaticMainForm: FC<Props> = ({
     <SC.StaticMainFormWrapper small={compact}>
       <TableTypeInput />
 
-      <SC.MainInfoBlock>
+      <Stack horizontal spaceAround>
         {!compact && <InfoBlock title={titleByType[type]} textColor={colorByType[type]} timeContent={base} />}
         <InfoBlock title="Total Time" timeContent={totalTime} />
-      </SC.MainInfoBlock>
+      </Stack>
 
       {!compact && <TableBaseInput />}
     </SC.StaticMainFormWrapper>
