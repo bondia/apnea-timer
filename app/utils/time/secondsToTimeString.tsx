@@ -1,3 +1,4 @@
+import { round } from 'lodash';
 import secondsToFullMinutes from './secondsToFullMinutes';
 import secondsToFullMinutesString from './secondsToFullMinutesString';
 
@@ -6,7 +7,7 @@ const secondsToMinutesRest = (seconds: number): number => {
 };
 
 const secondsToMinutesRestString = (seconds: number): string => {
-  const rest = secondsToMinutesRest(seconds);
+  const rest = round(secondsToMinutesRest(seconds), 0);
   return rest < 10 ? `0${rest}` : rest.toString();
 };
 

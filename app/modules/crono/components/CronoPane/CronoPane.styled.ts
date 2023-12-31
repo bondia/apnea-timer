@@ -1,20 +1,13 @@
 import styled from 'styled-components/native';
+import { SURFACE_COLORS } from '../../../../darkTheme';
 
 export const PaneWrapper = styled.View`
   flex: 1;
-  padding: 10px 5px;
-`;
-
-export const CountersWrapper = styled.View`
-  flex: 1;
-  flex-direction: row;
-  margin-bottom: 10px;
+  padding: 10px 0 10px;
+  background-color: ${SURFACE_COLORS.ELEVATION_00};
 `;
 
 export const ContentWrapper = styled.View`
   flex: 1;
-`;
-
-export const SetsWrapper = styled.View`
-  flex: 1 0 0;
+  margin-bottom: 10px;
 `;

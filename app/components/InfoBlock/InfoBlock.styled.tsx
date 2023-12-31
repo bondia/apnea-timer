@@ -2,8 +2,16 @@ import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../commonStyles';
 
-export const BlockWrapper = styled.View`
-  width: 50%;
+type BlockWrapperProps = {
+  width?: string;
+};
+
+/**
+ * TODO: Refactor to use only styled components
+ * @deprecated
+ */
+export const BlockWrapper = styled.View<BlockWrapperProps>`
+  width: ${(props: BlockWrapperProps) => props.width || '50%'};
   margin: 10px 0;
 `;
 

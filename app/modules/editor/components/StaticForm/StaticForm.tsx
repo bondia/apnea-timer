@@ -2,7 +2,7 @@ import React, { FC, useEffect } from 'react';
 
 import TextComponent from '../../../../components/TextComponent/TextComponent';
 import headlineByTableType from './headlineByTableType';
-import CronoStartButton from '../../../../components/CronoStartButton/CronoStartButton';
+import CronoStartButton from '../CronoStartButton/CronoStartButton';
 import { TableTypeEnum } from '../../enums';
 import setsByTableType from '../../helpers/sets/setsByTableType';
 import StaticSetsList from '../StaticSetsList/StaticSetsList';

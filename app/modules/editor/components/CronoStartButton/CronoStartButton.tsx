@@ -1,10 +1,10 @@
 import React, { FC, useCallback } from 'react';
 import styled from 'styled-components/native';
 
-import { EditorStateType } from '../../modules/editor/editorTypes';
-import { RoutesEnum } from '../../Routes';
-import LongTouchButton from '../LongTouchButton';
-import useAppNavitation from '../../useAppNavigation';
+import { EditorStateType } from '../../editorTypes';
+import { RoutesEnum } from '../../../../Routes';
+import LongTouchButton from '../../../../components/LongTouchButton';
+import useAppNavitation from '../../../../useAppNavigation';
 
 const ButtonContainer = styled.View`
   flex-direction: row;

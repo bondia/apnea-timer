@@ -3,6 +3,8 @@ export const FONT_FAMILY = 'Futura';
 export const FONT_COLOR_LIGHT = 'azure';
 
 export enum FONT_SIZE {
+  FONT_SIZE_XS = 12,
+  FONT_SIZE_S = 14,
   FONT_SIZE_M = 20,
   FONT_SIZE_L = 30,
   FONT_SIZE_XL = 40,
@@ -16,6 +18,8 @@ export const FONT_CLOLR_GREY_LIGHT = '#e6e6e6';
 export const COLOR_LIGHT = '#008EE6';
 export const COLOR_NORMAL = '#0084D6';
 export const COLOR_DARK = '#0070B5';
+export const COLOR_DARKER = '#00619E';
+export const COLOR_DARKEST = '#004F80';
 
 // RED
 export const COLOR_RED_NORMAL = '#FF635A';

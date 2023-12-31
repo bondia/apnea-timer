@@ -1,23 +1,24 @@
+import { TableSetListType } from '../../editorTypes';
 import { SetTypeEnum } from '../../enums';
-import { TableSetType } from '../../editorTypes';
 
-const createEnduranceSets = (base = 5, baseBreaks = 5, laps = 16): TableSetType[] => {
-  const sets = [];
+const createEnduranceSets = (base = 5, baseBreaks = 5, laps = 16): TableSetListType => {
+  const sets: TableSetListType = [];
 
   for (let i = 0; i < laps * 2; i += 2) {
     sets.push({
       duration: base,
       type: SetTypeEnum.SET_TYPE_HOLD,
       pos: i,
+      zombie: false,
     });
 
     if (i < laps * 2 - 2) {
-      const prepSet = {
+      sets.push({
         duration: baseBreaks,
         type: SetTypeEnum.SET_TYPE_PREPARE,
         pos: i + 1,
-      };
-      sets.push(prepSet);
+        zombie: false,
+      });
     }
   }
 

@@ -5,9 +5,11 @@ import setTableDurationAction from '../setTableDurationAction';
 export type UpdateTableDurationBySetsAction = () => StoreThunkAction;
 
 const updateTableDurationBySetsAction: UpdateTableDurationBySetsAction = () => (dispatch, getState) => {
-  const {
-    crono: { sets },
-  } = getState();
+  const { crono } = getState();
+  if (!crono) {
+    return;
+  }
+  const { sets } = crono;
   const duration = calculateSetsDuration(sets);
   dispatch(setTableDurationAction(duration));
 };

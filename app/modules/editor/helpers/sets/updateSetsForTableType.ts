@@ -3,10 +3,10 @@ import { SetTypeEnum, TableTypeEnum } from '../../enums';
 import createInitialSets from './createInitialSets';
 
 const updateSetsForTableType = (
-  sets: TableSetListType = null,
-  base = 5,
-  baseBreaks = null,
-  tableType = TableTypeEnum.TABLE_TYPE_CO2,
+  sets: TableSetListType,
+  base: number = 5,
+  baseBreaks: number = 5,
+  tableType: TableTypeEnum = TableTypeEnum.TABLE_TYPE_CO2,
 ): TableSetListType => {
   // no initial sets
   if (sets === null) {

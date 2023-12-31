@@ -1,16 +1,26 @@
 import { StoreThunkAction } from '../../../../../redux/types';
 import generateTimestamp from '../../../../../utils/time/generateTimestamp';
+import { CronoModeEnum } from '../../../../editor/enums';
 import { CronoStateType } from '../../../cronoTypes';
+import { stopTimer } from '../../../helpers/cronoTimer';
 import decideCurrentSet from '../../../helpers/decideCurrentSet';
 import setInitialStateAction from '../setInitialStateAction';
+import handleFinishTableAction from './handleFinishTableAction';
 import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
-import { stopTimer } from '../../../helpers/cronoTimer';
 
 export type HandleTickAction = () => StoreThunkAction;
 
 const handleTick: HandleTickAction = () => {
   return (dispatch, getState): void => {
     const { crono } = getState();
+    if (!crono) {
+      return;
+    }
+
+    if (crono.running.mode === CronoModeEnum.CRONO_MODE_FINISHED) {
+      stopTimer();
+      return;
+    }
 
     const currentTimestamp = generateTimestamp();
 
@@ -20,13 +30,16 @@ const handleTick: HandleTickAction = () => {
     } = crono;
 
     const newSets = sets.map(set => {
-      const { pos, running, duration } = set;
-      if (pos !== step) {
+      const {
+        pos,
+        running: { startTimestamp },
+        duration,
+      } = set;
+      if (pos !== step || !cronoStartTimestamp) {
         return set;
       }
 
-      const { startTimestamp } = running;
-      const setStartTimestamp = startTimestamp === null ? cronoStartTimestamp : startTimestamp;
+      const setStartTimestamp = startTimestamp === undefined ? cronoStartTimestamp : startTimestamp;
 
       // current timestamp
       const setTimeSpent = Math.round((currentTimestamp - setStartTimestamp) / 1000);
@@ -50,18 +63,14 @@ const handleTick: HandleTickAction = () => {
       running: {
         ...crono.running,
         // add clock tick
-        clock: Math.round((currentTimestamp - cronoStartTimestamp) / 1000),
+        clock: !cronoStartTimestamp ? -1 : (currentTimestamp - cronoStartTimestamp) / 1000,
       },
     };
 
-    // decide current set
     const newCrono = decideCurrentSet(cronoState, currentTimestamp);
-    if (newCrono.running.step < 0) {
-      stopTimer();
-    }
-
     dispatch(setInitialStateAction(newCrono));
     dispatch(updateTableDurationBySetsAction());
+    dispatch(handleFinishTableAction());
   };
 };
 

@@ -8,6 +8,7 @@ import SelectorScene from './modules/selector/SelectorScene';
 import MouthfillScene from './modules/mouthfill/MouthfillScene';
 import { RoutesEnum } from './Routes';
 import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
+import StoreisScene from './modules/stories/StoriesScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -32,6 +33,7 @@ const AppRouter: FC = () => {
 
         {/* Utils */}
         <Screen name={RoutesEnum.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
+        <Screen name={RoutesEnum.STORIES} component={StoreisScene} options={{ title: 'MF DEPTH' }} />
       </Navigator>
     </NavigationContainer>
   );

@@ -6,23 +6,39 @@ import TextComponent from '../TextComponent/TextComponent';
 import * as SC from './InfoBlock.styled';
 
 type InfoBlockProps = {
-  title: string;
+  title?: string;
   timeContent?: number;
   rawContent?: number | string;
   textColor?: string;
+  width?: string;
+  labelTextSize?: FONT_SIZE;
   textSize?: FONT_SIZE;
 };
 
+/**
+ * TODO: Refactor to use only styled components
+ * @deprecated
+ */
 const InfoBlock: FC<InfoBlockProps> = props => {
-  const { title, timeContent, rawContent, textColor = COLOR_LIGHT, textSize = FONT_SIZE.FONT_SIZE_L } = props;
+  const {
+    title,
+    timeContent,
+    rawContent,
+    width,
+    textColor = COLOR_LIGHT,
+    labelTextSize = FONT_SIZE.FONT_SIZE_M,
+    textSize = FONT_SIZE.FONT_SIZE_L,
+  } = props;
+
+  const hederStyles: TextStyle = { ...SC.baseStyles.headerLabel, ...{ color: textColor, fontSize: labelTextSize } };
 
   const styles: TextStyle = textColor
     ? { ...SC.baseStyles.headerText, ...{ color: textColor, fontSize: textSize } }
     : SC.baseStyles.headerText;
 
   return (
-    <SC.BlockWrapper>
-      <TextComponent style={SC.baseStyles.headerLabel}>{title}</TextComponent>
+    <SC.BlockWrapper width={width}>
+      {title && <TextComponent style={hederStyles}>{title}</TextComponent>}
       <TextComponent style={styles}>
         {timeContent !== undefined ? secondsToTimeString(timeContent) : rawContent}
       </TextComponent>
