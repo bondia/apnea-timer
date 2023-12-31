@@ -5,10 +5,11 @@ import { Stack } from '../Layout';
 
 type Props = {
   children?: React.ReactNode;
+  backgroundColor?: string;
 };
 
-const SceneWrapper: FC<Props> = ({ children }) => (
-  <SafeAreaView style={{ flex: 1 }}>
+const SceneWrapper: FC<Props> = ({ children, backgroundColor }) => (
+  <SafeAreaView style={{ flex: 1, backgroundColor }}>
     <Stack fullWidth>{children}</Stack>
     <StatusBar />
   </SafeAreaView>

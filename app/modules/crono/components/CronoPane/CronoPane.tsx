@@ -1,5 +1,6 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC, useCallback, useEffect } from 'react';
+import { Stack } from '../../../../components/Layout';
 import { useAppDispatch } from '../../../../redux/hooks';
 import useAppNavitation from '../../../../useAppNavigation';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
@@ -16,7 +17,6 @@ import { useCronoSelector } from '../../redux/cronoSelectors';
 import CronoButtonsSet from '../ActionButtonsSet';
 import LiveCounter from '../LiveCounter/LiveCounter';
 import Sets from '../Sets/Sets';
-import * as SC from './CronoPane.styled';
 
 type CoronoPaneProps = {
   initialData: EditorStateType;
@@ -64,13 +64,13 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   const current = findRunningSet(sets);
 
   return (
-    <SC.PaneWrapper>
-      <SC.ContentWrapper>
+    <Stack>
+      <Stack>
         <LiveCounter crono={crono} set={current || undefined} />
         <Sets sets={sets} active={current || undefined} />
-      </SC.ContentWrapper>
+      </Stack>
       <CronoButtonsSet crono={crono} start={onClickStart} end={endClickCrono} />
-    </SC.PaneWrapper>
+    </Stack>
   );
 };
 

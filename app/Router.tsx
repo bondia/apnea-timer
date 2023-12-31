@@ -2,12 +2,12 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC } from 'react';
+import { RoutesEnum } from './Routes';
 import CronoScene from './modules/crono/CronoScene';
 import EditorEnduranceScene from './modules/editor/scenes/EditorEnduranceScene';
-import SelectorScene from './modules/selector/SelectorScene';
-import MouthfillScene from './modules/mouthfill/MouthfillScene';
-import { RoutesEnum } from './Routes';
 import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
+import MouthfillScene from './modules/mouthfill/MouthfillScene';
+import SelectorScene from './modules/selector/SelectorScene';
 import StoreisScene from './modules/stories/StoriesScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
