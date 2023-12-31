@@ -1,21 +1,24 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
+import { Grid } from '../../../../components/Grid';
 import { TableSetListType } from '../../editorTypes';
-import EditorSet from './StaticSet';
+import EditorTimerInput from '../StaticFormInputs/EditorTimerInput';
 
 type Props = {
   sets: TableSetListType;
 };
 
-const EditorSetsList: FC<Props> = props => {
+const StaticSetsList: FC<Props> = props => {
   const { sets } = props;
   return (
-    <ScrollView style={{ marginTop: 10, marginBottom: 0 }}>
-      {sets.map(set => (
-        <EditorSet key={set.pos} set={set} />
-      ))}
+    <ScrollView>
+      <Grid>
+        {sets.map(({ pos, type, duration, zombie }) => (
+          <EditorTimerInput key={pos} index={pos} type={type} duration={duration} zombie={zombie} setNumber={pos} />
+        ))}
+      </Grid>
     </ScrollView>
   );
 };
 
-export default EditorSetsList;
+export default StaticSetsList;

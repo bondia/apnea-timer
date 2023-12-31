@@ -8,6 +8,10 @@ export const Row = styled.View`
   flex-direction: row;
 `;
 
-export const Col = styled.View`
-  flex: 1;
+type ColProps = {
+  flex?: number;
+};
+
+export const Col = styled.View<ColProps>`
+  flex: ${({ flex = 1 }) => flex};
 `;

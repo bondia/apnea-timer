@@ -1,17 +1,16 @@
 import React, { FC, useEffect } from 'react';
-
+import { ScrollView } from 'react-native';
 import TextComponent from '../../../../components/TextComponent/TextComponent';
-import headlineByTableType from './headlineByTableType';
-import CronoStartButton from '../CronoStartButton/CronoStartButton';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
 import setsByTableType from '../../helpers/sets/setsByTableType';
-import StaticSetsList from '../StaticSetsList/StaticSetsList';
-import StaticMainForm from './StaticMainForm';
-import { editorSelector } from '../../redux/editorSelectors';
-import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { changeTableType } from '../../redux/actions/composed/changeTableType';
-
+import { editorSelector } from '../../redux/editorSelectors';
+import CronoStartButton from '../CronoStartButton/CronoStartButton';
+import StaticSetsList from '../StaticSetsList/StaticSetsList';
 import * as SC from './StaticForm.styled';
+import StaticMainForm from './StaticMainForm';
+import headlineByTableType from './headlineByTableType';
 
 const StaticForm: FC = () => {
   const dispatch = useAppDispatch();
@@ -41,7 +40,9 @@ const StaticForm: FC = () => {
 
       <SC.SetsListWrapper fullHeight={!showStartButton}>
         <TextComponent style={SC.baseStyles.label}>{headline}</TextComponent>
-        <StaticSetsList sets={setsList} />
+        <ScrollView key={tableType}>
+          <StaticSetsList sets={setsList} />
+        </ScrollView>
       </SC.SetsListWrapper>
 
       {showStartButton && <CronoStartButton data={crono} />}
