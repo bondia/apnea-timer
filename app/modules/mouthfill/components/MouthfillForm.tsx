@@ -34,7 +34,7 @@ const MouthfillForm: FC = () => {
             onPressInterval={() => setTestPerformed(testPerformed - 5)}
           />
         </Col>
-        <Col>
+        <Col flex={1.5}>
           <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
             {testPerformed}m
           </Typography>
@@ -64,7 +64,7 @@ const MouthfillForm: FC = () => {
             onPressInterval={() => setTestFailed(testFailed - 5)}
           />
         </Col>
-        <Col>
+        <Col flex={1.5}>
           <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
             {testFailed}m
           </Typography>
@@ -94,7 +94,7 @@ const MouthfillForm: FC = () => {
             onPressInterval={() => setPerformed(performed - 5)}
           />
         </Col>
-        <Col>
+        <Col flex={1.5}>
           <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
             {performed}m
           </Typography>
