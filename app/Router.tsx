@@ -33,7 +33,7 @@ const AppRouter: FC = () => {
 
         {/* Utils */}
         <Screen name={RoutesEnum.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
-        <Screen name={RoutesEnum.STORIES} component={StoreisScene} options={{ title: 'MF DEPTH' }} />
+        <Screen name={RoutesEnum.STORIES} component={StoreisScene} options={{ title: 'Playground' }} />
       </Navigator>
     </NavigationContainer>
   );

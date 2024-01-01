@@ -20,7 +20,7 @@ const SelectorScene: FC<AppScreenType<RoutesEnum.MENU>> = () => {
         <MenuItem title="CO2/O2" color={COLOR_LIGHT} onPress={createRoute} />
         <MenuItem title="Endurance" color={COLOR_NORMAL} onPress={endurance} />
         <MenuItem title="MF" color={COLOR_DARK} onPress={mouthfillRoute} />
-        <MenuItem title="Stories" color={COLOR_DARKER} onPress={stories} />
+        <MenuItem title="Playground" color={COLOR_DARKER} onPress={stories} />
       </ScrollableStack>
     </SceneWrapper>
   );

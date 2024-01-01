@@ -27,7 +27,7 @@ const NumericInput: FC<NumericInputProps> = ({
           <Typography type={TypographyType.H5} color={COLOR_DARK} centered>
             {headline}
           </Typography>
-          <Spacer yAxis={2} />
+          <Spacer spacing={4} />
         </>
       ) : null}
 

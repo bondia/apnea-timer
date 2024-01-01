@@ -70,7 +70,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
           </Typography>
         </NumericInput>
 
-        <Spacer top={6} />
+        <Spacer spacing={6} />
 
         <NumericInput
           headline="Dive Time"
@@ -108,7 +108,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
           </Typography>
         </NumericInput>
 
-        <Spacer top={6} />
+        <Spacer spacing={6} />
 
         <NumericInput
           headline="Breaks"

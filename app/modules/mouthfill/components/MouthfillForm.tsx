@@ -27,7 +27,7 @@ const MouthfillForm: FC = () => {
           </Typography>
         </NumericInput>
 
-        <Spacer top={6} />
+        <Spacer spacing={6} />
 
         <NumericInput
           headline="Failure Depth"
@@ -41,7 +41,7 @@ const MouthfillForm: FC = () => {
           </Typography>
         </NumericInput>
 
-        <Spacer top={6} />
+        <Spacer spacing={6} />
 
         <NumericInput
           headline="Mouthfill"
