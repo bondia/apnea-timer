@@ -15,7 +15,7 @@ type InfoTimeBlockProps = {
 const InfoTimeBlock: FC<InfoTimeBlockProps> = ({
   label,
   labelType = TypographyType.BODY_1,
-  labelColor,
+  labelColor = COLOR_LIGHT,
   timestamp,
   contentType = TypographyType.H4,
   contentColor = COLOR_LIGHT,

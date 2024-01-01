@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../../commonStyles';
-import InfoBlock from '../../../../components/InfoBlock';
 import { TableTypeEnum } from '../../enums';
 import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 
+import InfoTimeBlock from '../../../../components/InfoTimeBlock/InfoTimeBlock';
 import { Spacer, Stack } from '../../../../components/Layout';
 import { EditorStateType } from '../../editorTypes';
 
@@ -37,8 +37,20 @@ const StaticMainForm: FC<Props> = ({
 
       <Spacer yAxis={1} xAxis={2}>
         <Stack horizontal spaceAround>
-          {!isFreeTable && <InfoBlock title={titleByType[type]} textColor={colorByType[type]} timeContent={base} />}
-          <InfoBlock title="Total Time" timeContent={totalTime} />
+          {!isFreeTable && (
+            <Stack>
+              <InfoTimeBlock
+                label={titleByType[type]}
+                labelColor={colorByType[type]}
+                timestamp={base}
+                contentColor={colorByType[type]}
+              />
+            </Stack>
+          )}
+
+          <Stack>
+            <InfoTimeBlock label="Total Time" timestamp={totalTime} />
+          </Stack>
         </Stack>
       </Spacer>
 
