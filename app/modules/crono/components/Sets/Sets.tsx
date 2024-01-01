@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { FONT_COLOR_LIGHT } from '../../../../commonStyles';
 import { Col, Grid, Row } from '../../../../components/Grid';
+import { Stack } from '../../../../components/Layout';
 import List, { Item } from '../../../../components/List';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { CronoSetListType, CronoSetType } from '../../cronoTypes';
 import Set from './Set';
-import * as SC from './Sets.styled';
 
 type SetsProps = {
   sets: CronoSetListType;
@@ -30,7 +30,7 @@ const Sets: FC<SetsProps> = ({ sets, active }) => {
         </Col>
       </Row>
       <Row>
-        <SC.Sets>
+        <Stack>
           <List>
             {sets.map((set: CronoSetType) => (
               <Item key={set.pos} active={set.pos === pos}>
@@ -38,7 +38,7 @@ const Sets: FC<SetsProps> = ({ sets, active }) => {
               </Item>
             ))}
           </List>
-        </SC.Sets>
+        </Stack>
       </Row>
     </Grid>
   );
