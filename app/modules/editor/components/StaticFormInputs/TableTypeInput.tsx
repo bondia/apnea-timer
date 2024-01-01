@@ -18,7 +18,7 @@ const TableTypeInput: FC = () => {
   };
 
   return (
-    <Stack grow="0" basis="auto" horizontal columnGap={2}>
+    <Stack grow={0} basis="auto" horizontal columnGap={2}>
       <LongTouchButton
         title="CO2"
         onPressStart={() => changeType(TableTypeEnum.TABLE_TYPE_CO2)}

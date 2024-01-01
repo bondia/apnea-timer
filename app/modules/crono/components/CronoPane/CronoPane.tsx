@@ -64,8 +64,8 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   const current = findRunningSet(sets);
 
   return (
-    <Stack grow="1">
-      <Stack grow="1">
+    <Stack grow={1}>
+      <Stack grow={1}>
         <LiveCounter crono={crono} set={current || undefined} />
         <Sets sets={sets} active={current || undefined} />
       </Stack>

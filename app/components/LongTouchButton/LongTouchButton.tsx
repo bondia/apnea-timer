@@ -42,7 +42,7 @@ const LongTouchButton: FC<LongTouchButtonProps> = props => {
   });
 
   return (
-    <Stack grow="0" shrink="1" centered style={{ width: '100%', height: 45 }}>
+    <Stack grow={0} shrink={1} centered style={{ width: '100%', height: 45 }}>
       <SC.ButtonWrapper
         onPressIn={onPressIn}
         onLongPress={onLongPress}
@@ -50,7 +50,7 @@ const LongTouchButton: FC<LongTouchButtonProps> = props => {
         underlayColor="transparent"
         active={active}
       >
-        <Stack grow="1" centered>
+        <Stack grow={1} centered>
           <Typography type={TypographyType.BUTTON} centered>
             {title}
           </Typography>

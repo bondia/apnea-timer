@@ -21,7 +21,7 @@ type MenuItemProps = {
 
 const MenuItem: FC<MenuItemProps> = ({ title, onPress, color }) => (
   <ActionArea onPress={onPress} color={color}>
-    <Stack grow="1" centered>
+    <Stack grow={1} centered>
       <Typography type={TypographyType.H3} color={FONT_COLOR_LIGHT} centered>
         {title}
       </Typography>

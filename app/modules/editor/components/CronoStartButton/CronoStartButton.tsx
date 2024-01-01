@@ -20,7 +20,7 @@ const CronoStartButton: FC<CronoStartButtonProps> = props => {
 
   return (
     <Spacer top={2} xAxis={2}>
-      <Stack grow="0" shrink="0" basis="auto" horizontal>
+      <Stack grow={0} shrink={0} basis="auto" horizontal>
         <LongTouchButton title="Start" onPressStart={onPressStart} />
       </Stack>
     </Spacer>

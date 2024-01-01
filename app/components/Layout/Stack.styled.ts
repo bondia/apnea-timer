@@ -8,8 +8,8 @@ export type StackProps = {
   // width
   fullWidth?: boolean;
   // flex
-  grow?: string;
-  shrink?: string;
+  grow?: number;
+  shrink?: number;
   basis?: string;
   // flex directions
   horizontal?: boolean;
@@ -24,7 +24,7 @@ export type StackProps = {
 };
 
 export const widthRule = ({ fullWidth = false }: StackProps) => (fullWidth ? '100%' : 'auto');
-export const flexRule = ({ grow = '0', shrink = '1', basis = 'auto' }: StackProps) => `${grow} ${shrink} ${basis}`;
+export const flexRule = ({ grow = 0, shrink = 1, basis = 'auto' }: StackProps) => `${grow} ${shrink} ${basis}`;
 export const flexWrapRule = ({ wrap = false }: StackProps) => (wrap ? 'wrap' : 'nowrap');
 
 const Stack = styled.View<StackProps>`

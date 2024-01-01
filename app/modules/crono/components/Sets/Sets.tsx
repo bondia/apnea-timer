@@ -16,7 +16,7 @@ const Sets: FC<SetsProps> = ({ sets, active }) => {
   const siblingPos = pos % 2 === 0 ? pos + 1 : pos - 1;
   return (
     <>
-      <Stack grow="0" basis="auto" spaceAround horizontal>
+      <Stack grow={0} basis="auto" spaceAround horizontal>
         <Typography type={TypographyType.SUBTITLE_2} color={FONT_COLOR_LIGHT} centered>
           Breath up
         </Typography>

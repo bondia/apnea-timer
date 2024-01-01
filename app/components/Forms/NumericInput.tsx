@@ -29,15 +29,15 @@ const NumericInput: FC<NumericInputProps> = ({
       ) : null}
 
       <Stack horizontal>
-        <Stack grow="1" shrink="0" basis="0">
+        <Stack grow={1} shrink={0} basis="0">
           <LongTouchButton title="-" onPressStart={decrease} onPressInterval={decreaseInterval} />
         </Stack>
 
-        <Stack grow="2.5" shrink="0" basis="0">
+        <Stack grow={2.5} shrink={0} basis="0">
           {children}
         </Stack>
 
-        <Stack grow="1" shrink="0" basis="0">
+        <Stack grow={1} shrink={0} basis="0">
           <LongTouchButton title="+" onPressStart={increase} onPressInterval={increaseInterval} />
         </Stack>
       </Stack>

@@ -52,7 +52,7 @@ const CronoButtonSet: FC<CronoButtonSetProps> = props => {
 
   return (
     <Spacer spacing={2}>
-      <Stack grow="1" columnGap={2} horizontal>
+      <Stack grow={1} columnGap={2} horizontal>
         {clock < 0 && !isEndurance && <LongTouchButton title="Auto" onPressStart={startAuto} />}
         {clock < 0 && <LongTouchButton title="Coach" onPressStart={startCoach} />}
         {current && clock >= 0 && !isFinished && <SkipButton set={current} />}
