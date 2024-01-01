@@ -19,7 +19,9 @@ type Props = {
 
 const SceneWrapper: FC<Props> = ({ children, backgroundColor }) => (
   <SafeAreaView backgroundColor={backgroundColor}>
-    <Stack fullWidth>{children}</Stack>
+    <Stack grow="1" fullWidth>
+      {children}
+    </Stack>
     <StatusBar />
   </SafeAreaView>
 );
