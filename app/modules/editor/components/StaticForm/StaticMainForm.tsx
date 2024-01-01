@@ -7,7 +7,6 @@ import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 
 import { Stack } from '../../../../components/Layout';
 import { EditorStateType } from '../../editorTypes';
-import * as SC from './StaticForm.styled';
 
 const titleByType = {
   [TableTypeEnum.TABLE_TYPE_CO2]: 'Breath Hold',
@@ -28,19 +27,19 @@ const StaticMainForm: FC<Props> = ({
     trainingTable: { base, type, duration: totalTime },
   },
 }) => {
-  const compact = TableTypeEnum.TABLE_TYPE_FREE === type;
+  const isFreeTable = TableTypeEnum.TABLE_TYPE_FREE === type;
 
   return (
-    <SC.StaticMainFormWrapper small={compact}>
+    <Stack>
       <TableTypeInput />
 
       <Stack horizontal spaceAround>
-        {!compact && <InfoBlock title={titleByType[type]} textColor={colorByType[type]} timeContent={base} />}
+        {!isFreeTable && <InfoBlock title={titleByType[type]} textColor={colorByType[type]} timeContent={base} />}
         <InfoBlock title="Total Time" timeContent={totalTime} />
       </Stack>
 
-      {!compact && <TableBaseInput />}
-    </SC.StaticMainFormWrapper>
+      {!isFreeTable && <TableBaseInput />}
+    </Stack>
   );
 };
 

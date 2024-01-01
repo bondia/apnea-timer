@@ -9,7 +9,7 @@ const TableBaseInput: FC = () => {
   const dispatch = useAppDispatch();
   const base = useEditorBaseSelector();
   return (
-    <Stack horizontal>
+    <Stack horizontal columnGap={2}>
       <LongTouchButton
         title="-"
         onPressStart={() => dispatch(changeTableBase(base - 5))}

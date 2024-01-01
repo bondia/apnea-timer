@@ -6,9 +6,8 @@ type ButtonWrapperProps = {
 };
 
 // eslint-disable-next-line import/prefer-default-export
-export const ButtonWrapper = styled.View<ButtonWrapperProps>`
-  padding: 20px;
+export const ButtonWrapper = styled.TouchableHighlight<ButtonWrapperProps>`
   background-color: ${props => (props.active ? COLOR_LIGHT : FONT_CLOLR_GREY_LIGHT)};
   border-radius: 3px;
-  margin: 0 5px;
+  height: 100%;
 `;

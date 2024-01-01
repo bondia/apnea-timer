@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { TouchableHighlight } from 'react-native';
 import { Stack } from '../Layout';
 import Typography, { TypographyType } from '../Typography/Typography';
 import * as SC from './LongTouchButton.styled';
@@ -43,19 +42,20 @@ const LongTouchButton: FC<LongTouchButtonProps> = props => {
   });
 
   return (
-    <Stack>
-      <TouchableHighlight
+    <Stack grow="0" shrink="1" centered style={{ width: '100%', height: 45 }}>
+      <SC.ButtonWrapper
         onPressIn={onPressIn}
         onLongPress={onLongPress}
         onPressOut={onPressOut}
         underlayColor="transparent"
+        active={active}
       >
-        <SC.ButtonWrapper active={active}>
+        <Stack grow="1" centered>
           <Typography type={TypographyType.BUTTON} centered>
             {title}
           </Typography>
-        </SC.ButtonWrapper>
-      </TouchableHighlight>
+        </Stack>
+      </SC.ButtonWrapper>
     </Stack>
   );
 };

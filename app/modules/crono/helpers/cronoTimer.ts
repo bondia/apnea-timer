@@ -1,4 +1,4 @@
-let timer: number | null = null;
+let timer: NodeJS.Timeout | null = null;
 
 const TIMER_REFRESH = 100;
 

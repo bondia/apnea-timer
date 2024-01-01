@@ -111,7 +111,7 @@ export default function useLongTouchHandling(input: UseLongTouchHandlingInput): 
 
   // use effect that will trigger the refresh intervals
   useEffect(() => {
-    let id;
+    let id: NodeJS.Timeout;
     if (isLongPressed && enabled) {
       // call long press start callback
       onLongPressStart();

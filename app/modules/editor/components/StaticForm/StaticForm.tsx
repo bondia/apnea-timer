@@ -10,7 +10,6 @@ import changeTableType from '../../redux/actions/composed/changeTableType';
 import { editorSelector } from '../../redux/editorSelectors';
 import CronoStartButton from '../CronoStartButton/CronoStartButton';
 import StaticSetsList from '../StaticSetsList/StaticSetsList';
-import * as SC from './StaticForm.styled';
 import StaticMainForm from './StaticMainForm';
 import headlineByTableType from './headlineByTableType';
 
@@ -50,9 +49,9 @@ const StaticForm: FC = () => {
       </Stack>
 
       {showStartButton && (
-        <SC.ButtonContainer>
+        <Stack grow="0" basis="auto" horizontal>
           <CronoStartButton data={crono} />
-        </SC.ButtonContainer>
+        </Stack>
       )}
     </Stack>
   );

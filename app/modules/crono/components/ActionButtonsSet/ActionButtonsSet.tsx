@@ -51,7 +51,7 @@ const CronoButtonSet: FC<CronoButtonSetProps> = props => {
   const trackContraction = () => dispatch(trackContractionAction());
 
   return (
-    <Stack grow="0" basis="auto" horizontal>
+    <Stack horizontal>
       {clock < 0 && !isEndurance && <LongTouchButton title="Auto" onPressStart={startAuto} />}
       {clock < 0 && <LongTouchButton title="Coach" onPressStart={startCoach} />}
       {current && clock >= 0 && !isFinished && <SkipButton set={current} />}
