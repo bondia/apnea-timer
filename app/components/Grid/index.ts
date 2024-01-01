@@ -1,3 +1,4 @@
-import { Col, Row } from './Grid.styled';
+import { Col } from './Grid.styled';
 
-export { Col, Row };
+// eslint-disable-next-line import/prefer-default-export
+export { Col };

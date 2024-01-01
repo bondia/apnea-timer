@@ -39,16 +39,14 @@ const LiveCounter: FC<LiveCounterProps> = ({
       {/* STATIC */}
       {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
         <SC.LiveCounterRow>
-          <Col>
-            <InfoTimeBlock
-              label="Table duration"
-              labelColor={FONT_COLOR_GREY}
-              labelType={TypographyType.SUBTITLE_2}
-              timestamp={totalTime}
-              contentColor={FONT_COLOR_LIGHT}
-              contentType={TypographyType.H5}
-            />
-          </Col>
+          <InfoTimeBlock
+            label="Table duration"
+            labelColor={FONT_COLOR_GREY}
+            labelType={TypographyType.SUBTITLE_2}
+            timestamp={totalTime}
+            contentColor={FONT_COLOR_LIGHT}
+            contentType={TypographyType.H5}
+          />
 
           <Col>
             {set ? (

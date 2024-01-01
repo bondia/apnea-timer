@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import { AppDispatch } from '../../../../../App';
-import { COLOR_DARK, COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
-import { Col, Row } from '../../../../components/Grid';
+import { COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
+import NumericInput from '../../../../components/Forms/NumericInput';
 import { Spacer } from '../../../../components/Layout';
-import LongTouchButton from '../../../../components/LongTouchButton';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
@@ -43,162 +42,104 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const { enduranceLaps, base, baseBreaks, duration: totalTime } = trainingTable as EnduranceTrainingTableType;
 
   return (
-    <Spacer spacing={1}>
-      <Row>
-        <Col>
-          <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
-            {secondsToTimeString(totalTime)}
-          </Typography>
-        </Col>
-      </Row>
+    <Spacer xAxis={2} top={3} bottom={2}>
+      <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
+        {secondsToTimeString(totalTime)}
+      </Typography>
 
-      <Row>
-        <Col>
-          <Typography type={TypographyType.H5} color={COLOR_DARK}>
-            Laps
-          </Typography>
-        </Col>
-      </Row>
+      <NumericInput
+        headline="Laps"
+        decrease={() =>
+          actionHandler({
+            original: enduranceLaps,
+            increase: -1,
+            action: changeEnduranceLaps,
+          })
+        }
+        increase={() =>
+          actionHandler({
+            original: enduranceLaps,
+            increase: 1,
+            action: changeEnduranceLaps,
+          })
+        }
+      >
+        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          {enduranceLaps}
+        </Typography>
+      </NumericInput>
 
-      <Row>
-        <Col>
-          <LongTouchButton
-            title="-"
-            onPressStart={() =>
-              actionHandler({
-                original: enduranceLaps,
-                increase: -1,
-                action: changeEnduranceLaps,
-              })
-            }
-          />
-        </Col>
-        <Col flex={1.5}>
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-            {enduranceLaps}
-          </Typography>
-        </Col>
-        <Col>
-          <LongTouchButton
-            title="+"
-            onPressStart={() =>
-              actionHandler({
-                original: enduranceLaps,
-                increase: 1,
-                action: changeEnduranceLaps,
-              })
-            }
-          />
-        </Col>
-      </Row>
+      <NumericInput
+        headline="Dive Time"
+        decrease={() =>
+          actionHandler({
+            original: base,
+            increase: -1,
+            action: changeTableBase,
+          })
+        }
+        decreaseInterval={() =>
+          actionHandler({
+            original: base,
+            increase: -5,
+            action: changeTableBase,
+          })
+        }
+        increase={() =>
+          actionHandler({
+            original: base,
+            increase: 1,
+            action: changeTableBase,
+          })
+        }
+        increaseInterval={() =>
+          actionHandler({
+            original: base,
+            increase: 5,
+            action: changeTableBase,
+          })
+        }
+      >
+        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          {secondsToTimeString(base)}
+        </Typography>
+      </NumericInput>
 
-      <Row>
-        <Col>
-          <Typography type={TypographyType.H5} color={COLOR_DARK}>
-            Dive Time
-          </Typography>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <LongTouchButton
-            title="-"
-            onPressStart={() =>
-              actionHandler({
-                original: base,
-                increase: -1,
-                action: changeTableBase,
-              })
-            }
-            onPressInterval={() =>
-              actionHandler({
-                original: base,
-                increase: -5,
-                action: changeTableBase,
-              })
-            }
-          />
-        </Col>
-        <Col flex={1.5}>
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-            {secondsToTimeString(base)}
-          </Typography>
-        </Col>
-        <Col>
-          <LongTouchButton
-            title="+"
-            onPressStart={() =>
-              actionHandler({
-                original: base,
-                increase: 1,
-                action: changeTableBase,
-              })
-            }
-            onPressInterval={() =>
-              actionHandler({
-                original: base,
-                increase: 5,
-                action: changeTableBase,
-              })
-            }
-          />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Typography type={TypographyType.H5} color={COLOR_DARK}>
-            Breaks
-          </Typography>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <LongTouchButton
-            title="-"
-            onPressStart={() =>
-              actionHandler({
-                original: baseBreaks,
-                increase: -1,
-                action: changeTableBaseBreaks,
-              })
-            }
-            onPressInterval={() =>
-              actionHandler({
-                original: baseBreaks,
-                increase: -5,
-                action: changeTableBaseBreaks,
-              })
-            }
-          />
-        </Col>
-        <Col flex={1.5}>
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-            {secondsToTimeString(baseBreaks)}
-          </Typography>
-        </Col>
-        <Col>
-          <LongTouchButton
-            title="+"
-            onPressStart={() =>
-              actionHandler({
-                original: baseBreaks,
-                increase: 1,
-                action: changeTableBaseBreaks,
-              })
-            }
-            onPressInterval={() =>
-              actionHandler({
-                original: baseBreaks,
-                increase: 5,
-                action: changeTableBaseBreaks,
-              })
-            }
-          />
-        </Col>
-      </Row>
+      <NumericInput
+        headline="Breaks"
+        decrease={() =>
+          actionHandler({
+            original: baseBreaks,
+            increase: -1,
+            action: changeTableBaseBreaks,
+          })
+        }
+        decreaseInterval={() =>
+          actionHandler({
+            original: baseBreaks,
+            increase: -5,
+            action: changeTableBaseBreaks,
+          })
+        }
+        increase={() =>
+          actionHandler({
+            original: baseBreaks,
+            increase: 1,
+            action: changeTableBaseBreaks,
+          })
+        }
+        increaseInterval={() =>
+          actionHandler({
+            original: baseBreaks,
+            increase: 5,
+            action: changeTableBaseBreaks,
+          })
+        }
+      >
+        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          {secondsToTimeString(baseBreaks)}
+        </Typography>
+      </NumericInput>
     </Spacer>
   );
 };

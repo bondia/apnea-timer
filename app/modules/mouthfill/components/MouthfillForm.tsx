@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import { COLOR_DARK, COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
-import { Col, Row } from '../../../components/Grid';
+import { COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
+import NumericInput from '../../../components/Forms/NumericInput';
 import { Spacer } from '../../../components/Layout';
-import LongTouchButton from '../../../components/LongTouchButton';
 import Typography, { TypographyType } from '../../../components/Typography/Typography';
 import useMouthfill from '../hooks/useMouthfill';
 
@@ -11,103 +10,45 @@ const MouthfillForm: FC = () => {
     useMouthfill();
   return (
     <Spacer spacing={1}>
-      <Row>
-        <Col>
-          <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
-            {maxDepth}m
-          </Typography>
-        </Col>
-      </Row>
+      <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
+        {maxDepth}m
+      </Typography>
 
-      <Row>
-        <Col>
-          <Typography type={TypographyType.H5} color={COLOR_DARK}>
-            Test Mouthfill
-          </Typography>
-        </Col>
-      </Row>
+      <NumericInput
+        headline="Test Mouthfill"
+        decrease={() => setTestPerformed(testPerformed - 1)}
+        decreaseInterval={() => setTestPerformed(testPerformed - 5)}
+        increase={() => setTestPerformed(testPerformed + 1)}
+        increaseInterval={() => setTestPerformed(testPerformed + 5)}
+      >
+        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          {testPerformed}m
+        </Typography>
+      </NumericInput>
 
-      <Row>
-        <Col>
-          <LongTouchButton
-            title="-"
-            onPressStart={() => setTestPerformed(testPerformed - 1)}
-            onPressInterval={() => setTestPerformed(testPerformed - 5)}
-          />
-        </Col>
-        <Col flex={1.5}>
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-            {testPerformed}m
-          </Typography>
-        </Col>
-        <Col>
-          <LongTouchButton
-            title="+"
-            onPressStart={() => setTestPerformed(testPerformed + 1)}
-            onPressInterval={() => setTestPerformed(testPerformed + 5)}
-          />
-        </Col>
-      </Row>
+      <NumericInput
+        headline="Failure Depth"
+        decrease={() => setTestFailed(testFailed - 1)}
+        decreaseInterval={() => setTestFailed(testFailed - 5)}
+        increase={() => setTestFailed(testFailed + 1)}
+        increaseInterval={() => setTestFailed(testFailed + 5)}
+      >
+        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          {testFailed}m
+        </Typography>
+      </NumericInput>
 
-      <Row>
-        <Col>
-          <Typography type={TypographyType.H5} color={COLOR_DARK}>
-            Failure Depth
-          </Typography>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <LongTouchButton
-            title="-"
-            onPressStart={() => setTestFailed(testFailed - 1)}
-            onPressInterval={() => setTestFailed(testFailed - 5)}
-          />
-        </Col>
-        <Col flex={1.5}>
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-            {testFailed}m
-          </Typography>
-        </Col>
-        <Col>
-          <LongTouchButton
-            title="+"
-            onPressStart={() => setTestFailed(testFailed + 1)}
-            onPressInterval={() => setTestFailed(testFailed + 5)}
-          />
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <Typography type={TypographyType.H5} color={COLOR_DARK}>
-            Mouthfill
-          </Typography>
-        </Col>
-      </Row>
-
-      <Row>
-        <Col>
-          <LongTouchButton
-            title="-"
-            onPressStart={() => setPerformed(performed - 1)}
-            onPressInterval={() => setPerformed(performed - 5)}
-          />
-        </Col>
-        <Col flex={1.5}>
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-            {performed}m
-          </Typography>
-        </Col>
-        <Col>
-          <LongTouchButton
-            title="+"
-            onPressStart={() => setPerformed(performed + 1)}
-            onPressInterval={() => setPerformed(performed + 5)}
-          />
-        </Col>
-      </Row>
+      <NumericInput
+        headline="Mouthfill"
+        decrease={() => setPerformed(performed - 1)}
+        decreaseInterval={() => setPerformed(performed - 5)}
+        increase={() => setPerformed(performed + 1)}
+        increaseInterval={() => setPerformed(performed + 5)}
+      >
+        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          {performed}m
+        </Typography>
+      </NumericInput>
     </Spacer>
   );
 };
