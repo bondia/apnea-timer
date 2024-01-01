@@ -77,6 +77,7 @@
     "react/no-unknown-property": 1,
     "react/react-in-jsx-scope": 1,
     "react-hooks/rules-of-hooks": "error",
+    "react/jsx-key": [1, { "checkFragmentShorthand": true }],
     "react-hooks/exhaustive-deps": "warn",
     "react/self-closing-comp": 1,
     "@typescript-eslint/no-unused-vars": ["error"]
