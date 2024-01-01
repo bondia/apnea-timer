@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import { Grid } from '../../../../components/Grid';
+import { Spacer } from '../../../../components/Layout';
 import { TableSetListType } from '../../editorTypes';
 import EditorTimerInput from '../StaticFormInputs/EditorTimerInput';
 
@@ -12,11 +12,11 @@ const StaticSetsList: FC<Props> = props => {
   const { sets } = props;
   return (
     <ScrollView>
-      <Grid>
+      <Spacer spacing={1}>
         {sets.map(({ pos, type, duration, zombie }) => (
           <EditorTimerInput key={pos} index={pos} type={type} duration={duration} zombie={zombie} setNumber={pos} />
         ))}
-      </Grid>
+      </Spacer>
     </ScrollView>
   );
 };

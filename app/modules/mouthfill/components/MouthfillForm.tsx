@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { COLOR_DARK, COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
-import { Col, Grid, Row } from '../../../components/Grid';
+import { Col, Row } from '../../../components/Grid';
+import { Spacer } from '../../../components/Layout';
 import LongTouchButton from '../../../components/LongTouchButton';
 import Typography, { TypographyType } from '../../../components/Typography/Typography';
 import useMouthfill from '../hooks/useMouthfill';
@@ -9,7 +10,7 @@ const MouthfillForm: FC = () => {
   const { testPerformed, setTestPerformed, testFailed, setTestFailed, performed, setPerformed, maxDepth } =
     useMouthfill();
   return (
-    <Grid>
+    <Spacer spacing={1}>
       <Row>
         <Col>
           <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
@@ -107,7 +108,7 @@ const MouthfillForm: FC = () => {
           />
         </Col>
       </Row>
-    </Grid>
+    </Spacer>
   );
 };
 

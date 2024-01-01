@@ -12,7 +12,7 @@ type SpacerProps = {
   left?: SpacingValues;
 };
 
-const paddingRule = ({ spacing, xAxis, yAxis, top, right, bottom, left }: SpacerProps) => {
+const marginRule = ({ spacing, xAxis, yAxis, top, right, bottom, left }: SpacerProps) => {
   const topValue = spacingToPixels(top || yAxis || spacing || undefined);
   const bottomValue = spacingToPixels(bottom || yAxis || spacing || undefined);
   const rightValue = spacingToPixels(right || xAxis || spacing || undefined);
@@ -21,7 +21,7 @@ const paddingRule = ({ spacing, xAxis, yAxis, top, right, bottom, left }: Spacer
 };
 
 const Spacer = styled.View<SpacerProps>`
-  padding: ${paddingRule};
+  margin: ${marginRule};
 `;
 
 export default Spacer;

@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import { AppDispatch } from '../../../../../App';
 import { COLOR_DARK, COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
-import { Col, Grid, Row } from '../../../../components/Grid';
+import { Col, Row } from '../../../../components/Grid';
+import { Spacer } from '../../../../components/Layout';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
@@ -42,7 +43,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const { enduranceLaps, base, baseBreaks, duration: totalTime } = trainingTable as EnduranceTrainingTableType;
 
   return (
-    <Grid>
+    <Spacer spacing={1}>
       <Row>
         <Col>
           <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
@@ -198,7 +199,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
           />
         </Col>
       </Row>
-    </Grid>
+    </Spacer>
   );
 };
 

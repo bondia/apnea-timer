@@ -1,10 +1,11 @@
 import React, { FC } from 'react';
 import { FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
-import { Col, Grid } from '../../../../components/Grid';
+import { Col } from '../../../../components/Grid';
 import InfoTimeBlock from '../../../../components/InfoTimeBlock/InfoTimeBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
+import { Spacer } from '../../../../components/Layout';
 import { TypographyType } from '../../../../components/Typography/Typography';
 import useSetCalculations from '../../hooks/useSetCalculations';
 import * as SC from './LiveCounter.styled';
@@ -34,7 +35,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
 
   return (
-    <Grid>
+    <Spacer spacing={1}>
       {/* STATIC */}
       {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
         <SC.LiveCounterRow>
@@ -107,7 +108,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
           </Col>
         </SC.LiveCounterRow>
       )}
-    </Grid>
+    </Spacer>
   );
 };
 

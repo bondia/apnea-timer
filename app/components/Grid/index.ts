@@ -1,3 +1,3 @@
-import { Col, Grid, Row } from './Grid.styled';
+import { Col, Row } from './Grid.styled';
 
-export { Col, Grid, Row };
+export { Col, Row };
