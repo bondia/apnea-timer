@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Spacer, Stack } from '../../../../components/Layout';
+import { Stack } from '../../../../components/Layout';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
@@ -18,27 +18,25 @@ const TableTypeInput: FC = () => {
   };
 
   return (
-    <Spacer spacing={1}>
-      <Stack grow="0" basis="auto" horizontal columnGap={2}>
-        <LongTouchButton
-          title="CO2"
-          onPressStart={() => changeType(TableTypeEnum.TABLE_TYPE_CO2)}
-          active={TableTypeEnum.TABLE_TYPE_CO2 === type}
-        />
+    <Stack grow="0" basis="auto" horizontal columnGap={2}>
+      <LongTouchButton
+        title="CO2"
+        onPressStart={() => changeType(TableTypeEnum.TABLE_TYPE_CO2)}
+        active={TableTypeEnum.TABLE_TYPE_CO2 === type}
+      />
 
-        <LongTouchButton
-          title="O2"
-          onPressStart={() => changeType(TableTypeEnum.TABLE_TYPE_O2)}
-          active={TableTypeEnum.TABLE_TYPE_O2 === type}
-        />
+      <LongTouchButton
+        title="O2"
+        onPressStart={() => changeType(TableTypeEnum.TABLE_TYPE_O2)}
+        active={TableTypeEnum.TABLE_TYPE_O2 === type}
+      />
 
-        <LongTouchButton
-          title="Free"
-          onPressStart={() => changeType(TableTypeEnum.TABLE_TYPE_FREE)}
-          active={TableTypeEnum.TABLE_TYPE_FREE === type}
-        />
-      </Stack>
-    </Spacer>
+      <LongTouchButton
+        title="Free"
+        onPressStart={() => changeType(TableTypeEnum.TABLE_TYPE_FREE)}
+        active={TableTypeEnum.TABLE_TYPE_FREE === type}
+      />
+    </Stack>
   );
 };
 
