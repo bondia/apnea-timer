@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { COLOR_DARK } from '../../commonStyles';
-import { Stack } from '../Layout';
+import { Spacer, Stack } from '../Layout';
 import LongTouchButton from '../LongTouchButton';
 import Typography, { TypographyType } from '../Typography/Typography';
 
@@ -23,9 +23,12 @@ const NumericInput: FC<NumericInputProps> = ({
   return (
     <Stack>
       {headline ? (
-        <Typography type={TypographyType.H5} color={COLOR_DARK}>
-          {headline}
-        </Typography>
+        <>
+          <Typography type={TypographyType.H5} color={COLOR_DARK} centered>
+            {headline}
+          </Typography>
+          <Spacer yAxis={2} />
+        </>
       ) : null}
 
       <Stack horizontal>

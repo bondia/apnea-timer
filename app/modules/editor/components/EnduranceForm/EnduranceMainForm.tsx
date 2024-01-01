@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { AppDispatch } from '../../../../../App';
 import { COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
 import NumericInput from '../../../../components/Forms/NumericInput';
-import { Spacer } from '../../../../components/Layout';
+import { Spacer, Stack } from '../../../../components/Layout';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
@@ -42,105 +42,111 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const { enduranceLaps, base, baseBreaks, duration: totalTime } = trainingTable as EnduranceTrainingTableType;
 
   return (
-    <Spacer xAxis={2} top={3} bottom={2}>
+    <Stack spaceAround grow={1}>
       <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
         {secondsToTimeString(totalTime)}
       </Typography>
 
-      <NumericInput
-        headline="Laps"
-        decrease={() =>
-          actionHandler({
-            original: enduranceLaps,
-            increase: -1,
-            action: changeEnduranceLaps,
-          })
-        }
-        increase={() =>
-          actionHandler({
-            original: enduranceLaps,
-            increase: 1,
-            action: changeEnduranceLaps,
-          })
-        }
-      >
-        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-          {enduranceLaps}
-        </Typography>
-      </NumericInput>
+      <Spacer xAxis={4}>
+        <NumericInput
+          headline="Laps"
+          decrease={() =>
+            actionHandler({
+              original: enduranceLaps,
+              increase: -1,
+              action: changeEnduranceLaps,
+            })
+          }
+          increase={() =>
+            actionHandler({
+              original: enduranceLaps,
+              increase: 1,
+              action: changeEnduranceLaps,
+            })
+          }
+        >
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {enduranceLaps}
+          </Typography>
+        </NumericInput>
 
-      <NumericInput
-        headline="Dive Time"
-        decrease={() =>
-          actionHandler({
-            original: base,
-            increase: -1,
-            action: changeTableBase,
-          })
-        }
-        decreaseInterval={() =>
-          actionHandler({
-            original: base,
-            increase: -5,
-            action: changeTableBase,
-          })
-        }
-        increase={() =>
-          actionHandler({
-            original: base,
-            increase: 1,
-            action: changeTableBase,
-          })
-        }
-        increaseInterval={() =>
-          actionHandler({
-            original: base,
-            increase: 5,
-            action: changeTableBase,
-          })
-        }
-      >
-        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-          {secondsToTimeString(base)}
-        </Typography>
-      </NumericInput>
+        <Spacer top={6} />
 
-      <NumericInput
-        headline="Breaks"
-        decrease={() =>
-          actionHandler({
-            original: baseBreaks,
-            increase: -1,
-            action: changeTableBaseBreaks,
-          })
-        }
-        decreaseInterval={() =>
-          actionHandler({
-            original: baseBreaks,
-            increase: -5,
-            action: changeTableBaseBreaks,
-          })
-        }
-        increase={() =>
-          actionHandler({
-            original: baseBreaks,
-            increase: 1,
-            action: changeTableBaseBreaks,
-          })
-        }
-        increaseInterval={() =>
-          actionHandler({
-            original: baseBreaks,
-            increase: 5,
-            action: changeTableBaseBreaks,
-          })
-        }
-      >
-        <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
-          {secondsToTimeString(baseBreaks)}
-        </Typography>
-      </NumericInput>
-    </Spacer>
+        <NumericInput
+          headline="Dive Time"
+          decrease={() =>
+            actionHandler({
+              original: base,
+              increase: -1,
+              action: changeTableBase,
+            })
+          }
+          decreaseInterval={() =>
+            actionHandler({
+              original: base,
+              increase: -5,
+              action: changeTableBase,
+            })
+          }
+          increase={() =>
+            actionHandler({
+              original: base,
+              increase: 1,
+              action: changeTableBase,
+            })
+          }
+          increaseInterval={() =>
+            actionHandler({
+              original: base,
+              increase: 5,
+              action: changeTableBase,
+            })
+          }
+        >
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {secondsToTimeString(base)}
+          </Typography>
+        </NumericInput>
+
+        <Spacer top={6} />
+
+        <NumericInput
+          headline="Breaks"
+          decrease={() =>
+            actionHandler({
+              original: baseBreaks,
+              increase: -1,
+              action: changeTableBaseBreaks,
+            })
+          }
+          decreaseInterval={() =>
+            actionHandler({
+              original: baseBreaks,
+              increase: -5,
+              action: changeTableBaseBreaks,
+            })
+          }
+          increase={() =>
+            actionHandler({
+              original: baseBreaks,
+              increase: 1,
+              action: changeTableBaseBreaks,
+            })
+          }
+          increaseInterval={() =>
+            actionHandler({
+              original: baseBreaks,
+              increase: 5,
+              action: changeTableBaseBreaks,
+            })
+          }
+        >
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {secondsToTimeString(baseBreaks)}
+          </Typography>
+        </NumericInput>
+      </Spacer>
+    </Stack>
   );
 };
 

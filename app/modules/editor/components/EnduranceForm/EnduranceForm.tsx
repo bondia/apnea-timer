@@ -26,7 +26,7 @@ const EditorEndurancePane: FC = () => {
   };
 
   return (
-    <Stack>
+    <Stack grow={1}>
       <EnduranceMainForm editor={editor} />
       <CronoStartButton data={crono} />
     </Stack>

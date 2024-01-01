@@ -21,6 +21,8 @@ export type StackProps = {
   // gaps
   rowGap?: SpacingValues;
   columnGap?: SpacingValues;
+  // debuger
+  debug?: string;
 };
 
 export const widthRule = ({ fullWidth = false }: StackProps) => (fullWidth ? '100%' : 'auto');
@@ -35,6 +37,7 @@ const Stack = styled.View<StackProps>`
   justify-content: ${justifyContent};
   row-gap: ${({ rowGap }) => spacingToPixels(rowGap)};
   column-gap: ${({ columnGap }) => spacingToPixels(columnGap)};
+  border: ${({ debug }) => (debug ? `1px solid ${debug}` : 'none')};
 `;
 
 export default Stack;
