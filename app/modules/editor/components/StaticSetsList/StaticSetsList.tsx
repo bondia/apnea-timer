@@ -17,13 +17,13 @@ const StaticSetsList: FC<Props> = ({ tableType, sets }) => {
   const headline = headlineByTableType(tableType);
   return (
     <Stack>
-      <Spacer top={4} />
-      <Typography type={TypographyType.H5} color={FONT_COLOR_GREY} centered>
-        {headline}
-      </Typography>
-      <Spacer top={1} />
+      <Spacer top={4} bottom={2}>
+        <Typography type={TypographyType.H5} color={FONT_COLOR_GREY} centered>
+          {headline}
+        </Typography>
+      </Spacer>
       <ScrollView key={tableType}>
-        <Spacer spacing={1}>
+        <Spacer xAxis={2}>
           {sets.map(({ pos, type, duration, zombie }) => (
             <EditorTimerInput key={pos} index={pos} type={type} duration={duration} zombie={zombie} setNumber={pos} />
           ))}
