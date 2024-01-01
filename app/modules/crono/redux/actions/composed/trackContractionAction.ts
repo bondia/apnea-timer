@@ -4,7 +4,7 @@ import findRunningSet from '../../../helpers/findRunningSet';
 import replaceSetAction from '../replaceSetAction';
 import updateContractionsAverageAction from './updateContractionsAverageAction';
 
-export type TrackContractionType = () => StoreThunkAction;
+type TrackContractionType = () => StoreThunkAction;
 
 const trackContractionAction: TrackContractionType = () => {
   return (dispatch, getState) => {

@@ -1,7 +1,7 @@
 import { StoreThunkAction } from '../../../../../redux/types';
 import updateSetDurationForKey from '../../../helpers/sets/updateSetDurationForKey';
-import { updateTableDurationBySetsAction } from './updateTableDurationBySetsAction';
 import replaceEditorSetsAction from '../replaceEditorSetsAction';
+import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 
 const changeTimeItem =
   (key: number, amount: number): StoreThunkAction =>

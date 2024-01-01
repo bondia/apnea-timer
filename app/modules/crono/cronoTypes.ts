@@ -22,7 +22,7 @@ export type CronoSetType = TableSetType & {
   running: CronoSetRunningType;
 };
 
-export type CronoSetRunningType = {
+type CronoSetRunningType = {
   startTimestamp?: number;
   endTimestamp?: number;
   mode: SetModeEnum;

@@ -1,5 +1,5 @@
-import { EditorStateType } from '../../../../editor/editorTypes';
 import { StoreThunkAction } from '../../../../../redux/types';
+import { EditorStateType } from '../../../../editor/editorTypes';
 import editorToCrono from '../../../helpers/editorToCrono';
 import setInitialStateAction from '../setInitialStateAction';
 import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
@@ -7,7 +7,7 @@ import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 /**
  * Prepare initial crono
  */
-export type InitTableAction = (data: EditorStateType) => StoreThunkAction;
+type InitTableAction = (data: EditorStateType) => StoreThunkAction;
 
 const initTableAction: InitTableAction = trainingTable => {
   return dispatch => {

@@ -2,7 +2,7 @@ import { StoreThunkAction } from '../../../../../redux/types';
 import updateSetsForTableType from '../../../helpers/sets/updateSetsForTableType';
 import replaceEditorSetsAction from '../replaceEditorSetsAction';
 import setEditorTableBaseBreakAction from '../setEditorTableBaseBreakAction';
-import { updateTableDurationBySetsAction } from './updateTableDurationBySetsAction';
+import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 
 export type ChangeTableBaseBreaksType = (amount: number) => StoreThunkAction;
 

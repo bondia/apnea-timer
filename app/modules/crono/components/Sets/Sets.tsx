@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { FONT_COLOR_LIGHT } from '../../../../commonStyles';
-import { Col, Grid, Row } from '../../../../components/Grid';
+import { Col } from '../../../../components/Grid';
 import { Stack } from '../../../../components/Layout';
 import List, { Item } from '../../../../components/List';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
@@ -16,8 +16,8 @@ const Sets: FC<SetsProps> = ({ sets, active }) => {
   const pos = active?.pos === undefined ? -1 : active?.pos;
   const siblingPos = pos % 2 === 0 ? pos + 1 : pos - 1;
   return (
-    <Grid>
-      <Row>
+    <>
+      <Stack grow="0" basis="auto" horizontal>
         <Col>
           <Typography type={TypographyType.SUBTITLE_2} color={FONT_COLOR_LIGHT} centered>
             Breath up
@@ -28,19 +28,15 @@ const Sets: FC<SetsProps> = ({ sets, active }) => {
             Hold
           </Typography>
         </Col>
-      </Row>
-      <Row>
-        <Stack>
-          <List>
-            {sets.map((set: CronoSetType) => (
-              <Item key={set.pos} active={set.pos === pos}>
-                <Set set={set} accent={set.pos === pos || set.pos === siblingPos} />
-              </Item>
-            ))}
-          </List>
-        </Stack>
-      </Row>
-    </Grid>
+      </Stack>
+      <List>
+        {sets.map((set: CronoSetType) => (
+          <Item key={set.pos} active={set.pos === pos}>
+            <Set set={set} accent={set.pos === pos || set.pos === siblingPos} />
+          </Item>
+        ))}
+      </List>
+    </>
   );
 };
 

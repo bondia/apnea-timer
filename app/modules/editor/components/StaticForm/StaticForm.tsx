@@ -6,7 +6,7 @@ import Typography, { TypographyType } from '../../../../components/Typography/Ty
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
 import setsByTableType from '../../helpers/sets/setsByTableType';
-import { changeTableType } from '../../redux/actions/composed/changeTableType';
+import changeTableType from '../../redux/actions/composed/changeTableType';
 import { editorSelector } from '../../redux/editorSelectors';
 import CronoStartButton from '../CronoStartButton/CronoStartButton';
 import StaticSetsList from '../StaticSetsList/StaticSetsList';

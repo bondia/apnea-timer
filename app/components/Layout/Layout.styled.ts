@@ -3,18 +3,24 @@ import flexDirection from './utils/flexDirection';
 import justifyContent from './utils/justifyContent';
 
 type StackProps = {
-  flex?: number;
+  // width
   fullWidth?: boolean;
+  // flex
+  grow?: string;
+  shrink?: string;
+  basis?: string;
+  // flex directions
   horizontal?: boolean;
   reversed?: boolean;
+  // flex disposition
   wrap?: boolean;
   spaceAround?: boolean;
   centered?: boolean;
 };
 
-const widthRule = ({ fullWidth = false }) => (fullWidth ? '100%' : 'auto');
-const flexRule = ({ flex = 1 }) => flex;
-const flexWrapRule = ({ wrap = false }) => (wrap ? 'wrap' : 'nowrap');
+const widthRule = ({ fullWidth = false }: StackProps) => (fullWidth ? '100%' : 'auto');
+const flexRule = ({ grow = '1', shrink = '0', basis = '0' }: StackProps) => `${grow} ${shrink} ${basis}`;
+const flexWrapRule = ({ wrap = false }: StackProps) => (wrap ? 'wrap' : 'nowrap');
 
 export const Stack = styled.View<StackProps>`
   width: ${widthRule};

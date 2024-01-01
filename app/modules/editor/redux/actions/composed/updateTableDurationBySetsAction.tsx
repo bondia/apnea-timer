@@ -1,10 +1,12 @@
-import calculateSetsDuration from '../../../helpers/sets/calculateSetsDuration';
 import { TableSetListType } from '../../../editorTypes';
+import calculateSetsDuration from '../../../helpers/sets/calculateSetsDuration';
 import setEditorTableDurationAction, { SetEditorTableDurationAction } from '../setEditorTableDurationAction';
 
-export type UpdateTableDurationBySetsTypeAction = (sets: TableSetListType) => SetEditorTableDurationAction;
+type UpdateTableDurationBySetsTypeAction = (sets: TableSetListType) => SetEditorTableDurationAction;
 
-export const updateTableDurationBySetsAction: UpdateTableDurationBySetsTypeAction = sets => {
+const updateTableDurationBySetsAction: UpdateTableDurationBySetsTypeAction = sets => {
   const duration = calculateSetsDuration(sets);
   return setEditorTableDurationAction(duration);
 };
+
+export default updateTableDurationBySetsAction;
