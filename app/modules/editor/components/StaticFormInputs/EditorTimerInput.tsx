@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
-import { Col, Row } from '../../../../components/Grid';
+import { Col } from '../../../../components/Grid';
+import { Spacer, Stack } from '../../../../components/Layout';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
@@ -28,8 +29,8 @@ const EditorTimerInput: FC<EditorTimerInputProps> = props => {
   clockColor = zombie ? FONT_COLOR_GREY : clockColor;
 
   return (
-    <>
-      <Row>
+    <Spacer yAxis={1}>
+      <Stack horizontal>
         <Col>
           <LongTouchButton title="-" onPressStart={decrease} onPressInterval={decrease} />
         </Col>
@@ -49,15 +50,8 @@ const EditorTimerInput: FC<EditorTimerInputProps> = props => {
         <Col>
           <LongTouchButton title="+" onPressStart={increase} onPressInterval={increase} />
         </Col>
-      </Row>
-
-      {/* TODO: Needs spacer component here */}
-      <Row>
-        <Col>
-          <Typography> </Typography>
-        </Col>
-      </Row>
-    </>
+      </Stack>
+    </Spacer>
   );
 };
 

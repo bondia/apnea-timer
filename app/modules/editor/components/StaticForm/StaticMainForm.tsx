@@ -31,11 +31,11 @@ const StaticMainForm: FC<Props> = ({
 
   return (
     <Stack shrink="0">
-      <Spacer spacing={1}>
+      <Spacer yAxis={1} xAxis={2}>
         <TableTypeInput />
       </Spacer>
 
-      <Spacer spacing={1}>
+      <Spacer yAxis={1} xAxis={2}>
         <Stack horizontal spaceAround>
           {!isFreeTable && <InfoBlock title={titleByType[type]} textColor={colorByType[type]} timeContent={base} />}
           <InfoBlock title="Total Time" timeContent={totalTime} />
@@ -43,7 +43,7 @@ const StaticMainForm: FC<Props> = ({
       </Spacer>
 
       {!isFreeTable && (
-        <Spacer spacing={1} bottom={2}>
+        <Spacer yAxis={1} xAxis={2}>
           <TableBaseInput />
         </Spacer>
       )}
