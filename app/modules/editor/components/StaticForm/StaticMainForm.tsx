@@ -4,7 +4,7 @@ import { TableTypeEnum } from '../../enums';
 import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 
-import InfoTimeBlock from '../../../../components/InfoTimeBlock/InfoTimeBlock';
+import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { Spacer, Stack } from '../../../../components/Layout';
 import { EditorStateType } from '../../editorTypes';
 
@@ -38,19 +38,16 @@ const StaticMainForm: FC<Props> = ({
       <Spacer yAxis={1} xAxis={2}>
         <Stack horizontal spaceAround>
           {!isFreeTable && (
-            <Stack>
-              <InfoTimeBlock
-                label={titleByType[type]}
-                labelColor={colorByType[type]}
-                timestamp={base}
-                contentColor={colorByType[type]}
-              />
-            </Stack>
+            <InfoBlock
+              label={titleByType[type]}
+              labelColor={colorByType[type]}
+              content={base}
+              contentColor={colorByType[type]}
+              isTimestamp
+            />
           )}
 
-          <Stack>
-            <InfoTimeBlock label="Total Time" timestamp={totalTime} />
-          </Stack>
+          <InfoBlock label="Total Time" content={totalTime} isTimestamp />
         </Stack>
       </Spacer>
 

@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
-import { Col } from '../../../../components/Grid';
+import NumericInput from '../../../../components/Forms/NumericInput';
 import { Spacer, Stack } from '../../../../components/Layout';
-import LongTouchButton from '../../../../components/LongTouchButton';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
@@ -17,40 +16,33 @@ type EditorTimerInputProps = {
   zombie?: boolean;
 };
 
-const EditorTimerInput: FC<EditorTimerInputProps> = props => {
+const EditorTimerInput: FC<EditorTimerInputProps> = ({
+  index,
+  duration = 0,
+  type = SetTypeEnum.SET_TYPE_PREPARE,
+  setNumber = 0,
+  zombie = false,
+}) => {
   const dispatch = useAppDispatch();
 
-  const { index, duration = 0, type = SetTypeEnum.SET_TYPE_PREPARE, setNumber = 0, zombie = false } = props;
+  const clockColorByType = SetTypeEnum.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
+  const clockColor = zombie ? FONT_COLOR_GREY : clockColorByType;
 
   const increase = () => dispatch(increaseTimeItem(index, 5));
   const decrease = () => dispatch(decreaseTimeItem(index, 5));
 
-  let clockColor = SetTypeEnum.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
-  clockColor = zombie ? FONT_COLOR_GREY : clockColor;
-
   return (
     <Spacer yAxis={1}>
-      <Stack horizontal>
-        <Col>
-          <LongTouchButton title="-" onPressStart={decrease} onPressInterval={decrease} />
-        </Col>
-
-        <Col flex={2}>
-          <Typography type={TypographyType.H3} color={clockColor} centered>
+      <NumericInput decrease={decrease} decreaseInterval={decrease} increase={increase} increaseInterval={increase}>
+        <Stack centered horizontal>
+          <Typography type={TypographyType.H3} color={clockColor}>
             {secondsToTimeString(duration)}
           </Typography>
-        </Col>
-
-        <Col flex={0.5}>
           <Typography color={FONT_COLOR_GREY} centered>
             ({setNumber})
           </Typography>
-        </Col>
-
-        <Col>
-          <LongTouchButton title="+" onPressStart={increase} onPressInterval={increase} />
-        </Col>
-      </Stack>
+        </Stack>
+      </NumericInput>
     </Spacer>
   );
 };

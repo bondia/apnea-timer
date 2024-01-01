@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/prefer-default-export
-export enum SURFACE_COLORS {
+export enum SurfaceColorsEnum {
   ELEVATION_00 = '#121212',
   ELEVATION_01 = 'linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), #121212)',
   ELEVATION_02 = 'linear-gradient(0deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.07) 100%), #121212)',

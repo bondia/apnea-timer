@@ -1,35 +1,38 @@
 import React, { FC } from 'react';
 import { COLOR_LIGHT } from '../../commonStyles';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
+import { Stack } from '../Layout';
 import Typography, { TypographyType } from '../Typography/Typography';
 
-type InfoTimeBlockProps = {
+type InfoBlockProps = {
   label?: string;
   labelType?: TypographyType;
   labelColor?: string;
-  timestamp?: number;
+  content?: number;
   contentType?: TypographyType;
   contentColor?: string;
+  isTimestamp?: boolean;
 };
 
-const InfoTimeBlock: FC<InfoTimeBlockProps> = ({
+const InfoBlock: FC<InfoBlockProps> = ({
   label,
   labelType = TypographyType.BODY_1,
   labelColor = COLOR_LIGHT,
-  timestamp,
+  content,
   contentType = TypographyType.H4,
   contentColor = COLOR_LIGHT,
+  isTimestamp,
 }) => (
-  <>
+  <Stack>
     {label && (
       <Typography type={labelType} color={labelColor} centered>
         {label}
       </Typography>
     )}
     <Typography type={contentType} color={contentColor} centered>
-      {timestamp !== undefined ? secondsToTimeString(timestamp) : undefined}
+      {content !== undefined && isTimestamp ? secondsToTimeString(content) : content}
     </Typography>
-  </>
+  </Stack>
 );
 
-export default InfoTimeBlock;
+export default InfoBlock;
