@@ -1,3 +1,3 @@
-import { ScrollableStack, Stack } from './Layout.styled';
+import { ScrollableStack, Spacer, Stack } from './Layout.styled';
 
-export { ScrollableStack, Stack };
+export { ScrollableStack, Spacer, Stack };

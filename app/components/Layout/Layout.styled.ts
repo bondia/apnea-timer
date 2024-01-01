@@ -3,7 +3,7 @@ import flexDirection from './utils/flexDirection';
 import justifyContent from './utils/justifyContent';
 
 type StackProps = {
-  size?: number;
+  flex?: number;
   fullWidth?: boolean;
   horizontal?: boolean;
   reversed?: boolean;
@@ -12,16 +12,31 @@ type StackProps = {
   centered?: boolean;
 };
 
+const widthRule = ({ fullWidth = false }) => (fullWidth ? '100%' : 'auto');
+const flexRule = ({ flex = 1 }) => flex;
+const flexWrapRule = ({ wrap = false }) => (wrap ? 'wrap' : 'nowrap');
+
 export const Stack = styled.View<StackProps>`
-  flex: ${({ size = 1 }) => size};
-  width: ${({ fullWidth = false }) => (fullWidth ? '100%' : 'auto')};
-  flex-wrap: ${({ wrap = false }) => (wrap ? 'wrap' : 'nowrap')};
+  width: ${widthRule};
+  flex: ${flexRule};
+  flex-wrap: ${flexWrapRule};
   flex-direction: ${flexDirection};
   justify-content: ${justifyContent};
 `;
 
 export const ScrollableStack = styled.ScrollView<StackProps>`
-  flex: ${({ size = 1 }) => size};
-  width: ${({ fullWidth = false }) => (fullWidth ? '100%' : 'auto')};
+  width: ${widthRule};
+  flex: ${flexRule};
+  flex-wrap: ${flexWrapRule};
   flex-direction: ${flexDirection};
+`;
+
+type SpacerProps = {
+  width?: string;
+  height?: string;
+};
+
+export const Spacer = styled.View<SpacerProps>`
+  width: ${({ width = 'auto' }) => width};
+  height: ${({ height = 'auto' }) => height};
 `;
