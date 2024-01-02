@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { AppDispatch } from '../../../../../App';
-import { COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
 import { Spacer, Stack } from '../../../../components/Flow';
 import NumericInput from '../../../../components/Forms/NumericInput';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
+import useAppTheme from '../../../../themes/useAppTheme';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { EditorStateType, EnduranceTrainingTableType } from '../../editorTypes';
 import { ChangeEnduranceLapsType, changeEnduranceLaps } from '../../redux/actions/composed/changeEnduranceLaps';
@@ -34,6 +34,7 @@ type EditorEnduranceProps = {
 const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const dispatch = useAppDispatch();
   const actionHandler = handleAction(dispatch);
+  const { oldColors } = useAppTheme();
 
   const {
     editor: { trainingTable },
@@ -43,7 +44,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
 
   return (
     <Stack spaceAround grow={1}>
-      <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
+      <Typography type={TypographyType.H1} color={oldColors.COLOR_GREEN_NORMAL} centered>
         {secondsToTimeString(totalTime)}
       </Typography>
 
@@ -65,7 +66,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             })
           }
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography type={TypographyType.H3} color={oldColors.FONT_COLOR_GREY} centered>
             {enduranceLaps}
           </Typography>
         </NumericInput>
@@ -103,7 +104,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             })
           }
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography type={TypographyType.H3} color={oldColors.FONT_COLOR_GREY} centered>
             {secondsToTimeString(base)}
           </Typography>
         </NumericInput>
@@ -141,7 +142,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             })
           }
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography type={TypographyType.H3} color={oldColors.FONT_COLOR_GREY} centered>
             {secondsToTimeString(baseBreaks)}
           </Typography>
         </NumericInput>

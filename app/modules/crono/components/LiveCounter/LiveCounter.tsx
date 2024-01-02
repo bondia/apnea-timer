@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-import { FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
 import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
@@ -22,7 +21,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
   },
   set,
 }) => {
-  const { elevations } = useAppTheme();
+  const { elevations, oldColors } = useAppTheme();
 
   // const {
   //   spent,
@@ -43,10 +42,10 @@ const LiveCounter: FC<LiveCounterProps> = ({
             <>
               <InfoBlock
                 label="Time Left"
-                labelColor={FONT_COLOR_GREY}
+                labelColor={oldColors.FONT_COLOR_GREY}
                 labelType={TypographyType.SUBTITLE_2}
                 content={totalTime}
-                contentColor={FONT_COLOR_LIGHT}
+                contentColor={oldColors.FONT_COLOR_LIGHT}
                 contentType={TypographyType.H4}
                 isTimestamp
               />
@@ -83,24 +82,24 @@ const LiveCounter: FC<LiveCounterProps> = ({
             <>
               <InfoBlock
                 label="Current Dive"
-                labelColor={FONT_COLOR_GREY}
+                labelColor={oldColors.FONT_COLOR_GREY}
                 content={currentSet}
-                contentColor={FONT_COLOR_LIGHT}
+                contentColor={oldColors.FONT_COLOR_LIGHT}
               />
 
               <InfoBlock
                 label="Targeting"
-                labelColor={FONT_COLOR_GREY}
+                labelColor={oldColors.FONT_COLOR_GREY}
                 content={targeting}
-                contentColor={FONT_COLOR_LIGHT}
+                contentColor={oldColors.FONT_COLOR_LIGHT}
                 isTimestamp
               />
 
               <InfoBlock
                 label="Spent Time"
-                labelColor={FONT_COLOR_GREY}
+                labelColor={oldColors.FONT_COLOR_GREY}
                 content={spentTime > 0 ? spentTime : 0}
-                contentColor={FONT_COLOR_LIGHT}
+                contentColor={oldColors.FONT_COLOR_LIGHT}
                 isTimestamp
               />
             </>

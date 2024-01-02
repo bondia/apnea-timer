@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import { COLOR_LIGHT } from '../../commonStyles';
 import { Spacer, Stack } from '../../components/Flow';
 import Surface from '../../components/Flow/Surface.styled';
 import SceneLayout from '../../components/Layouts/SceneLayout';
@@ -119,42 +118,42 @@ const StoreisScene: FC = () => {
           <Spacer xAxis={10}>
             <Surface elevation={theme.elevations.ELEVATION_24} radius>
               <Spacer xAxis={10} yAxis={5}>
-                <Typography type={TypographyType.BODY_1} color={COLOR_LIGHT}>
+                <Typography type={TypographyType.BODY_1} color={theme.oldColors.COLOR_LIGHT}>
                   ELEVATION_24
                 </Typography>
               </Spacer>
             </Surface>
             <Surface elevation={theme.elevations.ELEVATION_06} radius>
               <Spacer xAxis={10} yAxis={5}>
-                <Typography type={TypographyType.BODY_1} color={COLOR_LIGHT}>
+                <Typography type={TypographyType.BODY_1} color={theme.oldColors.COLOR_LIGHT}>
                   ELEVATION_06
                 </Typography>
               </Spacer>
             </Surface>
             <Surface elevation={theme.elevations.ELEVATION_03} radius>
               <Spacer xAxis={10} yAxis={5}>
-                <Typography type={TypographyType.BODY_1} color={COLOR_LIGHT}>
+                <Typography type={TypographyType.BODY_1} color={theme.oldColors.COLOR_LIGHT}>
                   ELEVATION_03
                 </Typography>
               </Spacer>
             </Surface>
             <Surface elevation={theme.elevations.ELEVATION_02} radius>
               <Spacer xAxis={10} yAxis={5}>
-                <Typography type={TypographyType.BODY_1} color={COLOR_LIGHT}>
+                <Typography type={TypographyType.BODY_1} color={theme.oldColors.COLOR_LIGHT}>
                   ELEVATION_02
                 </Typography>
               </Spacer>
             </Surface>
             <Surface elevation={theme.elevations.ELEVATION_01} radius>
               <Spacer xAxis={10} yAxis={5}>
-                <Typography type={TypographyType.BODY_1} color={COLOR_LIGHT}>
+                <Typography type={TypographyType.BODY_1} color={theme.oldColors.COLOR_LIGHT}>
                   ELEVATION_01
                 </Typography>
               </Spacer>
             </Surface>
             <Surface elevation={theme.elevations.ELEVATION_00} radius>
               <Spacer xAxis={10} yAxis={5}>
-                <Typography type={TypographyType.BODY_1} color={COLOR_LIGHT}>
+                <Typography type={TypographyType.BODY_1} color={theme.oldColors.COLOR_LIGHT}>
                   ELEVATION_00
                 </Typography>
               </Spacer>

@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { COLOR_DARK } from '../../commonStyles';
+import useAppTheme from '../../themes/useAppTheme';
 import { Spacer, Stack } from '../Flow';
 import LongTouchButton from '../LongTouchButton';
 import Typography, { TypographyType } from '../Typography/Typography';
@@ -20,11 +20,12 @@ const NumericInput: FC<NumericInputProps> = ({
   decrease,
   decreaseInterval,
 }) => {
+  const { oldColors } = useAppTheme();
   return (
     <Stack>
       {headline ? (
         <>
-          <Typography type={TypographyType.H5} color={COLOR_DARK} centered>
+          <Typography type={TypographyType.H5} color={oldColors.COLOR_DARK} centered>
             {headline}
           </Typography>
           <Spacer spacing={4} />

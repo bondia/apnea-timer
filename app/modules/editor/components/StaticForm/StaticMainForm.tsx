@@ -1,22 +1,12 @@
 import React, { FC } from 'react';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../../commonStyles';
 import { TableTypeEnum } from '../../enums';
 import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 
 import { Spacer, Stack } from '../../../../components/Flow';
 import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
+import useAppTheme from '../../../../themes/useAppTheme';
 import { EditorStateType } from '../../editorTypes';
-
-const titleByType = {
-  [TableTypeEnum.TABLE_TYPE_CO2]: 'Breath Hold',
-  [TableTypeEnum.TABLE_TYPE_O2]: 'Breath Up',
-};
-
-const colorByType = {
-  [TableTypeEnum.TABLE_TYPE_CO2]: COLOR_RED_NORMAL,
-  [TableTypeEnum.TABLE_TYPE_O2]: COLOR_GREEN_NORMAL,
-};
 
 type Props = {
   editor: EditorStateType;
@@ -27,7 +17,19 @@ const StaticMainForm: FC<Props> = ({
     trainingTable: { base, type, duration: totalTime },
   },
 }) => {
+  const { oldColors } = useAppTheme();
+
   const isFreeTable = TableTypeEnum.TABLE_TYPE_FREE === type;
+
+  const titleByType = {
+    [TableTypeEnum.TABLE_TYPE_CO2]: 'Breath Hold',
+    [TableTypeEnum.TABLE_TYPE_O2]: 'Breath Up',
+  };
+
+  const colorByType = {
+    [TableTypeEnum.TABLE_TYPE_CO2]: oldColors.COLOR_RED_NORMAL,
+    [TableTypeEnum.TABLE_TYPE_O2]: oldColors.COLOR_GREEN_NORMAL,
+  };
 
   return (
     <Stack shrink={0}>

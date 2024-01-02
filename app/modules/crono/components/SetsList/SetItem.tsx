@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components/native';
-import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
 import { Stack } from '../../../../components/Flow';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
+import useAppTheme from '../../../../themes/useAppTheme';
 import { CronoSetType } from '../../cronoTypes';
 import useSetCalculations from '../../hooks/useSetCalculations';
 
@@ -18,6 +18,7 @@ type SetItemProps = {
 };
 
 const SetItem: FC<SetItemProps> = ({ set, accent }) => {
+  const { oldColors } = useAppTheme();
   const {
     position,
     durationText,
@@ -25,12 +26,12 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
     status: { isDiving, isFinished },
   } = useSetCalculations(set);
 
-  const color = isDiving ? COLOR_RED_NORMAL : COLOR_GREEN_NORMAL;
+  const color = isDiving ? oldColors.COLOR_RED_NORMAL : oldColors.COLOR_GREEN_NORMAL;
 
   return (
     <Stack spaceX={2} spaceY={2}>
       <SetNumber>
-        <Typography type={TypographyType.CAPTION} color={FONT_COLOR_GREY}>
+        <Typography type={TypographyType.CAPTION} color={oldColors.FONT_COLOR_GREY}>
           {position}
         </Typography>
       </SetNumber>
@@ -49,7 +50,7 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
       ) : null}
 
       {accent ? (
-        <Typography type={TypographyType.BODY_1} color={FONT_COLOR_LIGHT} centered>
+        <Typography type={TypographyType.BODY_1} color={oldColors.FONT_COLOR_LIGHT} centered>
           {spentText}
         </Typography>
       ) : null}

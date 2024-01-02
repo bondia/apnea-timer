@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { COLOR_LIGHT } from '../../commonStyles';
+import useAppTheme from '../../themes/useAppTheme';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
 import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
@@ -17,22 +17,25 @@ type InfoBlockProps = {
 const InfoBlock: FC<InfoBlockProps> = ({
   label,
   labelType = TypographyType.BODY_1,
-  labelColor = COLOR_LIGHT,
+  labelColor,
   content,
   contentType = TypographyType.H4,
-  contentColor = COLOR_LIGHT,
+  contentColor,
   isTimestamp,
-}) => (
-  <Stack>
-    {label && (
-      <Typography type={labelType} color={labelColor} centered>
-        {label}
+}) => {
+  const { oldColors } = useAppTheme();
+  return (
+    <Stack>
+      {label && (
+        <Typography type={labelType} color={labelColor || oldColors.COLOR_LIGHT} centered>
+          {label}
+        </Typography>
+      )}
+      <Typography type={contentType} color={contentColor || oldColors.COLOR_LIGHT} centered>
+        {content !== undefined && isTimestamp ? secondsToTimeString(content) : content}
       </Typography>
-    )}
-    <Typography type={contentType} color={contentColor} centered>
-      {content !== undefined && isTimestamp ? secondsToTimeString(content) : content}
-    </Typography>
-  </Stack>
-);
+    </Stack>
+  );
+};
 
 export default InfoBlock;

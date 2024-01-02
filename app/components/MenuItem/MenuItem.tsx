@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components/native';
-import { FONT_COLOR_LIGHT } from '../../commonStyles';
+import useAppTheme from '../../themes/useAppTheme';
 import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 
@@ -19,14 +19,17 @@ type MenuItemProps = {
   color: string;
 };
 
-const MenuItem: FC<MenuItemProps> = ({ title, onPress, color }) => (
-  <ActionArea onPress={onPress} color={color}>
-    <Stack grow={1} centered>
-      <Typography type={TypographyType.H3} color={FONT_COLOR_LIGHT} centered>
-        {title}
-      </Typography>
-    </Stack>
-  </ActionArea>
-);
+const MenuItem: FC<MenuItemProps> = ({ title, onPress, color }) => {
+  const { oldColors } = useAppTheme();
+  return (
+    <ActionArea onPress={onPress} color={color}>
+      <Stack grow={1} centered>
+        <Typography type={TypographyType.H3} color={oldColors.FONT_COLOR_LIGHT} centered>
+          {title}
+        </Typography>
+      </Stack>
+    </ActionArea>
+  );
+};
 
 export default MenuItem;
