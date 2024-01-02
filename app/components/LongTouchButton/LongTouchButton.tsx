@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Stack } from '../Layout';
+import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 import * as SC from './LongTouchButton.styled';
 import useLongTouchHandling from './useLongTouchHandling';
@@ -42,7 +42,7 @@ const LongTouchButton: FC<LongTouchButtonProps> = props => {
   });
 
   return (
-    <Stack grow={0} shrink={1} centered style={{ width: '100%', height: 45 }}>
+    <Stack grow={0} shrink={1} fullWidth centered style={{ height: 45 }}>
       <SC.ButtonWrapper
         onPressIn={onPressIn}
         onLongPress={onLongPress}

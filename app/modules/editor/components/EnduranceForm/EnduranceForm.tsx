@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Stack } from '../../../../components/Layout';
+import ActionsLayout from '../../../../components/Layouts/ActionsLayout';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { EditorStateType } from '../../editorTypes';
 import createEnduranceTable from '../../redux/actions/composed/createEnduranceTable';
@@ -25,12 +25,7 @@ const EditorEndurancePane: FC = () => {
     sets: [...newSets],
   };
 
-  return (
-    <Stack grow={1}>
-      <EnduranceMainForm editor={editor} />
-      <CronoStartButton data={crono} />
-    </Stack>
-  );
+  return <ActionsLayout content={<EnduranceMainForm editor={editor} />} actions={<CronoStartButton data={crono} />} />;
 };
 
 export default EditorEndurancePane;

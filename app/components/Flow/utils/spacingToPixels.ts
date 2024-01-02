@@ -1,4 +1,4 @@
-import { SpacingValues } from '../layout.d';
+import { SpacingValues } from '../layout';
 
 const spacingToPixels = (spacing?: SpacingValues) => (spacing ? `${spacing * 4}px` : 0);
 

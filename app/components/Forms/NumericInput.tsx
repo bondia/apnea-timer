@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { COLOR_DARK } from '../../commonStyles';
-import { Spacer, Stack } from '../Layout';
+import { Spacer, Stack } from '../Flow';
 import LongTouchButton from '../LongTouchButton';
 import Typography, { TypographyType } from '../Typography/Typography';
 

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { COLOR_LIGHT } from '../../commonStyles';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
-import { Stack } from '../Layout';
+import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 
 type InfoBlockProps = {

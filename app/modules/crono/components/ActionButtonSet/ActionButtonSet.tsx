@@ -5,7 +5,6 @@ import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import findRunningSet from '../../helpers/findRunningSet';
 import SkipButton from './SkipButton';
 
-import { Stack } from '../../../../components/Layout';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
@@ -24,13 +23,13 @@ const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boo
   return current && SetTypeEnum.SET_TYPE_HOLD === current.type;
 };
 
-type CronoButtonSetProps = {
+type ActionButtonSetProps = {
   crono: CronoStateType;
   start: (mode: CronoModeEnum) => void;
   end: () => void;
 };
 
-const CronoButtonSet: FC<CronoButtonSetProps> = props => {
+const ActionButtonSet: FC<ActionButtonSetProps> = props => {
   const dispatch = useAppDispatch();
   const { crono, start, end } = props;
   const {
@@ -51,14 +50,14 @@ const CronoButtonSet: FC<CronoButtonSetProps> = props => {
   const trackContraction = () => dispatch(trackContractionAction());
 
   return (
-    <Stack grow={1} columnGap={2} horizontal spaceX={2} spaceY={2}>
+    <>
       {clock < 0 && !isEndurance && <LongTouchButton title="Auto" onPressStart={startAuto} />}
       {clock < 0 && <LongTouchButton title="Coach" onPressStart={startCoach} />}
       {current && clock >= 0 && !isFinished && <SkipButton set={current} />}
       {/* {clock >= 0 && showContractionsButton && <LongTouchButton title="1st Cont" onPressStart={trackContraction} />} */}
       {isFinished && <LongTouchButton title="Finish" onPressStart={end} />}
-    </Stack>
+    </>
   );
 };
 
-export default CronoButtonSet;
+export default ActionButtonSet;

@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { ScrollView } from 'react-native';
-import { Stack } from '../Layout';
+import { Stack } from '../Flow';
 
 const List: FC<PropsWithChildren> = ({ children }) => (
   <ScrollView>

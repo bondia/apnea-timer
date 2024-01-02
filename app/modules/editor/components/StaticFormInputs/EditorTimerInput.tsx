@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
+import { Spacer, Stack } from '../../../../components/Flow';
 import NumericInput from '../../../../components/Forms/NumericInput';
-import { Spacer, Stack } from '../../../../components/Layout';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';

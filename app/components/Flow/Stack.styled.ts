@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { marginSpacerRule } from './Spacer.styled';
-import { SpacingValues } from './layout.d';
+import { SpacingValues } from './layout';
 import flexDirection from './utils/flexDirection';
 import justifyContent from './utils/justifyContent';
 import spacingToPixels from './utils/spacingToPixels';

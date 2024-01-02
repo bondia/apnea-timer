@@ -4,8 +4,8 @@ import { TableTypeEnum } from '../../enums';
 import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 
+import { Spacer, Stack } from '../../../../components/Flow';
 import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
-import { Spacer, Stack } from '../../../../components/Layout';
 import { EditorStateType } from '../../editorTypes';
 
 const titleByType = {
@@ -30,7 +30,7 @@ const StaticMainForm: FC<Props> = ({
   const isFreeTable = TableTypeEnum.TABLE_TYPE_FREE === type;
 
   return (
-    <Stack shrink={0} spaceX={2}>
+    <Stack shrink={0}>
       <Spacer yAxis={1}>
         <TableTypeInput />
       </Spacer>

@@ -4,8 +4,8 @@ import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
-import { Spacer, Stack } from '../../../../components/Layout';
-import Surface from '../../../../components/Layout/Surface.styled';
+import { Spacer, Stack } from '../../../../components/Flow';
+import Surface from '../../../../components/Flow/Surface.styled';
 import { TypographyType } from '../../../../components/Typography/Typography';
 import { SurfaceColorsEnum } from '../../../../darkTheme';
 import useSetCalculations from '../../hooks/useSetCalculations';
@@ -35,7 +35,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
 
   return (
-    <Spacer xAxis={2} top={1} bottom={3}>
+    <Spacer top={1} bottom={3}>
       <Surface elevation={SurfaceColorsEnum.ELEVATION_03} radius>
         <Stack spaceAround horizontal spaceY={3}>
           {/* STATIC */}

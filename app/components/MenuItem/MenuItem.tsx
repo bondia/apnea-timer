@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import styled from 'styled-components/native';
 import { FONT_COLOR_LIGHT } from '../../commonStyles';
-import { Stack } from '../Layout';
+import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 
 type ActionAreaProps = {

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { AppScreenType, RoutesEnum } from '../../Routes';
 import { COLOR_DARK, COLOR_DARKER, COLOR_LIGHT, COLOR_NORMAL } from '../../commonStyles';
-import { ScrollableStack } from '../../components/Layout';
+import { ScrollableStack } from '../../components/Flow';
 import MenuItem from '../../components/MenuItem/MenuItem';
 import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
 import useAppNavitation from '../../useAppNavigation';

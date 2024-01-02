@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
 import { FONT_COLOR_GREY } from '../../../../commonStyles';
-import { Spacer, Stack } from '../../../../components/Layout';
+import { Spacer, Stack } from '../../../../components/Flow';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { TableSetListType } from '../../editorTypes';
 import { TableTypeEnum } from '../../enums';
@@ -23,11 +23,9 @@ const StaticSetsList: FC<Props> = ({ tableType, sets }) => {
         </Typography>
       </Spacer>
       <ScrollView key={tableType}>
-        <Spacer xAxis={2}>
-          {sets.map(({ pos, type, duration, zombie }) => (
-            <EditorTimerInput key={pos} index={pos} type={type} duration={duration} zombie={zombie} setNumber={pos} />
-          ))}
-        </Spacer>
+        {sets.map(({ pos, type, duration, zombie }) => (
+          <EditorTimerInput key={pos} index={pos} type={type} duration={duration} zombie={zombie} setNumber={pos} />
+        ))}
       </ScrollView>
     </Stack>
   );

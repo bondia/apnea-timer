@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { FC } from 'react';
 import styled from 'styled-components/native';
-import { Stack } from '../Layout';
+import { Stack } from '../Flow';
 
 type SafeAreaViewProps = {
   backgroundColor?: string;

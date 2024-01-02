@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { FONT_COLOR_LIGHT } from '../../../../commonStyles';
-import { Stack } from '../../../../components/Layout';
+import { Stack } from '../../../../components/Flow';
 import List, { Item } from '../../../../components/List';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { CronoSetListType, CronoSetType } from '../../cronoTypes';

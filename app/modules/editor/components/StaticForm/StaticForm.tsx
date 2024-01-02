@@ -1,5 +1,5 @@
 import React, { FC, useEffect } from 'react';
-import { Stack } from '../../../../components/Layout';
+import ActionsLayout from '../../../../components/Layouts/ActionsLayout';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
 import setsByTableType from '../../helpers/sets/setsByTableType';
@@ -31,11 +31,15 @@ const StaticForm: FC = () => {
   const showStartButton = crono.sets.length > 0;
 
   return (
-    <Stack>
-      <StaticMainForm editor={editor} />
-      <StaticSetsList tableType={tableType} sets={setsList} />
-      {showStartButton && <CronoStartButton data={crono} />}
-    </Stack>
+    <ActionsLayout
+      content={
+        <>
+          <StaticMainForm editor={editor} />
+          <StaticSetsList tableType={tableType} sets={setsList} />
+        </>
+      }
+      actions={showStartButton && <CronoStartButton data={crono} />}
+    />
   );
 };
 

@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { Stack } from '../../../../components/Layout';
+import { Stack } from '../../../../components/Flow';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { changeTableBase } from '../../redux/actions/composed/changeTableBase';

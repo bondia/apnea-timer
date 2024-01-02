@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
 import { COLOR_LIGHT } from '../../commonStyles';
-import { Spacer, Stack } from '../../components/Layout';
-import Surface from '../../components/Layout/Surface.styled';
+import { Spacer, Stack } from '../../components/Flow';
+import Surface from '../../components/Flow/Surface.styled';
 import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
 import Typography, { TypographyType } from '../../components/Typography/Typography';
 import { SurfaceColorsEnum } from '../../darkTheme';
