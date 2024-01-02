@@ -8,7 +8,6 @@ import { Spacer, Stack } from '../../../../components/Flow';
 import Surface from '../../../../components/Flow/Surface.styled';
 import { TypographyType } from '../../../../components/Typography/Typography';
 import { SurfaceColorsEnum } from '../../../../darkTheme';
-import useSetCalculations from '../../hooks/useSetCalculations';
 
 type LiveCounterProps = {
   crono: CronoStateType;
@@ -19,14 +18,14 @@ const LiveCounter: FC<LiveCounterProps> = ({
   crono: {
     trainingTable: { type: tableTypeEnum },
     running: { clock: spentTime, countdown: totalTime = 0 },
-    sets,
+    // sets,
   },
   set,
 }) => {
-  const {
-    spent,
-    status: { isDiving },
-  } = useSetCalculations(set || sets[0]);
+  // const {
+  //   spent,
+  //   status: { isDiving },
+  // } = useSetCalculations(set || sets[0]);
 
   // set data
   const pos = set ? set.pos : 0;
@@ -34,33 +33,33 @@ const LiveCounter: FC<LiveCounterProps> = ({
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
 
   return (
-    <Spacer top={1} bottom={3}>
+    <Spacer top={2} bottom={3}>
       <Surface elevation={SurfaceColorsEnum.ELEVATION_03} radius>
-        <Stack spaceAround horizontal spaceY={3}>
+        <Stack spaceAround horizontal spaceY={2}>
           {/* STATIC */}
           {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
             <>
               <InfoBlock
-                label="Table duration"
+                label="Time Left"
                 labelColor={FONT_COLOR_GREY}
                 labelType={TypographyType.SUBTITLE_2}
                 content={totalTime}
                 contentColor={FONT_COLOR_LIGHT}
-                contentType={TypographyType.H5}
+                contentType={TypographyType.H4}
                 isTimestamp
               />
 
-              {set ? (
+              {/* {set ? (
                 <InfoBlock
                   label={isDiving ? 'Hold' : 'Recovery'}
                   labelColor={FONT_COLOR_GREY}
-                  labelType={TypographyType.SUBTITLE_2}
+                  labelType={TypographyType.SUBTITLE_1}
                   content={spent}
                   contentColor={FONT_COLOR_LIGHT}
-                  contentType={TypographyType.H5}
+                  contentType={TypographyType.H3}
                   isTimestamp
                 />
-              ) : undefined}
+              ) : undefined} */}
 
               {/*
                 <InfoBlock
