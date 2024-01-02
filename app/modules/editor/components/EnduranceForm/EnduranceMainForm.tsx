@@ -47,7 +47,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
         {secondsToTimeString(totalTime)}
       </Typography>
 
-      <Spacer xAxis={4}>
+      <Stack>
         <NumericInput
           headline="Laps"
           decrease={() =>
@@ -145,7 +145,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             {secondsToTimeString(baseBreaks)}
           </Typography>
         </NumericInput>
-      </Spacer>
+      </Stack>
     </Stack>
   );
 };
