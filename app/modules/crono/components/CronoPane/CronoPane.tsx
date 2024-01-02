@@ -17,7 +17,7 @@ import setInitialStateAction from '../../redux/actions/setInitialStateAction';
 import { useCronoSelector } from '../../redux/cronoSelectors';
 import ActionButtonSet from '../ActionButtonSet/ActionButtonSet';
 import LiveCounter from '../LiveCounter/LiveCounter';
-import Sets from '../Sets/Sets';
+import SetsList from '../SetsList/SetsList';
 
 type CoronoPaneProps = {
   initialData: EditorStateType;
@@ -69,7 +69,7 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
       content={
         <Stack grow={1}>
           <LiveCounter crono={crono} set={current || undefined} />
-          <Sets sets={sets} active={current || undefined} />
+          <SetsList sets={sets} active={current || undefined} />
         </Stack>
       }
       actions={<ActionButtonSet crono={crono} start={onClickStart} end={endClickCrono} />}

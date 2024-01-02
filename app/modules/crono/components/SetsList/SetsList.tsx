@@ -4,14 +4,14 @@ import { Stack } from '../../../../components/Flow';
 import List, { Item } from '../../../../components/List';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { CronoSetListType, CronoSetType } from '../../cronoTypes';
-import Set from './Set';
+import Set from './SetItem';
 
-type SetsProps = {
+type SetsListProps = {
   sets: CronoSetListType;
   active?: CronoSetType;
 };
 
-const Sets: FC<SetsProps> = ({ sets, active }) => {
+const SetsList: FC<SetsListProps> = ({ sets, active }) => {
   const pos = active?.pos === undefined ? -1 : active?.pos;
   const siblingPos = pos % 2 === 0 ? pos + 1 : pos - 1;
   return (
@@ -25,14 +25,17 @@ const Sets: FC<SetsProps> = ({ sets, active }) => {
         </Typography>
       </Stack>
       <List>
-        {sets.map((set: CronoSetType) => (
-          <Item key={set.pos} active={set.pos === pos}>
-            <Set set={set} accent={set.pos === pos || set.pos === siblingPos} />
-          </Item>
-        ))}
+        {sets.map((set: CronoSetType) => {
+          const isActive = set.pos === pos || set.pos === siblingPos;
+          return (
+            <Item key={set.pos} active={isActive} width="50%">
+              <Set set={set} accent={isActive} />
+            </Item>
+          );
+        })}
       </List>
     </>
   );
 };
 
-export default Sets;
+export default SetsList;

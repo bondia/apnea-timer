@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { SpacingValues } from './layout';
+import { SpacingValues } from './layout.d';
 import spacingToPixels from './utils/spacingToPixels';
 
 type SpacerProps = {

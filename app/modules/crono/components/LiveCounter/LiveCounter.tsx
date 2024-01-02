@@ -24,7 +24,6 @@ const LiveCounter: FC<LiveCounterProps> = ({
   set,
 }) => {
   const {
-    setNumber,
     spent,
     status: { isDiving },
   } = useSetCalculations(set || sets[0]);
@@ -53,7 +52,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
 
               {set ? (
                 <InfoBlock
-                  label={isDiving ? `Hold (${setNumber})` : `Recovery (${setNumber})`}
+                  label={isDiving ? 'Hold' : 'Recovery'}
                   labelColor={FONT_COLOR_GREY}
                   labelType={TypographyType.SUBTITLE_2}
                   content={spent}
