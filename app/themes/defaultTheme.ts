@@ -36,10 +36,10 @@ const defaultTheme: AppTheme = {
     inverted100: 'azure',
     inverted050: 'azure',
     // elements
-    background: '#CDF5FD',
+    background: '#ffffff',
     surface: '#CDF5FD',
     // states
-    error: '#CF6679',
+    error: '#FF635A',
   },
 
   oldColors: {
