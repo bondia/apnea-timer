@@ -5,6 +5,7 @@ import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import findRunningSet from '../../helpers/findRunningSet';
 import SkipButton from './SkipButton';
 
+import { Stack } from '../../../../components/Flow';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
@@ -50,13 +51,13 @@ const ActionButtonSet: FC<ActionButtonSetProps> = props => {
   const trackContraction = () => dispatch(trackContractionAction());
 
   return (
-    <>
+    <Stack columnGap={3} horizontal>
       {clock < 0 && !isEndurance && <LongTouchButton title="Auto" onPressStart={startAuto} />}
       {clock < 0 && <LongTouchButton title="Coach" onPressStart={startCoach} />}
       {current && clock >= 0 && !isFinished && <SkipButton set={current} />}
       {/* {clock >= 0 && showContractionsButton && <LongTouchButton title="1st Cont" onPressStart={trackContraction} />} */}
       {isFinished && <LongTouchButton title="Finish" onPressStart={end} />}
-    </>
+    </Stack>
   );
 };
 

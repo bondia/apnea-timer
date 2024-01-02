@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 import { marginSpacerRule } from './Spacer.styled';
-import { SpacingValues } from './layout';
+import { SpacingValues } from './layout.d';
 import flexDirection from './utils/flexDirection';
 import justifyContent from './utils/justifyContent';
 import spacingToPixels from './utils/spacingToPixels';
@@ -25,6 +25,7 @@ export type StackProps = {
   // flex disposition
   wrap?: boolean;
   spaceAround?: boolean;
+  spaceBetween?: boolean;
   centered?: boolean;
   // gaps
   rowGap?: SpacingValues;
