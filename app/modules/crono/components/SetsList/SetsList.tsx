@@ -28,7 +28,7 @@ const SetsList: FC<SetsListProps> = ({ sets, active }) => {
         {sets.map((set: CronoSetType) => {
           const isActive = set.pos === pos || set.pos === siblingPos;
           return (
-            <Item key={set.pos} active={isActive} width="50%">
+            <Item key={set.pos} active={set.pos === pos} width="50%">
               <Set set={set} accent={isActive} />
             </Item>
           );

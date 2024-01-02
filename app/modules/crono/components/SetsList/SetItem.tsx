@@ -37,13 +37,13 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
 
       {/* Main info (Countdown / Duration) */}
       {!isFinished || accent ? (
-        <Typography type={accent ? TypographyType.H2 : TypographyType.BODY_1} color={color} centered>
+        <Typography type={accent ? TypographyType.H3 : TypographyType.BODY_1} color={color} centered>
           {durationText}
         </Typography>
       ) : null}
 
       {!accent && isFinished ? (
-        <Typography type={accent ? TypographyType.H2 : TypographyType.BODY_1} color={color} centered>
+        <Typography type={accent ? TypographyType.H3 : TypographyType.BODY_1} color={color} centered>
           {spentText}
         </Typography>
       ) : null}
