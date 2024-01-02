@@ -21,7 +21,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
   },
   set,
 }) => {
-  const { elevations, oldColors } = useAppTheme();
+  const { elevations, colors, oldColors } = useAppTheme();
 
   // const {
   //   spent,
@@ -45,7 +45,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 labelColor={oldColors.FONT_COLOR_GREY}
                 labelType={TypographyType.SUBTITLE_2}
                 content={totalTime}
-                contentColor={oldColors.FONT_COLOR_LIGHT}
+                contentColor={oldColors.FONT_COLOR_GREY}
                 contentType={TypographyType.H4}
                 isTimestamp
               />
@@ -84,14 +84,14 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 label="Current Dive"
                 labelColor={oldColors.FONT_COLOR_GREY}
                 content={currentSet}
-                contentColor={oldColors.FONT_COLOR_LIGHT}
+                contentColor={colors.primary900}
               />
 
               <InfoBlock
                 label="Targeting"
                 labelColor={oldColors.FONT_COLOR_GREY}
                 content={targeting}
-                contentColor={oldColors.FONT_COLOR_LIGHT}
+                contentColor={colors.primary900}
                 isTimestamp
               />
 
@@ -99,7 +99,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 label="Spent Time"
                 labelColor={oldColors.FONT_COLOR_GREY}
                 content={spentTime > 0 ? spentTime : 0}
-                contentColor={oldColors.FONT_COLOR_LIGHT}
+                contentColor={colors.primary900}
                 isTimestamp
               />
             </>

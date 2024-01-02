@@ -3,14 +3,14 @@ import { Provider } from 'react-redux';
 import { ThemeProvider } from 'styled-components/native';
 import Router from './app/Router';
 import configureAppStore from './app/redux/configureAppStore';
-import darkTheme from './app/themes/darkTheme';
+import defaultTheme from './app/themes/defaultTheme';
 
 const store = configureAppStore();
 
 const App: FC = () => {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={defaultTheme}>
         <Router />
       </ThemeProvider>
     </Provider>

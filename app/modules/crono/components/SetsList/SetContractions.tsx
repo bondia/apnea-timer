@@ -13,13 +13,13 @@ const SetContractions: FC<SetContractionsProps> = ({
     running: { contraction },
   },
 }) => {
-  const { oldColors } = useAppTheme();
+  const { colors } = useAppTheme();
   const contractionsText = useMemo(() => secondsToTimeString(contraction), [contraction]);
   if (contraction <= 0) {
     return null;
   }
   return (
-    <Typography type={TypographyType.CAPTION} color={oldColors.FONT_COLOR_LIGHT} centered>
+    <Typography type={TypographyType.CAPTION} color={colors.primary900} centered>
       {contractionsText}
     </Typography>
   );

@@ -20,11 +20,11 @@ type MenuItemProps = {
 };
 
 const MenuItem: FC<MenuItemProps> = ({ title, onPress, color }) => {
-  const { oldColors } = useAppTheme();
+  const { colors } = useAppTheme();
   return (
     <ActionArea onPress={onPress} color={color}>
       <Stack grow={1} centered>
-        <Typography type={TypographyType.H3} color={oldColors.FONT_COLOR_LIGHT} centered>
+        <Typography type={TypographyType.H3} color={colors.inverted900} centered>
           {title}
         </Typography>
       </Stack>

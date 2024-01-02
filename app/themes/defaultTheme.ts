@@ -1,10 +1,49 @@
 import { AppTheme } from './theme.d';
 
 const defaultTheme: AppTheme = {
-  oldColors: {
-    // FONTS
-    FONT_COLOR_LIGHT: 'azure',
+  colors: {
+    // primary
+    primary900: '#00A9FF',
+    primary800: '#00A9FF',
+    primary700: '#00A9FF',
+    primary600: '#00A9FF',
+    primary500: '#00A9FF',
+    primary400: '#00A9FF',
+    primary300: '#00A9FF',
+    primary200: '#00A9FF',
+    primary100: '#00A9FF',
+    primary050: '#00A9FF',
+    // secondary
+    secondary900: '#89CFF3',
+    secondary800: '#89CFF3',
+    secondary700: '#89CFF3',
+    secondary600: '#89CFF3',
+    secondary500: '#89CFF3',
+    secondary400: '#89CFF3',
+    secondary300: '#89CFF3',
+    secondary200: '#89CFF3',
+    secondary100: '#89CFF3',
+    secondary050: '#89CFF3',
+    // inverted
+    inverted900: 'azure',
+    inverted800: 'azure',
+    inverted700: 'azure',
+    inverted600: 'azure',
+    inverted500: 'azure',
+    inverted400: 'azure',
+    inverted300: 'azure',
+    inverted200: 'azure',
+    inverted100: 'azure',
+    inverted050: 'azure',
+    // elements
+    background: '#CDF5FD',
+    surface: '#CDF5FD',
+    // states
+    error: '#CF6679',
+  },
 
+  oldColors: {
+    FONT_COLOR_LIGHT: 'azure',
     FONT_COLOR_GREY: '#a8a8a8',
     FONT_CLOLR_GREY_LIGHT: '#e6e6e6',
 
@@ -15,13 +54,6 @@ const defaultTheme: AppTheme = {
     COLOR_DARK: '#0070B5',
     COLOR_DARKER: '#00619E',
     COLOR_DARKEST: '#004F80',
-
-    // RED
-    COLOR_RED_NORMAL: '#FF635A',
-
-    // GREEN
-    // http://paletton.com/#uid=1340u0kaFwb2SSx6pHZfDr6ljlq
-    COLOR_GREEN_NORMAL: '#4B9376',
   },
   elevations: {
     ELEVATION_00: '#121212',

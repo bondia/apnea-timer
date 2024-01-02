@@ -18,7 +18,7 @@ type SetItemProps = {
 };
 
 const SetItem: FC<SetItemProps> = ({ set, accent }) => {
-  const { oldColors } = useAppTheme();
+  const { colors, oldColors } = useAppTheme();
   const {
     position,
     durationText,
@@ -26,7 +26,7 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
     status: { isDiving, isFinished },
   } = useSetCalculations(set);
 
-  const color = isDiving ? oldColors.COLOR_RED_NORMAL : oldColors.COLOR_GREEN_NORMAL;
+  const color = isDiving ? colors.error : colors.primary900;
 
   return (
     <Stack spaceX={2} spaceY={2}>
@@ -50,7 +50,7 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
       ) : null}
 
       {accent ? (
-        <Typography type={TypographyType.BODY_1} color={oldColors.FONT_COLOR_LIGHT} centered>
+        <Typography type={TypographyType.BODY_1} color={colors.primary900} centered>
           {spentText}
         </Typography>
       ) : null}

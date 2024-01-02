@@ -17,7 +17,7 @@ const StaticMainForm: FC<Props> = ({
     trainingTable: { base, type, duration: totalTime },
   },
 }) => {
-  const { oldColors } = useAppTheme();
+  const { colors } = useAppTheme();
 
   const isFreeTable = TableTypeEnum.TABLE_TYPE_FREE === type;
 
@@ -27,8 +27,8 @@ const StaticMainForm: FC<Props> = ({
   };
 
   const colorByType = {
-    [TableTypeEnum.TABLE_TYPE_CO2]: oldColors.COLOR_RED_NORMAL,
-    [TableTypeEnum.TABLE_TYPE_O2]: oldColors.COLOR_GREEN_NORMAL,
+    [TableTypeEnum.TABLE_TYPE_CO2]: colors.error,
+    [TableTypeEnum.TABLE_TYPE_O2]: colors.primary900,
   };
 
   return (

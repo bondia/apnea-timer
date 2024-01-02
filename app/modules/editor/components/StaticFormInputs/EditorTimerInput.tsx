@@ -24,10 +24,9 @@ const EditorTimerInput: FC<EditorTimerInputProps> = ({
   zombie = false,
 }) => {
   const dispatch = useAppDispatch();
-  const { oldColors } = useAppTheme();
+  const { colors, oldColors } = useAppTheme();
 
-  const clockColorByType =
-    SetTypeEnum.SET_TYPE_PREPARE === type ? oldColors.COLOR_GREEN_NORMAL : oldColors.COLOR_RED_NORMAL;
+  const clockColorByType = SetTypeEnum.SET_TYPE_PREPARE === type ? colors.primary900 : colors.error;
   const clockColor = zombie ? oldColors.FONT_COLOR_GREY : clockColorByType;
 
   const increase = () => dispatch(increaseTimeItem(index, 5));

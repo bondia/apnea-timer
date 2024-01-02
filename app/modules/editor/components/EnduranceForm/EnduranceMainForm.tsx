@@ -34,7 +34,7 @@ type EditorEnduranceProps = {
 const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const dispatch = useAppDispatch();
   const actionHandler = handleAction(dispatch);
-  const { oldColors } = useAppTheme();
+  const { oldColors, colors } = useAppTheme();
 
   const {
     editor: { trainingTable },
@@ -44,7 +44,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
 
   return (
     <Stack spaceAround grow={1}>
-      <Typography type={TypographyType.H1} color={oldColors.COLOR_GREEN_NORMAL} centered>
+      <Typography type={TypographyType.H1} color={colors.primary900} centered>
         {secondsToTimeString(totalTime)}
       </Typography>
 

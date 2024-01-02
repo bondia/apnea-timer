@@ -6,12 +6,12 @@ import useAppTheme from '../../../themes/useAppTheme';
 import useMouthfill from '../hooks/useMouthfill';
 
 const MouthfillForm: FC = () => {
-  const { oldColors } = useAppTheme();
+  const { colors, oldColors } = useAppTheme();
   const { testPerformed, setTestPerformed, testFailed, setTestFailed, performed, setPerformed, maxDepth } =
     useMouthfill();
   return (
     <Stack spaceAround grow={1}>
-      <Typography type={TypographyType.H1} color={oldColors.COLOR_GREEN_NORMAL} centered>
+      <Typography type={TypographyType.H1} color={colors.primary900} centered>
         {maxDepth} m
       </Typography>
 
