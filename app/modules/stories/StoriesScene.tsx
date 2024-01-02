@@ -31,59 +31,47 @@ const StoreisScene: FC = () => (
       <Spacer spacing={10} />
 
       <Typography type={TypographyType.H3}>STACK</Typography>
-      <Spacer top={2} xAxis={4}>
-        <Stack debug>
-          <Typography type={TypographyType.BODY_1}>Text 1</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 2</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 3</Typography>
-        </Stack>
-      </Spacer>
+      <Stack spaceTop={2} spaceX={4} debug>
+        <Typography type={TypographyType.BODY_1}>Text 1</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 2</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 3</Typography>
+      </Stack>
 
-      <Spacer top={2} xAxis={4}>
-        <Stack horizontal debug>
-          <Typography type={TypographyType.BODY_1}>Text 1</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 2</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 3</Typography>
-        </Stack>
-      </Spacer>
+      <Stack spaceTop={2} spaceX={4} horizontal debug>
+        <Typography type={TypographyType.BODY_1}>Text 1</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 2</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 3</Typography>
+      </Stack>
 
-      <Spacer top={2} xAxis={4}>
-        <Stack spaceAround horizontal debug>
-          <Typography type={TypographyType.BODY_1}>Text 1</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 2</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 3</Typography>
-        </Stack>
-      </Spacer>
+      <Stack spaceTop={2} spaceX={4} spaceAround horizontal debug>
+        <Typography type={TypographyType.BODY_1}>Text 1</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 2</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 3</Typography>
+      </Stack>
 
-      <Spacer top={2} xAxis={4}>
-        <Stack centered horizontal debug>
-          <Typography type={TypographyType.BODY_1}>Text 1</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 2</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 3</Typography>
-        </Stack>
-      </Spacer>
+      <Stack spaceTop={2} spaceX={4} centered horizontal debug>
+        <Typography type={TypographyType.BODY_1}>Text 1</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 2</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 3</Typography>
+      </Stack>
 
-      <Spacer top={2} xAxis={4}>
-        <Stack columnGap={4} centered horizontal debug>
-          <Typography type={TypographyType.BODY_1}>Text 1</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 2</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 3</Typography>
-        </Stack>
-      </Spacer>
+      <Stack spaceTop={2} spaceX={4} columnGap={4} centered horizontal debug>
+        <Typography type={TypographyType.BODY_1}>Text 1</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 2</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 3</Typography>
+      </Stack>
 
-      <Spacer top={2} xAxis={4}>
-        <Stack wrap rowGap={10} centered horizontal debug>
-          <Typography type={TypographyType.BODY_1}>Text 1</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 2</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 3</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 1</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 2</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 3</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 1</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 2</Typography>
-          <Typography type={TypographyType.BODY_1}>Text 3</Typography>
-        </Stack>
-      </Spacer>
+      <Stack spaceTop={2} spaceX={4} wrap rowGap={10} centered horizontal debug>
+        <Typography type={TypographyType.BODY_1}>Text 1</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 2</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 3</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 1</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 2</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 3</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 1</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 2</Typography>
+        <Typography type={TypographyType.BODY_1}>Text 3</Typography>
+      </Stack>
 
       <Spacer spacing={10} />
 

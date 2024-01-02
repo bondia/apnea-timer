@@ -1,7 +1,7 @@
 import React, { FC, useCallback } from 'react';
 
 import { RoutesEnum } from '../../../../Routes';
-import { Spacer, Stack } from '../../../../components/Layout';
+import { Stack } from '../../../../components/Layout';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import useAppNavitation from '../../../../useAppNavigation';
 import { EditorStateType } from '../../editorTypes';
@@ -19,11 +19,9 @@ const CronoStartButton: FC<CronoStartButtonProps> = props => {
   }, [data, navigation]);
 
   return (
-    <Spacer top={2} xAxis={2}>
-      <Stack grow={0} shrink={0} basis="auto" horizontal>
-        <LongTouchButton title="Start" onPressStart={onPressStart} />
-      </Stack>
-    </Spacer>
+    <Stack grow={0} shrink={0} basis="auto" horizontal spaceTop={2} spaceX={2}>
+      <LongTouchButton title="Start" onPressStart={onPressStart} />
+    </Stack>
   );
 };
 

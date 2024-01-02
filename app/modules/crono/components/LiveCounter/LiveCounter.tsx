@@ -37,10 +37,10 @@ const LiveCounter: FC<LiveCounterProps> = ({
   return (
     <Spacer xAxis={2} top={1} bottom={3}>
       <Surface elevation={SurfaceColorsEnum.ELEVATION_03} radius>
-        <Spacer yAxis={3}>
+        <Stack spaceAround horizontal spaceY={3}>
           {/* STATIC */}
           {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
-            <Stack spaceAround horizontal>
+            <>
               <InfoBlock
                 label="Table duration"
                 labelColor={FONT_COLOR_GREY}
@@ -74,13 +74,13 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 isTimestamp
                 />
               */}
-            </Stack>
+            </>
           )}
 
           {/* ENDURANCE */}
           {/* TODO: CLEAN UP FOR ENDURANCE */}
           {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
-            <Stack spaceAround horizontal>
+            <>
               <InfoBlock
                 label="Current Dive"
                 labelColor={FONT_COLOR_GREY}
@@ -103,9 +103,9 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 contentColor={FONT_COLOR_LIGHT}
                 isTimestamp
               />
-            </Stack>
+            </>
           )}
-        </Spacer>
+        </Stack>
       </Surface>
     </Spacer>
   );

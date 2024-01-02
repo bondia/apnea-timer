@@ -6,6 +6,11 @@ type SpacerProps = {
   // block
   spacing?: SpacingValues;
   horizontal?: boolean;
+  // debug
+  debug?: string | boolean;
+} & MarginSpacerRuleProps;
+
+type MarginSpacerRuleProps = {
   // margins
   xAxis?: SpacingValues;
   yAxis?: SpacingValues;
@@ -13,11 +18,9 @@ type SpacerProps = {
   right?: SpacingValues;
   bottom?: SpacingValues;
   left?: SpacingValues;
-  // debug
-  debug?: string | boolean;
 };
 
-const marginRule = ({ xAxis, yAxis, top, right, bottom, left }: SpacerProps) => {
+export const marginSpacerRule = ({ xAxis, yAxis, top, right, bottom, left }: MarginSpacerRuleProps) => {
   const topValue = spacingToPixels(top || yAxis || undefined);
   const bottomValue = spacingToPixels(bottom || yAxis || undefined);
   const rightValue = spacingToPixels(right || xAxis || undefined);
@@ -26,7 +29,7 @@ const marginRule = ({ xAxis, yAxis, top, right, bottom, left }: SpacerProps) => 
 };
 
 const Spacer = styled.View<SpacerProps>`
-  margin: ${marginRule};
+  margin: ${marginSpacerRule};
   width: ${({ spacing, horizontal }) => (spacing && horizontal ? spacingToPixels(spacing) : 'auto')};
   height: ${({ spacing, horizontal }) => (spacing && !horizontal ? spacingToPixels(spacing) : 'auto')};
   border: ${({ debug = false }) => (debug ? `1px solid ${debug === true ? 'black' : debug}` : 'none')};

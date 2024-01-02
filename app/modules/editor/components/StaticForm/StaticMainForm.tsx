@@ -30,12 +30,12 @@ const StaticMainForm: FC<Props> = ({
   const isFreeTable = TableTypeEnum.TABLE_TYPE_FREE === type;
 
   return (
-    <Stack shrink={0}>
-      <Spacer yAxis={1} xAxis={2}>
+    <Stack shrink={0} spaceX={2}>
+      <Spacer yAxis={1}>
         <TableTypeInput />
       </Spacer>
 
-      <Spacer yAxis={1} xAxis={2}>
+      <Spacer yAxis={1}>
         <Stack horizontal spaceAround>
           {!isFreeTable && (
             <InfoBlock
@@ -52,7 +52,7 @@ const StaticMainForm: FC<Props> = ({
       </Spacer>
 
       {!isFreeTable && (
-        <Spacer yAxis={1} xAxis={2}>
+        <Spacer yAxis={1}>
           <TableBaseInput />
         </Spacer>
       )}
