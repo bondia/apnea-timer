@@ -12,12 +12,12 @@ const SafeAreaView = styled.SafeAreaView<SafeAreaViewProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
-type Props = {
+type SceneLayoutProps = {
   children?: React.ReactNode;
   backgroundColor?: string;
 };
 
-const SceneWrapper: FC<Props> = ({ children, backgroundColor }) => (
+const SceneLayout: FC<SceneLayoutProps> = ({ children, backgroundColor }) => (
   <SafeAreaView backgroundColor={backgroundColor}>
     <Stack grow={1} fullWidth>
       {children}
@@ -26,4 +26,4 @@ const SceneWrapper: FC<Props> = ({ children, backgroundColor }) => (
   </SafeAreaView>
 );
 
-export default SceneWrapper;
+export default SceneLayout;

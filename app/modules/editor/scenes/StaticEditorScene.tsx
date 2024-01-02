@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import SceneWrapper from '../../../components/SceneWrapper/SceneWrapper';
+import SceneLayout from '../../../components/Layouts/SceneLayout';
 import StaticForm from '../components/StaticForm/StaticForm';
 
 const StaticEditorScene: FC = () => (
-  <SceneWrapper>
+  <SceneLayout>
     <StaticForm />
-  </SceneWrapper>
+  </SceneLayout>
 );
 
 export default StaticEditorScene;

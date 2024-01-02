@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { AppScreenType, RoutesEnum } from '../../Routes';
-import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
+import SceneLayout from '../../components/Layouts/SceneLayout';
 import { SurfaceColorsEnum } from '../../darkTheme';
 import { EditorStateType } from '../editor/editorTypes';
 import CronoPane from './components/CronoPane/CronoPane';
@@ -14,9 +14,9 @@ const CronoScene: FC<CronoSceneProps> = ({
     params: { initialData },
   },
 }) => (
-  <SceneWrapper backgroundColor={SurfaceColorsEnum.ELEVATION_00}>
+  <SceneLayout backgroundColor={SurfaceColorsEnum.ELEVATION_00}>
     <CronoPane initialData={initialData} />
-  </SceneWrapper>
+  </SceneLayout>
 );
 
 export default CronoScene;

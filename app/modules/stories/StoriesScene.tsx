@@ -3,12 +3,12 @@ import { ScrollView } from 'react-native';
 import { COLOR_LIGHT } from '../../commonStyles';
 import { Spacer, Stack } from '../../components/Flow';
 import Surface from '../../components/Flow/Surface.styled';
-import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
+import SceneLayout from '../../components/Layouts/SceneLayout';
 import Typography, { TypographyType } from '../../components/Typography/Typography';
 import { SurfaceColorsEnum } from '../../darkTheme';
 
 const StoreisScene: FC = () => (
-  <SceneWrapper>
+  <SceneLayout>
     <ScrollView>
       <Spacer spacing={4} />
       <Typography type={TypographyType.H3}>TYPOGRAPHY</Typography>
@@ -163,7 +163,7 @@ const StoreisScene: FC = () => (
 
       <Spacer spacing={10} />
     </ScrollView>
-  </SceneWrapper>
+  </SceneLayout>
 );
 
 export default StoreisScene;
