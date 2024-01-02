@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { SurfaceColorsEnum } from '../../darkTheme';
+import useAppTheme from '../../themes/useAppTheme';
 import { Spacer, Stack } from '../Flow';
 import Surface from '../Flow/Surface.styled';
 
@@ -9,7 +9,8 @@ type ItemProps = PropsWithChildren<{
 }>;
 
 const Item: FC<ItemProps> = ({ active = false, width = '100%', children }) => {
-  const elevation = active ? SurfaceColorsEnum.ELEVATION_24 : SurfaceColorsEnum.ELEVATION_01;
+  const theme = useAppTheme();
+  const elevation = active ? theme.elevations.ELEVATION_24 : theme.elevations.ELEVATION_01;
   return (
     <Stack basis={width}>
       <Spacer xAxis={1}>

@@ -17,7 +17,4 @@ export const COLOR_RED_NORMAL = '#FF635A';
 
 // GREEN
 // http://paletton.com/#uid=1340u0kaFwb2SSx6pHZfDr6ljlq
-export const COLOR_GREEN_LIGHTER = '#D5E9E1';
-export const COLOR_GREEN_LIGHT = '#A5CFBE';
 export const COLOR_GREEN_NORMAL = '#4B9376';
-export const COLOR_GREEN_STRONG = '#277455';

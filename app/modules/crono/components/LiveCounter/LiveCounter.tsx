@@ -7,7 +7,7 @@ import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import { Spacer, Stack } from '../../../../components/Flow';
 import Surface from '../../../../components/Flow/Surface.styled';
 import { TypographyType } from '../../../../components/Typography/Typography';
-import { SurfaceColorsEnum } from '../../../../darkTheme';
+import useAppTheme from '../../../../themes/useAppTheme';
 
 type LiveCounterProps = {
   crono: CronoStateType;
@@ -22,6 +22,8 @@ const LiveCounter: FC<LiveCounterProps> = ({
   },
   set,
 }) => {
+  const { elevations } = useAppTheme();
+
   // const {
   //   spent,
   //   status: { isDiving },
@@ -34,7 +36,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
 
   return (
     <Spacer top={2} bottom={3}>
-      <Surface elevation={SurfaceColorsEnum.ELEVATION_03} radius>
+      <Surface elevation={elevations.ELEVATION_03} radius>
         <Stack spaceAround horizontal spaceY={2}>
           {/* STATIC */}
           {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
