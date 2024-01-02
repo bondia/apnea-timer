@@ -2,7 +2,7 @@ import { StoreThunkAction } from '../../../../../redux/types';
 import calculateAverageContractions from '../../../helpers/calculateAverageContractions';
 import setContractionsAction from '../setContractionsAction';
 
-export type UpdateContractionsAverageAction = () => StoreThunkAction;
+type UpdateContractionsAverageAction = () => StoreThunkAction;
 
 const updateContractionsAverageAction: UpdateContractionsAverageAction = () => (dispatch, getState) => {
   const { crono } = getState();

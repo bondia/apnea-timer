@@ -1,5 +1,7 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC, useCallback, useEffect } from 'react';
+import { Stack } from '../../../../components/Flow';
+import ActionsLayout from '../../../../components/Layouts/ActionsLayout';
 import { useAppDispatch } from '../../../../redux/hooks';
 import useAppNavitation from '../../../../useAppNavigation';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
@@ -13,10 +15,9 @@ import setCronoModeAction from '../../redux/actions/setCronoModeAction';
 import setCronoStartTimestampAction from '../../redux/actions/setCronoStartTimestampAction';
 import setInitialStateAction from '../../redux/actions/setInitialStateAction';
 import { useCronoSelector } from '../../redux/cronoSelectors';
-import CronoButtonsSet from '../ActionButtonsSet';
+import ActionButtonSet from '../ActionButtonSet/ActionButtonSet';
 import LiveCounter from '../LiveCounter/LiveCounter';
 import Sets from '../Sets/Sets';
-import * as SC from './CronoPane.styled';
 
 type CoronoPaneProps = {
   initialData: EditorStateType;
@@ -64,13 +65,15 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   const current = findRunningSet(sets);
 
   return (
-    <SC.PaneWrapper>
-      <SC.ContentWrapper>
-        <LiveCounter crono={crono} set={current || undefined} />
-        <Sets sets={sets} active={current || undefined} />
-      </SC.ContentWrapper>
-      <CronoButtonsSet crono={crono} start={onClickStart} end={endClickCrono} />
-    </SC.PaneWrapper>
+    <ActionsLayout
+      content={
+        <Stack grow={1}>
+          <LiveCounter crono={crono} set={current || undefined} />
+          <Sets sets={sets} active={current || undefined} />
+        </Stack>
+      }
+      actions={<ActionButtonSet crono={crono} start={onClickStart} end={endClickCrono} />}
+    />
   );
 };
 

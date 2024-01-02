@@ -1,17 +1,13 @@
 import React, { FC, useEffect } from 'react';
-
-import TextComponent from '../../../../components/TextComponent/TextComponent';
-import headlineByTableType from './headlineByTableType';
-import CronoStartButton from '../CronoStartButton/CronoStartButton';
+import ActionsLayout from '../../../../components/Layouts/ActionsLayout';
+import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
 import setsByTableType from '../../helpers/sets/setsByTableType';
+import changeTableType from '../../redux/actions/composed/changeTableType';
+import { editorSelector } from '../../redux/editorSelectors';
+import CronoStartButton from '../CronoStartButton/CronoStartButton';
 import StaticSetsList from '../StaticSetsList/StaticSetsList';
 import StaticMainForm from './StaticMainForm';
-import { editorSelector } from '../../redux/editorSelectors';
-import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
-import { changeTableType } from '../../redux/actions/composed/changeTableType';
-
-import * as SC from './StaticForm.styled';
 
 const StaticForm: FC = () => {
   const dispatch = useAppDispatch();
@@ -29,23 +25,21 @@ const StaticForm: FC = () => {
     trainingTable: { type: tableType },
   } = editor;
 
-  const headline = headlineByTableType(tableType);
   const setsList = setsByTableType(editor, tableType);
   const newSets = editor.sets.filter(s => !s.zombie);
   const crono = { ...editor, sets: [...newSets] };
   const showStartButton = crono.sets.length > 0;
 
   return (
-    <SC.FormWrapper>
-      <StaticMainForm editor={editor} />
-
-      <SC.SetsListWrapper fullHeight={!showStartButton}>
-        <TextComponent style={SC.baseStyles.label}>{headline}</TextComponent>
-        <StaticSetsList sets={setsList} />
-      </SC.SetsListWrapper>
-
-      {showStartButton && <CronoStartButton data={crono} />}
-    </SC.FormWrapper>
+    <ActionsLayout
+      content={
+        <>
+          <StaticMainForm editor={editor} />
+          <StaticSetsList tableType={tableType} sets={setsList} />
+        </>
+      }
+      actions={showStartButton && <CronoStartButton data={crono} />}
+    />
   );
 };
 

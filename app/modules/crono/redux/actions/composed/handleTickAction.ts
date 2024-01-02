@@ -8,7 +8,7 @@ import setInitialStateAction from '../setInitialStateAction';
 import handleFinishTableAction from './handleFinishTableAction';
 import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 
-export type HandleTickAction = () => StoreThunkAction;
+type HandleTickAction = () => StoreThunkAction;
 
 const handleTick: HandleTickAction = () => {
   return (dispatch, getState): void => {

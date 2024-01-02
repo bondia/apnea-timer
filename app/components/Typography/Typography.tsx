@@ -1,4 +1,4 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import * as SC from './Typography.syled';
 
 export enum TypographyType {
@@ -17,9 +17,7 @@ export enum TypographyType {
   OVERLINE = 'Overline',
 }
 
-type TypographyComponent = {
-  children: ReactNode;
-} & SC.TypographyStylesType;
+type TypographyComponent = PropsWithChildren<SC.TypographyStylesType>;
 
 type TypographyProps = {
   type?: TypographyType;

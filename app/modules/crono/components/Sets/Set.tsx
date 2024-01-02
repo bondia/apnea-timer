@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_LIGHT } from '../../../../commonStyles';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
-import { SURFACE_COLORS } from '../../../../darkTheme';
+import { SurfaceColorsEnum } from '../../../../darkTheme';
 import { CronoSetType } from '../../cronoTypes';
 import useSetCalculations from '../../hooks/useSetCalculations';
 import * as SC from './Sets.styled';
@@ -24,7 +24,7 @@ const Set: FC<SetProps> = ({ set, accent }) => {
   return (
     <SC.Set>
       <SC.SetNumber>
-        <Typography color={SURFACE_COLORS.ELEVATION_00}>{position}</Typography>
+        <Typography color={SurfaceColorsEnum.ELEVATION_00}>{position}</Typography>
       </SC.SetNumber>
 
       {/* Main info (Countdown / Duration) */}

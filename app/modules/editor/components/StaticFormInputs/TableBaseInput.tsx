@@ -1,25 +1,15 @@
 import React, { FC } from 'react';
-import styled from 'styled-components/native';
+import { Stack } from '../../../../components/Flow';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
-import { useEditorBaseSelector } from '../../redux/editorSelectors';
 import { changeTableBase } from '../../redux/actions/composed/changeTableBase';
-
-export const ButtonsSet = styled.View`
-  flex: 1;
-  flex-direction: row;
-  align-items: center;
-`;
-
-export const ButtonWrapper = styled.View`
-  flex: 1;
-`;
+import { useEditorBaseSelector } from '../../redux/editorSelectors';
 
 const TableBaseInput: FC = () => {
   const dispatch = useAppDispatch();
   const base = useEditorBaseSelector();
   return (
-    <ButtonsSet>
+    <Stack horizontal columnGap={2}>
       <LongTouchButton
         title="-"
         onPressStart={() => dispatch(changeTableBase(base - 5))}
@@ -30,7 +20,7 @@ const TableBaseInput: FC = () => {
         onPressStart={() => dispatch(changeTableBase(base + 5))}
         onPressInterval={() => dispatch(changeTableBase(base + 5))}
       />
-    </ButtonsSet>
+    </Stack>
   );
 };
 

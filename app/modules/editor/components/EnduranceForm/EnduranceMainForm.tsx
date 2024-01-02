@@ -1,16 +1,15 @@
 import React, { FC } from 'react';
-import { ScrollView, StyleSheet } from 'react-native';
-import { COLOR_LIGHT, FONT_COLOR_GREY, FONT_SIZE } from '../../../../commonStyles';
-import LongTouchButton from '../../../../components/LongTouchButton';
-import TextComponent from '../../../../components/TextComponent/TextComponent';
-import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
-import * as SC from './EnduranceForm.styled';
-import { ChangeTableBaseBreaksType, changeTableBaseBreaks } from '../../redux/actions/composed/changeTableBaseBreaks';
-import { useAppDispatch } from '../../../../redux/hooks';
 import { AppDispatch } from '../../../../../App';
-import { EditorChangeTableBaseAction, changeTableBase } from '../../redux/actions/composed/changeTableBase';
-import { ChangeEnduranceLapsType, changeEnduranceLaps } from '../../redux/actions/composed/changeEnduranceLaps';
+import { COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
+import { Spacer, Stack } from '../../../../components/Flow';
+import NumericInput from '../../../../components/Forms/NumericInput';
+import Typography, { TypographyType } from '../../../../components/Typography/Typography';
+import { useAppDispatch } from '../../../../redux/hooks';
+import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { EditorStateType, EnduranceTrainingTableType } from '../../editorTypes';
+import { ChangeEnduranceLapsType, changeEnduranceLaps } from '../../redux/actions/composed/changeEnduranceLaps';
+import { EditorChangeTableBaseAction, changeTableBase } from '../../redux/actions/composed/changeTableBase';
+import { ChangeTableBaseBreaksType, changeTableBaseBreaks } from '../../redux/actions/composed/changeTableBaseBreaks';
 
 type HandleActionParams = {
   original: number;
@@ -28,23 +27,6 @@ const handleAction =
     }
   };
 
-/**
- * TODO: Style sheets to be replaced
- */
-const baseStyles = StyleSheet.create({
-  headerLabel: {
-    textAlign: 'center',
-    color: FONT_COLOR_GREY,
-  },
-
-  headerText: {
-    textAlign: 'center',
-    fontSize: FONT_SIZE.FONT_SIZE_L,
-    color: COLOR_LIGHT,
-    flex: 2,
-    paddingTop: 20,
-  },
-});
 type EditorEnduranceProps = {
   editor: EditorStateType;
 };
@@ -60,132 +42,111 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const { enduranceLaps, base, baseBreaks, duration: totalTime } = trainingTable as EnduranceTrainingTableType;
 
   return (
-    <SC.MainWrapper>
-      <SC.Block>
-        <TextComponent style={baseStyles.headerLabel}>Announced Performance</TextComponent>
-        <SC.RowContainer>
-          <TextComponent style={baseStyles.headerText}>{secondsToTimeString(totalTime)}</TextComponent>
-        </SC.RowContainer>
-      </SC.Block>
+    <Stack spaceAround grow={1}>
+      <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
+        {secondsToTimeString(totalTime)}
+      </Typography>
 
-      <ScrollView>
-        <SC.Block>
-          <TextComponent style={baseStyles.headerLabel}>Laps</TextComponent>
+      <Stack>
+        <NumericInput
+          headline="Laps"
+          decrease={() =>
+            actionHandler({
+              original: enduranceLaps,
+              increase: -1,
+              action: changeEnduranceLaps,
+            })
+          }
+          increase={() =>
+            actionHandler({
+              original: enduranceLaps,
+              increase: 1,
+              action: changeEnduranceLaps,
+            })
+          }
+        >
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {enduranceLaps}
+          </Typography>
+        </NumericInput>
 
-          <SC.RowContainer>
-            <LongTouchButton
-              title="-"
-              onPressStart={() =>
-                actionHandler({
-                  original: enduranceLaps,
-                  increase: -1,
-                  action: changeEnduranceLaps,
-                })
-              }
-            />
+        <Spacer spacing={6} />
 
-            <TextComponent style={baseStyles.headerText}>{enduranceLaps}</TextComponent>
+        <NumericInput
+          headline="Dive Time"
+          decrease={() =>
+            actionHandler({
+              original: base,
+              increase: -1,
+              action: changeTableBase,
+            })
+          }
+          decreaseInterval={() =>
+            actionHandler({
+              original: base,
+              increase: -5,
+              action: changeTableBase,
+            })
+          }
+          increase={() =>
+            actionHandler({
+              original: base,
+              increase: 1,
+              action: changeTableBase,
+            })
+          }
+          increaseInterval={() =>
+            actionHandler({
+              original: base,
+              increase: 5,
+              action: changeTableBase,
+            })
+          }
+        >
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {secondsToTimeString(base)}
+          </Typography>
+        </NumericInput>
 
-            <LongTouchButton
-              title="+"
-              onPressStart={() =>
-                actionHandler({
-                  original: enduranceLaps,
-                  increase: 1,
-                  action: changeEnduranceLaps,
-                })
-              }
-            />
-          </SC.RowContainer>
-        </SC.Block>
+        <Spacer spacing={6} />
 
-        <SC.Block>
-          <TextComponent style={baseStyles.headerLabel}>Dive Time</TextComponent>
-          <SC.RowContainer>
-            <LongTouchButton
-              title="-"
-              onPressStart={() =>
-                actionHandler({
-                  original: base,
-                  increase: -1,
-                  action: changeTableBase,
-                })
-              }
-              onPressInterval={() =>
-                actionHandler({
-                  original: base,
-                  increase: -5,
-                  action: changeTableBase,
-                })
-              }
-            />
-
-            <TextComponent style={baseStyles.headerText}>{secondsToTimeString(base)}</TextComponent>
-
-            <LongTouchButton
-              title="+"
-              onPressStart={() =>
-                actionHandler({
-                  original: base,
-                  increase: 1,
-                  action: changeTableBase,
-                })
-              }
-              onPressInterval={() =>
-                actionHandler({
-                  original: base,
-                  increase: 5,
-                  action: changeTableBase,
-                })
-              }
-            />
-          </SC.RowContainer>
-        </SC.Block>
-
-        <SC.Block>
-          <TextComponent style={baseStyles.headerLabel}>Breaks</TextComponent>
-          <SC.RowContainer>
-            <LongTouchButton
-              title="-"
-              onPressStart={() =>
-                actionHandler({
-                  original: baseBreaks,
-                  increase: -1,
-                  action: changeTableBaseBreaks,
-                })
-              }
-              onPressInterval={() =>
-                actionHandler({
-                  original: baseBreaks,
-                  increase: -5,
-                  action: changeTableBaseBreaks,
-                })
-              }
-            />
-
-            <TextComponent style={baseStyles.headerText}>{secondsToTimeString(baseBreaks)}</TextComponent>
-
-            <LongTouchButton
-              title="+"
-              onPressStart={() =>
-                actionHandler({
-                  original: baseBreaks,
-                  increase: 1,
-                  action: changeTableBaseBreaks,
-                })
-              }
-              onPressInterval={() =>
-                actionHandler({
-                  original: baseBreaks,
-                  increase: 5,
-                  action: changeTableBaseBreaks,
-                })
-              }
-            />
-          </SC.RowContainer>
-        </SC.Block>
-      </ScrollView>
-    </SC.MainWrapper>
+        <NumericInput
+          headline="Breaks"
+          decrease={() =>
+            actionHandler({
+              original: baseBreaks,
+              increase: -1,
+              action: changeTableBaseBreaks,
+            })
+          }
+          decreaseInterval={() =>
+            actionHandler({
+              original: baseBreaks,
+              increase: -5,
+              action: changeTableBaseBreaks,
+            })
+          }
+          increase={() =>
+            actionHandler({
+              original: baseBreaks,
+              increase: 1,
+              action: changeTableBaseBreaks,
+            })
+          }
+          increaseInterval={() =>
+            actionHandler({
+              original: baseBreaks,
+              increase: 5,
+              action: changeTableBaseBreaks,
+            })
+          }
+        >
+          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+            {secondsToTimeString(baseBreaks)}
+          </Typography>
+        </NumericInput>
+      </Stack>
+    </Stack>
   );
 };
 

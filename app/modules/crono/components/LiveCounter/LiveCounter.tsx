@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
 import { FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
-import { Col, Grid } from '../../../../components/Grid';
-import InfoTimeBlock from '../../../../components/InfoTimeBlock/InfoTimeBlock';
+import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
+import { Spacer, Stack } from '../../../../components/Flow';
+import Surface from '../../../../components/Flow/Surface.styled';
 import { TypographyType } from '../../../../components/Typography/Typography';
+import { SurfaceColorsEnum } from '../../../../darkTheme';
 import useSetCalculations from '../../hooks/useSetCalculations';
-import * as SC from './LiveCounter.styled';
 
 type LiveCounterProps = {
   crono: CronoStateType;
@@ -34,80 +35,79 @@ const LiveCounter: FC<LiveCounterProps> = ({
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
 
   return (
-    <Grid>
-      {/* STATIC */}
-      {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
-        <SC.LiveCounterRow>
-          <Col>
-            <InfoTimeBlock
-              label="Table duration"
-              labelColor={FONT_COLOR_GREY}
-              labelType={TypographyType.SUBTITLE_2}
-              timestamp={totalTime}
-              contentColor={FONT_COLOR_LIGHT}
-              contentType={TypographyType.H5}
-            />
-          </Col>
-
-          <Col>
-            {set ? (
-              <InfoTimeBlock
-                label={isDiving ? `Hold time (${setNumber})` : `Recovery time (${setNumber})`}
+    <Spacer top={1} bottom={3}>
+      <Surface elevation={SurfaceColorsEnum.ELEVATION_03} radius>
+        <Stack spaceAround horizontal spaceY={3}>
+          {/* STATIC */}
+          {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
+            <>
+              <InfoBlock
+                label="Table duration"
                 labelColor={FONT_COLOR_GREY}
                 labelType={TypographyType.SUBTITLE_2}
-                timestamp={spent}
+                content={totalTime}
                 contentColor={FONT_COLOR_LIGHT}
                 contentType={TypographyType.H5}
+                isTimestamp
               />
-            ) : undefined}
-          </Col>
 
-          {/* CONTRACTIONS
-          <Col>
-            <InfoTimeBlock
-              label="Contractions"
-              labelColor={FONT_COLOR_GREY}
-              labelType={TypographyType.SUBTITLE_1}
-              timestamp={contractions}
-              contentColor={FONT_COLOR_LIGHT}
-              contentType={TypographyType.H6}
-            />
-          </Col>
-          */}
-        </SC.LiveCounterRow>
-      )}
+              {set ? (
+                <InfoBlock
+                  label={isDiving ? `Hold (${setNumber})` : `Recovery (${setNumber})`}
+                  labelColor={FONT_COLOR_GREY}
+                  labelType={TypographyType.SUBTITLE_2}
+                  content={spent}
+                  contentColor={FONT_COLOR_LIGHT}
+                  contentType={TypographyType.H5}
+                  isTimestamp
+                />
+              ) : undefined}
 
-      {/* ENDURANCE */}
-      {/* TODO: CLEAN UP FOR ENDURANCE */}
-      {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
-        <SC.LiveCounterRow>
-          <Col>
-            <InfoTimeBlock
-              label="Targeting"
-              labelColor={FONT_COLOR_GREY}
-              timestamp={targeting}
-              contentColor={FONT_COLOR_LIGHT}
-            />
-          </Col>
-          <Col>
-            <InfoTimeBlock
-              label="Spent Time"
-              labelColor={FONT_COLOR_GREY}
-              timestamp={spentTime > 0 ? spentTime : 0}
-              contentColor={FONT_COLOR_LIGHT}
-            />
-          </Col>
-          <Col>
-            <InfoTimeBlock
-              label="Current Dive"
-              labelColor={FONT_COLOR_GREY}
-              timestamp={currentSet}
-              contentColor={FONT_COLOR_LIGHT}
-            />
-          </Col>
-        </SC.LiveCounterRow>
-      )}
-    </Grid>
+              {/*
+                <InfoBlock
+                label="Contractions"
+                labelColor={FONT_COLOR_GREY}
+                labelType={TypographyType.SUBTITLE_1}
+                content={contractions}
+                contentColor={FONT_COLOR_LIGHT}
+                contentType={TypographyType.H6}
+                isTimestamp
+                />
+              */}
+            </>
+          )}
+
+          {/* ENDURANCE */}
+          {/* TODO: CLEAN UP FOR ENDURANCE */}
+          {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
+            <>
+              <InfoBlock
+                label="Current Dive"
+                labelColor={FONT_COLOR_GREY}
+                content={currentSet}
+                contentColor={FONT_COLOR_LIGHT}
+              />
+
+              <InfoBlock
+                label="Targeting"
+                labelColor={FONT_COLOR_GREY}
+                content={targeting}
+                contentColor={FONT_COLOR_LIGHT}
+                isTimestamp
+              />
+
+              <InfoBlock
+                label="Spent Time"
+                labelColor={FONT_COLOR_GREY}
+                content={spentTime > 0 ? spentTime : 0}
+                contentColor={FONT_COLOR_LIGHT}
+                isTimestamp
+              />
+            </>
+          )}
+        </Stack>
+      </Surface>
+    </Spacer>
   );
 };
 

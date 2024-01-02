@@ -1,14 +1,12 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import { ScrollView } from 'react-native';
-import * as SC from './List.styled';
+import { Stack } from '../Flow';
 
-type ListProps = {
-  children: ReactNode;
-};
-
-const List: FC<ListProps> = ({ children }) => (
+const List: FC<PropsWithChildren> = ({ children }) => (
   <ScrollView>
-    <SC.List>{children}</SC.List>
+    <Stack horizontal wrap>
+      {children}
+    </Stack>
   </ScrollView>
 );
 

@@ -3,7 +3,7 @@ import { EnduranceTrainingTableType } from '../../../editorTypes';
 import updateSetsForTableType from '../../../helpers/sets/updateSetsForTableType';
 import replaceEditorSetsAction from '../replaceEditorSetsAction';
 import setEditorTableBaseAction from '../setEditorTableBaseAction';
-import { updateTableDurationBySetsAction } from './updateTableDurationBySetsAction';
+import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 
 export type EditorChangeTableBaseAction = (value: number) => StoreThunkAction;
 

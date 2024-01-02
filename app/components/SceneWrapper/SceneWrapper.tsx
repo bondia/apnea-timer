@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { FC } from 'react';
-import { SafeAreaView } from 'react-native';
 import styled from 'styled-components/native';
+import { Stack } from '../Flow';
 
-const Container = styled.View`
+type SafeAreaViewProps = {
+  backgroundColor?: string;
+};
+
+const SafeAreaView = styled.SafeAreaView<SafeAreaViewProps>`
   flex: 1;
-  width: 100%;
+  background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
 type Props = {
   children?: React.ReactNode;
+  backgroundColor?: string;
 };
 
-const SceneWrapper: FC<Props> = ({ children }) => (
-  <SafeAreaView style={{ flex: 1, justifyContent: 'space-between', alignItems: 'center' }}>
-    <Container>{children}</Container>
+const SceneWrapper: FC<Props> = ({ children, backgroundColor }) => (
+  <SafeAreaView backgroundColor={backgroundColor}>
+    <Stack grow={1} fullWidth>
+      {children}
+    </Stack>
     <StatusBar />
   </SafeAreaView>
 );

@@ -1,12 +1,11 @@
 import React, { FC } from 'react';
-import { StyleSheet } from 'react-native';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
-import LongTouchButton from '../../../../components/LongTouchButton';
-import TextComponent from '../../../../components/TextComponent/TextComponent';
-import { SetTypeEnum } from '../../enums';
-import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
-import * as SC from './EditorTimerInput.styled';
+import { Spacer, Stack } from '../../../../components/Flow';
+import NumericInput from '../../../../components/Forms/NumericInput';
+import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
+import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
+import { SetTypeEnum } from '../../enums';
 import { decreaseTimeItem, increaseTimeItem } from '../../redux/actions/composed/changeTimeItem';
 
 type EditorTimerInputProps = {
@@ -17,51 +16,34 @@ type EditorTimerInputProps = {
   zombie?: boolean;
 };
 
-const EditorTimerInput: FC<EditorTimerInputProps> = props => {
+const EditorTimerInput: FC<EditorTimerInputProps> = ({
+  index,
+  duration = 0,
+  type = SetTypeEnum.SET_TYPE_PREPARE,
+  setNumber = 0,
+  zombie = false,
+}) => {
   const dispatch = useAppDispatch();
 
-  const { index, duration = 0, type = SetTypeEnum.SET_TYPE_PREPARE, setNumber = 0, zombie = false } = props;
+  const clockColorByType = SetTypeEnum.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
+  const clockColor = zombie ? FONT_COLOR_GREY : clockColorByType;
 
   const increase = () => dispatch(increaseTimeItem(index, 5));
   const decrease = () => dispatch(decreaseTimeItem(index, 5));
 
-  let clockColor = SetTypeEnum.SET_TYPE_PREPARE === type ? COLOR_GREEN_NORMAL : COLOR_RED_NORMAL;
-  clockColor = zombie ? FONT_COLOR_GREY : clockColor;
-
-  // TODO: Move to styled with text component
-  const styles = StyleSheet.create({
-    setNumber: {
-      flex: 1,
-      textAlign: 'left',
-      paddingTop: 33,
-      lineHeight: 15,
-      fontSize: 15,
-      color: FONT_COLOR_GREY,
-    },
-    clock: {
-      paddingTop: 25,
-      flex: 3,
-      color: clockColor,
-      fontSize: 30,
-      lineHeight: 30,
-      textAlign: 'center',
-    },
-  });
-
   return (
-    <SC.Container>
-      <SC.ButtonWrapper>
-        <LongTouchButton title="-" onPressStart={decrease} onPressInterval={decrease} />
-      </SC.ButtonWrapper>
-
-      <TextComponent style={styles.clock}>{secondsToTimeString(duration)}</TextComponent>
-
-      <TextComponent style={styles.setNumber}>({setNumber})</TextComponent>
-
-      <SC.ButtonWrapper>
-        <LongTouchButton title="+" onPressStart={increase} onPressInterval={increase} />
-      </SC.ButtonWrapper>
-    </SC.Container>
+    <Spacer yAxis={1}>
+      <NumericInput decrease={decrease} decreaseInterval={decrease} increase={increase} increaseInterval={increase}>
+        <Stack centered horizontal>
+          <Typography type={TypographyType.H3} color={clockColor}>
+            {secondsToTimeString(duration)}
+          </Typography>
+          <Typography color={FONT_COLOR_GREY} centered>
+            ({setNumber})
+          </Typography>
+        </Stack>
+      </NumericInput>
+    </Spacer>
   );
 };
 

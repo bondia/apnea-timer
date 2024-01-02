@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { COLOR_GREEN_NORMAL, COLOR_RED_NORMAL } from '../../../../commonStyles';
-import InfoBlock from '../../../../components/InfoBlock';
+import { TableTypeEnum } from '../../enums';
 import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
-import { TableTypeEnum } from '../../enums';
 
-import * as SC from './StaticForm.styled';
+import { Spacer, Stack } from '../../../../components/Flow';
+import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { EditorStateType } from '../../editorTypes';
 
 const titleByType = {
@@ -27,19 +27,36 @@ const StaticMainForm: FC<Props> = ({
     trainingTable: { base, type, duration: totalTime },
   },
 }) => {
-  const compact = TableTypeEnum.TABLE_TYPE_FREE === type;
+  const isFreeTable = TableTypeEnum.TABLE_TYPE_FREE === type;
 
   return (
-    <SC.StaticMainFormWrapper small={compact}>
-      <TableTypeInput />
+    <Stack shrink={0}>
+      <Spacer yAxis={1}>
+        <TableTypeInput />
+      </Spacer>
 
-      <SC.MainInfoBlock>
-        {!compact && <InfoBlock title={titleByType[type]} textColor={colorByType[type]} timeContent={base} />}
-        <InfoBlock title="Total Time" timeContent={totalTime} />
-      </SC.MainInfoBlock>
+      <Spacer yAxis={1}>
+        <Stack horizontal spaceAround>
+          {!isFreeTable && (
+            <InfoBlock
+              label={titleByType[type]}
+              labelColor={colorByType[type]}
+              content={base}
+              contentColor={colorByType[type]}
+              isTimestamp
+            />
+          )}
 
-      {!compact && <TableBaseInput />}
-    </SC.StaticMainFormWrapper>
+          <InfoBlock label="Total Time" content={totalTime} isTimestamp />
+        </Stack>
+      </Spacer>
+
+      {!isFreeTable && (
+        <Spacer yAxis={1}>
+          <TableBaseInput />
+        </Spacer>
+      )}
+    </Stack>
   );
 };
 

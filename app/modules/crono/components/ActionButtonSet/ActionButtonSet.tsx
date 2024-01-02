@@ -3,12 +3,11 @@ import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../editor/enums
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
 import findRunningSet from '../../helpers/findRunningSet';
-import ActionButton from './Buttons/ActionButton';
-import SkipButton from './Buttons/SkipButton';
+import SkipButton from './SkipButton';
 
+import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
-import * as SC from './ActionButtonsSet.styled';
 
 const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boolean => {
   // no contractions tracking for endurance tables
@@ -24,13 +23,13 @@ const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boo
   return current && SetTypeEnum.SET_TYPE_HOLD === current.type;
 };
 
-type CronoButtonSetProps = {
+type ActionButtonSetProps = {
   crono: CronoStateType;
   start: (mode: CronoModeEnum) => void;
   end: () => void;
 };
 
-const CronoButtonSet: FC<CronoButtonSetProps> = props => {
+const ActionButtonSet: FC<ActionButtonSetProps> = props => {
   const dispatch = useAppDispatch();
   const { crono, start, end } = props;
   const {
@@ -51,14 +50,14 @@ const CronoButtonSet: FC<CronoButtonSetProps> = props => {
   const trackContraction = () => dispatch(trackContractionAction());
 
   return (
-    <SC.ButtonSetWrapper>
-      {clock < 0 && !isEndurance && <ActionButton title="Auto" action={startAuto} />}
-      {clock < 0 && <ActionButton title="Coach" action={startCoach} />}
+    <>
+      {clock < 0 && !isEndurance && <LongTouchButton title="Auto" onPressStart={startAuto} />}
+      {clock < 0 && <LongTouchButton title="Coach" onPressStart={startCoach} />}
       {current && clock >= 0 && !isFinished && <SkipButton set={current} />}
-      {/* {clock >= 0 && showContractionsButton && <ActionButton title="1st Cont" action={trackContraction} />} */}
-      {isFinished && <ActionButton title="Finish" action={end} />}
-    </SC.ButtonSetWrapper>
+      {/* {clock >= 0 && showContractionsButton && <LongTouchButton title="1st Cont" onPressStart={trackContraction} />} */}
+      {isFinished && <LongTouchButton title="Finish" onPressStart={end} />}
+    </>
   );
 };
 
-export default CronoButtonSet;
+export default ActionButtonSet;

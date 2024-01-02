@@ -1,49 +1,38 @@
 import React, { FC } from 'react';
-import { TextStyle } from 'react-native';
-import { COLOR_LIGHT, FONT_SIZE } from '../../commonStyles';
+import { COLOR_LIGHT } from '../../commonStyles';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
-import TextComponent from '../TextComponent/TextComponent';
-import * as SC from './InfoBlock.styled';
+import { Stack } from '../Flow';
+import Typography, { TypographyType } from '../Typography/Typography';
 
 type InfoBlockProps = {
-  title?: string;
-  timeContent?: number;
-  rawContent?: number | string;
-  textColor?: string;
-  width?: string;
-  labelTextSize?: FONT_SIZE;
-  textSize?: FONT_SIZE;
+  label?: string;
+  labelType?: TypographyType;
+  labelColor?: string;
+  content?: number;
+  contentType?: TypographyType;
+  contentColor?: string;
+  isTimestamp?: boolean;
 };
 
-/**
- * TODO: Refactor to use only styled components
- * @deprecated
- */
-const InfoBlock: FC<InfoBlockProps> = props => {
-  const {
-    title,
-    timeContent,
-    rawContent,
-    width,
-    textColor = COLOR_LIGHT,
-    labelTextSize = FONT_SIZE.FONT_SIZE_M,
-    textSize = FONT_SIZE.FONT_SIZE_L,
-  } = props;
-
-  const hederStyles: TextStyle = { ...SC.baseStyles.headerLabel, ...{ color: textColor, fontSize: labelTextSize } };
-
-  const styles: TextStyle = textColor
-    ? { ...SC.baseStyles.headerText, ...{ color: textColor, fontSize: textSize } }
-    : SC.baseStyles.headerText;
-
-  return (
-    <SC.BlockWrapper width={width}>
-      {title && <TextComponent style={hederStyles}>{title}</TextComponent>}
-      <TextComponent style={styles}>
-        {timeContent !== undefined ? secondsToTimeString(timeContent) : rawContent}
-      </TextComponent>
-    </SC.BlockWrapper>
-  );
-};
+const InfoBlock: FC<InfoBlockProps> = ({
+  label,
+  labelType = TypographyType.BODY_1,
+  labelColor = COLOR_LIGHT,
+  content,
+  contentType = TypographyType.H4,
+  contentColor = COLOR_LIGHT,
+  isTimestamp,
+}) => (
+  <Stack>
+    {label && (
+      <Typography type={labelType} color={labelColor} centered>
+        {label}
+      </Typography>
+    )}
+    <Typography type={contentType} color={contentColor} centered>
+      {content !== undefined && isTimestamp ? secondsToTimeString(content) : content}
+    </Typography>
+  </Stack>
+);
 
 export default InfoBlock;

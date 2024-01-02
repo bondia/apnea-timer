@@ -2,7 +2,7 @@ import { StoreThunkAction } from '../../../../../redux/types';
 import { CronoModeEnum, SetModeEnum } from '../../../../editor/enums';
 import setCronoModeAction from '../setCronoModeAction';
 
-export type HandleFinishTableAction = () => StoreThunkAction;
+type HandleFinishTableAction = () => StoreThunkAction;
 
 const pendingModes = [SetModeEnum.SET_MODE_INITIAL, SetModeEnum.SET_MODE_RUNNING];
 

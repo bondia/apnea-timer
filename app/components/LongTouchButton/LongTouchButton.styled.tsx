@@ -1,18 +1,13 @@
 import styled from 'styled-components/native';
 import { COLOR_LIGHT, FONT_CLOLR_GREY_LIGHT } from '../../commonStyles';
 
-export const LongTouchButtonContainer = styled.View`
-  width: 100%;
-  flex: 1;
-`;
-
 type ButtonWrapperProps = {
   active: boolean;
 };
 
-export const ButtonWrapper = styled.View<ButtonWrapperProps>`
-  padding: 20px;
+// eslint-disable-next-line import/prefer-default-export
+export const ButtonWrapper = styled.TouchableHighlight<ButtonWrapperProps>`
   background-color: ${props => (props.active ? COLOR_LIGHT : FONT_CLOLR_GREY_LIGHT)};
   border-radius: 3px;
-  margin: 5px;
+  height: 100%;
 `;

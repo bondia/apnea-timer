@@ -1,10 +1,9 @@
-import React, { FC, ReactNode } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import * as SC from './List.styled';
 
-type ItemProps = {
+type ItemProps = PropsWithChildren<{
   active?: boolean;
-  children: ReactNode;
-};
+}>;
 
 const Item: FC<ItemProps> = ({ active = false, children }) => (
   <SC.ListItem>
