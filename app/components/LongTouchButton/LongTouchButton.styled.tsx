@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import { PropsWithAppTheme } from '../../themes/theme.d';
+import { PropsWithAppTheme } from '../../themes/types';
 
 type ButtonWrapperProps = PropsWithAppTheme<{
   active: boolean;

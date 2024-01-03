@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
+import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../themes/useAppTheme';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { CronoSetType } from '../../cronoTypes';
 

@@ -73,4 +73,4 @@ export type AppTheme = {
   };
 };
 
-type PropsWithAppTheme<T> = { theme: AppTheme } & T;
+export type PropsWithAppTheme<T> = { theme: AppTheme } & T;

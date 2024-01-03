@@ -2,8 +2,8 @@ import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
 import { Spacer } from '../../components/Flow';
 import SceneLayout from '../../components/Layouts/SceneLayout';
+import ThemeSplitView from '../../components/ThemeSplitView/ThemeSplitView';
 import Typography, { TypographyType } from '../../components/Typography/Typography';
-import SplitView from '../../themes/SplitView';
 import SpacerStory from './components/SpacerStory';
 import StackStory from './components/StackStory';
 import SurfacesStory from './components/SurfacesStory';
@@ -27,9 +27,9 @@ const StoreisScene: FC = () => {
 
         <Spacer bottom={10}>
           <Typography type={TypographyType.H3}>SURFACES</Typography>
-          <SplitView>
+          <ThemeSplitView>
             <SurfacesStory />
-          </SplitView>
+          </ThemeSplitView>
         </Spacer>
       </ScrollView>
     </SceneLayout>

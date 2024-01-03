@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
+import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
 import { Spacer, Stack } from '../../../../components/Flow';
 import NumericInput from '../../../../components/Forms/NumericInput';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
-import useAppTheme from '../../../../themes/useAppTheme';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { SetTypeEnum } from '../../enums';
 import { decreaseTimeItem, increaseTimeItem } from '../../redux/actions/composed/changeTimeItem';

@@ -3,9 +3,9 @@ import { TableTypeEnum } from '../../enums';
 import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 
+import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
 import { Spacer, Stack } from '../../../../components/Flow';
 import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
-import useAppTheme from '../../../../themes/useAppTheme';
 import { EditorStateType } from '../../editorTypes';
 
 type Props = {

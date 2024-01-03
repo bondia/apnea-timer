@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import styled from 'styled-components/native';
-import useAppTheme from '../../themes/useAppTheme';
+import useAppTheme from '../AppThemeProvider/useAppTheme';
 import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 

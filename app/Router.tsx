@@ -8,7 +8,8 @@ import EditorEnduranceScene from './modules/editor/scenes/EditorEnduranceScene';
 import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
 import MouthfillScene from './modules/mouthfill/MouthfillScene';
 import SelectorScene from './modules/selector/SelectorScene';
-import StoreisScene from './modules/stories/StoriesScene';
+import SettingsScene from './modules/settings/SettingsScene';
+import StoriesScene from './modules/stories/StoriesScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -31,9 +32,14 @@ const AppRouter: FC = () => {
         {/* Crono */}
         <Screen name={RoutesEnum.CRONO_SCENE} component={CronoScene} options={{ title: 'Crono', headerShown: false }} />
 
-        {/* Utils */}
+        {/* Freediving Utils */}
         <Screen name={RoutesEnum.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
-        <Screen name={RoutesEnum.STORIES} component={StoreisScene} options={{ title: 'Playground' }} />
+
+        {/* User */}
+        <Screen name={RoutesEnum.SETTINGS} component={SettingsScene} options={{ title: 'Settings' }} />
+
+        {/* UX/UI */}
+        <Screen name={RoutesEnum.STORIES} component={StoriesScene} options={{ title: 'Playground' }} />
       </Navigator>
     </NavigationContainer>
   );

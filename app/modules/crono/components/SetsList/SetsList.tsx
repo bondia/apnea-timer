@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
+import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
 import { Stack } from '../../../../components/Flow';
 import List, { Item } from '../../../../components/List';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../themes/useAppTheme';
 import { CronoSetListType, CronoSetType } from '../../cronoTypes';
 import Set from './SetItem';
 

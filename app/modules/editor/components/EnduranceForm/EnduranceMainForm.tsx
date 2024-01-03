@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { AppDispatch } from '../../../../../App';
+import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
 import { Spacer, Stack } from '../../../../components/Flow';
 import NumericInput from '../../../../components/Forms/NumericInput';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
 import { useAppDispatch } from '../../../../redux/hooks';
-import useAppTheme from '../../../../themes/useAppTheme';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { EditorStateType, EnduranceTrainingTableType } from '../../editorTypes';
 import { ChangeEnduranceLapsType, changeEnduranceLaps } from '../../redux/actions/composed/changeEnduranceLaps';

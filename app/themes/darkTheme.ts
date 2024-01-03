@@ -1,6 +1,6 @@
-import createElevation from './createElevation';
 import defaultTheme from './defaultTheme';
-import { AppTheme } from './theme.d';
+import { AppTheme } from './types';
+import createElevation from './utils/createElevation';
 
 const darkTheme: AppTheme = {
   colors: {

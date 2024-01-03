@@ -1,8 +1,7 @@
 import styled from 'styled-components/native';
-import { AppTheme, PropsWithAppTheme } from '../../themes/theme.d';
+import { PropsWithAppTheme } from '../../themes/types';
 
 type SurfaceProps = PropsWithAppTheme<{
-  theme: AppTheme;
   elevation?: string;
   radius?: boolean;
 }>;
