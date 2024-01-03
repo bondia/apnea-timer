@@ -1,14 +1,12 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { ThemeProvider } from 'styled-components/native';
 import { Stack } from '../components/Flow';
-import darkTheme from './darkTheme';
-import defaultTheme from './defaultTheme';
+import AppThemeProvider from './AppThemeProvider';
 
 const SplitView: FC<PropsWithChildren> = ({ children }) => {
   return (
     <Stack grow={1} horizontal>
-      <ThemeProvider theme={defaultTheme}>{children}</ThemeProvider>
-      <ThemeProvider theme={darkTheme}>{children}</ThemeProvider>
+      <AppThemeProvider>{children}</AppThemeProvider>
+      <AppThemeProvider isDark>{children}</AppThemeProvider>
     </Stack>
   );
 };

@@ -6,7 +6,6 @@ import useAppTheme from '../../../themes/useAppTheme';
 
 const SurfacesStory: FC = () => {
   const theme = useAppTheme();
-
   return (
     <Surface elevation={theme.elevations.ELEVATION_00}>
       <Spacer spacing={10} />
