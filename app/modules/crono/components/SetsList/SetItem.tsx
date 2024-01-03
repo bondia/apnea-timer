@@ -50,7 +50,7 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
       ) : null}
 
       {accent ? (
-        <Typography type={TypographyType.BODY_1} color={colors.primary900} centered>
+        <Typography type={TypographyType.BODY_1} color={colors.inverted900} centered>
           {spentText}
         </Typography>
       ) : null}

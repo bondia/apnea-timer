@@ -1,7 +1,6 @@
 import React, { FC } from 'react';
 import { AppScreenType, RoutesEnum } from '../../Routes';
-import SceneLayout from '../../components/Layouts/SceneLayout';
-import useAppTheme from '../../themes/useAppTheme';
+import ThemedSceneLayout from '../../components/Layouts/ThemedSceneLayout';
 import { EditorStateType } from '../editor/editorTypes';
 import CronoPane from './components/CronoPane/CronoPane';
 
@@ -13,13 +12,10 @@ const CronoScene: FC<CronoSceneProps> = ({
   route: {
     params: { initialData },
   },
-}) => {
-  const { elevations } = useAppTheme();
-  return (
-    <SceneLayout backgroundColor={elevations.ELEVATION_00}>
-      <CronoPane initialData={initialData} />
-    </SceneLayout>
-  );
-};
+}) => (
+  <ThemedSceneLayout darkBackground>
+    <CronoPane initialData={initialData} />
+  </ThemedSceneLayout>
+);
 
 export default CronoScene;

@@ -53,9 +53,6 @@ export type AppTheme = {
 
   /** @deprecated */
   oldColors: {
-    /** @deprecated */
-    FONT_COLOR_LIGHT: string;
-
     // GREY
     /** @deprecated */
     FONT_COLOR_GREY: string;

@@ -42,10 +42,10 @@ const LiveCounter: FC<LiveCounterProps> = ({
             <>
               <InfoBlock
                 label="Time Left"
-                labelColor={oldColors.FONT_COLOR_GREY}
+                labelColor={colors.inverted050}
                 labelType={TypographyType.SUBTITLE_2}
                 content={totalTime}
-                contentColor={oldColors.FONT_COLOR_GREY}
+                contentColor={colors.inverted050}
                 contentType={TypographyType.H4}
                 isTimestamp
               />

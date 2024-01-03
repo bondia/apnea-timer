@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { FC } from 'react';
+import React, { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components/native';
 import useAppTheme from '../../themes/useAppTheme';
 import { Stack } from '../Flow';
@@ -13,15 +13,15 @@ const SafeAreaView = styled.SafeAreaView<SafeAreaViewProps>`
   background-color: ${({ backgroundColor }) => backgroundColor};
 `;
 
-type SceneLayoutProps = {
-  children?: React.ReactNode;
-  backgroundColor?: string;
-};
+export type SceneLayoutProps = PropsWithChildren<{
+  darkBackground?: boolean;
+}>;
 
-const SceneLayout: FC<SceneLayoutProps> = ({ children, backgroundColor }) => {
-  const { colors } = useAppTheme();
+const SceneLayout: FC<SceneLayoutProps> = ({ children, darkBackground = false }) => {
+  const { elevations, colors } = useAppTheme();
+  const backgroundColor = darkBackground ? elevations.ELEVATION_00 : colors.background;
   return (
-    <SafeAreaView backgroundColor={backgroundColor || colors.background}>
+    <SafeAreaView backgroundColor={backgroundColor}>
       <Stack grow={1} fullWidth>
         {children}
       </Stack>

@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import SceneLayout from '../../../components/Layouts/SceneLayout';
+import ThemedSceneLayout from '../../../components/Layouts/ThemedSceneLayout';
 import EnduranceForm from '../components/EnduranceForm/EnduranceForm';
 
 const EditorEnduranceScene: FC = () => (
-  <SceneLayout>
+  <ThemedSceneLayout>
     <EnduranceForm />
-  </SceneLayout>
+  </ThemedSceneLayout>
 );
 
 export default EditorEnduranceScene;

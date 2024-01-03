@@ -1,49 +1,49 @@
+import createElevation from './createElevation';
 import { AppTheme } from './theme.d';
 
 const defaultTheme: AppTheme = {
   colors: {
     // primary
-    primary900: '#00A9FF',
-    primary800: '#00A9FF',
-    primary700: '#00A9FF',
-    primary600: '#00A9FF',
-    primary500: '#00A9FF',
-    primary400: '#00A9FF',
-    primary300: '#00A9FF',
-    primary200: '#00A9FF',
-    primary100: '#00A9FF',
-    primary050: '#00A9FF',
+    primary900: '#008EE6',
+    primary800: '#008EE6',
+    primary700: '#008EE6',
+    primary600: '#008EE6',
+    primary500: '#008EE6',
+    primary400: '#008EE6',
+    primary300: '#008EE6',
+    primary200: '#008EE6',
+    primary100: '#008EE6',
+    primary050: '#008EE6',
     // secondary
-    secondary900: '#89CFF3',
-    secondary800: '#89CFF3',
-    secondary700: '#89CFF3',
-    secondary600: '#89CFF3',
-    secondary500: '#89CFF3',
-    secondary400: '#89CFF3',
-    secondary300: '#89CFF3',
-    secondary200: '#89CFF3',
-    secondary100: '#89CFF3',
-    secondary050: '#89CFF3',
+    secondary900: '#00A699',
+    secondary800: '#00A699',
+    secondary700: '#00A699',
+    secondary600: '#00A699',
+    secondary500: '#00A699',
+    secondary400: '#00A699',
+    secondary300: '#00A699',
+    secondary200: '#00A699',
+    secondary100: '#00A699',
+    secondary050: '#00A699',
     // inverted
-    inverted900: 'azure',
-    inverted800: 'azure',
-    inverted700: 'azure',
-    inverted600: 'azure',
-    inverted500: 'azure',
-    inverted400: 'azure',
-    inverted300: 'azure',
-    inverted200: 'azure',
-    inverted100: 'azure',
-    inverted050: 'azure',
+    inverted900: '#484848',
+    inverted800: '#484848',
+    inverted700: '#484848',
+    inverted600: '#484848',
+    inverted500: '#484848',
+    inverted400: '#767676',
+    inverted300: '#767676',
+    inverted200: '#767676',
+    inverted100: '#767676',
+    inverted050: '#767676',
     // elements
-    background: '#ffffff',
-    surface: '#CDF5FD',
+    background: '#fff',
+    surface: '#767676',
     // states
-    error: '#FF635A',
+    error: '#FF5A5F',
   },
 
   oldColors: {
-    FONT_COLOR_LIGHT: 'azure',
     FONT_COLOR_GREY: '#a8a8a8',
     FONT_CLOLR_GREY_LIGHT: '#e6e6e6',
 
@@ -56,17 +56,37 @@ const defaultTheme: AppTheme = {
     COLOR_DARKEST: '#004F80',
   },
   elevations: {
-    ELEVATION_00: '#121212',
-    ELEVATION_01: 'linear-gradient(0deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 100%), #121212)',
-    ELEVATION_02: 'linear-gradient(0deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.07) 100%), #121212)',
-    ELEVATION_03: 'linear-gradient(0deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.08) 100%), #121212)',
-    ELEVATION_04: 'linear-gradient(0deg, rgba(255, 255, 255, 0.09) 0%, rgba(255, 255, 255, 0.09) 100%), #121212)',
-    ELEVATION_05: 'linear-gradient(0deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.11) 100%), #121212)',
-    ELEVATION_06: 'linear-gradient(0deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.12) 100%), #121212)',
-    ELEVATION_12: 'linear-gradient(0deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0.14) 100%), #121212)',
-    ELEVATION_16: 'linear-gradient(0deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.15) 100%), #121212)',
-    ELEVATION_24: 'linear-gradient(0deg, rgba(255, 255, 255, 0.16) 0%, rgba(255, 255, 255, 0.16) 100%), #121212)',
+    ELEVATION_00: '#767676',
+    ELEVATION_01: createElevation('#767676', 0.1),
+    ELEVATION_02: createElevation('#767676', 0.2),
+    ELEVATION_03: createElevation('#767676', 0.3),
+    ELEVATION_04: createElevation('#767676', 0.4),
+    ELEVATION_05: createElevation('#767676', 0.5),
+    ELEVATION_06: createElevation('#767676', 0.6),
+    ELEVATION_12: createElevation('#767676', 0.7),
+    ELEVATION_16: createElevation('#767676', 0.8),
+    ELEVATION_24: createElevation('#767676', 0.9),
   },
 };
+
+// Rausch
+// Hex color:	#FF5A5F
+// RGB:	255 90 95
+
+// Babu
+// Hex color:	#00A699
+// RGB:	0 166 153
+
+// Arches
+// Hex color:	#FC642D
+// RGB:	252 100 45
+
+// Hof
+// Hex color:	#484848
+// RGB:	72 72 72
+
+// Foggy
+// Hex color:	#767676
+// RGB:	118 118 118
 
 export default defaultTheme;
