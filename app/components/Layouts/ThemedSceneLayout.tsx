@@ -1,18 +1,13 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { useColorScheme } from 'react-native';
-import AppThemeProvider from '../AppThemeProvider/AppThemeProvider';
+import ThemeSettingsContext from '../../modules/settings/context/ThemeSettingsContext';
 import SceneLayout, { SceneLayoutProps } from './SceneLayout';
 
 type ThemedSceneLayoutProps = PropsWithChildren<SceneLayoutProps>;
 
-const ThemedSceneLayout: FC<ThemedSceneLayoutProps> = ({ children }) => {
-  const theme = useColorScheme();
-  const isDarkTheme = theme === 'dark';
-  return (
-    <AppThemeProvider isDarkTheme={isDarkTheme}>
-      <SceneLayout>{children}</SceneLayout>
-    </AppThemeProvider>
-  );
-};
+const ThemedSceneLayout: FC<ThemedSceneLayoutProps> = ({ children, darkBackground }) => (
+  <ThemeSettingsContext>
+    <SceneLayout darkBackground={darkBackground}>{children}</SceneLayout>
+  </ThemeSettingsContext>
+);
 
 export default ThemedSceneLayout;

@@ -74,3 +74,9 @@ export type AppTheme = {
 };
 
 export type PropsWithAppTheme<T> = { theme: AppTheme } & T;
+
+export enum ThemeSettingsOptions {
+  default = 'default',
+  light = 'light',
+  dark = 'dark',
+}
