@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { ColorSchemeName } from 'react-native';
+import { ColorSchemeName, useColorScheme } from 'react-native';
 import AppThemeProvider from '../../../components/AppThemeProvider/AppThemeProvider';
 import { ThemeSettingsOptions } from '../../../themes/types';
 import getFromStorage from '../../../utils/storage/getFromStorage';
@@ -38,8 +38,10 @@ const storeTheme = async (newTheme: ColorSchemeName) => {
 type ThemeSettingsContextProps = PropsWithChildren;
 
 const ThemeSettingsContext: FC<ThemeSettingsContextProps> = ({ children }) => {
+  const colorSchemeTheme = useColorScheme();
   const [theme, setThemeState] = useState<ColorSchemeName>();
-  const isDarkTheme = ThemeSettingsOptions.dark === theme;
+  const effectiveTheme = theme || colorSchemeTheme;
+  const isDarkTheme = ThemeSettingsOptions.dark === effectiveTheme;
 
   const loadTheme = useCallback(async () => {
     const storedTheme = await getStoredTheme();
