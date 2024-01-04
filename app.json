@@ -4,12 +4,8 @@
     "name": "Apnea Timer",
     "slug": "apnea-timer",
     "privacy": "public",
-    "userInterfaceStyle": "light",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "userInterfaceStyle": "automatic",
+    "platforms": ["ios", "android", "web"],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -22,10 +18,9 @@
       "fallbackToCacheTimeout": 0,
       "url": "https://u.expo.dev/50b688ee-a9b2-4789-bbdd-0aaf43611f60"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
+      "userInterfaceStyle": "automatic",
       "supportsTablet": true,
       "bundleIdentifier": "com.apnea-tribe.apnea-timer"
     },
@@ -38,6 +33,8 @@
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
-    "android": {}
+    "android": {
+      "userInterfaceStyle": "automatic"
+    }
   }
 }
