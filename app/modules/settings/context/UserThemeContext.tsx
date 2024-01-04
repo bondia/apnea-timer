@@ -11,35 +11,21 @@ import React, {
 import { ColorSchemeName, useColorScheme } from 'react-native';
 import AppThemeProvider from '../../../components/AppThemeProvider/AppThemeProvider';
 import { ThemeSettingsOptions } from '../../../themes/types';
-import getFromStorage from '../../../utils/storage/getFromStorage';
-import setInStorage from '../../../utils/storage/setInStorage';
+import { getStoredTheme, storeTheme } from '../themeStorage';
 
-type ThemeSettingsContextValue = {
+type UserThemeContextValue = {
   theme: ColorSchemeName | null;
   updateTheme: (newTheme: ColorSchemeName | null) => Promise<void>;
 };
 
-const defaultValue: ThemeSettingsContextValue = { theme: null, updateTheme: async () => undefined };
-const SettingThemeContext = createContext<ThemeSettingsContextValue>(defaultValue);
+const defaultValue: UserThemeContextValue = { theme: null, updateTheme: async () => undefined };
+const ThemeContext = createContext<UserThemeContextValue>(defaultValue);
 
-const getStoredTheme = async () => {
-  const theme = await getFromStorage<ColorSchemeName>('theme');
-  return theme;
-};
-
-const storeTheme = async (newTheme: ColorSchemeName) => {
-  if (newTheme === null || ThemeSettingsOptions.dark === newTheme || ThemeSettingsOptions.light === newTheme) {
-    setInStorage<ColorSchemeName>('theme', newTheme);
-    return newTheme;
-  }
-  return null;
-};
-
-type ThemeSettingsContextProps = PropsWithChildren;
-
-const ThemeSettingsContext: FC<ThemeSettingsContextProps> = ({ children }) => {
+const UserThemeContext: FC<PropsWithChildren> = ({ children }) => {
   const colorSchemeTheme = useColorScheme();
+
   const [theme, setThemeState] = useState<ColorSchemeName>();
+
   const effectiveTheme = theme || colorSchemeTheme;
   const isDarkTheme = ThemeSettingsOptions.dark === effectiveTheme;
 
@@ -53,7 +39,7 @@ const ThemeSettingsContext: FC<ThemeSettingsContextProps> = ({ children }) => {
     setThemeState(storedTheme);
   }, []);
 
-  const themeContextValue = useMemo(
+  const value = useMemo(
     () => ({
       theme,
       updateTheme,
@@ -66,12 +52,12 @@ const ThemeSettingsContext: FC<ThemeSettingsContextProps> = ({ children }) => {
   }, [loadTheme]);
 
   return (
-    <SettingThemeContext.Provider value={themeContextValue}>
+    <ThemeContext.Provider value={value}>
       <AppThemeProvider isDarkTheme={isDarkTheme}>{children}</AppThemeProvider>
-    </SettingThemeContext.Provider>
+    </ThemeContext.Provider>
   );
 };
 
-export default ThemeSettingsContext;
+export default UserThemeContext;
 
-export const useSettingThemeContext = () => useContext(SettingThemeContext);
+export const useUserThemeContext = () => useContext(ThemeContext);

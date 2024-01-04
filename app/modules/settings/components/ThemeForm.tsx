@@ -2,11 +2,11 @@ import React, { FC } from 'react';
 import { useColorScheme } from 'react-native';
 import RadioButton from '../../../components/Forms/RadioButton';
 import { ThemeSettingsOptions } from '../../../themes/types';
-import { useSettingThemeContext } from '../context/ThemeSettingsContext';
+import { useUserThemeContext } from '../context/UserThemeContext';
 
 const ThemeForm: FC = () => {
   const theme = useColorScheme();
-  const { theme: storedTheme, updateTheme } = useSettingThemeContext();
+  const { theme: storedTheme, updateTheme } = useUserThemeContext();
   return (
     <>
       <RadioButton
