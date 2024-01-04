@@ -1,17 +1,8 @@
-import React, {
-  FC,
-  PropsWithChildren,
-  createContext,
-  useCallback,
-  useContext,
-  useEffect,
-  useMemo,
-  useState,
-} from 'react';
+import React, { FC, PropsWithChildren, createContext, useCallback, useEffect, useMemo, useState } from 'react';
 import { ColorSchemeName, useColorScheme } from 'react-native';
-import AppThemeProvider from '../../../components/AppThemeProvider/AppThemeProvider';
-import { ThemeSettingsOptions } from '../../../themes/types';
-import { getStoredTheme, storeTheme } from '../themeStorage';
+import { ThemeSettingsOptions } from '../../themes/types';
+import AppThemeProvider from '../AppThemeProvider/AppThemeProvider';
+import { getStoredTheme, storeTheme } from './themeStorage';
 
 type UserThemeContextValue = {
   theme: ColorSchemeName | null;
@@ -19,9 +10,9 @@ type UserThemeContextValue = {
 };
 
 const defaultValue: UserThemeContextValue = { theme: null, updateTheme: async () => undefined };
-const ThemeContext = createContext<UserThemeContextValue>(defaultValue);
+export const UserThemeContext = createContext<UserThemeContextValue>(defaultValue);
 
-const UserThemeContext: FC<PropsWithChildren> = ({ children }) => {
+const UserThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const colorSchemeTheme = useColorScheme();
 
   const [theme, setThemeState] = useState<ColorSchemeName>();
@@ -52,12 +43,10 @@ const UserThemeContext: FC<PropsWithChildren> = ({ children }) => {
   }, [loadTheme]);
 
   return (
-    <ThemeContext.Provider value={value}>
+    <UserThemeContext.Provider value={value}>
       <AppThemeProvider isDarkTheme={isDarkTheme}>{children}</AppThemeProvider>
-    </ThemeContext.Provider>
+    </UserThemeContext.Provider>
   );
 };
 
-export default UserThemeContext;
-
-export const useUserThemeContext = () => useContext(ThemeContext);
+export default UserThemeProvider;

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
+import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
-import useAppTheme from '../AppThemeProvider/useAppTheme';
 import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 

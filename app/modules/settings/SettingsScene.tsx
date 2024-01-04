@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import useAppTheme from '../../components/AppThemeProvider/useAppTheme';
 import { Spacer, Stack } from '../../components/Flow';
 import ThemedSceneLayout from '../../components/Layouts/ThemedSceneLayout';
 import Typography, { TypographyType } from '../../components/Typography/Typography';
+import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
 import ThemeForm from './components/ThemeForm';
 
 const SettingsScene: FC = () => {

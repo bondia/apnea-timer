@@ -3,10 +3,9 @@ import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
-import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
-import { Spacer, Stack } from '../../../../components/Flow';
-import Surface from '../../../../components/Flow/Surface.styled';
+import { Spacer, Stack, Surface } from '../../../../components/Flow';
 import { TypographyType } from '../../../../components/Typography/Typography';
+import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 
 type LiveCounterProps = {
   crono: CronoStateType;

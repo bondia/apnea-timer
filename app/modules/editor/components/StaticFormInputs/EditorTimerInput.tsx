@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
-import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
 import { Spacer, Stack } from '../../../../components/Flow';
 import NumericInput from '../../../../components/Forms/NumericInput';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
+import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import { useAppDispatch } from '../../../../redux/hooks';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { SetTypeEnum } from '../../enums';

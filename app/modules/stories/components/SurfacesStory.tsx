@@ -1,8 +1,7 @@
 import React, { FC } from 'react';
-import useAppTheme from '../../../components/AppThemeProvider/useAppTheme';
-import { Spacer } from '../../../components/Flow';
-import Surface from '../../../components/Flow/Surface.styled';
+import { Spacer, Surface } from '../../../components/Flow';
 import Typography, { TypographyType } from '../../../components/Typography/Typography';
+import useAppTheme from '../../../providers/AppThemeProvider/useAppTheme';
 
 const SurfacesStory: FC = () => {
   const theme = useAppTheme();

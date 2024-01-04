@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { RoutesEnum } from '../../Routes';
-import useAppTheme from '../../components/AppThemeProvider/useAppTheme';
 import { ScrollableStack } from '../../components/Flow';
 import MenuItem from '../../components/MenuItem/MenuItem';
+import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
 import useAppNavitation from '../../useAppNavigation';
 
 const SelectorPane: FC = () => {

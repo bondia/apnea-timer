@@ -1,7 +1,7 @@
 import { Icon } from '@rneui/base';
 import { CheckBox } from '@rneui/themed';
 import React, { FC } from 'react';
-import useAppTheme from '../AppThemeProvider/useAppTheme';
+import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
 import Typography from '../Typography/Typography';
 
 type RadioButtonProps = {

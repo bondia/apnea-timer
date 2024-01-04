@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import AppThemeProvider from '../AppThemeProvider/AppThemeProvider';
+import AppThemeProvider from '../../providers/AppThemeProvider/AppThemeProvider';
 import { Stack } from '../Flow';
 
 const ThemeSplitView: FC<PropsWithChildren> = ({ children }) => (

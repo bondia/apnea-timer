@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useColorScheme } from 'react-native';
 import RadioButton from '../../../components/Forms/RadioButton';
+import useUserThemeContext from '../../../providers/UserThemeProvider/useUserThemeContext';
 import { ThemeSettingsOptions } from '../../../themes/types';
-import { useUserThemeContext } from '../context/UserThemeContext';
 
 const ThemeForm: FC = () => {
   const theme = useColorScheme();

@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import styled from 'styled-components/native';
-import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
 import { Stack } from '../../../../components/Flow';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
+import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import { CronoSetType } from '../../cronoTypes';
 import useSetCalculations from '../../hooks/useSetCalculations';
 

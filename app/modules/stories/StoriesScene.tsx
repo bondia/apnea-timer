@@ -9,7 +9,7 @@ import StackStory from './components/StackStory';
 import SurfacesStory from './components/SurfacesStory';
 import TypographyStory from './components/TypographyStory';
 
-const StoreisScene: FC = () => {
+const StoriesScene: FC = () => {
   return (
     <SceneLayout>
       <ScrollView>
@@ -36,4 +36,4 @@ const StoreisScene: FC = () => {
   );
 };
 
-export default StoreisScene;
+export default StoriesScene;

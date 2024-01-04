@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import useAppTheme from '../../../../components/AppThemeProvider/useAppTheme';
 import { Spacer, Stack } from '../../../../components/Flow';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
+import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import { TableSetListType } from '../../editorTypes';
 import { TableTypeEnum } from '../../enums';
 import headlineByTableType from '../StaticForm/headlineByTableType';
