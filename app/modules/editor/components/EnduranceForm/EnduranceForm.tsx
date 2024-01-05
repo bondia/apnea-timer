@@ -25,7 +25,12 @@ const EditorEndurancePane: FC = () => {
     sets: [...newSets],
   };
 
-  return <ActionsLayout content={<EnduranceMainForm editor={editor} />} actions={<CronoStartButton data={crono} />} />;
+  return (
+    <ActionsLayout
+      content={<EnduranceMainForm editor={editor} />}
+      actions={<CronoStartButton data={crono} />}
+    />
+  );
 };
 
 export default EditorEndurancePane;

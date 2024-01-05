@@ -1,32 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
 import React, { FC, PropsWithChildren } from 'react';
-import styled from 'styled-components/native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
-import { Stack } from '../Flow';
-
-type SafeAreaViewProps = {
-  backgroundColor?: string;
-};
-
-const SafeAreaView = styled.SafeAreaView<SafeAreaViewProps>`
-  flex: 1;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-`;
+import { Stack, Surface } from '../Flow';
 
 export type SceneLayoutProps = PropsWithChildren<{
   darkBackground?: boolean;
 }>;
 
-const SceneLayout: FC<SceneLayoutProps> = ({ children, darkBackground = false }) => {
-  const { elevations, colors } = useAppTheme();
-  const backgroundColor = darkBackground ? elevations.ELEVATION_00 : colors.background;
+const SceneLayout: FC<SceneLayoutProps> = ({
+  children,
+  darkBackground = false,
+}) => {
+  const { elevations } = useAppTheme();
+  const backgroundColor = darkBackground
+    ? elevations.ELEVATION_00
+    : elevations.ELEVATION_00;
   return (
-    <SafeAreaView backgroundColor={backgroundColor}>
-      <Stack grow={1} fullWidth>
-        {children}
-      </Stack>
-      <StatusBar />
-    </SafeAreaView>
+    <Surface grow={1} elevation={backgroundColor}>
+      <SafeAreaView>
+        <Stack grow={1} fullWidth>
+          {children}
+        </Stack>
+      </SafeAreaView>
+    </Surface>
   );
 };
 

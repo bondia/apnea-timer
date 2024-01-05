@@ -20,12 +20,14 @@ const NumericInput: FC<NumericInputProps> = ({
   decrease,
   decreaseInterval,
 }) => {
-  const { oldColors } = useAppTheme();
+  const {
+    colors: { secondary500 },
+  } = useAppTheme();
   return (
     <Stack>
       {headline ? (
         <>
-          <Typography type={TypographyType.H5} color={oldColors.COLOR_DARK} centered>
+          <Typography type={TypographyType.H5} color={secondary500} centered>
             {headline}
           </Typography>
           <Spacer spacing={4} />
@@ -34,7 +36,11 @@ const NumericInput: FC<NumericInputProps> = ({
 
       <Stack horizontal>
         <Stack grow={1} shrink={0} basis="0" centered>
-          <LongTouchButton title="-" onPressStart={decrease} onPressInterval={decreaseInterval} />
+          <LongTouchButton
+            title="-"
+            onPressStart={decrease}
+            onPressInterval={decreaseInterval}
+          />
         </Stack>
 
         <Stack grow={2.5} shrink={0} basis="0" centered>
@@ -42,7 +48,11 @@ const NumericInput: FC<NumericInputProps> = ({
         </Stack>
 
         <Stack grow={1} shrink={0} basis="0" centered>
-          <LongTouchButton title="+" onPressStart={increase} onPressInterval={increaseInterval} />
+          <LongTouchButton
+            title="+"
+            onPressStart={increase}
+            onPressInterval={increaseInterval}
+          />
         </Stack>
       </Stack>
     </Stack>

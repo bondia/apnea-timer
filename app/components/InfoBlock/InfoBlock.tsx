@@ -27,12 +27,22 @@ const InfoBlock: FC<InfoBlockProps> = ({
   return (
     <Stack>
       {label && (
-        <Typography type={labelType} color={labelColor || colors.primary900} centered>
+        <Typography
+          type={labelType}
+          color={labelColor || colors.primary900}
+          centered
+        >
           {label}
         </Typography>
       )}
-      <Typography type={contentType} color={contentColor || colors.primary900} centered>
-        {content !== undefined && isTimestamp ? secondsToTimeString(content) : content}
+      <Typography
+        type={contentType}
+        color={contentColor || colors.primary900}
+        centered
+      >
+        {content !== undefined && isTimestamp
+          ? secondsToTimeString(content)
+          : content}
       </Typography>
     </Stack>
   );

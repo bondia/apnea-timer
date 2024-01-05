@@ -37,9 +37,6 @@ const darkTheme: AppTheme = {
     inverted200: 'azure',
     inverted100: 'azure',
     inverted050: 'azure',
-    // elements
-    background: '#121212',
-    surface: '#CDF5FD',
     // states
     error: '#FF635A',
   },

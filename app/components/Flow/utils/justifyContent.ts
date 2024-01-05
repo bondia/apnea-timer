@@ -1,4 +1,8 @@
-const justifyContent = ({ spaceAround = false, spaceBetween = false, centered = false }) => {
+const justifyContent = ({
+  spaceAround = false,
+  spaceBetween = false,
+  centered = false,
+}) => {
   if (spaceAround) {
     return 'space-around';
   }

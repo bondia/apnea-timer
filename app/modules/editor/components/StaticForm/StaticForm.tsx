@@ -1,4 +1,5 @@
 import React, { FC, useEffect } from 'react';
+import { Stack } from '../../../../components/Flow';
 import ActionsLayout from '../../../../components/Layouts/ActionsLayout';
 import { useAppDispatch, useAppSelector } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
@@ -33,10 +34,10 @@ const StaticForm: FC = () => {
   return (
     <ActionsLayout
       content={
-        <>
+        <Stack>
           <StaticMainForm editor={editor} />
           <StaticSetsList tableType={tableType} sets={setsList} />
-        </>
+        </Stack>
       }
       actions={showStartButton && <CronoStartButton data={crono} />}
     />

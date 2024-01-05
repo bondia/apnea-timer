@@ -7,7 +7,8 @@ type ButtonWrapperProps = PropsWithAppTheme<{
 
 // eslint-disable-next-line import/prefer-default-export
 export const ButtonWrapper = styled.TouchableHighlight<ButtonWrapperProps>`
-  background-color: ${({ theme: { colors }, active }) => (active ? colors.surface : colors.surface)};
+  background-color: ${({ theme: { colors }, active }) =>
+    active ? colors.primary050 : colors.inverted700};
   border-radius: 3px;
   height: 100%;
 `;

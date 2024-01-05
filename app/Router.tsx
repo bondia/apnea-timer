@@ -9,7 +9,10 @@ import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
 import MouthfillScene from './modules/mouthfill/MouthfillScene';
 import SelectorScene from './modules/selector/SelectorScene';
 import SettingsScene from './modules/settings/SettingsScene';
-import StoriesScene from './modules/stories/StoriesScene';
+import ColorsScene from './modules/stories/Scenes/ColorsScene';
+import StoriesMenuScene from './modules/stories/Scenes/StoriesMenuScene';
+import StoriesScene from './modules/stories/Scenes/StoriesScene';
+import TypographyScene from './modules/stories/Scenes/TypographyScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 
@@ -17,12 +20,23 @@ const AppRouter: FC = () => {
   deactivateKeepAwake();
   return (
     <NavigationContainer>
-      <Navigator initialRouteName={RoutesEnum.MENU} screenOptions={{ headerShown: false }}>
+      <Navigator
+        initialRouteName={RoutesEnum.MENU}
+        screenOptions={{ headerShown: false }}
+      >
         {/* Main */}
-        <Screen name={RoutesEnum.MENU} component={SelectorScene} options={{ title: 'Apnea' }} />
+        <Screen
+          name={RoutesEnum.MENU}
+          component={SelectorScene}
+          options={{ title: 'Apnea' }}
+        />
 
         {/* Create tables */}
-        <Screen name={RoutesEnum.CREATE_TABLE_SCENE} component={EditorStaticScene} options={{ title: 'CO2/O2' }} />
+        <Screen
+          name={RoutesEnum.CREATE_TABLE_SCENE}
+          component={EditorStaticScene}
+          options={{ title: 'CO2/O2' }}
+        />
         <Screen
           name={RoutesEnum.ENDURANCE_TABLE_SCENE}
           component={EditorEnduranceScene}
@@ -30,16 +44,47 @@ const AppRouter: FC = () => {
         />
 
         {/* Crono */}
-        <Screen name={RoutesEnum.CRONO_SCENE} component={CronoScene} options={{ title: 'Crono', headerShown: false }} />
+        <Screen
+          name={RoutesEnum.CRONO_SCENE}
+          component={CronoScene}
+          options={{ title: 'Crono', headerShown: false }}
+        />
 
         {/* Freediving Utils */}
-        <Screen name={RoutesEnum.MF_DEPTH} component={MouthfillScene} options={{ title: 'MF DEPTH' }} />
+        <Screen
+          name={RoutesEnum.MF_DEPTH}
+          component={MouthfillScene}
+          options={{ title: 'MF DEPTH' }}
+        />
 
         {/* User */}
-        <Screen name={RoutesEnum.SETTINGS} component={SettingsScene} options={{ title: 'Settings' }} />
+        <Screen
+          name={RoutesEnum.SETTINGS}
+          component={SettingsScene}
+          options={{ title: 'Settings' }}
+        />
 
         {/* UX/UI */}
-        <Screen name={RoutesEnum.STORIES} component={StoriesScene} options={{ title: 'Playground' }} />
+        <Screen
+          name={RoutesEnum.STORIES_MENU}
+          component={StoriesMenuScene}
+          options={{ title: 'Playground' }}
+        />
+        <Screen
+          name={RoutesEnum.STORIES_COLORS}
+          component={ColorsScene}
+          options={{ title: 'Colors' }}
+        />
+        <Screen
+          name={RoutesEnum.STORIES_TYPOGRAPHY}
+          component={TypographyScene}
+          options={{ title: 'Typography' }}
+        />
+        <Screen
+          name={RoutesEnum.STORIES_UNORDERED}
+          component={StoriesScene}
+          options={{ title: 'Unordered' }}
+        />
       </Navigator>
     </NavigationContainer>
   );

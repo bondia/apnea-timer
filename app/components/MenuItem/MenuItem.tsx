@@ -1,34 +1,32 @@
 import React, { FC } from 'react';
-import styled from 'styled-components/native';
+import { TouchableHighlight } from 'react-native';
 import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
-import { Stack } from '../Flow';
+import { Stack, Surface } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
-
-type ActionAreaProps = {
-  color: string;
-};
-
-const ActionArea = styled.TouchableHighlight<ActionAreaProps>`
-  background-color: ${(props: ActionAreaProps) => props.color};
-  min-height: 175px;
-`;
 
 type MenuItemProps = {
   title: string;
   onPress: () => void;
-  color: string;
+  background?: string;
+  color?: string;
 };
 
-const MenuItem: FC<MenuItemProps> = ({ title, onPress, color }) => {
-  const { colors } = useAppTheme();
+const MenuItem: FC<MenuItemProps> = ({ title, onPress, background, color }) => {
+  const { colors, elevations } = useAppTheme();
   return (
-    <ActionArea onPress={onPress} color={color}>
-      <Stack grow={1} centered>
-        <Typography type={TypographyType.H3} color={colors.inverted900} centered>
-          {title}
-        </Typography>
-      </Stack>
-    </ActionArea>
+    <Surface elevation={background || elevations.ELEVATION_01}>
+      <TouchableHighlight onPress={onPress}>
+        <Stack grow={1} spaceY={10} centered>
+          <Typography
+            type={TypographyType.H3}
+            color={color || colors.inverted900}
+            centered
+          >
+            {title}
+          </Typography>
+        </Stack>
+      </TouchableHighlight>
+    </Surface>
   );
 };
 

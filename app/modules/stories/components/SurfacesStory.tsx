@@ -1,86 +1,120 @@
 import React, { FC } from 'react';
-import { Spacer, Surface } from '../../../components/Flow';
-import Typography, { TypographyType } from '../../../components/Typography/Typography';
+import { Stack, Surface } from '../../../components/Flow';
+import SpacedSurface from '../../../components/Flow/SpacedSurface';
+import Typography, {
+  TypographyType,
+} from '../../../components/Typography/Typography';
 import useAppTheme from '../../../providers/AppThemeProvider/useAppTheme';
 
 const SurfacesStory: FC = () => {
   const theme = useAppTheme();
+  const primary = theme.colors.primary500;
+  const seconadry = theme.colors.secondary500;
+  const inverted = theme.colors.inverted700;
   return (
     <Surface elevation={theme.elevations.ELEVATION_00}>
-      <Spacer spacing={10} />
-      <Spacer xAxis={5}>
-        <Surface elevation={theme.elevations.ELEVATION_24} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.primary900}>
-              ELEVATION_24
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_16} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.primary900}>
-              ELEVATION_16
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_12} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.primary900}>
-              ELEVATION_12
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_06} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.primary900}>
-              ELEVATION_06
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_05} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.primary900}>
-              ELEVATION_05
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_04} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.primary900}>
-              ELEVATION_04
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_03} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.primary900}>
-              ELEVATION_03
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_02} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.secondary900}>
-              ELEVATION_02
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_01} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.secondary900}>
-              ELEVATION_01
-            </Typography>
-          </Spacer>
-        </Surface>
-        <Surface elevation={theme.elevations.ELEVATION_00} radius>
-          <Spacer xAxis={5} yAxis={5}>
-            <Typography type={TypographyType.BODY_1} color={theme.colors.secondary900}>
-              ELEVATION_00
-            </Typography>
-          </Spacer>
-        </Surface>
-      </Spacer>
-      <Spacer spacing={10} />
+      <Stack spaceX={3} spaceY={5} rowGap={5}>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_24}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={primary}>
+            Elevation 24
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_16}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={primary}>
+            Elevation 16
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_12}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={primary}>
+            Elevation 12
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_06}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={seconadry}>
+            Elevation 06
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_05}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={seconadry}>
+            Elevation 05
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_04}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={seconadry}>
+            Elevation 04
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_03}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={inverted}>
+            Elevation 03
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_02}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={inverted}>
+            Elevation 02
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_01}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={inverted}>
+            Elevation 01
+          </Typography>
+        </SpacedSurface>
+        <SpacedSurface
+          elevation={theme.elevations.ELEVATION_00}
+          radius
+          xAxis={5}
+          yAxis={5}
+        >
+          <Typography type={TypographyType.BODY_1} color={inverted}>
+            Elevation 00
+          </Typography>
+        </SpacedSurface>
+      </Stack>
     </Surface>
   );
 };

@@ -7,21 +7,21 @@ import useAppNavitation from '../../useAppNavigation';
 
 const SelectorPane: FC = () => {
   const navigation = useAppNavitation();
-  const { oldColors } = useAppTheme();
+  const { colors, elevations } = useAppTheme();
 
   const createRoute = () => navigation.push(RoutesEnum.CREATE_TABLE_SCENE);
   const mouthfillRoute = () => navigation.push(RoutesEnum.MF_DEPTH);
   const endurance = () => navigation.push(RoutesEnum.ENDURANCE_TABLE_SCENE);
   const settings = () => navigation.push(RoutesEnum.SETTINGS);
-  const stories = () => navigation.push(RoutesEnum.STORIES);
+  const stories = () => navigation.push(RoutesEnum.STORIES_MENU);
 
   return (
-    <ScrollableStack>
-      <MenuItem title="CO2/O2" color={oldColors.COLOR_LIGHT} onPress={createRoute} />
-      <MenuItem title="Endurance" color={oldColors.COLOR_NORMAL} onPress={endurance} />
-      <MenuItem title="MF" color={oldColors.COLOR_DARK} onPress={mouthfillRoute} />
-      <MenuItem title="Settings" color={oldColors.COLOR_DARKER} onPress={settings} />
-      <MenuItem title="Playground" color={oldColors.COLOR_DARKEST} onPress={stories} />
+    <ScrollableStack grow={1}>
+      <MenuItem title="CO2/O2" color={colors.inverted900} background={elevations.ELEVATION_01} onPress={createRoute} />
+      <MenuItem title="Endurance" color={colors.inverted900} background={elevations.ELEVATION_02} onPress={endurance} />
+      <MenuItem title="MF" color={colors.inverted900} background={elevations.ELEVATION_03} onPress={mouthfillRoute} />
+      <MenuItem title="Settings" color={colors.inverted800} background={elevations.ELEVATION_04} onPress={settings} />
+      <MenuItem title="Playground" color={colors.inverted800} background={elevations.ELEVATION_05} onPress={stories} />
     </ScrollableStack>
   );
 };

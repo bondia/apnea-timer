@@ -4,6 +4,7 @@ import TableBaseInput from '../StaticFormInputs/TableBaseInput';
 import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 
 import { Spacer, Stack } from '../../../../components/Flow';
+import SpacedSurface from '../../../../components/Flow/SpacedSurface';
 import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import { EditorStateType } from '../../editorTypes';
@@ -17,7 +18,7 @@ const StaticMainForm: FC<Props> = ({
     trainingTable: { base, type, duration: totalTime },
   },
 }) => {
-  const { colors } = useAppTheme();
+  const { colors, elevations } = useAppTheme();
 
   const isFreeTable = TableTypeEnum.TABLE_TYPE_FREE === type;
 
@@ -32,33 +33,39 @@ const StaticMainForm: FC<Props> = ({
   };
 
   return (
-    <Stack shrink={0}>
-      <Spacer yAxis={1}>
+    <SpacedSurface
+      elevation={elevations.ELEVATION_24}
+      top={3}
+      bottom={8}
+      xAxis={4}
+      radius="20px"
+    >
+      <Stack shrink={0}>
         <TableTypeInput />
-      </Spacer>
 
-      <Spacer yAxis={1}>
-        <Stack horizontal spaceAround>
-          {!isFreeTable && (
-            <InfoBlock
-              label={titleByType[type]}
-              labelColor={colorByType[type]}
-              content={base}
-              contentColor={colorByType[type]}
-              isTimestamp
-            />
-          )}
+        <Spacer top={2}>
+          <Stack horizontal spaceAround>
+            {!isFreeTable && (
+              <InfoBlock
+                label={titleByType[type]}
+                labelColor={colorByType[type]}
+                content={base}
+                contentColor={colorByType[type]}
+                isTimestamp
+              />
+            )}
 
-          <InfoBlock label="Total Time" content={totalTime} isTimestamp />
-        </Stack>
-      </Spacer>
-
-      {!isFreeTable && (
-        <Spacer yAxis={1}>
-          <TableBaseInput />
+            <InfoBlock label="Total Time" content={totalTime} isTimestamp />
+          </Stack>
         </Spacer>
-      )}
-    </Stack>
+
+        {!isFreeTable && (
+          <Spacer top={2}>
+            <TableBaseInput />
+          </Spacer>
+        )}
+      </Stack>
+    </SpacedSurface>
   );
 };
 

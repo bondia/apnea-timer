@@ -2,7 +2,7 @@ import styled from 'styled-components/native';
 import { SpacingValues } from './layout.d';
 import spacingToPixels from './utils/spacingToPixels';
 
-type SpacerProps = {
+export type SpacerProps = {
   // block
   spacing?: SpacingValues;
   horizontal?: boolean;
@@ -10,7 +10,7 @@ type SpacerProps = {
   debug?: string | boolean;
 } & MarginSpacerRuleProps;
 
-type MarginSpacerRuleProps = {
+export type MarginSpacerRuleProps = {
   // margins
   xAxis?: SpacingValues;
   yAxis?: SpacingValues;
@@ -20,7 +20,14 @@ type MarginSpacerRuleProps = {
   left?: SpacingValues;
 };
 
-export const marginSpacerRule = ({ xAxis, yAxis, top, right, bottom, left }: MarginSpacerRuleProps) => {
+export const marginSpacerRule = ({
+  xAxis,
+  yAxis,
+  top,
+  right,
+  bottom,
+  left,
+}: MarginSpacerRuleProps) => {
   const topValue = spacingToPixels(top || yAxis || undefined);
   const bottomValue = spacingToPixels(bottom || yAxis || undefined);
   const rightValue = spacingToPixels(right || xAxis || undefined);
@@ -30,9 +37,12 @@ export const marginSpacerRule = ({ xAxis, yAxis, top, right, bottom, left }: Mar
 
 const Spacer = styled.View<SpacerProps>`
   margin: ${marginSpacerRule};
-  width: ${({ spacing, horizontal }) => (spacing && horizontal ? spacingToPixels(spacing) : 'auto')};
-  height: ${({ spacing, horizontal }) => (spacing && !horizontal ? spacingToPixels(spacing) : 'auto')};
-  border: ${({ debug = false }) => (debug ? `1px solid ${debug === true ? 'black' : debug}` : 'none')};
+  width: ${({ spacing, horizontal }) =>
+    spacing && horizontal ? spacingToPixels(spacing) : 'auto'};
+  height: ${({ spacing, horizontal }) =>
+    spacing && !horizontal ? spacingToPixels(spacing) : 'auto'};
+  border: ${({ debug = false }) =>
+    debug ? `1px solid ${debug === true ? 'black' : debug}` : 'none'};
 
   flex: 0 1 auto;
 `;

@@ -33,8 +33,6 @@ export type AppTheme = {
     inverted100: string;
     inverted050: string;
 
-    background: string;
-    surface: string;
     error: string;
   };
 
@@ -53,23 +51,8 @@ export type AppTheme = {
 
   /** @deprecated */
   oldColors: {
-    // GREY
     /** @deprecated */
     FONT_COLOR_GREY: string;
-    /** @deprecated */
-    FONT_CLOLR_GREY_LIGHT: string;
-
-    // COLORS
-    /** @deprecated */
-    COLOR_LIGHT: string;
-    /** @deprecated */
-    COLOR_NORMAL: string;
-    /** @deprecated */
-    COLOR_DARK: string;
-    /** @deprecated */
-    COLOR_DARKER: string;
-    /** @deprecated */
-    COLOR_DARKEST: string;
   };
 };
 

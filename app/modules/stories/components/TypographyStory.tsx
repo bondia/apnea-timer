@@ -1,11 +1,13 @@
 import React, { FC } from 'react';
 import { Spacer } from '../../../components/Flow';
-import Typography, { TypographyType } from '../../../components/Typography/Typography';
+import Typography, {
+  TypographyType,
+} from '../../../components/Typography/Typography';
 
 const TypographyStory: FC = () => (
   <>
     <Typography type={TypographyType.H3}>TYPOGRAPHY</Typography>
-    <Spacer top={2} left={4}>
+    <Spacer top={2} bottom={10} left={4}>
       <Typography type={TypographyType.H1}>Header 1</Typography>
       <Typography type={TypographyType.H2}>Header 2</Typography>
       <Typography type={TypographyType.H3}>Header 3</Typography>
