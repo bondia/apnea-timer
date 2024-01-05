@@ -10,6 +10,7 @@ import MouthfillScene from './modules/mouthfill/MouthfillScene';
 import SelectorScene from './modules/selector/SelectorScene';
 import SettingsScene from './modules/settings/SettingsScene';
 import ColorsScene from './modules/stories/Scenes/ColorsScene';
+import ElevationsScene from './modules/stories/Scenes/ElevationsScene';
 import StoriesMenuScene from './modules/stories/Scenes/StoriesMenuScene';
 import StoriesScene from './modules/stories/Scenes/StoriesScene';
 import TypographyScene from './modules/stories/Scenes/TypographyScene';
@@ -84,6 +85,11 @@ const AppRouter: FC = () => {
           name={RoutesEnum.STORIES_UNORDERED}
           component={StoriesScene}
           options={{ title: 'Unordered' }}
+        />
+        <Screen
+          name={RoutesEnum.STORIES_ELEVATIONS}
+          component={ElevationsScene}
+          options={{ title: 'Elevations' }}
         />
       </Navigator>
     </NavigationContainer>

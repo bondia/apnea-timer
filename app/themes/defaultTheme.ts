@@ -1,5 +1,4 @@
 import { AppTheme } from './types';
-import createElevation from './utils/createElevation';
 
 const defaultTheme: AppTheme = {
   colors: {
@@ -46,15 +45,15 @@ const defaultTheme: AppTheme = {
 
   elevations: {
     ELEVATION_00: '#66a7df',
-    ELEVATION_01: createElevation('#66a7df', 0.1),
-    ELEVATION_02: createElevation('#66a7df', 0.2),
-    ELEVATION_03: createElevation('#66a7df', 0.3),
-    ELEVATION_04: createElevation('#66a7df', 0.4),
-    ELEVATION_05: createElevation('#66a7df', 0.5),
-    ELEVATION_06: createElevation('#66a7df', 0.6),
-    ELEVATION_12: createElevation('#66a7df', 0.7),
-    ELEVATION_16: createElevation('#66a7df', 0.8),
-    ELEVATION_24: createElevation('#66a7df', 0.9),
+    ELEVATION_01: '#75b0e2',
+    ELEVATION_02: '#85b9e5',
+    ELEVATION_03: '#94c1e9',
+    ELEVATION_04: '#a3caec',
+    ELEVATION_05: '#c2dcf2',
+    ELEVATION_06: '#d1e5f5',
+    ELEVATION_12: '#e0edf9',
+    ELEVATION_16: '#f0f6fc',
+    ELEVATION_24: '#ffffff',
   },
 };
 

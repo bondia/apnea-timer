@@ -12,6 +12,7 @@ export enum RoutesEnum {
   STORIES_UNORDERED = 'STORIES_UNORDERED',
   STORIES_COLORS = 'STORIES_COLORS',
   STORIES_TYPOGRAPHY = 'STORIES_TYPOGRAPHY',
+  STORIES_ELEVATIONS = 'STORIES_ELEVATIONS',
 }
 
 export type RootStackParamList = {
@@ -25,6 +26,7 @@ export type RootStackParamList = {
   [RoutesEnum.STORIES_UNORDERED]: undefined;
   [RoutesEnum.STORIES_COLORS]: undefined;
   [RoutesEnum.STORIES_TYPOGRAPHY]: undefined;
+  [RoutesEnum.STORIES_ELEVATIONS]: undefined;
 };
 
 export type AppScreenType<GenericRoute extends keyof RootStackParamList> =
