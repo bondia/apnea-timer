@@ -7,10 +7,10 @@ type ActionsLayoutProps = {
 };
 
 const ActionsLayout: FC<ActionsLayoutProps> = ({ content, actions }) => (
-  <Stack grow={1} spaceX={2}>
+  <Stack grow={1}>
     {content}
     {actions && (
-      <Stack grow={0} shrink={0} horizontal spaceTop={2}>
+      <Stack grow={0} shrink={0}>
         {actions}
       </Stack>
     )}

@@ -1,14 +1,13 @@
 import React, { FC } from 'react';
-import { FONT_COLOR_GREY, FONT_COLOR_LIGHT } from '../../../../commonStyles';
 import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
-import { Spacer, Stack } from '../../../../components/Flow';
-import Surface from '../../../../components/Flow/Surface.styled';
+import { Stack, Surface } from '../../../../components/Flow';
 import { TypographyType } from '../../../../components/Typography/Typography';
-import { SurfaceColorsEnum } from '../../../../darkTheme';
-import useSetCalculations from '../../hooks/useSetCalculations';
+import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import Countdown from './Countdown';
+import Countup from './Countup';
 
 type LiveCounterProps = {
   crono: CronoStateType;
@@ -19,15 +18,10 @@ const LiveCounter: FC<LiveCounterProps> = ({
   crono: {
     trainingTable: { type: tableTypeEnum },
     running: { clock: spentTime, countdown: totalTime = 0 },
-    sets,
   },
   set,
 }) => {
-  const {
-    setNumber,
-    spent,
-    status: { isDiving },
-  } = useSetCalculations(set || sets[0]);
+  const { elevations, colors } = useAppTheme();
 
   // set data
   const pos = set ? set.pos : 0;
@@ -35,79 +29,82 @@ const LiveCounter: FC<LiveCounterProps> = ({
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
 
   return (
-    <Spacer top={1} bottom={3}>
-      <Surface elevation={SurfaceColorsEnum.ELEVATION_03} radius>
-        <Stack spaceAround horizontal spaceY={3}>
-          {/* STATIC */}
-          {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
-            <>
+    <Surface
+      elevation={elevations.ELEVATION_16}
+      radiusBR="40px"
+      radiusBL="40px"
+    >
+      {/* STATIC */}
+      {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
+        <>
+          <Stack spaceAround horizontal spaceBottom={8}>
+            <Stack basis="33%">
               <InfoBlock
-                label="Table duration"
-                labelColor={FONT_COLOR_GREY}
-                labelType={TypographyType.SUBTITLE_2}
-                content={totalTime}
-                contentColor={FONT_COLOR_LIGHT}
-                contentType={TypographyType.H5}
-                isTimestamp
-              />
-
-              {set ? (
-                <InfoBlock
-                  label={isDiving ? `Hold (${setNumber})` : `Recovery (${setNumber})`}
-                  labelColor={FONT_COLOR_GREY}
-                  labelType={TypographyType.SUBTITLE_2}
-                  content={spent}
-                  contentColor={FONT_COLOR_LIGHT}
-                  contentType={TypographyType.H5}
-                  isTimestamp
-                />
-              ) : undefined}
-
-              {/*
-                <InfoBlock
-                label="Contractions"
-                labelColor={FONT_COLOR_GREY}
-                labelType={TypographyType.SUBTITLE_1}
-                content={contractions}
-                contentColor={FONT_COLOR_LIGHT}
-                contentType={TypographyType.H6}
-                isTimestamp
-                />
-              */}
-            </>
-          )}
-
-          {/* ENDURANCE */}
-          {/* TODO: CLEAN UP FOR ENDURANCE */}
-          {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
-            <>
-              <InfoBlock
-                label="Current Dive"
-                labelColor={FONT_COLOR_GREY}
+                label="Set"
                 content={currentSet}
-                contentColor={FONT_COLOR_LIGHT}
+                labelColor={colors.primary050}
+                labelType={TypographyType.SUBTITLE_2}
+                contentColor={colors.primary100}
+                contentType={TypographyType.H6}
               />
+            </Stack>
 
+            <Stack basis="33%">
               <InfoBlock
-                label="Targeting"
-                labelColor={FONT_COLOR_GREY}
-                content={targeting}
-                contentColor={FONT_COLOR_LIGHT}
+                label="Time Left"
+                content={totalTime}
                 isTimestamp
+                labelColor={colors.primary050}
+                labelType={TypographyType.SUBTITLE_2}
+                contentColor={colors.primary100}
+                contentType={TypographyType.H6}
               />
+            </Stack>
 
-              <InfoBlock
-                label="Spent Time"
-                labelColor={FONT_COLOR_GREY}
-                content={spentTime > 0 ? spentTime : 0}
-                contentColor={FONT_COLOR_LIGHT}
-                isTimestamp
-              />
-            </>
-          )}
+            <Stack basis="33%">{set ? <Countup set={set} /> : null}</Stack>
+          </Stack>
+
+          <Stack spaceAround horizontal spaceBottom={10}>
+            {set ? <Countdown set={set} /> : null}
+          </Stack>
+        </>
+      )}
+
+      {/* ENDURANCE */}
+      {/* TODO: CLEAN UP FOR ENDURANCE */}
+      {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
+        <Stack spaceAround horizontal spaceBottom={8}>
+          <InfoBlock
+            label="Current Dive"
+            content={currentSet}
+            labelColor={colors.primary050}
+            labelType={TypographyType.SUBTITLE_1}
+            contentColor={colors.primary500}
+            contentType={TypographyType.H4}
+          />
+
+          <InfoBlock
+            label="Targeting"
+            content={targeting}
+            isTimestamp
+            labelColor={colors.primary050}
+            labelType={TypographyType.SUBTITLE_1}
+            contentColor={colors.primary500}
+            contentType={TypographyType.H4}
+          />
+
+          <InfoBlock
+            label="Spent Time"
+            content={spentTime > 0 ? spentTime : 0}
+            isTimestamp
+            labelColor={colors.primary050}
+            labelType={TypographyType.SUBTITLE_1}
+            contentColor={colors.primary500}
+            contentType={TypographyType.H4}
+          />
         </Stack>
-      </Surface>
-    </Spacer>
+      )}
+    </Surface>
   );
 };
 

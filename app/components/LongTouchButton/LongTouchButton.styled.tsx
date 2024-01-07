@@ -1,13 +1,23 @@
 import styled from 'styled-components/native';
-import { COLOR_LIGHT, FONT_CLOLR_GREY_LIGHT } from '../../commonStyles';
+import { PropsWithAppTheme } from '../../themes/types';
 
-type ButtonWrapperProps = {
+type ButtonWrapperProps = PropsWithAppTheme<{
   active: boolean;
-};
+}>;
 
-// eslint-disable-next-line import/prefer-default-export
-export const ButtonWrapper = styled.TouchableHighlight<ButtonWrapperProps>`
-  background-color: ${props => (props.active ? COLOR_LIGHT : FONT_CLOLR_GREY_LIGHT)};
+export const Wrapper = styled.View<ButtonWrapperProps>`
+  flex: 1;
+
+  background-color: ${({ theme: { colors }, active }) =>
+    active ? colors.primary050 : colors.inverted200};
+
   border-radius: 3px;
-  height: 100%;
+  shadow-opacity: 0.1;
+  shadow-color: ${({ theme: { colors } }) => colors.primary900};
+  shadow-radius: 1px;
+  shadow-offset: 2px 2px;
+`;
+
+export const TouchableHighlight = styled.TouchableHighlight`
+  flex: 1;
 `;

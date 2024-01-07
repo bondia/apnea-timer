@@ -1,20 +1,34 @@
 import React, { FC } from 'react';
 import { AppDispatch } from '../../../../../App';
-import { COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../../commonStyles';
 import { Spacer, Stack } from '../../../../components/Flow';
 import NumericInput from '../../../../components/Forms/NumericInput';
-import Typography, { TypographyType } from '../../../../components/Typography/Typography';
+import Typography, {
+  TypographyType,
+} from '../../../../components/Typography/Typography';
+import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import { useAppDispatch } from '../../../../redux/hooks';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { EditorStateType, EnduranceTrainingTableType } from '../../editorTypes';
-import { ChangeEnduranceLapsType, changeEnduranceLaps } from '../../redux/actions/composed/changeEnduranceLaps';
-import { EditorChangeTableBaseAction, changeTableBase } from '../../redux/actions/composed/changeTableBase';
-import { ChangeTableBaseBreaksType, changeTableBaseBreaks } from '../../redux/actions/composed/changeTableBaseBreaks';
+import {
+  ChangeEnduranceLapsType,
+  changeEnduranceLaps,
+} from '../../redux/actions/composed/changeEnduranceLaps';
+import {
+  EditorChangeTableBaseAction,
+  changeTableBase,
+} from '../../redux/actions/composed/changeTableBase';
+import {
+  ChangeTableBaseBreaksType,
+  changeTableBaseBreaks,
+} from '../../redux/actions/composed/changeTableBaseBreaks';
 
 type HandleActionParams = {
   original: number;
   increase: number;
-  action: ChangeTableBaseBreaksType | ChangeEnduranceLapsType | EditorChangeTableBaseAction;
+  action:
+    | ChangeTableBaseBreaksType
+    | ChangeEnduranceLapsType
+    | EditorChangeTableBaseAction;
 };
 
 const handleAction =
@@ -34,16 +48,22 @@ type EditorEnduranceProps = {
 const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   const dispatch = useAppDispatch();
   const actionHandler = handleAction(dispatch);
+  const { colors } = useAppTheme();
 
   const {
     editor: { trainingTable },
   } = props;
 
-  const { enduranceLaps, base, baseBreaks, duration: totalTime } = trainingTable as EnduranceTrainingTableType;
+  const {
+    enduranceLaps,
+    base,
+    baseBreaks,
+    duration: totalTime,
+  } = trainingTable as EnduranceTrainingTableType;
 
   return (
     <Stack spaceAround grow={1}>
-      <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
+      <Typography type={TypographyType.H1} color={colors.primary900} centered>
         {secondsToTimeString(totalTime)}
       </Typography>
 
@@ -65,7 +85,11 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             })
           }
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography
+            type={TypographyType.H3}
+            color={colors.inverted900}
+            centered
+          >
             {enduranceLaps}
           </Typography>
         </NumericInput>
@@ -103,7 +127,11 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             })
           }
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography
+            type={TypographyType.H3}
+            color={colors.inverted900}
+            centered
+          >
             {secondsToTimeString(base)}
           </Typography>
         </NumericInput>
@@ -141,7 +169,11 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             })
           }
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography
+            type={TypographyType.H3}
+            color={colors.inverted900}
+            centered
+          >
             {secondsToTimeString(baseBreaks)}
           </Typography>
         </NumericInput>

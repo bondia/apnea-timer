@@ -1,16 +1,26 @@
 import React, { FC } from 'react';
-import { COLOR_GREEN_NORMAL, FONT_COLOR_GREY } from '../../../commonStyles';
 import { Spacer, Stack } from '../../../components/Flow';
 import NumericInput from '../../../components/Forms/NumericInput';
-import Typography, { TypographyType } from '../../../components/Typography/Typography';
+import Typography, {
+  TypographyType,
+} from '../../../components/Typography/Typography';
+import useAppTheme from '../../../providers/AppThemeProvider/useAppTheme';
 import useMouthfill from '../hooks/useMouthfill';
 
 const MouthfillForm: FC = () => {
-  const { testPerformed, setTestPerformed, testFailed, setTestFailed, performed, setPerformed, maxDepth } =
-    useMouthfill();
+  const { colors } = useAppTheme();
+  const {
+    testPerformed,
+    setTestPerformed,
+    testFailed,
+    setTestFailed,
+    performed,
+    setPerformed,
+    maxDepth,
+  } = useMouthfill();
   return (
     <Stack spaceAround grow={1}>
-      <Typography type={TypographyType.H1} color={COLOR_GREEN_NORMAL} centered>
+      <Typography type={TypographyType.H1} color={colors.primary900} centered>
         {maxDepth} m
       </Typography>
 
@@ -22,7 +32,11 @@ const MouthfillForm: FC = () => {
           increase={() => setTestPerformed(testPerformed + 1)}
           increaseInterval={() => setTestPerformed(testPerformed + 5)}
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography
+            type={TypographyType.H3}
+            color={colors.inverted900}
+            centered
+          >
             {testPerformed} m
           </Typography>
         </NumericInput>
@@ -36,7 +50,11 @@ const MouthfillForm: FC = () => {
           increase={() => setTestFailed(testFailed + 1)}
           increaseInterval={() => setTestFailed(testFailed + 5)}
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography
+            type={TypographyType.H3}
+            color={colors.inverted900}
+            centered
+          >
             {testFailed} m
           </Typography>
         </NumericInput>
@@ -50,7 +68,11 @@ const MouthfillForm: FC = () => {
           increase={() => setPerformed(performed + 1)}
           increaseInterval={() => setPerformed(performed + 5)}
         >
-          <Typography type={TypographyType.H3} color={FONT_COLOR_GREY} centered>
+          <Typography
+            type={TypographyType.H3}
+            color={colors.inverted900}
+            centered
+          >
             {performed} m
           </Typography>
         </NumericInput>

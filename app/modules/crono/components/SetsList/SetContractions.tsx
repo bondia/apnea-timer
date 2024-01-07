@@ -1,6 +1,6 @@
 import React, { FC, useMemo } from 'react';
-import { FONT_COLOR_LIGHT } from '../../../../commonStyles';
 import Typography, { TypographyType } from '../../../../components/Typography/Typography';
+import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { CronoSetType } from '../../cronoTypes';
 
@@ -13,12 +13,13 @@ const SetContractions: FC<SetContractionsProps> = ({
     running: { contraction },
   },
 }) => {
+  const { colors } = useAppTheme();
   const contractionsText = useMemo(() => secondsToTimeString(contraction), [contraction]);
   if (contraction <= 0) {
     return null;
   }
   return (
-    <Typography type={TypographyType.CAPTION} color={FONT_COLOR_LIGHT} centered>
+    <Typography type={TypographyType.CAPTION} color={colors.primary900} centered>
       {contractionsText}
     </Typography>
   );

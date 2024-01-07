@@ -7,7 +7,12 @@ export enum RoutesEnum {
   ENDURANCE_TABLE_SCENE = 'ENDURANCE_TABLE_SCENE',
   CRONO_SCENE = 'CRONO_SCENE',
   MF_DEPTH = 'MF_DEPTH',
-  STORIES = 'STORIES',
+  SETTINGS = 'SETTINGS',
+  STORIES_MENU = 'STORIES_MENU',
+  STORIES_UNORDERED = 'STORIES_UNORDERED',
+  STORIES_COLORS = 'STORIES_COLORS',
+  STORIES_TYPOGRAPHY = 'STORIES_TYPOGRAPHY',
+  STORIES_ELEVATIONS = 'STORIES_ELEVATIONS',
 }
 
 export type RootStackParamList = {
@@ -16,10 +21,13 @@ export type RootStackParamList = {
   [RoutesEnum.ENDURANCE_TABLE_SCENE]: undefined;
   [RoutesEnum.CRONO_SCENE]: CronoSceneParamList;
   [RoutesEnum.MF_DEPTH]: undefined;
-  [RoutesEnum.STORIES]: undefined;
+  [RoutesEnum.SETTINGS]: undefined;
+  [RoutesEnum.STORIES_MENU]: undefined;
+  [RoutesEnum.STORIES_UNORDERED]: undefined;
+  [RoutesEnum.STORIES_COLORS]: undefined;
+  [RoutesEnum.STORIES_TYPOGRAPHY]: undefined;
+  [RoutesEnum.STORIES_ELEVATIONS]: undefined;
 };
 
-export type AppScreenType<GenericRoute extends keyof RootStackParamList> = NativeStackScreenProps<
-  RootStackParamList,
-  GenericRoute
->;
+export type AppScreenType<GenericRoute extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, GenericRoute>;

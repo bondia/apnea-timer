@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
-import SceneWrapper from '../../components/SceneWrapper/SceneWrapper';
+import ThemedSceneLayout from '../../components/Layouts/ThemedSceneLayout';
 import MouthfillForm from './components/MouthfillForm';
 
 const MouthfillScene: FC = () => (
-  <SceneWrapper>
+  <ThemedSceneLayout>
     <MouthfillForm />
-  </SceneWrapper>
+  </ThemedSceneLayout>
 );
 
 export default MouthfillScene;

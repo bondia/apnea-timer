@@ -5,13 +5,11 @@ import configureAppStore from './app/redux/configureAppStore';
 
 const store = configureAppStore();
 
-const App: FC = () => {
-  return (
-    <Provider store={store}>
-      <Router />
-    </Provider>
-  );
-};
+const App: FC = () => (
+  <Provider store={store}>
+    <Router />
+  </Provider>
+);
 
 export default App;
 export type AppDispatch = typeof store.dispatch;

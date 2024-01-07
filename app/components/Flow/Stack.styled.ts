@@ -1,6 +1,7 @@
 import styled from 'styled-components/native';
 import { marginSpacerRule } from './Spacer.styled';
-import { SpacingValues } from './layout';
+import { SpacingValues } from './layout.d';
+import { FlexRules } from './types';
 import flexDirection from './utils/flexDirection';
 import justifyContent from './utils/justifyContent';
 import spacingToPixels from './utils/spacingToPixels';
@@ -15,27 +16,28 @@ export type StackProps = {
   spaceBottom?: SpacingValues;
   spaceLeft?: SpacingValues;
   spaceRight?: SpacingValues;
-  // flex
-  grow?: number;
-  shrink?: number;
-  basis?: string;
-  // flex directions
-  horizontal?: boolean;
-  reversed?: boolean;
   // flex disposition
   wrap?: boolean;
   spaceAround?: boolean;
+  spaceBetween?: boolean;
+  end?: boolean;
   centered?: boolean;
   // gaps
   rowGap?: SpacingValues;
   columnGap?: SpacingValues;
   // debuger
   debug?: string | boolean;
-};
+} & FlexRules;
 
-export const widthRule = ({ fullWidth = false }: StackProps) => (fullWidth ? '100%' : 'auto');
-export const flexRule = ({ grow = 0, shrink = 1, basis = 'auto' }: StackProps) => `${grow} ${shrink} ${basis}`;
-export const flexWrapRule = ({ wrap = false }: StackProps) => (wrap ? 'wrap' : 'nowrap');
+export const widthRule = ({ fullWidth = false }: StackProps) =>
+  fullWidth ? '100%' : 'auto';
+export const flexRule = ({
+  grow = 0,
+  shrink = 1,
+  basis = 'auto',
+}: StackProps) => `${grow} ${shrink} ${basis}`;
+export const flexWrapRule = ({ wrap = false }: StackProps) =>
+  wrap ? 'wrap' : 'nowrap';
 
 const Stack = styled.View<StackProps>`
   width: ${widthRule};
@@ -45,7 +47,8 @@ const Stack = styled.View<StackProps>`
   justify-content: ${justifyContent};
   row-gap: ${({ rowGap }) => spacingToPixels(rowGap)};
   column-gap: ${({ columnGap }) => spacingToPixels(columnGap)};
-  border: ${({ debug = false }) => (debug ? `1px solid ${debug === true ? 'black' : debug}` : 'none')};
+  border: ${({ debug = false }) =>
+    debug ? `1px solid ${debug === true ? 'black' : debug}` : 'none'};
   margin: ${({
     spaceX: xAxis,
     spaceY: yAxis,

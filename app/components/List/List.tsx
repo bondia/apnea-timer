@@ -1,13 +1,12 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { ScrollView } from 'react-native';
-import { Stack } from '../Flow';
+import { ScrollableStack, Stack } from '../Flow';
 
 const List: FC<PropsWithChildren> = ({ children }) => (
-  <ScrollView>
-    <Stack horizontal wrap>
+  <ScrollableStack>
+    <Stack rowGap={2} columnGap={2} horizontal wrap centered>
       {children}
     </Stack>
-  </ScrollView>
+  </ScrollableStack>
 );
 
 export default List;

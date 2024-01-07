@@ -2,7 +2,12 @@ import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { CronoSetType, CronoStateType } from '../cronoTypes';
 import playNotificationSound from './playNotificationSound';
 
-const mutateSet = (set: CronoSetType, mode: SetModeEnum, startTimestamp: number, endTimestamp: number) => ({
+const mutateSet = (
+  set: CronoSetType,
+  mode: SetModeEnum,
+  startTimestamp: number,
+  endTimestamp: number,
+) => ({
   ...set,
   running: {
     ...set.running,
@@ -25,17 +30,32 @@ const decideModeForSet = (
 
   // skip set logic
   if (SetModeEnum.SET_MODE_SKIPED === setMode && pos === step) {
-    return mutateSet(set, SetModeEnum.SET_MODE_SKIPED, startTimestamp, currentTimestamp);
+    return mutateSet(
+      set,
+      SetModeEnum.SET_MODE_SKIPED,
+      startTimestamp,
+      currentTimestamp,
+    );
   }
 
   // finish set
   if (SetModeEnum.SET_MODE_SKIPED !== setMode && pos === step) {
-    return mutateSet(set, SetModeEnum.SET_MODE_FINISHED, startTimestamp, currentTimestamp);
+    return mutateSet(
+      set,
+      SetModeEnum.SET_MODE_FINISHED,
+      startTimestamp,
+      currentTimestamp,
+    );
   }
 
   // start new set
   if (nextStep >= 0 && pos === nextStep) {
-    return mutateSet(set, SetModeEnum.SET_MODE_RUNNING, currentTimestamp, endTimestamp);
+    return mutateSet(
+      set,
+      SetModeEnum.SET_MODE_RUNNING,
+      currentTimestamp,
+      endTimestamp,
+    );
   }
 
   return set;
@@ -56,7 +76,9 @@ const mutateSets = (
       // update new step
       step: newStep,
     },
-    sets: sets.map(set => decideModeForSet(set, step, newStep, setMode, currentTimestamp)),
+    sets: sets.map(set =>
+      decideModeForSet(set, step, newStep, setMode, currentTimestamp),
+    ),
   };
 };
 
@@ -86,7 +108,12 @@ const decideCurrentSet = (
 
   // handle force skipping sets
   if (forceSkipStep >= 0) {
-    return mutateSets(state, forceSkipStep, SetModeEnum.SET_MODE_SKIPED, currentTimestamp);
+    return mutateSets(
+      state,
+      forceSkipStep,
+      SetModeEnum.SET_MODE_SKIPED,
+      currentTimestamp,
+    );
   }
 
   const {

@@ -23,8 +23,14 @@ type TypographyProps = {
   type?: TypographyType;
 } & TypographyComponent;
 
-const Typography: FC<TypographyProps> = ({ children, type = TypographyType.BODY_1, color, centered }) => {
-  const Component: FC<TypographyComponent> = SC[type] || SC[TypographyType.BODY_1];
+const Typography: FC<TypographyProps> = ({
+  children,
+  type = TypographyType.BODY_1,
+  color,
+  centered,
+}) => {
+  const Component: FC<TypographyComponent> =
+    SC[type] || SC[TypographyType.BODY_1];
   if (!Component) {
     return null;
   }
