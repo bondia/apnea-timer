@@ -19,10 +19,10 @@ const SkipButton: FC<SkipButtonProps> = ({ set }) => {
       }
       return undefined;
     },
-    [dispatch],
+    [dispatch, set],
   );
 
-  // TODO: Check that callback
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const skipSetDebounced = useCallback(
     debounce(skip, 500, {
       leading: true,
@@ -31,7 +31,9 @@ const SkipButton: FC<SkipButtonProps> = ({ set }) => {
     [skip],
   );
 
-  return <LongTouchButton title="Skip" onPressStart={() => skipSetDebounced(set)} />;
+  return (
+    <LongTouchButton title="Skip" onPressStart={() => skipSetDebounced(set)} />
+  );
 };
 
 export default SkipButton;
