@@ -16,16 +16,10 @@ const LiveCounter: FC<LiveCounterProps> = ({
   crono: {
     trainingTable: { type: tableTypeEnum },
     running: { clock: spentTime, countdown: totalTime = 0 },
-    // sets,
   },
   set,
 }) => {
-  const { elevations, colors, oldColors } = useAppTheme();
-
-  // const {
-  //   spent,
-  //   status: { isDiving },
-  // } = useSetCalculations(set || sets[0]);
+  const { elevations, colors } = useAppTheme();
 
   // set data
   const pos = set ? set.pos : 0;
@@ -43,38 +37,23 @@ const LiveCounter: FC<LiveCounterProps> = ({
         {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
           <>
             <InfoBlock
-              label="Time Left"
-              labelColor={colors.inverted900}
+              label="Dive no"
+              content={currentSet}
+              labelColor={colors.primary050}
               labelType={TypographyType.SUBTITLE_1}
-              content={totalTime}
               contentColor={colors.primary500}
               contentType={TypographyType.H4}
-              isTimestamp
             />
 
-            {/* {set ? (
-                <InfoBlock
-                  label={isDiving ? 'Hold' : 'Recovery'}
-                  labelColor={FONT_COLOR_GREY}
-                  labelType={TypographyType.SUBTITLE_1}
-                  content={spent}
-                  contentColor={FONT_COLOR_LIGHT}
-                  contentType={TypographyType.H3}
-                  isTimestamp
-                />
-              ) : undefined} */}
-
-            {/*
-                <InfoBlock
-                label="Contractions"
-                labelColor={FONT_COLOR_GREY}
-                labelType={TypographyType.SUBTITLE_1}
-                content={contractions}
-                contentColor={FONT_COLOR_LIGHT}
-                contentType={TypographyType.H6}
-                isTimestamp
-                />
-              */}
+            <InfoBlock
+              label="Time Left"
+              content={totalTime}
+              isTimestamp
+              labelColor={colors.primary050}
+              labelType={TypographyType.SUBTITLE_1}
+              contentColor={colors.primary500}
+              contentType={TypographyType.H4}
+            />
           </>
         )}
 
@@ -84,25 +63,31 @@ const LiveCounter: FC<LiveCounterProps> = ({
           <>
             <InfoBlock
               label="Current Dive"
-              labelColor={oldColors.FONT_COLOR_GREY}
               content={currentSet}
-              contentColor={colors.primary900}
+              labelColor={colors.primary050}
+              labelType={TypographyType.SUBTITLE_1}
+              contentColor={colors.primary500}
+              contentType={TypographyType.H4}
             />
 
             <InfoBlock
               label="Targeting"
-              labelColor={oldColors.FONT_COLOR_GREY}
               content={targeting}
-              contentColor={colors.primary900}
               isTimestamp
+              labelColor={colors.primary050}
+              labelType={TypographyType.SUBTITLE_1}
+              contentColor={colors.primary500}
+              contentType={TypographyType.H4}
             />
 
             <InfoBlock
               label="Spent Time"
-              labelColor={oldColors.FONT_COLOR_GREY}
               content={spentTime > 0 ? spentTime : 0}
-              contentColor={colors.primary900}
               isTimestamp
+              labelColor={colors.primary050}
+              labelType={TypographyType.SUBTITLE_1}
+              contentColor={colors.primary500}
+              contentType={TypographyType.H4}
             />
           </>
         )}

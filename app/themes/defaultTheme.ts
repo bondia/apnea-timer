@@ -39,10 +39,6 @@ const defaultTheme: AppTheme = {
     error: '#ff5a5f',
   },
 
-  oldColors: {
-    FONT_COLOR_GREY: '#a8a8a8',
-  },
-
   elevations: {
     ELEVATION_00: '#66a7df',
     ELEVATION_01: '#75b0e2',

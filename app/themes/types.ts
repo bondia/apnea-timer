@@ -48,12 +48,6 @@ export type AppTheme = {
     ELEVATION_16: string;
     ELEVATION_24: string;
   };
-
-  /** @deprecated */
-  oldColors: {
-    /** @deprecated */
-    FONT_COLOR_GREY: string;
-  };
 };
 
 export type PropsWithAppTheme<T> = { theme: AppTheme } & T;

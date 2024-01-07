@@ -1,4 +1,3 @@
-import defaultTheme from './defaultTheme';
 import { AppTheme } from './types';
 import createElevation from './utils/createElevation';
 
@@ -52,10 +51,6 @@ const darkTheme: AppTheme = {
     ELEVATION_12: createElevation('#121212', 0.14),
     ELEVATION_16: createElevation('#121212', 0.15),
     ELEVATION_24: createElevation('#121212', 0.16),
-  },
-
-  oldColors: {
-    ...defaultTheme.oldColors,
   },
 };
 
