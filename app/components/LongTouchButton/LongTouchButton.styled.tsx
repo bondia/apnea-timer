@@ -9,7 +9,7 @@ export const Wrapper = styled.View<ButtonWrapperProps>`
   flex: 1;
 
   background-color: ${({ theme: { colors }, active }) =>
-    active ? colors.primary050 : colors.inverted100};
+    active ? colors.primary050 : colors.inverted200};
 
   border-radius: 3px;
   shadow-opacity: 0.1;
