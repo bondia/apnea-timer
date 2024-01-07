@@ -17,11 +17,36 @@ const SelectorPane: FC = () => {
 
   return (
     <ScrollableStack grow={1}>
-      <MenuItem title="CO2/O2" color={colors.inverted900} background={elevations.ELEVATION_01} onPress={createRoute} />
-      <MenuItem title="Endurance" color={colors.inverted900} background={elevations.ELEVATION_02} onPress={endurance} />
-      <MenuItem title="MF" color={colors.inverted900} background={elevations.ELEVATION_03} onPress={mouthfillRoute} />
-      <MenuItem title="Settings" color={colors.inverted800} background={elevations.ELEVATION_04} onPress={settings} />
-      <MenuItem title="Playground" color={colors.inverted800} background={elevations.ELEVATION_05} onPress={stories} />
+      <MenuItem
+        title="CO2/O2"
+        color={colors.inverted050}
+        background={elevations.ELEVATION_01}
+        onPress={createRoute}
+      />
+      <MenuItem
+        title="Endurance"
+        color={colors.inverted050}
+        background={elevations.ELEVATION_02}
+        onPress={endurance}
+      />
+      <MenuItem
+        title="MF"
+        color={colors.inverted050}
+        background={elevations.ELEVATION_03}
+        onPress={mouthfillRoute}
+      />
+      <MenuItem
+        title="Settings"
+        color={colors.inverted050}
+        background={elevations.ELEVATION_04}
+        onPress={settings}
+      />
+      <MenuItem
+        title="Playground"
+        color={colors.inverted050}
+        background={elevations.ELEVATION_05}
+        onPress={stories}
+      />
     </ScrollableStack>
   );
 };

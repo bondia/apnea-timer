@@ -8,7 +8,7 @@ import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 const ElevationsBlock: FC = () => {
   const { elevations } = useAppTheme();
 
-  const base = elevations.ELEVATION_06;
+  const base = elevations.ELEVATION_05;
   const content = elevations.ELEVATION_12;
   const widget = elevations.ELEVATION_16;
   const active = elevations.ELEVATION_24;

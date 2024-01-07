@@ -3,7 +3,7 @@ import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
-import { Spacer, Stack, Surface } from '../../../../components/Flow';
+import { Stack, Surface } from '../../../../components/Flow';
 import { TypographyType } from '../../../../components/Typography/Typography';
 import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 
@@ -33,23 +33,26 @@ const LiveCounter: FC<LiveCounterProps> = ({
   const targeting = spentTime > 0 ? spentTime + totalTime : totalTime;
 
   return (
-    <Spacer top={2} bottom={3}>
-      <Surface elevation={elevations.ELEVATION_03} radius>
-        <Stack spaceAround horizontal spaceY={2}>
-          {/* STATIC */}
-          {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
-            <>
-              <InfoBlock
-                label="Time Left"
-                labelColor={colors.inverted050}
-                labelType={TypographyType.SUBTITLE_2}
-                content={totalTime}
-                contentColor={colors.inverted050}
-                contentType={TypographyType.H4}
-                isTimestamp
-              />
+    <Surface
+      elevation={elevations.ELEVATION_16}
+      radiusBR="40px"
+      radiusBL="40px"
+    >
+      <Stack spaceAround horizontal spaceBottom={8}>
+        {/* STATIC */}
+        {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
+          <>
+            <InfoBlock
+              label="Time Left"
+              labelColor={colors.inverted900}
+              labelType={TypographyType.SUBTITLE_1}
+              content={totalTime}
+              contentColor={colors.primary500}
+              contentType={TypographyType.H4}
+              isTimestamp
+            />
 
-              {/* {set ? (
+            {/* {set ? (
                 <InfoBlock
                   label={isDiving ? 'Hold' : 'Recovery'}
                   labelColor={FONT_COLOR_GREY}
@@ -61,7 +64,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 />
               ) : undefined} */}
 
-              {/*
+            {/*
                 <InfoBlock
                 label="Contractions"
                 labelColor={FONT_COLOR_GREY}
@@ -72,40 +75,39 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 isTimestamp
                 />
               */}
-            </>
-          )}
+          </>
+        )}
 
-          {/* ENDURANCE */}
-          {/* TODO: CLEAN UP FOR ENDURANCE */}
-          {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
-            <>
-              <InfoBlock
-                label="Current Dive"
-                labelColor={oldColors.FONT_COLOR_GREY}
-                content={currentSet}
-                contentColor={colors.primary900}
-              />
+        {/* ENDURANCE */}
+        {/* TODO: CLEAN UP FOR ENDURANCE */}
+        {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
+          <>
+            <InfoBlock
+              label="Current Dive"
+              labelColor={oldColors.FONT_COLOR_GREY}
+              content={currentSet}
+              contentColor={colors.primary900}
+            />
 
-              <InfoBlock
-                label="Targeting"
-                labelColor={oldColors.FONT_COLOR_GREY}
-                content={targeting}
-                contentColor={colors.primary900}
-                isTimestamp
-              />
+            <InfoBlock
+              label="Targeting"
+              labelColor={oldColors.FONT_COLOR_GREY}
+              content={targeting}
+              contentColor={colors.primary900}
+              isTimestamp
+            />
 
-              <InfoBlock
-                label="Spent Time"
-                labelColor={oldColors.FONT_COLOR_GREY}
-                content={spentTime > 0 ? spentTime : 0}
-                contentColor={colors.primary900}
-                isTimestamp
-              />
-            </>
-          )}
-        </Stack>
-      </Surface>
-    </Spacer>
+            <InfoBlock
+              label="Spent Time"
+              labelColor={oldColors.FONT_COLOR_GREY}
+              content={spentTime > 0 ? spentTime : 0}
+              contentColor={colors.primary900}
+              isTimestamp
+            />
+          </>
+        )}
+      </Stack>
+    </Surface>
   );
 };
 

@@ -13,7 +13,7 @@ const CronoScene: FC<CronoSceneProps> = ({
     params: { initialData },
   },
 }) => (
-  <ThemedSceneLayout darkBackground>
+  <ThemedSceneLayout>
     <CronoPane initialData={initialData} />
   </ThemedSceneLayout>
 );

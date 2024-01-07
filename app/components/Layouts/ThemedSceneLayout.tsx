@@ -1,12 +1,10 @@
 import React, { FC, PropsWithChildren } from 'react';
 import UserThemeProvider from '../../providers/UserThemeProvider/UserThemeProvider';
-import SceneLayout, { SceneLayoutProps } from './SceneLayout';
+import SceneLayout from './SceneLayout';
 
-type ThemedSceneLayoutProps = PropsWithChildren<SceneLayoutProps>;
-
-const ThemedSceneLayout: FC<ThemedSceneLayoutProps> = ({ children, darkBackground }) => (
+const ThemedSceneLayout: FC<PropsWithChildren> = ({ children }) => (
   <UserThemeProvider>
-    <SceneLayout darkBackground={darkBackground}>{children}</SceneLayout>
+    <SceneLayout>{children}</SceneLayout>
   </UserThemeProvider>
 );
 

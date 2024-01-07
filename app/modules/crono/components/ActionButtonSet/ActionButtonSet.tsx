@@ -1,5 +1,9 @@
 import React, { FC } from 'react';
-import { CronoModeEnum, SetTypeEnum, TableTypeEnum } from '../../../editor/enums';
+import {
+  CronoModeEnum,
+  SetTypeEnum,
+  TableTypeEnum,
+} from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
 import findRunningSet from '../../helpers/findRunningSet';
@@ -10,7 +14,10 @@ import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import trackContractionAction from '../../redux/actions/composed/trackContractionAction';
 
-const canTrackContractions = (crono: CronoStateType, current: CronoSetType): boolean => {
+const canTrackContractions = (
+  crono: CronoStateType,
+  current: CronoSetType,
+): boolean => {
   // no contractions tracking for endurance tables
   const tableTypeEnum = crono?.trainingTable?.type;
   if (TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum) {
@@ -46,13 +53,16 @@ const ActionButtonSet: FC<ActionButtonSetProps> = props => {
   const startCoach = () => start(CronoModeEnum.CRONO_MODE_COACH);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const showContractionsButton = current && canTrackContractions(crono, current);
+  const showContractionsButton =
+    current && canTrackContractions(crono, current);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const trackContraction = () => dispatch(trackContractionAction());
 
   return (
     <Stack columnGap={3} horizontal>
-      {clock < 0 && !isEndurance && <LongTouchButton title="Auto" onPressStart={startAuto} />}
+      {clock < 0 && !isEndurance && (
+        <LongTouchButton title="Auto" onPressStart={startAuto} />
+      )}
       {clock < 0 && <LongTouchButton title="Coach" onPressStart={startCoach} />}
       {current && clock >= 0 && !isFinished && <SkipButton set={current} />}
       {/* {clock >= 0 && showContractionsButton && <LongTouchButton title="1st Cont" onPressStart={trackContraction} />} */}

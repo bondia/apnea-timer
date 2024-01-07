@@ -1,7 +1,8 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC, useCallback, useEffect } from 'react';
-import { Stack } from '../../../../components/Flow';
+import { Spacer, Stack, Surface } from '../../../../components/Flow';
 import ActionsLayout from '../../../../components/Layouts/ActionsLayout';
+import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import { useAppDispatch } from '../../../../redux/hooks';
 import useAppNavitation from '../../../../useAppNavigation';
 import generateTimestamp from '../../../../utils/time/generateTimestamp';
@@ -25,6 +26,7 @@ type CoronoPaneProps = {
 
 const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   const dispatch = useAppDispatch();
+  const { elevations } = useAppTheme();
   const navigation = useAppNavitation();
   const crono = useCronoSelector();
 
@@ -68,11 +70,30 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
     <ActionsLayout
       content={
         <Stack grow={1}>
-          <LiveCounter crono={crono} set={current || undefined} />
-          <SetsList sets={sets} active={current || undefined} />
+          <Surface grow={1} elevation={elevations.ELEVATION_05}>
+            <LiveCounter crono={crono} set={current || undefined} />
+            <SetsList sets={sets} active={current || undefined} />
+          </Surface>
         </Stack>
       }
-      actions={<ActionButtonSet crono={crono} start={onClickStart} end={endClickCrono} />}
+      actions={
+        <Surface grow={1} elevation={elevations.ELEVATION_05}>
+          <Surface
+            grow={1}
+            elevation={elevations.ELEVATION_16}
+            radiusTL="20px"
+            radiusTR="20px"
+          >
+            <Spacer top={6} bottom={5} xAxis={8}>
+              <ActionButtonSet
+                crono={crono}
+                start={onClickStart}
+                end={endClickCrono}
+              />
+            </Spacer>
+          </Surface>
+        </Surface>
+      }
     />
   );
 };

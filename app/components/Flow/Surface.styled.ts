@@ -14,34 +14,38 @@ export type SurfaceProps = {
   radiusBL?: RadiusValue;
 } & FlexRules;
 
-const decideRadius = (general: RadiusValue, specific: RadiusValue) => {
-  if (specific === true || general === true) {
+const decideRadius = (
+  general: RadiusValue = false,
+  specific: RadiusValue = false,
+) => {
+  if (specific === true) {
     return '5px';
   }
-  if (specific || general) {
-    return specific || general;
+  if (specific) {
+    return specific;
+  }
+  if (general === true) {
+    return '5px';
+  }
+  if (general) {
+    return general;
   }
   return 0;
-};
-
-const radiusRule = ({
-  radius = false,
-  radiusTL = false,
-  radiusTR = false,
-  radiusBR = false,
-  radiusBL = false,
-}: SurfaceProps) => {
-  const tl = decideRadius(radius, radiusTL);
-  const tr = decideRadius(radius, radiusTR);
-  const br = decideRadius(radius, radiusBR);
-  const bl = decideRadius(radius, radiusBL);
-  return `${tl} ${tr} ${br} ${bl}`;
 };
 
 const Surface = styled.View<PropsWithAppTheme<SurfaceProps>>`
   background-color: ${({ theme, elevation }) =>
     elevation || theme.elevations.ELEVATION_00};
-  border-radius: ${radiusRule};
+
+  border-top-left-radius: ${({ radius, radiusTL }) =>
+    decideRadius(radius, radiusTL)};
+  border-top-right-radius: ${({ radius, radiusTR }) =>
+    decideRadius(radius, radiusTR)};
+  border-bottom-left-radius: ${({ radius, radiusBR }) =>
+    decideRadius(radius, radiusBR)};
+  border-bottom-right-radius: ${({ radius, radiusBL }) =>
+    decideRadius(radius, radiusBL)};
+
   flex: ${flexRule};
 `;
 

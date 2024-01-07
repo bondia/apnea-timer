@@ -18,25 +18,25 @@ const StoriesMenu: FC = () => {
     <ScrollableStack grow={1}>
       <MenuItem
         title="Typography"
-        color={colors.inverted900}
+        color={colors.inverted050}
         background={elevations.ELEVATION_01}
         onPress={typographyRoute}
       />
       <MenuItem
         title="Colors"
-        color={colors.inverted900}
+        color={colors.inverted050}
         background={elevations.ELEVATION_02}
         onPress={colorsRoute}
       />
       <MenuItem
         title="Elevations"
-        color={colors.inverted900}
+        color={colors.inverted050}
         background={elevations.ELEVATION_03}
         onPress={elevationsRoute}
       />
       <MenuItem
         title="Unordered"
-        color={colors.inverted900}
+        color={colors.inverted050}
         background={elevations.ELEVATION_04}
         onPress={miscRoute}
       />

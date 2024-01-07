@@ -20,6 +20,7 @@ export type StackProps = {
   wrap?: boolean;
   spaceAround?: boolean;
   spaceBetween?: boolean;
+  end?: boolean;
   centered?: boolean;
   // gaps
   rowGap?: SpacingValues;

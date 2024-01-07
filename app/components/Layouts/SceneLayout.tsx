@@ -1,28 +1,27 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import styled from 'styled-components/native';
 import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
-import { Stack, Surface } from '../Flow';
+import { Stack } from '../Flow';
 
-export type SceneLayoutProps = PropsWithChildren<{
-  darkBackground?: boolean;
-}>;
+type SafeAreaViewProps = {
+  backgroundColor?: string;
+};
 
-const SceneLayout: FC<SceneLayoutProps> = ({
-  children,
-  darkBackground = false,
-}) => {
-  const { elevations } = useAppTheme();
-  const backgroundColor = darkBackground
-    ? elevations.ELEVATION_00
-    : elevations.ELEVATION_00;
+const SafeAreaView = styled.SafeAreaView<SafeAreaViewProps>`
+  flex: 1;
+  background-color: ${({ backgroundColor }) => backgroundColor};
+`;
+
+const SceneLayout: FC<PropsWithChildren> = ({ children }) => {
+  const {
+    elevations: { ELEVATION_16 },
+  } = useAppTheme();
   return (
-    <Surface grow={1} elevation={backgroundColor}>
-      <SafeAreaView>
-        <Stack grow={1} fullWidth>
-          {children}
-        </Stack>
-      </SafeAreaView>
-    </Surface>
+    <SafeAreaView backgroundColor={ELEVATION_16}>
+      <Stack grow={1} fullWidth>
+        {children}
+      </Stack>
+    </SafeAreaView>
   );
 };
 
