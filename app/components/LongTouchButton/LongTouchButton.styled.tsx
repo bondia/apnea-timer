@@ -5,10 +5,19 @@ type ButtonWrapperProps = PropsWithAppTheme<{
   active: boolean;
 }>;
 
-// eslint-disable-next-line import/prefer-default-export
-export const ButtonWrapper = styled.TouchableHighlight<ButtonWrapperProps>`
+export const Wrapper = styled.View<ButtonWrapperProps>`
+  flex: 1;
+
   background-color: ${({ theme: { colors }, active }) =>
-    active ? colors.primary050 : colors.inverted700};
+    active ? colors.primary050 : colors.inverted100};
+
   border-radius: 3px;
-  height: 100%;
+  shadow-opacity: 0.1;
+  shadow-color: ${({ theme: { colors } }) => colors.primary900};
+  shadow-radius: 1px;
+  shadow-offset: 2px 2px;
+`;
+
+export const TouchableHighlight = styled.TouchableHighlight`
+  flex: 1;
 `;

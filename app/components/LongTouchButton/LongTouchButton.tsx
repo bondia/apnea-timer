@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
+import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
 import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
-import * as SC from './LongTouchButton.styled';
+import { TouchableHighlight, Wrapper } from './LongTouchButton.styled';
 import useLongTouchHandling from './useLongTouchHandling';
 
 type LongTouchButtonProps = {
@@ -17,6 +18,8 @@ type LongTouchButtonProps = {
 };
 
 const LongTouchButton: FC<LongTouchButtonProps> = props => {
+  const { colors } = useAppTheme();
+
   // default props
   const {
     title = '-- --',
@@ -43,19 +46,20 @@ const LongTouchButton: FC<LongTouchButtonProps> = props => {
 
   return (
     <Stack grow={0} shrink={1} fullWidth centered style={{ height: 45 }}>
-      <SC.ButtonWrapper
-        onPressIn={onPressIn}
-        onLongPress={onLongPress}
-        onPressOut={onPressOut}
-        underlayColor="transparent"
-        active={active}
-      >
-        <Stack grow={1} centered>
-          <Typography type={TypographyType.BUTTON} centered>
-            {title}
-          </Typography>
-        </Stack>
-      </SC.ButtonWrapper>
+      <Wrapper active={active}>
+        <TouchableHighlight
+          onPressIn={onPressIn}
+          onLongPress={onLongPress}
+          onPressOut={onPressOut}
+          underlayColor={colors.inverted200}
+        >
+          <Stack grow={1} centered>
+            <Typography type={TypographyType.BUTTON} centered>
+              {title}
+            </Typography>
+          </Stack>
+        </TouchableHighlight>
+      </Wrapper>
     </Stack>
   );
 };
