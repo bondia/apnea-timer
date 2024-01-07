@@ -38,38 +38,21 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
 
   return (
     <Stack spaceY={2}>
+      <Typography type={TypographyType.H6} color={mainColor} centered>
+        {durationText}
+      </Typography>
+
+      {accent || isFinished ? (
+        <Typography type={TypographyType.BODY_2} color={lightColor} centered>
+          {spentText}
+        </Typography>
+      ) : null}
+
       <SetNumber>
         <Typography type={TypographyType.CAPTION} color={primary050}>
           {position}
         </Typography>
       </SetNumber>
-
-      {/* Main info (Countdown / Duration) */}
-      {!isFinished || accent ? (
-        <Typography
-          type={accent ? TypographyType.H3 : TypographyType.H4}
-          color={mainColor}
-          centered
-        >
-          {durationText}
-        </Typography>
-      ) : null}
-
-      {!accent && isFinished ? (
-        <Typography
-          type={accent ? TypographyType.H3 : TypographyType.BODY_1}
-          color={lightColor}
-          centered
-        >
-          {spentText}
-        </Typography>
-      ) : null}
-
-      {accent ? (
-        <Typography type={TypographyType.BODY_1} color={lightColor} centered>
-          {spentText}
-        </Typography>
-      ) : null}
     </Stack>
   );
 };

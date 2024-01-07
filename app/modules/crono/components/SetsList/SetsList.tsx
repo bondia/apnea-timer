@@ -18,19 +18,19 @@ const SetsList: FC<SetsListProps> = ({ sets, active }) => {
   const pos = active?.pos === undefined ? -1 : active?.pos;
   const siblingPos = pos % 2 === 0 ? pos + 1 : pos - 1;
   return (
-    <Stack grow={1} end>
+    <Stack grow={1}>
       <Stack
         grow={0}
         basis="auto"
         spaceAround
         horizontal
-        spaceTop={10}
+        spaceTop={8}
         spaceBottom={5}
       >
-        <Typography type={TypographyType.H5} color={colors.primary500} centered>
+        <Typography type={TypographyType.H6} color={colors.primary200} centered>
           Breath up
         </Typography>
-        <Typography type={TypographyType.H5} color={colors.primary500} centered>
+        <Typography type={TypographyType.H6} color={colors.primary200} centered>
           Hold
         </Typography>
       </Stack>

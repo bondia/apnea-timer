@@ -8,6 +8,7 @@ import SpacedSurface from '../../../../components/Flow/SpacedSurface';
 import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import { EditorStateType } from '../../editorTypes';
+import headlineByTableType from './headlineByTableType';
 
 type Props = {
   editor: EditorStateType;
@@ -21,11 +22,6 @@ const StaticMainForm: FC<Props> = ({
   const { colors, elevations } = useAppTheme();
 
   const isFreeTable = TableTypeEnum.TABLE_TYPE_FREE === type;
-
-  const titleByType = {
-    [TableTypeEnum.TABLE_TYPE_CO2]: 'Breath Hold',
-    [TableTypeEnum.TABLE_TYPE_O2]: 'Breath Up',
-  };
 
   const colorByType = {
     [TableTypeEnum.TABLE_TYPE_CO2]: colors.error,
@@ -47,7 +43,7 @@ const StaticMainForm: FC<Props> = ({
           <Stack horizontal spaceAround>
             {!isFreeTable && (
               <InfoBlock
-                label={titleByType[type]}
+                label={headlineByTableType(type)}
                 labelColor={colorByType[type]}
                 content={base}
                 contentColor={colorByType[type]}

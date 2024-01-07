@@ -6,6 +6,8 @@ import { CronoSetType, CronoStateType } from '../../cronoTypes';
 import { Stack, Surface } from '../../../../components/Flow';
 import { TypographyType } from '../../../../components/Typography/Typography';
 import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import Countdown from './Countdown';
+import Countup from './Countup';
 
 type LiveCounterProps = {
   crono: CronoStateType;
@@ -32,17 +34,17 @@ const LiveCounter: FC<LiveCounterProps> = ({
       radiusBR="40px"
       radiusBL="40px"
     >
-      <Stack spaceAround horizontal spaceBottom={8}>
-        {/* STATIC */}
-        {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
-          <>
+      {/* STATIC */}
+      {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
+        <>
+          <Stack spaceAround horizontal spaceBottom={8}>
             <InfoBlock
-              label="Dive no"
+              label="Set"
               content={currentSet}
               labelColor={colors.primary050}
-              labelType={TypographyType.SUBTITLE_1}
-              contentColor={colors.primary500}
-              contentType={TypographyType.H4}
+              labelType={TypographyType.SUBTITLE_2}
+              contentColor={colors.primary100}
+              contentType={TypographyType.H6}
             />
 
             <InfoBlock
@@ -50,48 +52,54 @@ const LiveCounter: FC<LiveCounterProps> = ({
               content={totalTime}
               isTimestamp
               labelColor={colors.primary050}
-              labelType={TypographyType.SUBTITLE_1}
-              contentColor={colors.primary500}
-              contentType={TypographyType.H4}
-            />
-          </>
-        )}
-
-        {/* ENDURANCE */}
-        {/* TODO: CLEAN UP FOR ENDURANCE */}
-        {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
-          <>
-            <InfoBlock
-              label="Current Dive"
-              content={currentSet}
-              labelColor={colors.primary050}
-              labelType={TypographyType.SUBTITLE_1}
-              contentColor={colors.primary500}
-              contentType={TypographyType.H4}
+              labelType={TypographyType.SUBTITLE_2}
+              contentColor={colors.primary100}
+              contentType={TypographyType.H6}
             />
 
-            <InfoBlock
-              label="Targeting"
-              content={targeting}
-              isTimestamp
-              labelColor={colors.primary050}
-              labelType={TypographyType.SUBTITLE_1}
-              contentColor={colors.primary500}
-              contentType={TypographyType.H4}
-            />
+            {set ? <Countup set={set} /> : null}
+          </Stack>
 
-            <InfoBlock
-              label="Spent Time"
-              content={spentTime > 0 ? spentTime : 0}
-              isTimestamp
-              labelColor={colors.primary050}
-              labelType={TypographyType.SUBTITLE_1}
-              contentColor={colors.primary500}
-              contentType={TypographyType.H4}
-            />
-          </>
-        )}
-      </Stack>
+          <Stack spaceAround horizontal spaceBottom={10}>
+            {set ? <Countdown set={set} /> : null}
+          </Stack>
+        </>
+      )}
+
+      {/* ENDURANCE */}
+      {/* TODO: CLEAN UP FOR ENDURANCE */}
+      {TableTypeEnum.TABLE_TYPE_ENDURANCE === tableTypeEnum && (
+        <Stack spaceAround horizontal spaceBottom={8}>
+          <InfoBlock
+            label="Current Dive"
+            content={currentSet}
+            labelColor={colors.primary050}
+            labelType={TypographyType.SUBTITLE_1}
+            contentColor={colors.primary500}
+            contentType={TypographyType.H4}
+          />
+
+          <InfoBlock
+            label="Targeting"
+            content={targeting}
+            isTimestamp
+            labelColor={colors.primary050}
+            labelType={TypographyType.SUBTITLE_1}
+            contentColor={colors.primary500}
+            contentType={TypographyType.H4}
+          />
+
+          <InfoBlock
+            label="Spent Time"
+            content={spentTime > 0 ? spentTime : 0}
+            isTimestamp
+            labelColor={colors.primary050}
+            labelType={TypographyType.SUBTITLE_1}
+            contentColor={colors.primary500}
+            contentType={TypographyType.H4}
+          />
+        </Stack>
+      )}
     </Surface>
   );
 };

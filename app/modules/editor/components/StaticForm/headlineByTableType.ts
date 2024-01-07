@@ -1,16 +1,12 @@
 import { TableTypeEnum } from '../../enums';
 
-const headlineByTableType = (tableType: TableTypeEnum): string => {
-  switch (tableType) {
-    case TableTypeEnum.TABLE_TYPE_CO2:
-      return 'Breath Up';
-    case TableTypeEnum.TABLE_TYPE_O2:
-      return 'Breath Hold';
-    case TableTypeEnum.TABLE_TYPE_FREE:
-      return 'Sets';
-    default:
-      return '';
-  }
+const titleByType = {
+  [TableTypeEnum.TABLE_TYPE_CO2]: 'Breath Hold',
+  [TableTypeEnum.TABLE_TYPE_O2]: 'Breath Up',
+  [TableTypeEnum.TABLE_TYPE_FREE]: 'Sets',
 };
+
+const headlineByTableType = (tableType: TableTypeEnum): string =>
+  titleByType[tableType] || '';
 
 export default headlineByTableType;
