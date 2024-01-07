@@ -10,7 +10,7 @@ const SurfacesStory: FC = () => {
   const theme = useAppTheme();
   const primary = theme.colors.primary500;
   const seconadry = theme.colors.secondary500;
-  const inverted = theme.colors.inverted700;
+  const inverted = theme.colors.inverted050;
   return (
     <Surface elevation={theme.elevations.ELEVATION_00}>
       <Stack spaceX={3} spaceY={5} rowGap={5}>
