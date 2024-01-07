@@ -18,9 +18,9 @@ const Countdown: FC<CountdownProps> = ({ set }) => {
       content={duration}
       isTimestamp
       labelColor={colors.primary050}
-      labelType={TypographyType.H5}
+      labelType={TypographyType.H4}
       contentColor={colors.primary900}
-      contentType={TypographyType.H2}
+      contentType={TypographyType.H1}
     />
   );
 };

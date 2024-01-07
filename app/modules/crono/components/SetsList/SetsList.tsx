@@ -27,12 +27,24 @@ const SetsList: FC<SetsListProps> = ({ sets, active }) => {
         spaceTop={8}
         spaceBottom={5}
       >
-        <Typography type={TypographyType.H6} color={colors.primary200} centered>
-          Breath up
-        </Typography>
-        <Typography type={TypographyType.H6} color={colors.primary200} centered>
-          Hold
-        </Typography>
+        <Stack basis="50%">
+          <Typography
+            type={TypographyType.H6}
+            color={colors.primary200}
+            centered
+          >
+            Recover
+          </Typography>
+        </Stack>
+        <Stack basis="50%">
+          <Typography
+            type={TypographyType.H6}
+            color={colors.primary200}
+            centered
+          >
+            Breath Hold
+          </Typography>
+        </Stack>
       </Stack>
       <List>
         {sets.map((set: CronoSetType) => {

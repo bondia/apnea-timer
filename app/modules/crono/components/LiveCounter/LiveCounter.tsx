@@ -38,26 +38,30 @@ const LiveCounter: FC<LiveCounterProps> = ({
       {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
         <>
           <Stack spaceAround horizontal spaceBottom={8}>
-            <InfoBlock
-              label="Set"
-              content={currentSet}
-              labelColor={colors.primary050}
-              labelType={TypographyType.SUBTITLE_2}
-              contentColor={colors.primary100}
-              contentType={TypographyType.H6}
-            />
+            <Stack basis="33%">
+              <InfoBlock
+                label="Set"
+                content={currentSet}
+                labelColor={colors.primary050}
+                labelType={TypographyType.SUBTITLE_2}
+                contentColor={colors.primary100}
+                contentType={TypographyType.H6}
+              />
+            </Stack>
 
-            <InfoBlock
-              label="Time Left"
-              content={totalTime}
-              isTimestamp
-              labelColor={colors.primary050}
-              labelType={TypographyType.SUBTITLE_2}
-              contentColor={colors.primary100}
-              contentType={TypographyType.H6}
-            />
+            <Stack basis="33%">
+              <InfoBlock
+                label="Time Left"
+                content={totalTime}
+                isTimestamp
+                labelColor={colors.primary050}
+                labelType={TypographyType.SUBTITLE_2}
+                contentColor={colors.primary100}
+                contentType={TypographyType.H6}
+              />
+            </Stack>
 
-            {set ? <Countup set={set} /> : null}
+            <Stack basis="33%">{set ? <Countup set={set} /> : null}</Stack>
           </Stack>
 
           <Stack spaceAround horizontal spaceBottom={10}>
