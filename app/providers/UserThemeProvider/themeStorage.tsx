@@ -11,7 +11,11 @@ export const getStoredTheme = async () => {
 };
 
 export const storeTheme = async (newTheme: ColorSchemeName) => {
-  if (newTheme === null || ThemeSettingsOptions.dark === newTheme || ThemeSettingsOptions.light === newTheme) {
+  if (
+    newTheme === null ||
+    ThemeSettingsOptions.dark === newTheme ||
+    ThemeSettingsOptions.light === newTheme
+  ) {
     setInStorage<ColorSchemeName>(STORAGE_KEY, newTheme);
     return newTheme;
   }

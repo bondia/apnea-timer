@@ -1,4 +1,12 @@
-import React, { FC, PropsWithChildren, createContext, useCallback, useEffect, useMemo, useState } from 'react';
+import React, {
+  FC,
+  PropsWithChildren,
+  createContext,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import { ColorSchemeName, useColorScheme } from 'react-native';
 import { ThemeSettingsOptions } from '../../themes/types';
 import AppThemeProvider from '../AppThemeProvider/AppThemeProvider';
@@ -9,8 +17,12 @@ type UserThemeContextValue = {
   updateTheme: (newTheme: ColorSchemeName | null) => Promise<void>;
 };
 
-const defaultValue: UserThemeContextValue = { theme: null, updateTheme: async () => undefined };
-export const UserThemeContext = createContext<UserThemeContextValue>(defaultValue);
+const defaultValue: UserThemeContextValue = {
+  theme: null,
+  updateTheme: async () => undefined,
+};
+export const UserThemeContext =
+  createContext<UserThemeContextValue>(defaultValue);
 
 const UserThemeProvider: FC<PropsWithChildren> = ({ children }) => {
   const colorSchemeTheme = useColorScheme();
