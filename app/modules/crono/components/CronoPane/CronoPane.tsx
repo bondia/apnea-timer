@@ -1,11 +1,11 @@
 import { activateKeepAwakeAsync, deactivateKeepAwake } from 'expo-keep-awake';
+import { now } from 'lodash';
 import React, { FC, useCallback, useEffect } from 'react';
 import { Spacer, Stack, Surface } from '../../../../components/Flow';
 import ActionsLayout from '../../../../components/Layouts/ActionsLayout';
 import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import { useAppDispatch } from '../../../../redux/hooks';
 import useAppNavitation from '../../../../useAppNavigation';
-import generateTimestamp from '../../../../utils/time/generateTimestamp';
 import { EditorStateType } from '../../../editor/editorTypes';
 import { CronoModeEnum } from '../../../editor/enums';
 import { startTimer, stopTimer } from '../../helpers/cronoTimer';
@@ -38,7 +38,7 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
   const onClickStart = useCallback(
     (cronoMode: CronoModeEnum) => {
       stopTimer();
-      dispatch(setCronoStartTimestampAction(generateTimestamp()));
+      dispatch(setCronoStartTimestampAction(now()));
       dispatch(setCronoModeAction(cronoMode));
       startTimer(() => dispatch(handleTickAction()));
     },

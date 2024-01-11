@@ -8,19 +8,18 @@ import { TypographyType } from '../../../../components/Typography/Typography';
 import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
 import Countdown from './Countdown';
 import Countup from './Countup';
+import ETA from './ETA';
 
 type LiveCounterProps = {
   crono: CronoStateType;
   set?: CronoSetType;
 };
 
-const LiveCounter: FC<LiveCounterProps> = ({
-  crono: {
+const LiveCounter: FC<LiveCounterProps> = ({ crono, set }) => {
+  const {
     trainingTable: { type: tableTypeEnum },
     running: { clock: spentTime, countdown: totalTime = 0 },
-  },
-  set,
-}) => {
+  } = crono;
   const { elevations, colors } = useAppTheme();
 
   // set data
@@ -38,7 +37,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
       {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
         <>
           <Stack spaceAround horizontal spaceBottom={8}>
-            <Stack basis="33%">
+            <Stack basis="15%">
               <InfoBlock
                 label="Set"
                 content={currentSet}
@@ -48,8 +47,8 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 contentType={TypographyType.H6}
               />
             </Stack>
-
-            <Stack basis="33%">
+            <Stack basis="25%">{set ? <ETA crono={crono} /> : null}</Stack>
+            <Stack basis="30%">
               <InfoBlock
                 label="Time Left"
                 content={totalTime}
@@ -60,8 +59,7 @@ const LiveCounter: FC<LiveCounterProps> = ({
                 contentType={TypographyType.H6}
               />
             </Stack>
-
-            <Stack basis="33%">{set ? <Countup set={set} /> : null}</Stack>
+            <Stack basis="30%">{set ? <Countup set={set} /> : null}</Stack>
           </Stack>
 
           <Stack spaceAround horizontal spaceBottom={10}>

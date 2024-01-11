@@ -1,6 +1,5 @@
-import { round } from 'lodash';
+import { now, round } from 'lodash';
 import { useMemo } from 'react';
-import generateTimestamp from '../../../utils/time/generateTimestamp';
 import secondsToTimeString from '../../../utils/time/secondsToTimeString';
 import { SetModeEnum, SetTypeEnum } from '../../editor/enums';
 import { CronoSetType } from '../cronoTypes';
@@ -12,7 +11,7 @@ const useSetCalculations = (set: CronoSetType) => {
     running: { mode, startTimestamp = -1, endTimestamp = -1, countdown },
   } = set;
 
-  const currentTimestamp = generateTimestamp();
+  const currentTimestamp = now();
   const active =
     SetModeEnum.SET_MODE_RUNNING === mode ||
     mode === SetModeEnum.SET_MODE_INITIAL;

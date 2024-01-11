@@ -17,7 +17,7 @@ const Countup: FC<CountupProps> = ({ set }) => {
   } = useSetCalculations(set);
   return (
     <InfoBlock
-      label={isDiving ? 'Hold Time' : 'Recover Time'}
+      label={isDiving ? 'Hold' : 'Recover'}
       content={spent}
       isTimestamp
       labelColor={isDiving ? colors.secondary050 : colors.primary050}
