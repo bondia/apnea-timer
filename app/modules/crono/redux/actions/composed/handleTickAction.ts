@@ -32,7 +32,11 @@ const handleTick: HandleTickAction = () => {
     const newSets = sets.map(set => {
       const {
         pos,
-        running: { startTimestamp },
+        running: {
+          startTimestamp,
+          targetEndTimestamp,
+          originalDurationMiliseconds,
+        },
         duration,
       } = set;
       if (pos !== step || !cronoStartTimestamp) {
@@ -40,7 +44,14 @@ const handleTick: HandleTickAction = () => {
       }
 
       const setStartTimestamp =
-        startTimestamp === undefined ? cronoStartTimestamp : startTimestamp;
+        startTimestamp === -1 && cronoStartTimestamp
+          ? cronoStartTimestamp
+          : startTimestamp;
+
+      const setTargetEnd =
+        targetEndTimestamp === -1
+          ? setStartTimestamp + originalDurationMiliseconds
+          : targetEndTimestamp;
 
       // current timestamp
       const setTimeSpent = Math.round(
@@ -53,6 +64,7 @@ const handleTick: HandleTickAction = () => {
           ...set.running,
           // make sure set has a start timestamp
           startTimestamp: setStartTimestamp,
+          targetEndTimestamp: setTargetEnd,
           // calculate countdown
           countdown: duration - setTimeSpent,
         },

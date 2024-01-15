@@ -1,38 +1,63 @@
 import { now, round } from 'lodash';
 import { useMemo } from 'react';
-import secondsToTimeString from '../../../utils/time/secondsToTimeString';
+import milisecondsToTimeString from '../../../utils/time/milisecondsToTimeString';
 import { SetModeEnum, SetTypeEnum } from '../../editor/enums';
 import { CronoSetType } from '../cronoTypes';
+
+const isActive = (mode: SetModeEnum) =>
+  SetModeEnum.SET_MODE_RUNNING === mode ||
+  mode === SetModeEnum.SET_MODE_INITIAL;
+
+const calculateCountdown = (
+  startTimestamp: number,
+  endTimestamp: number,
+  targetEndTimestamp: number,
+  originalDurationMiliseconds: number,
+): number => {
+  if (startTimestamp > -1 && endTimestamp > -1) {
+    return 0;
+  }
+  if (targetEndTimestamp > -1) {
+    const currentTimestamp = now();
+    return targetEndTimestamp - currentTimestamp;
+  }
+  return originalDurationMiliseconds || 0;
+};
 
 const useSetCalculations = (set: CronoSetType) => {
   const {
     pos,
     type,
-    running: { mode, startTimestamp = -1, endTimestamp = -1, countdown },
+    running: {
+      mode,
+      startTimestamp,
+      endTimestamp,
+      targetEndTimestamp,
+      originalDurationMiliseconds,
+    },
   } = set;
 
-  const currentTimestamp = now();
-  const active =
-    SetModeEnum.SET_MODE_RUNNING === mode ||
-    mode === SetModeEnum.SET_MODE_INITIAL;
-  const ended = active ? currentTimestamp : endTimestamp;
-  const started = startTimestamp || 0;
+  const start = startTimestamp;
+  const end = isActive(mode) ? now() : endTimestamp;
 
-  const duration = countdown;
-  const durationText = useMemo(() => secondsToTimeString(duration), [duration]);
-
-  const spent = useMemo(
-    () => (started > 0 && ended > 0 ? round((ended - started) / 1000, 2) : 0),
-    [ended, started],
+  const duration = calculateCountdown(
+    startTimestamp,
+    endTimestamp,
+    targetEndTimestamp,
+    originalDurationMiliseconds,
   );
-  const spentText = useMemo(() => secondsToTimeString(spent), [spent]);
+  const durationText = useMemo(
+    () => milisecondsToTimeString(duration),
+    [duration],
+  );
+
+  const spent = start === -1 || end === -1 ? 0 : end - start;
+  const spentText = useMemo(() => milisecondsToTimeString(spent), [spent]);
 
   return {
     setNumber: pos >= 0 ? round((pos + 1) / 2) : -1,
     position: pos >= 0 ? pos + 1 : -1,
-    duration,
     durationText,
-    spent,
     spentText,
     status: {
       isDiving: type === SetTypeEnum.SET_TYPE_HOLD,

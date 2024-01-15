@@ -12,14 +12,13 @@ type CountupProps = {
 const Countup: FC<CountupProps> = ({ set }) => {
   const { colors } = useAppTheme();
   const {
-    spent,
+    spentText,
     status: { isDiving },
   } = useSetCalculations(set);
   return (
     <InfoBlock
       label={isDiving ? 'Hold' : 'Recover'}
-      content={spent}
-      isTimestamp
+      contentString={spentText}
       labelColor={isDiving ? colors.secondary050 : colors.primary050}
       labelType={TypographyType.SUBTITLE_2}
       contentColor={isDiving ? colors.secondary050 : colors.primary050}

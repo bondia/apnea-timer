@@ -7,17 +7,21 @@ const initSet = (originalSet: TableSetType): CronoSetType => {
   return {
     ...originalSet,
     running: {
-      startTimestamp: undefined,
-      endTimestamp: undefined,
-      mode: pos === 0 ? SetModeEnum.SET_MODE_RUNNING : SetModeEnum.SET_MODE_INITIAL,
-      originalCountdown: originalSetDuration,
+      mode:
+        pos === 0 ? SetModeEnum.SET_MODE_RUNNING : SetModeEnum.SET_MODE_INITIAL,
+      startTimestamp: -1,
+      endTimestamp: -1,
+      targetEndTimestamp: -1,
+      originalDurationMiliseconds: originalSetDuration * 1000,
       countdown: originalSetDuration,
       contraction: -1,
     },
   };
 };
 
-const createSets = (originalSets: TableSetType[]): CronoSetType[] => [...originalSets.map(initSet)];
+const createSets = (originalSets: TableSetType[]): CronoSetType[] => [
+  ...originalSets.map(initSet),
+];
 
 const createDefaultRunningProp = (): CronoRunningType => ({
   startTimestamp: undefined,

@@ -11,12 +11,11 @@ type CountdownProps = {
 
 const Countdown: FC<CountdownProps> = ({ set }) => {
   const { colors } = useAppTheme();
-  const { duration } = useSetCalculations(set);
+  const { durationText } = useSetCalculations(set);
   return (
     <InfoBlock
       label="Countdown"
-      content={duration}
-      isTimestamp
+      contentString={durationText}
       labelColor={colors.primary050}
       labelType={TypographyType.H4}
       contentColor={colors.primary900}
