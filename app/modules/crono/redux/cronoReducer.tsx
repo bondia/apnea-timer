@@ -70,7 +70,9 @@ const cronoReducer = (
     const { set: newSet } = action;
     return {
       ...state,
-      sets: state.sets.map(oldSet => (oldSet.pos === newSet.pos ? newSet : oldSet)),
+      sets: state.sets.map(oldSet =>
+        oldSet.pos === newSet.pos ? newSet : oldSet,
+      ),
     };
   }
 

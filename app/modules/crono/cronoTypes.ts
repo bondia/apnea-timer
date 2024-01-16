@@ -24,13 +24,14 @@ export type CronoSetType = TableSetType & {
 
 type CronoSetRunningType = {
   mode: SetModeEnum;
+
   // timestamps (miliseconds)
   startTimestamp: number;
   endTimestamp: number;
   targetEndTimestamp: number;
   originalDurationMiliseconds: number;
 
-  /** @deprecated */
+  /** @deprecated using seconds to calculate */
   countdown: number;
 
   // TODO: unknown type

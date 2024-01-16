@@ -24,7 +24,19 @@ const calculateCountdown = (
   return originalDurationMiliseconds || 0;
 };
 
-const useSetCalculations = (set: CronoSetType) => {
+type SetCalculations = {
+  setNumber: number;
+  position: number;
+  durationText: string;
+  spentText: string;
+  status: {
+    isDiving: boolean;
+    isRunning: boolean;
+    isFinished: boolean;
+  };
+};
+
+const useSetCalculations = (set: CronoSetType): SetCalculations => {
   const {
     pos,
     type,
@@ -54,19 +66,25 @@ const useSetCalculations = (set: CronoSetType) => {
   const spent = start === -1 || end === -1 ? 0 : end - start;
   const spentText = useMemo(() => milisecondsToTimeString(spent), [spent]);
 
+  const setNumber = pos >= 0 ? round((pos + 1) / 2) : -1;
+  const position = pos >= 0 ? pos + 1 : -1;
+  const isDiving = type === SetTypeEnum.SET_TYPE_HOLD;
+  const isRunning = SetModeEnum.SET_MODE_RUNNING === mode;
+  const isFinished =
+    mode &&
+    [SetModeEnum.SET_MODE_FINISHED, SetModeEnum.SET_MODE_SKIPED].indexOf(
+      mode,
+    ) !== -1;
+
   return {
-    setNumber: pos >= 0 ? round((pos + 1) / 2) : -1,
-    position: pos >= 0 ? pos + 1 : -1,
+    setNumber,
+    position,
     durationText,
     spentText,
     status: {
-      isDiving: type === SetTypeEnum.SET_TYPE_HOLD,
-      isRunning: SetModeEnum.SET_MODE_RUNNING === mode,
-      isFinished:
-        mode &&
-        [SetModeEnum.SET_MODE_FINISHED, SetModeEnum.SET_MODE_SKIPED].indexOf(
-          mode,
-        ) !== -1,
+      isDiving,
+      isRunning,
+      isFinished,
     },
   };
 };
