@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
-import { TypographyType } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
-import { CronoSetType } from '../../cronoTypes';
-import useSetCalculations from '../../hooks/useSetCalculations';
+import { CronoSetType } from '../../modules/crono/cronoTypes';
+import useSetCalculations from '../../modules/crono/hooks/useSetCalculations';
+import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import InfoBlock from '../InfoBlock/InfoBlock';
+import { TypographyType } from '../Typography/Typography';
 
 type CountdownProps = {
   set: CronoSetType;

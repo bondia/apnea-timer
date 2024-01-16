@@ -2,10 +2,10 @@ import { format } from 'date-fns';
 import { addMilliseconds } from 'date-fns/fp';
 import { now } from 'lodash';
 import React, { FC } from 'react';
-import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
-import { TypographyType } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
-import { CronoStateType } from '../../cronoTypes';
+import { CronoStateType } from '../../modules/crono/cronoTypes';
+import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import InfoBlock from '../InfoBlock/InfoBlock';
+import { TypographyType } from '../Typography/Typography';
 
 type ETAProps = {
   crono: CronoStateType;

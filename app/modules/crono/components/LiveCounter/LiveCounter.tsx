@@ -3,11 +3,11 @@ import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
+import Countup from '../../../../components/Counters/Countup';
+import ETA from '../../../../components/Counters/ETA';
 import { Stack, Surface } from '../../../../components/Flow';
 import { TypographyType } from '../../../../components/Typography/Typography';
 import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
-import Countup from './Countup';
-import ETA from './ETA';
 
 type LiveCounterProps = {
   crono: CronoStateType;
