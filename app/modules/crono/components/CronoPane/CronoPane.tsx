@@ -17,6 +17,7 @@ import setCronoStartTimestampAction from '../../redux/actions/setCronoStartTimes
 import setInitialStateAction from '../../redux/actions/setInitialStateAction';
 import { useCronoSelector } from '../../redux/cronoSelectors';
 import ActionButtonSet from '../ActionButtonSet/ActionButtonSet';
+import Countdown from '../LiveCounter/Countdown';
 import LiveCounter from '../LiveCounter/LiveCounter';
 import SetsList from '../SetsList/SetsList';
 
@@ -84,7 +85,10 @@ const CronoPane: FC<CoronoPaneProps> = ({ initialData }) => {
             radiusTL="20px"
             radiusTR="20px"
           >
-            <Spacer top={6} bottom={5} xAxis={8}>
+            <Stack spaceAround horizontal spaceY={10}>
+              {current ? <Countdown set={current} /> : null}
+            </Stack>
+            <Spacer bottom={5} xAxis={8}>
               <ActionButtonSet
                 crono={crono}
                 start={onClickStart}

@@ -24,7 +24,7 @@ const SetsList: FC<SetsListProps> = ({ sets, active }) => {
         basis="auto"
         spaceAround
         horizontal
-        spaceTop={8}
+        spaceTop={4}
         spaceBottom={5}
       >
         <Stack basis="50%">
