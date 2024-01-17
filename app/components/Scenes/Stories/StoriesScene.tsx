@@ -1,12 +1,12 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import { Spacer } from '../../../components/Flow';
-import SceneLayout from '../../../components/Layouts/SceneLayout';
-import ThemeSplitView from '../../../components/ThemeSplitView/ThemeSplitView';
-import Typography, { TypographyType } from '../../../components/Typography/Typography';
-import SpacerStory from '../components/SpacerStory';
-import StackStory from '../components/StackStory';
-import SurfacesStory from '../components/SurfacesStory';
+import SpacerStory from '../../../modules/stories/components/SpacerStory';
+import StackStory from '../../../modules/stories/components/StackStory';
+import SurfacesStory from '../../../modules/stories/components/SurfacesStory';
+import { Spacer } from '../../Flow';
+import SceneLayout from '../../Layouts/SceneLayout';
+import ThemeSplitView from '../../ThemeSplitView/ThemeSplitView';
+import Typography, { TypographyType } from '../../Typography/Typography';
 
 const StoriesScene: FC = () => (
   <SceneLayout>

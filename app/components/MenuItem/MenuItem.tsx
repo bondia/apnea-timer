@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { TouchableHighlight } from 'react-native';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../hooks/useAppTheme';
 import { Stack, Surface } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 

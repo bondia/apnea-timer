@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
+import useAppTheme from '../../hooks/useAppTheme';
+import useCronoSetCalculations from '../../hooks/useCronoSetCalculations';
 import { CronoSetType } from '../../modules/crono/cronoTypes';
-import useSetCalculations from '../../modules/crono/hooks/useSetCalculations';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
 import InfoBlock from '../InfoBlock/InfoBlock';
 import { TypographyType } from '../Typography/Typography';
 
@@ -12,13 +12,13 @@ type CountupProps = {
 const Countup: FC<CountupProps> = ({ set }) => {
   const { colors } = useAppTheme();
   const {
-    spentText,
+    countupText,
     status: { isDiving },
-  } = useSetCalculations(set);
+  } = useCronoSetCalculations(set);
   return (
     <InfoBlock
       label={isDiving ? 'Hold' : 'Recover'}
-      contentString={spentText}
+      contentString={countupText}
       labelColor={isDiving ? colors.secondary050 : colors.primary050}
       labelType={TypographyType.SUBTITLE_2}
       contentColor={isDiving ? colors.secondary050 : colors.primary050}

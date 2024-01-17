@@ -22,7 +22,7 @@ export type CronoSetType = TableSetType & {
   running: CronoSetRunningType;
 };
 
-type CronoSetRunningType = {
+export type CronoSetRunningType = {
   mode: SetModeEnum;
 
   // timestamps (miliseconds)

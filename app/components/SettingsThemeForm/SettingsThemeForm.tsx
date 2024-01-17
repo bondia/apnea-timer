@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
 import { useColorScheme } from 'react-native';
-import RadioButton from '../../../components/Forms/RadioButton';
-import useUserThemeContext from '../../../providers/UserThemeProvider/useUserThemeContext';
-import { ThemeSettingsOptions } from '../../../themes/types';
+import useUserThemeContext from '../../hooks/useUserThemeContext';
+import { ThemeSettingsOptions } from '../../themes/types';
+import RadioButton from '../Forms/RadioButton';
 
-const ThemeForm: FC = () => {
+const SettingsThemeForm: FC = () => {
   const theme = useColorScheme();
   const { theme: storedTheme, updateTheme } = useUserThemeContext();
   return (
@@ -30,4 +30,4 @@ const ThemeForm: FC = () => {
   );
 };
 
-export default ThemeForm;
+export default SettingsThemeForm;

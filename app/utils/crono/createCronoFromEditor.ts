@@ -1,6 +1,13 @@
-import { EditorStateType, TableSetType } from '../../editor/editorTypes';
-import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
-import { CronoRunningType, CronoSetType, CronoStateType } from '../cronoTypes';
+import {
+  CronoRunningType,
+  CronoSetType,
+  CronoStateType,
+} from '../../modules/crono/cronoTypes';
+import {
+  EditorStateType,
+  TableSetType,
+} from '../../modules/editor/editorTypes';
+import { CronoModeEnum, SetModeEnum } from '../../modules/editor/enums';
 
 const initSet = (originalSet: TableSetType): CronoSetType => {
   const { pos, duration: originalSetDuration } = originalSet;
@@ -35,10 +42,10 @@ const createDefaultRunningProp = (): CronoRunningType => ({
   contractions: 0,
 });
 
-const editorToCrono = (editor: EditorStateType): CronoStateType => ({
+const createCronoFromEditor = (editor: EditorStateType): CronoStateType => ({
   trainingTable: { ...editor.trainingTable },
   running: createDefaultRunningProp(),
   sets: createSets(editor.sets),
 });
 
-export default editorToCrono;
+export default createCronoFromEditor;

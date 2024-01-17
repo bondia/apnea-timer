@@ -1,6 +1,6 @@
 import { StoreThunkAction } from '../../../../../redux/types';
+import createCronoFromEditor from '../../../../../utils/crono/createCronoFromEditor';
 import { EditorStateType } from '../../../../editor/editorTypes';
-import editorToCrono from '../../../helpers/editorToCrono';
 import setInitialStateAction from '../setInitialStateAction';
 import updateTableDurationBySetsAction from './updateTableDurationBySetsAction';
 
@@ -12,7 +12,7 @@ type InitTableAction = (data: EditorStateType) => StoreThunkAction;
 const initTableAction: InitTableAction = trainingTable => {
   return dispatch => {
     // convert traning table to a crono table
-    const crono = editorToCrono(trainingTable);
+    const crono = createCronoFromEditor(trainingTable);
     dispatch(setInitialStateAction(crono));
     // make sure all durations are correctly calculated
     dispatch(updateTableDurationBySetsAction());

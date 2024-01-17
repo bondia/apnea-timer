@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import ThemedSceneLayout from '../../../components/Layouts/ThemedSceneLayout';
-import StoriesMenu from '../components/StoriesMenu';
+import StoriesMenu from '../../../modules/stories/components/StoriesMenu';
+import ThemedSceneLayout from '../../Layouts/ThemedSceneLayout';
 
 const StoriesMenuScene: FC = () => (
   <ThemedSceneLayout>

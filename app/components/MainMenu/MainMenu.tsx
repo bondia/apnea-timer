@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import { RoutesEnum } from '../../Routes';
-import { ScrollableStack } from '../../components/Flow';
-import MenuItem from '../../components/MenuItem/MenuItem';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../hooks/useAppTheme';
 import useAppNavitation from '../../useAppNavigation';
+import { ScrollableStack } from '../Flow';
+import MenuItem from '../MenuItem/MenuItem';
 
-const SelectorPane: FC = () => {
+const MainMenu: FC = () => {
   const navigation = useAppNavitation();
   const { colors, elevations } = useAppTheme();
 
@@ -51,4 +51,4 @@ const SelectorPane: FC = () => {
   );
 };
 
-export default SelectorPane;
+export default MainMenu;

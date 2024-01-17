@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../hooks/useAppTheme';
 import secondsToTimeString from '../../utils/time/secondsToTimeString';
 import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';

@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { ScrollView } from 'react-native';
-import SceneLayout from '../../../components/Layouts/SceneLayout';
-import ColorsStory from '../components/ColorsStory/ColorsStory';
+import ColorsStory from '../../../modules/stories/components/ColorsStory/ColorsStory';
+import SceneLayout from '../../Layouts/SceneLayout';
 
 const ColorsScene: FC = () => (
   <SceneLayout>

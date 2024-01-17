@@ -4,7 +4,7 @@ import React, { FC, useCallback, useEffect } from 'react';
 import Countdown from '../../components/Counters/Countdown';
 import { Spacer, Stack, Surface } from '../../components/Flow';
 import ActionsLayout from '../../components/Layouts/ActionsLayout';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../hooks/useAppTheme';
 import { useAppDispatch } from '../../redux/hooks';
 import useAppNavitation from '../../useAppNavigation';
 import { EditorStateType } from '../editor/editorTypes';

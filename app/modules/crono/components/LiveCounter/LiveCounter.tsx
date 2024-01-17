@@ -7,7 +7,7 @@ import Countup from '../../../../components/Counters/Countup';
 import ETA from '../../../../components/Counters/ETA';
 import { Stack, Surface } from '../../../../components/Flow';
 import { TypographyType } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../../hooks/useAppTheme';
 
 type LiveCounterProps = {
   crono: CronoStateType;

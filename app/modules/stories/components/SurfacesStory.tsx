@@ -4,7 +4,7 @@ import SpacedSurface from '../../../components/Flow/SpacedSurface';
 import Typography, {
   TypographyType,
 } from '../../../components/Typography/Typography';
-import useAppTheme from '../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../hooks/useAppTheme';
 
 const SurfacesStory: FC = () => {
   const theme = useAppTheme();

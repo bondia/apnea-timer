@@ -4,7 +4,7 @@ import { Spacer, Stack } from '../../../../components/Flow';
 import Typography, {
   TypographyType,
 } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../../hooks/useAppTheme';
 import { TableSetListType } from '../../editorTypes';
 import { TableTypeEnum } from '../../enums';
 import headlineByTableType from '../StaticForm/headlineByTableType';

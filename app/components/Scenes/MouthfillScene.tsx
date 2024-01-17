@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import ThemedSceneLayout from '../../components/Layouts/ThemedSceneLayout';
-import MouthfillForm from './components/MouthfillForm';
+import ThemedSceneLayout from '../Layouts/ThemedSceneLayout';
+import MouthfillForm from '../MouthfillForm/MouthfillForm';
 
 const MouthfillScene: FC = () => (
   <ThemedSceneLayout>

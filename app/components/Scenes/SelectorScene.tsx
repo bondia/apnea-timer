@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import ThemedSceneLayout from '../../components/Layouts/ThemedSceneLayout';
-import SelectorPane from './SelectorPane';
+import ThemedSceneLayout from '../Layouts/ThemedSceneLayout';
+import MainMenu from '../MainMenu/MainMenu';
 
 const SelectorScene: FC = () => (
   <ThemedSceneLayout>
-    <SelectorPane />
+    <MainMenu />
   </ThemedSceneLayout>
 );
 

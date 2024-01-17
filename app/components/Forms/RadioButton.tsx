@@ -1,7 +1,7 @@
 import { Icon } from '@rneui/base';
 import { CheckBox } from '@rneui/themed';
 import React, { FC } from 'react';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../hooks/useAppTheme';
 import Typography from '../Typography/Typography';
 
 type RadioButtonProps = {
@@ -27,7 +27,13 @@ const RadioButton: FC<RadioButtonProps> = ({ checked, title, onPress }) => {
         />
       }
       uncheckedIcon={
-        <Icon name="radio-button-unchecked" type="material" color="grey" size={25} iconStyle={{ marginRight: 10 }} />
+        <Icon
+          name="radio-button-unchecked"
+          type="material"
+          color="grey"
+          size={25}
+          iconStyle={{ marginRight: 10 }}
+        />
       }
     />
   );

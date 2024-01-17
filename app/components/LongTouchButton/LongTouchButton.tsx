@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../hooks/useAppTheme';
 import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 import { TouchableHighlight, Wrapper } from './LongTouchButton.styled';

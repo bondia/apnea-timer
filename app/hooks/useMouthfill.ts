@@ -1,8 +1,13 @@
 import { isFinite, round } from 'lodash';
 import { useCallback, useState } from 'react';
 
-const calculateMaxDepth = (testPerformed: number, testFailed: number, performed: number) => {
-  const result = ((testFailed + 10) * (performed + 10)) / (testPerformed + 10) - 10;
+const calculateMaxDepth = (
+  testPerformed: number,
+  testFailed: number,
+  performed: number,
+) => {
+  const result =
+    ((testFailed + 10) * (performed + 10)) / (testPerformed + 10) - 10;
   return isFinite(result) ? round(result, 2) : 0;
 };
 
@@ -33,7 +38,10 @@ const useMouthfill = () => {
     [testPerformed],
   );
 
-  const setPerformedCallback = useCallback((value: number) => setPerformed(value > 0 ? value : 0), []);
+  const setPerformedCallback = useCallback(
+    (value: number) => setPerformed(value > 0 ? value : 0),
+    [],
+  );
 
   return {
     testPerformed,

@@ -4,7 +4,7 @@ import List, { Item } from '../../../../components/List';
 import Typography, {
   TypographyType,
 } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../../hooks/useAppTheme';
 import { CronoSetListType, CronoSetType } from '../../cronoTypes';
 import Set from './SetItem';
 

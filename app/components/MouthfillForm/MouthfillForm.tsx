@@ -1,11 +1,9 @@
 import React, { FC } from 'react';
-import { Spacer, Stack } from '../../../components/Flow';
-import NumericInput from '../../../components/Forms/NumericInput';
-import Typography, {
-  TypographyType,
-} from '../../../components/Typography/Typography';
-import useAppTheme from '../../../providers/AppThemeProvider/useAppTheme';
-import useMouthfill from '../hooks/useMouthfill';
+import useAppTheme from '../../hooks/useAppTheme';
+import useMouthfill from '../../hooks/useMouthfill';
+import { Spacer, Stack } from '../Flow';
+import NumericInput from '../Forms/NumericInput';
+import Typography, { TypographyType } from '../Typography/Typography';
 
 const MouthfillForm: FC = () => {
   const { colors } = useAppTheme();

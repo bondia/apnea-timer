@@ -1,5 +1,7 @@
+import calculateSetCountdown from '../../../utils/crono/calculateSetCountdown';
 import { CronoModeEnum, SetModeEnum } from '../../editor/enums';
 import { CronoSetType, CronoStateType } from '../cronoTypes';
+import { TIMER_REFRESH } from './cronoTimer';
 import playNotificationSound from './playNotificationSound';
 
 const mutateSet = (
@@ -116,15 +118,19 @@ const decideCurrentSet = (
     );
   }
 
+  const set = sets[step];
   const {
-    running: { countdown, mode: setMode },
-  } = sets[step];
+    running: { targetEndTimestamp, mode },
+  } = set;
+  const countdown = calculateSetCountdown(set);
 
   playNotificationSound(countdown);
 
+  const safeMargin = TIMER_REFRESH * 2;
+  const shouldFinishSet = currentTimestamp >= targetEndTimestamp - safeMargin;
   // do not change current set if not skiped and stil countdown available
-  if (countdown <= 0 && CronoModeEnum.CRONO_MODE_AUTO === cronoMode) {
-    return mutateSets(state, step, setMode, currentTimestamp);
+  if (CronoModeEnum.CRONO_MODE_AUTO === cronoMode && shouldFinishSet) {
+    return mutateSets(state, step, mode, targetEndTimestamp);
   }
 
   return state;

@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
-import { Spacer, Stack } from '../../components/Flow';
-import ThemedSceneLayout from '../../components/Layouts/ThemedSceneLayout';
-import Typography, { TypographyType } from '../../components/Typography/Typography';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
-import ThemeForm from './components/ThemeForm';
+import useAppTheme from '../../hooks/useAppTheme';
+import { Spacer, Stack } from '../Flow';
+import ThemedSceneLayout from '../Layouts/ThemedSceneLayout';
+import SettingsThemeForm from '../SettingsThemeForm/SettingsThemeForm';
+import Typography, { TypographyType } from '../Typography/Typography';
 
 const SettingsScene: FC = () => {
   const { colors } = useAppTheme();
@@ -16,7 +16,7 @@ const SettingsScene: FC = () => {
 
         <Spacer spacing={3} />
 
-        <ThemeForm />
+        <SettingsThemeForm />
       </Stack>
     </ThemedSceneLayout>
   );

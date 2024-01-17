@@ -2,8 +2,8 @@ import { format } from 'date-fns';
 import { addMilliseconds } from 'date-fns/fp';
 import { now } from 'lodash';
 import React, { FC } from 'react';
+import useAppTheme from '../../hooks/useAppTheme';
 import { CronoStateType } from '../../modules/crono/cronoTypes';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
 import InfoBlock from '../InfoBlock/InfoBlock';
 import { TypographyType } from '../Typography/Typography';
 

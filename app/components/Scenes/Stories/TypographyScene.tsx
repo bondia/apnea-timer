@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
-import SceneLayout from '../../../components/Layouts/SceneLayout';
-import Typography, {
-  TypographyType,
-} from '../../../components/Typography/Typography';
+import SceneLayout from '../../Layouts/SceneLayout';
+import Typography, { TypographyType } from '../../Typography/Typography';
 
 const TypographyScene: FC = () => (
   <SceneLayout>

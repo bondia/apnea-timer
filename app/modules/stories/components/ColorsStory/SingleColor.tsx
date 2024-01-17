@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import { Spacer, Stack } from '../../../../components/Flow';
 import SpacedSurface from '../../../../components/Flow/SpacedSurface';
 import Typography from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../../hooks/useAppTheme';
 import { AppTheme } from '../../../../themes/types';
 
 type SingleColorProps = {
