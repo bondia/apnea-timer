@@ -22,11 +22,18 @@ export type CronoSetType = TableSetType & {
   running: CronoSetRunningType;
 };
 
-type CronoSetRunningType = {
-  startTimestamp?: number;
-  endTimestamp?: number;
+export type CronoSetRunningType = {
   mode: SetModeEnum;
-  originalCountdown: number;
+
+  // timestamps (miliseconds)
+  startTimestamp: number;
+  endTimestamp: number;
+  targetEndTimestamp: number;
+  originalDurationMiliseconds: number;
+
+  /** @deprecated using seconds to calculate */
   countdown: number;
+
+  // TODO: unknown type
   contraction: number;
 };

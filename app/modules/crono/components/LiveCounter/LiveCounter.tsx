@@ -3,24 +3,22 @@ import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
 import { TableTypeEnum } from '../../../editor/enums';
 import { CronoSetType, CronoStateType } from '../../cronoTypes';
 
+import Countup from '../../../../components/Counters/Countup';
+import ETA from '../../../../components/Counters/ETA';
 import { Stack, Surface } from '../../../../components/Flow';
 import { TypographyType } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
-import Countdown from './Countdown';
-import Countup from './Countup';
+import useAppTheme from '../../../../hooks/useAppTheme';
 
 type LiveCounterProps = {
   crono: CronoStateType;
   set?: CronoSetType;
 };
 
-const LiveCounter: FC<LiveCounterProps> = ({
-  crono: {
+const LiveCounter: FC<LiveCounterProps> = ({ crono, set }) => {
+  const {
     trainingTable: { type: tableTypeEnum },
     running: { clock: spentTime, countdown: totalTime = 0 },
-  },
-  set,
-}) => {
+  } = crono;
   const { elevations, colors } = useAppTheme();
 
   // set data
@@ -36,38 +34,31 @@ const LiveCounter: FC<LiveCounterProps> = ({
     >
       {/* STATIC */}
       {TableTypeEnum.TABLE_TYPE_ENDURANCE !== tableTypeEnum && (
-        <>
-          <Stack spaceAround horizontal spaceBottom={8}>
-            <Stack basis="33%">
-              <InfoBlock
-                label="Set"
-                content={currentSet}
-                labelColor={colors.primary050}
-                labelType={TypographyType.SUBTITLE_2}
-                contentColor={colors.primary100}
-                contentType={TypographyType.H6}
-              />
-            </Stack>
-
-            <Stack basis="33%">
-              <InfoBlock
-                label="Time Left"
-                content={totalTime}
-                isTimestamp
-                labelColor={colors.primary050}
-                labelType={TypographyType.SUBTITLE_2}
-                contentColor={colors.primary100}
-                contentType={TypographyType.H6}
-              />
-            </Stack>
-
-            <Stack basis="33%">{set ? <Countup set={set} /> : null}</Stack>
+        <Stack spaceAround horizontal spaceBottom={8}>
+          <Stack basis="15%">
+            <InfoBlock
+              label="Set"
+              content={currentSet}
+              labelColor={colors.primary050}
+              labelType={TypographyType.SUBTITLE_2}
+              contentColor={colors.primary100}
+              contentType={TypographyType.H6}
+            />
           </Stack>
-
-          <Stack spaceAround horizontal spaceBottom={10}>
-            {set ? <Countdown set={set} /> : null}
+          <Stack basis="25%">{set ? <ETA crono={crono} /> : null}</Stack>
+          <Stack basis="30%">
+            <InfoBlock
+              label="Time Left"
+              content={totalTime}
+              isTimestamp
+              labelColor={colors.primary050}
+              labelType={TypographyType.SUBTITLE_2}
+              contentColor={colors.primary100}
+              contentType={TypographyType.H6}
+            />
           </Stack>
-        </>
+          <Stack basis="30%">{set ? <Countup set={set} /> : null}</Stack>
+        </Stack>
       )}
 
       {/* ENDURANCE */}

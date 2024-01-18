@@ -3,17 +3,17 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { deactivateKeepAwake } from 'expo-keep-awake';
 import React, { FC } from 'react';
 import { RoutesEnum } from './Routes';
-import CronoScene from './modules/crono/CronoScene';
-import EditorEnduranceScene from './modules/editor/scenes/EditorEnduranceScene';
-import EditorStaticScene from './modules/editor/scenes/StaticEditorScene';
-import MouthfillScene from './modules/mouthfill/MouthfillScene';
-import SelectorScene from './modules/selector/SelectorScene';
-import SettingsScene from './modules/settings/SettingsScene';
-import ColorsScene from './modules/stories/Scenes/ColorsScene';
-import ElevationsScene from './modules/stories/Scenes/ElevationsScene';
-import StoriesMenuScene from './modules/stories/Scenes/StoriesMenuScene';
-import StoriesScene from './modules/stories/Scenes/StoriesScene';
-import TypographyScene from './modules/stories/Scenes/TypographyScene';
+import CronoScene from './components/Scenes/CronoScene';
+import EditorEnduranceScene from './components/Scenes/Editor/EnduranceScene';
+import EditorStaticScene from './components/Scenes/Editor/StaticScene';
+import MouthfillScene from './components/Scenes/MouthfillScene';
+import SelectorScene from './components/Scenes/SelectorScene';
+import SettingsScene from './components/Scenes/SettingsScene';
+import ColorsScene from './components/Scenes/Stories/ColorsScene';
+import ElevationsScene from './components/Scenes/Stories/ElevationsScene';
+import StoriesMenuScene from './components/Scenes/Stories/MenuScene';
+import StoriesScene from './components/Scenes/Stories/StoriesScene';
+import TypographyScene from './components/Scenes/Stories/TypographyScene';
 
 const { Navigator, Screen } = createNativeStackNavigator();
 

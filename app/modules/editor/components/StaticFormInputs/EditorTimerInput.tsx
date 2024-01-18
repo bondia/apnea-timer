@@ -4,7 +4,7 @@ import NumericInput from '../../../../components/Forms/NumericInput';
 import Typography, {
   TypographyType,
 } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../../hooks/useAppTheme';
 import { useAppDispatch } from '../../../../redux/hooks';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { SetTypeEnum } from '../../enums';

@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../hooks/useAppTheme';
 import { Spacer, Stack } from '../Flow';
 import LongTouchButton from '../LongTouchButton';
 import Typography, { TypographyType } from '../Typography/Typography';

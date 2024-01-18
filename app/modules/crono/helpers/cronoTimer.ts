@@ -1,6 +1,7 @@
+// eslint-disable-next-line no-undef
 let timer: NodeJS.Timeout | null = null;
 
-const TIMER_REFRESH = 100;
+export const TIMER_REFRESH = 15;
 
 export const stopTimer = () => {
   if (timer === null) {

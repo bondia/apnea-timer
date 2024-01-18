@@ -1,5 +1,5 @@
+import { now } from 'lodash';
 import { StoreThunkAction } from '../../../../../redux/types';
-import generateTimestamp from '../../../../../utils/time/generateTimestamp';
 import { CronoModeEnum } from '../../../../editor/enums';
 import { CronoStateType } from '../../../cronoTypes';
 import { stopTimer } from '../../../helpers/cronoTimer';
@@ -22,7 +22,7 @@ const handleTick: HandleTickAction = () => {
       return;
     }
 
-    const currentTimestamp = generateTimestamp();
+    const currentTimestamp = now();
 
     const {
       running: { startTimestamp: cronoStartTimestamp, step },
@@ -32,17 +32,31 @@ const handleTick: HandleTickAction = () => {
     const newSets = sets.map(set => {
       const {
         pos,
-        running: { startTimestamp },
+        running: {
+          startTimestamp,
+          targetEndTimestamp,
+          originalDurationMiliseconds,
+        },
         duration,
       } = set;
       if (pos !== step || !cronoStartTimestamp) {
         return set;
       }
 
-      const setStartTimestamp = startTimestamp === undefined ? cronoStartTimestamp : startTimestamp;
+      const setStartTimestamp =
+        startTimestamp === -1 && cronoStartTimestamp
+          ? cronoStartTimestamp
+          : startTimestamp;
+
+      const setTargetEnd =
+        targetEndTimestamp === -1
+          ? setStartTimestamp + originalDurationMiliseconds
+          : targetEndTimestamp;
 
       // current timestamp
-      const setTimeSpent = Math.round((currentTimestamp - setStartTimestamp) / 1000);
+      const setTimeSpent = Math.round(
+        (currentTimestamp - setStartTimestamp) / 1000,
+      );
 
       return {
         ...set,
@@ -50,6 +64,7 @@ const handleTick: HandleTickAction = () => {
           ...set.running,
           // make sure set has a start timestamp
           startTimestamp: setStartTimestamp,
+          targetEndTimestamp: setTargetEnd,
           // calculate countdown
           countdown: duration - setTimeSpent,
         },
@@ -63,7 +78,9 @@ const handleTick: HandleTickAction = () => {
       running: {
         ...crono.running,
         // add clock tick
-        clock: !cronoStartTimestamp ? -1 : (currentTimestamp - cronoStartTimestamp) / 1000,
+        clock: !cronoStartTimestamp
+          ? -1
+          : (currentTimestamp - cronoStartTimestamp) / 1000,
       },
     };
 

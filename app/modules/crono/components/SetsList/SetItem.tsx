@@ -4,9 +4,9 @@ import { Stack } from '../../../../components/Flow';
 import Typography, {
   TypographyType,
 } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../../hooks/useAppTheme';
+import useCronoSetCalculations from '../../../../hooks/useCronoSetCalculations';
 import { CronoSetType } from '../../cronoTypes';
-import useSetCalculations from '../../hooks/useSetCalculations';
 
 export const SetNumber = styled.View`
   position: absolute;
@@ -26,10 +26,10 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
 
   const {
     position,
-    durationText,
-    spentText,
+    countdownText,
+    countupText,
     status: { isDiving, isFinished },
-  } = useSetCalculations(set);
+  } = useCronoSetCalculations(set);
 
   const recoverColor = accent ? primary500 : primary050;
   const divingColor = accent ? secondary500 : secondary050;
@@ -39,12 +39,12 @@ const SetItem: FC<SetItemProps> = ({ set, accent }) => {
   return (
     <Stack spaceY={2}>
       <Typography type={TypographyType.H6} color={mainColor} centered>
-        {durationText}
+        {countdownText}
       </Typography>
 
       {accent || isFinished ? (
         <Typography type={TypographyType.BODY_2} color={lightColor} centered>
-          {spentText}
+          {countupText}
         </Typography>
       ) : null}
 

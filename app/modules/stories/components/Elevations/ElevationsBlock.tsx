@@ -3,7 +3,7 @@ import { Spacer, Stack, Surface } from '../../../../components/Flow';
 import Typography, {
   TypographyType,
 } from '../../../../components/Typography/Typography';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../../hooks/useAppTheme';
 
 const ElevationsBlock: FC = () => {
   const { elevations } = useAppTheme();

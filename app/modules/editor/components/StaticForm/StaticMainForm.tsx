@@ -6,7 +6,7 @@ import TableTypeInput from '../StaticFormInputs/TableTypeInput';
 import { Spacer, Stack } from '../../../../components/Flow';
 import SpacedSurface from '../../../../components/Flow/SpacedSurface';
 import InfoBlock from '../../../../components/InfoBlock/InfoBlock';
-import useAppTheme from '../../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../../hooks/useAppTheme';
 import { EditorStateType } from '../../editorTypes';
 import headlineByTableType from './headlineByTableType';
 

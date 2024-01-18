@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import styled from 'styled-components/native';
-import useAppTheme from '../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../hooks/useAppTheme';
 import { Stack } from '../Flow';
 
 type SafeAreaViewProps = {

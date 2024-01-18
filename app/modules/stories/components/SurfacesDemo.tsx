@@ -1,6 +1,6 @@
 import React, { FC, PropsWithChildren } from 'react';
 import { Stack, Surface } from '../../../components/Flow';
-import useAppTheme from '../../../providers/AppThemeProvider/useAppTheme';
+import useAppTheme from '../../../hooks/useAppTheme';
 
 const SurfacesDemo: FC<PropsWithChildren> = ({ children }) => {
   const {
