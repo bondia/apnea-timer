@@ -18,7 +18,7 @@ const Countup: FC<CountupProps> = ({ set }) => {
   return (
     <InfoBlock
       label={isDiving ? 'Hold' : 'Recover'}
-      contentString={countupText}
+      content={countupText}
       labelColor={isDiving ? colors.secondary050 : colors.primary050}
       labelType={TypographyType.SUBTITLE_2}
       contentColor={isDiving ? colors.secondary050 : colors.primary050}

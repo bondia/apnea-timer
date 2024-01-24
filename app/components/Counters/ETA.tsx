@@ -21,7 +21,7 @@ const ETA: FC<ETAProps> = ({
   return (
     <InfoBlock
       label="ETA"
-      contentString={format(date, 'HH:mm:ss')}
+      content={format(date, 'HH:mm:ss')}
       labelColor={colors.primary050}
       labelType={TypographyType.SUBTITLE_2}
       contentColor={colors.primary100}

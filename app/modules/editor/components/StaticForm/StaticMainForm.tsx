@@ -45,13 +45,12 @@ const StaticMainForm: FC<Props> = ({
               <InfoBlock
                 label={headlineByTableType(type)}
                 labelColor={colorByType[type]}
-                content={base}
+                miliseconds={base * 1000}
                 contentColor={colorByType[type]}
-                isTimestamp
               />
             )}
 
-            <InfoBlock label="Total Time" content={totalTime} isTimestamp />
+            <InfoBlock label="Total Time" miliseconds={totalTime * 1000} />
           </Stack>
         </Spacer>
 

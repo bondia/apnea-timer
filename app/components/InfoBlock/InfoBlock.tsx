@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import useAppTheme from '../../hooks/useAppTheme';
-import secondsToTimeString from '../../utils/time/secondsToTimeString';
+import milisecondsToTimeString from '../../utils/time/milisecondsToTimeString';
 import { Stack } from '../Flow';
 import Typography, { TypographyType } from '../Typography/Typography';
 
@@ -8,22 +8,20 @@ type InfoBlockProps = {
   label?: string;
   labelType?: TypographyType;
   labelColor?: string;
-  content?: number;
-  contentString?: string;
+  miliseconds?: number;
+  content?: string | number;
   contentType?: TypographyType;
   contentColor?: string;
-  isTimestamp?: boolean;
 };
 
 const InfoBlock: FC<InfoBlockProps> = ({
   label,
   labelType = TypographyType.BODY_1,
   labelColor,
+  miliseconds,
   content,
-  contentString,
   contentType = TypographyType.H4,
   contentColor,
-  isTimestamp,
 }) => {
   const { colors } = useAppTheme();
   return (
@@ -42,10 +40,7 @@ const InfoBlock: FC<InfoBlockProps> = ({
         color={contentColor || colors.primary900}
         centered
       >
-        {content !== undefined && isTimestamp
-          ? secondsToTimeString(content)
-          : content}
-        {contentString}
+        {miliseconds ? milisecondsToTimeString(miliseconds) : content}
       </Typography>
     </Stack>
   );

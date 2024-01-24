@@ -12,7 +12,9 @@ export type CronoRunningType = {
   clock: number;
   step: number;
   mode: CronoModeEnum;
+  // TODO: Convert countdown to milliseconds
   countdown?: number;
+  // TODO: Convert countdown to milliseconds
   contractions: number;
 };
 

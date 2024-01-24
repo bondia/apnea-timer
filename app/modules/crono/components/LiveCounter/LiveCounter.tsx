@@ -49,8 +49,7 @@ const LiveCounter: FC<LiveCounterProps> = ({ crono, set }) => {
           <Stack basis="30%">
             <InfoBlock
               label="Time Left"
-              content={totalTime}
-              isTimestamp
+              miliseconds={totalTime * 1000}
               labelColor={colors.primary050}
               labelType={TypographyType.SUBTITLE_2}
               contentColor={colors.primary100}
@@ -76,8 +75,7 @@ const LiveCounter: FC<LiveCounterProps> = ({ crono, set }) => {
 
           <InfoBlock
             label="Targeting"
-            content={targeting}
-            isTimestamp
+            miliseconds={targeting * 1000}
             labelColor={colors.primary050}
             labelType={TypographyType.SUBTITLE_1}
             contentColor={colors.primary500}
@@ -86,8 +84,7 @@ const LiveCounter: FC<LiveCounterProps> = ({ crono, set }) => {
 
           <InfoBlock
             label="Spent Time"
-            content={spentTime > 0 ? spentTime : 0}
-            isTimestamp
+            miliseconds={spentTime > 0 ? spentTime * 1000 : 0}
             labelColor={colors.primary050}
             labelType={TypographyType.SUBTITLE_1}
             contentColor={colors.primary500}
