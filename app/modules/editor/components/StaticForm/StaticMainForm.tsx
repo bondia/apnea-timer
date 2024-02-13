@@ -16,7 +16,7 @@ type Props = {
 
 const StaticMainForm: FC<Props> = ({
   editor: {
-    trainingTable: { base, type, duration: totalTime },
+    trainingTable: { baseMilliseconds, type, duration: totalTime },
   },
 }) => {
   const { colors, elevations } = useAppTheme();
@@ -45,7 +45,7 @@ const StaticMainForm: FC<Props> = ({
               <InfoBlock
                 label={headlineByTableType(type)}
                 labelColor={colorByType[type]}
-                miliseconds={base * 1000}
+                miliseconds={baseMilliseconds}
                 contentColor={colorByType[type]}
               />
             )}

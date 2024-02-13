@@ -6,8 +6,15 @@ const editor = (state: RootState) => state.editor;
 
 export const editorSelector = createSelector([editor], state => state);
 
-const editorTypeSelector = createSelector([editorSelector], state => state.trainingTable.type);
+const editorTypeSelector = createSelector(
+  [editorSelector],
+  state => state.trainingTable.type,
+);
 export const useEditorTypeSelector = () => useAppSelector(editorTypeSelector);
 
-const editorBaseSelector = createSelector([editorSelector], state => state.trainingTable.base);
-export const useEditorBaseSelector = () => useAppSelector(editorBaseSelector);
+const editorBaseMilliseconds = createSelector(
+  [editorSelector],
+  state => state.trainingTable.baseMilliseconds,
+);
+export const useEditorBaseMillisecondsSelector = () =>
+  useAppSelector(editorBaseMilliseconds);

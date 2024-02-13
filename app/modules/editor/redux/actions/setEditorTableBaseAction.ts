@@ -4,12 +4,14 @@ import { EditorStateType } from '../../editorTypes';
 export const SET_EDITOR_TABLE_BASE = 'SET_EDITOR_TABLE_BASE';
 
 export type SetEditorTableBaseAction = AnyAction & {
-  base: number;
+  baseMilliseconds: number;
 };
 
-const setEditorTableBaseAction = (base: number): SetEditorTableBaseAction => ({
+const setEditorTableBaseAction = (
+  baseMilliseconds: number,
+): SetEditorTableBaseAction => ({
   type: SET_EDITOR_TABLE_BASE,
-  base,
+  baseMilliseconds,
 });
 
 export const reduceSetEditorTableBaseAction = (
@@ -19,7 +21,7 @@ export const reduceSetEditorTableBaseAction = (
   ...state,
   trainingTable: {
     ...state.trainingTable,
-    base: action.base,
+    baseMilliseconds: action.baseMilliseconds,
   },
 });
 

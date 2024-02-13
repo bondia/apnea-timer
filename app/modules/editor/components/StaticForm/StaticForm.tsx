@@ -15,7 +15,7 @@ const StaticForm: FC = () => {
   const editor = useAppSelector(editorSelector);
 
   useEffect(() => {
-    dispatch(changeTableType(120, TableTypeEnum.TABLE_TYPE_CO2));
+    dispatch(changeTableType(120000, TableTypeEnum.TABLE_TYPE_CO2));
   }, [dispatch]);
 
   if (!editor) {

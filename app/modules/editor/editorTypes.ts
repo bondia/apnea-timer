@@ -7,7 +7,7 @@ export type EditorStateType = {
 
 export type TrainingTableType = {
   // TODO: Use Milliseconds
-  base: number;
+  baseMilliseconds: number;
   type: TableTypeEnum;
   // TODO: Use Milliseconds
   duration: number;

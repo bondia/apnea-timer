@@ -7,6 +7,7 @@ import Typography, {
 } from '../../../../components/Typography/Typography';
 import useAppTheme from '../../../../hooks/useAppTheme';
 import { useAppDispatch } from '../../../../redux/hooks';
+import millisecondsToTimeString from '../../../../utils/time/milisecondsToTimeString';
 import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { EditorStateType, EnduranceTrainingTableType } from '../../editorTypes';
 import {
@@ -56,7 +57,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
 
   const {
     enduranceLaps,
-    base,
+    baseMilliseconds,
     baseBreaks,
     duration: totalTime,
   } = trainingTable as EnduranceTrainingTableType;
@@ -100,29 +101,29 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
           headline="Dive Time"
           decrease={() =>
             actionHandler({
-              original: base,
-              increase: -1,
+              original: baseMilliseconds,
+              increase: -1000,
               action: changeTableBase,
             })
           }
           decreaseInterval={() =>
             actionHandler({
-              original: base,
-              increase: -5,
+              original: baseMilliseconds,
+              increase: -5000,
               action: changeTableBase,
             })
           }
           increase={() =>
             actionHandler({
-              original: base,
-              increase: 1,
+              original: baseMilliseconds,
+              increase: 1000,
               action: changeTableBase,
             })
           }
           increaseInterval={() =>
             actionHandler({
-              original: base,
-              increase: 5,
+              original: baseMilliseconds,
+              increase: 5000,
               action: changeTableBase,
             })
           }
@@ -132,7 +133,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             color={colors.inverted900}
             centered
           >
-            {secondsToTimeString(base)}
+            {millisecondsToTimeString(baseMilliseconds)}
           </Typography>
         </NumericInput>
 

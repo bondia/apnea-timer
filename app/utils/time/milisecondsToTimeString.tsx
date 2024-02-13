@@ -1,7 +1,7 @@
 import { formatDuration, intervalToDuration } from 'date-fns';
 
-const milisecondsToTimeString = (miliseconds: number) => {
-  const isNegative = miliseconds < 0;
+const millisecondsToTimeString = (miliseconds: number) => {
+  const isNegative = miliseconds < -1000;
   const end = isNegative ? -miliseconds : miliseconds;
   const duration = intervalToDuration({ start: 0, end });
   const stringValue = formatDuration(
@@ -18,4 +18,4 @@ const milisecondsToTimeString = (miliseconds: number) => {
   return isNegative ? `-${stringValue}` : stringValue;
 };
 
-export default milisecondsToTimeString;
+export default millisecondsToTimeString;

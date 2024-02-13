@@ -24,7 +24,8 @@ const calculateSetCountdown = (
 
   if (targetEndTimestamp > -1) {
     const nowTimestamp = currentTime || now();
-    return targetEndTimestamp - nowTimestamp + 1000;
+    const value = targetEndTimestamp - nowTimestamp;
+    return value > 0 ? value + 1000 : value;
   }
 
   return originalDurationMiliseconds || 0;
