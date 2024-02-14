@@ -23,7 +23,7 @@ const createTable = (
   enduranceLaps: number,
 ): EditorStateType => {
   const sets = createSetsByTableType(
-    baseMilliseconds / 1000,
+    baseMilliseconds,
     baseBreaks,
     type,
     enduranceLaps,

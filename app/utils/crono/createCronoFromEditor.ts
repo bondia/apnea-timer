@@ -19,7 +19,7 @@ const initSet = (originalSet: TableSetType): CronoSetType => {
       startTimestamp: -1,
       endTimestamp: -1,
       targetEndTimestamp: -1,
-      originalDurationMiliseconds: originalSetDuration * 1000,
+      originalDurationMiliseconds: originalSetDuration,
       countdown: originalSetDuration,
       contraction: -1,
     },

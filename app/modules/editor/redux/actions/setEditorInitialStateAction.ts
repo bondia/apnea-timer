@@ -7,7 +7,9 @@ export type SetEditorInitialStateAction = AnyAction & {
   state: EditorStateType;
 };
 
-const setEditorInitialStateAction = (state: EditorStateType): SetEditorInitialStateAction => ({
+const setEditorInitialStateAction = (
+  state: EditorStateType,
+): SetEditorInitialStateAction => ({
   type: SET_EDITOR_INITIAL_STATE,
   state,
 });

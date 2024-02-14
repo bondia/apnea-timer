@@ -3,10 +3,14 @@ import { TableTypeEnum } from '../../../enums';
 import createTable from '../../../helpers/createTable';
 import setEditorInitialStateAction from '../setEditorInitialStateAction';
 
-type ChangeTableTypeType = (base: number, tableType: TableTypeEnum) => AnyAction;
+type ChangeTableTypeType = (
+  base: number,
+  tableType: TableTypeEnum,
+) => AnyAction;
 
 const changeTableType: ChangeTableTypeType = (base, tableType) => {
   const newState = createTable(base, 5, tableType, 6);
+  console.info(newState);
   return setEditorInitialStateAction(newState);
 };
 
