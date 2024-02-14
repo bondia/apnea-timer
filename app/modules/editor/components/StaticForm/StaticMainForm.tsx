@@ -50,7 +50,7 @@ const StaticMainForm: FC<Props> = ({
               />
             )}
 
-            <InfoBlock label="Total Time" miliseconds={totalTime * 1000} />
+            <InfoBlock label="Total Time" miliseconds={totalTime} />
           </Stack>
         </Spacer>
 

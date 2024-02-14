@@ -10,7 +10,6 @@ type ChangeTableTypeType = (
 
 const changeTableType: ChangeTableTypeType = (base, tableType) => {
   const newState = createTable(base, 5, tableType, 6);
-  console.info(newState);
   return setEditorInitialStateAction(newState);
 };
 
