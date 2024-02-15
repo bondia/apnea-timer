@@ -1,3 +1,4 @@
+import calculateSetCountdown from '../../../../utils/crono/calculateSetCountdown';
 import { CronoSetListType, CronoSetType } from '../../../crono/cronoTypes';
 import { TableSetListType, TableSetType } from '../../editorTypes';
 import { SetModeEnum } from '../../enums';
@@ -7,8 +8,9 @@ const getSingleSetDuration = (set: TableSetType | CronoSetType) => {
   // it means the table is running
   if ('running' in set) {
     const {
-      running: { countdown, mode },
+      running: { mode },
     } = set;
+    const countdown = calculateSetCountdown(set);
     return mode !== SetModeEnum.SET_MODE_SKIPED && countdown > 0
       ? countdown
       : 0;

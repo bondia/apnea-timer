@@ -1,4 +1,5 @@
-import { TableTypeEnum, SetTypeEnum } from './enums';
+import { MillisecondsType } from '../../types';
+import { SetTypeEnum, TableTypeEnum } from './enums';
 
 export type EditorStateType = {
   trainingTable: TrainingTableType | EnduranceTrainingTableType;
@@ -6,20 +7,20 @@ export type EditorStateType = {
 };
 
 export type TrainingTableType = {
-  base: number;
+  base: MillisecondsType;
   type: TableTypeEnum;
-  duration: number;
+  duration: MillisecondsType;
 };
 
 export type EnduranceTrainingTableType = TrainingTableType & {
-  baseBreaks: number;
+  baseBreaks: MillisecondsType;
   enduranceLaps: number;
 };
 
 export type TableSetListType = TableSetType[];
 
 export type TableSetType = {
-  duration: number;
+  duration: MillisecondsType;
   type: SetTypeEnum;
   pos: number;
   zombie: boolean;

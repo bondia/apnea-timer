@@ -4,7 +4,10 @@ import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
 import changeTableType from '../../redux/actions/composed/changeTableType';
-import { useEditorBaseSelector, useEditorTypeSelector } from '../../redux/editorSelectors';
+import {
+  useEditorBaseSelector,
+  useEditorTypeSelector,
+} from '../../redux/editorSelectors';
 
 const TableTypeInput: FC = () => {
   const dispatch = useAppDispatch();

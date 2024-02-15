@@ -12,7 +12,7 @@ const EditorEndurancePane: FC = () => {
   const editor = useAppSelector(editorSelector);
 
   useEffect(() => {
-    dispatch(createEnduranceTable(35, 35, 8));
+    dispatch(createEnduranceTable(40000, 30000, 8));
   }, [dispatch]);
 
   if (editor === null) {

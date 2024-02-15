@@ -29,7 +29,7 @@ import {
   reduceSetEditorTableDurationAction,
 } from './actions/setEditorTableDurationAction';
 
-const defaultState = createTable(120, 5, TableTypeEnum.TABLE_TYPE_CO2, 6);
+const defaultState = createTable(120000, 5000, TableTypeEnum.TABLE_TYPE_CO2, 6);
 
 const editorReducer = (
   state: EditorStateType = defaultState,
@@ -37,27 +37,42 @@ const editorReducer = (
 ): EditorStateType => {
   // set initial state
   if (action.type === SET_EDITOR_INITIAL_STATE) {
-    return reduceSetEditorInitialStateAction(state, action as SetEditorInitialStateAction);
+    return reduceSetEditorInitialStateAction(
+      state,
+      action as SetEditorInitialStateAction,
+    );
   }
 
   // set base
   if (state && action.type === SET_EDITOR_TABLE_BASE) {
-    return reduceSetEditorTableBaseAction(state, action as SetEditorTableBaseAction);
+    return reduceSetEditorTableBaseAction(
+      state,
+      action as SetEditorTableBaseAction,
+    );
   }
 
   // set base breaks
   if (action.type === SET_EDITOR_TABLE_BASE_BREAKS) {
-    return reduceSetEditorTableBaseBreakAction(state, action as SetEditorTableBaseBreakAction);
+    return reduceSetEditorTableBaseBreakAction(
+      state,
+      action as SetEditorTableBaseBreakAction,
+    );
   }
 
   // set duration
   if (action.type === SET_EDITOR_TABLE_DURATION) {
-    return reduceSetEditorTableDurationAction(state, action as SetEditorTableDurationAction);
+    return reduceSetEditorTableDurationAction(
+      state,
+      action as SetEditorTableDurationAction,
+    );
   }
 
   // set sets
   if (action.type === REPLACE_EDITOR_SETS) {
-    return reduceReplaceEditorSetsAction(state, action as ReplaceEditorSetsAction);
+    return reduceReplaceEditorSetsAction(
+      state,
+      action as ReplaceEditorSetsAction,
+    );
   }
 
   return state;

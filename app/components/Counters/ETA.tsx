@@ -17,11 +17,11 @@ const ETA: FC<ETAProps> = ({
   },
 }) => {
   const { colors } = useAppTheme();
-  const date = addMilliseconds(now(), totalTime * 1000);
+  const date = addMilliseconds(now(), totalTime);
   return (
     <InfoBlock
       label="ETA"
-      contentString={format(date, 'HH:mm:ss')}
+      content={format(date, 'HH:mm:ss')}
       labelColor={colors.primary050}
       labelType={TypographyType.SUBTITLE_2}
       contentColor={colors.primary100}

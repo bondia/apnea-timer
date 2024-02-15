@@ -15,7 +15,7 @@ const Countdown: FC<CountdownProps> = ({ set }) => {
   return (
     <InfoBlock
       label="Countdown"
-      contentString={countdownText}
+      content={countdownText}
       labelColor={colors.primary050}
       labelType={TypographyType.H4}
       contentColor={colors.primary900}

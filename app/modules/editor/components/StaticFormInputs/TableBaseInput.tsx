@@ -12,13 +12,13 @@ const TableBaseInput: FC = () => {
     <Stack horizontal columnGap={2}>
       <LongTouchButton
         title="-"
-        onPressStart={() => dispatch(changeTableBase(base - 5))}
-        onPressInterval={() => dispatch(changeTableBase(base - 5))}
+        onPressStart={() => dispatch(changeTableBase(base - 5000))}
+        onPressInterval={() => dispatch(changeTableBase(base - 5000))}
       />
       <LongTouchButton
         title="+"
-        onPressStart={() => dispatch(changeTableBase(base + 5))}
-        onPressInterval={() => dispatch(changeTableBase(base + 5))}
+        onPressStart={() => dispatch(changeTableBase(base + 5000))}
+        onPressInterval={() => dispatch(changeTableBase(base + 5000))}
       />
     </Stack>
   );

@@ -16,7 +16,7 @@ type Props = {
 };
 
 const StaticSetsList: FC<Props> = ({ tableType, sets }) => {
-  const headline = headlineByTableType(tableType);
+  const headline = headlineByTableType(TableTypeEnum.TABLE_TYPE_FREE);
   const { colors } = useAppTheme();
   return (
     <Stack>

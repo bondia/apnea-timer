@@ -1,13 +1,16 @@
 import { AnyAction } from 'redux';
+import { MillisecondsType } from '../../../../types';
 import { EditorStateType } from '../../editorTypes';
 
 export const SET_EDITOR_TABLE_BASE = 'SET_EDITOR_TABLE_BASE';
 
 export type SetEditorTableBaseAction = AnyAction & {
-  base: number;
+  base: MillisecondsType;
 };
 
-const setEditorTableBaseAction = (base: number): SetEditorTableBaseAction => ({
+const setEditorTableBaseAction = (
+  base: MillisecondsType,
+): SetEditorTableBaseAction => ({
   type: SET_EDITOR_TABLE_BASE,
   base,
 });

@@ -6,7 +6,7 @@ import Typography, {
 } from '../../../../components/Typography/Typography';
 import useAppTheme from '../../../../hooks/useAppTheme';
 import { useAppDispatch } from '../../../../redux/hooks';
-import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
+import millisecondsToTimeString from '../../../../utils/time/milisecondsToTimeString';
 import { SetTypeEnum } from '../../enums';
 import {
   decreaseTimeItem,
@@ -35,8 +35,8 @@ const EditorTimerInput: FC<EditorTimerInputProps> = ({
     SetTypeEnum.SET_TYPE_PREPARE === type ? colors.primary900 : colors.error;
   const clockColor = zombie ? colors.inverted900 : clockColorByType;
 
-  const increase = () => dispatch(increaseTimeItem(index, 5));
-  const decrease = () => dispatch(decreaseTimeItem(index, 5));
+  const increase = () => dispatch(increaseTimeItem(index, 5000));
+  const decrease = () => dispatch(decreaseTimeItem(index, 5000));
 
   return (
     <Spacer yAxis={1}>
@@ -48,7 +48,7 @@ const EditorTimerInput: FC<EditorTimerInputProps> = ({
       >
         <Stack centered horizontal>
           <Typography type={TypographyType.H3} color={clockColor}>
-            {secondsToTimeString(duration)}
+            {millisecondsToTimeString(duration)}
           </Typography>
           <Typography color={colors.inverted900} centered>
             ({setNumber})
