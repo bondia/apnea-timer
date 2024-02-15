@@ -11,10 +11,9 @@ export const changeEnduranceLaps: ChangeEnduranceLapsType =
     const {
       editor: { trainingTable },
     } = getState();
-    const { baseMilliseconds, baseBreaks } =
-      trainingTable as EnduranceTrainingTableType;
+    const { base, baseBreaks } = trainingTable as EnduranceTrainingTableType;
     const state = createTable(
-      baseMilliseconds,
+      base,
       baseBreaks,
       TableTypeEnum.TABLE_TYPE_ENDURANCE,
       laps,

@@ -3,11 +3,11 @@ import { Stack } from '../../../../components/Flow';
 import LongTouchButton from '../../../../components/LongTouchButton';
 import { useAppDispatch } from '../../../../redux/hooks';
 import { changeTableBase } from '../../redux/actions/composed/changeTableBase';
-import { useEditorBaseMillisecondsSelector } from '../../redux/editorSelectors';
+import { useEditorBaseSelector } from '../../redux/editorSelectors';
 
 const TableBaseInput: FC = () => {
   const dispatch = useAppDispatch();
-  const base = useEditorBaseMillisecondsSelector();
+  const base = useEditorBaseSelector();
   return (
     <Stack horizontal columnGap={2}>
       <LongTouchButton

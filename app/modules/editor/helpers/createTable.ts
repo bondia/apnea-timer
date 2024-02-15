@@ -1,3 +1,4 @@
+import { MillisecondsType } from '../../../types';
 import { EditorStateType } from '../editorTypes';
 import { TableTypeEnum } from '../enums';
 import calculateSetsDuration from './sets/calculateSetsDuration';
@@ -5,8 +6,8 @@ import createEnduranceSets from './sets/createEnduranceSets';
 import createInitialSets from './sets/createInitialSets';
 
 const createSetsByTableType = (
-  base: number,
-  baseBreaks: number,
+  base: MillisecondsType,
+  baseBreaks: MillisecondsType,
   type: TableTypeEnum,
   enduranceLaps: number,
 ) => {
@@ -17,21 +18,16 @@ const createSetsByTableType = (
 };
 
 const createTable = (
-  baseMilliseconds: number,
-  baseBreaks: number,
+  base: MillisecondsType,
+  baseBreaks: MillisecondsType,
   type: TableTypeEnum,
   enduranceLaps: number,
 ): EditorStateType => {
-  const sets = createSetsByTableType(
-    baseMilliseconds,
-    baseBreaks,
-    type,
-    enduranceLaps,
-  );
+  const sets = createSetsByTableType(base, baseBreaks, type, enduranceLaps);
   const duration = calculateSetsDuration(sets);
   return {
     trainingTable: {
-      baseMilliseconds,
+      base,
       baseBreaks,
       type,
       duration,

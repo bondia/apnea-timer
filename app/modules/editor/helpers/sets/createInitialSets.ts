@@ -1,13 +1,14 @@
+import { MillisecondsType } from '../../../../types';
 import { TableSetListType } from '../../editorTypes';
 import { SetTypeEnum, TableTypeEnum } from '../../enums';
 
 const getBHTimeForSet = (
   type: TableTypeEnum,
   index: number,
-  baseMilliseconds: number,
+  base: MillisecondsType,
 ): number => {
   if (TableTypeEnum.TABLE_TYPE_O2 !== type) {
-    return baseMilliseconds;
+    return base;
   }
   return 60000 + 10 * (index / 2);
 };
@@ -15,30 +16,30 @@ const getBHTimeForSet = (
 const getBUTimeForSet = (
   type: TableTypeEnum,
   index: number,
-  baseMilliseconds: number,
+  base: MillisecondsType,
 ): number => {
   if (TableTypeEnum.TABLE_TYPE_CO2 !== type) {
-    return baseMilliseconds;
+    return base;
   }
   return 120000 - 10 * (index / 2);
 };
 
 const createInitialSets = (
-  baseMilliseconds = 5000,
+  base = 5000,
   tableType = TableTypeEnum.TABLE_TYPE_CO2,
 ): TableSetListType => {
   const sets: TableSetListType = [];
 
   for (let i = 0; i < 16; i += 2) {
     sets.push({
-      duration: getBUTimeForSet(tableType, i, baseMilliseconds),
+      duration: getBUTimeForSet(tableType, i, base),
       type: SetTypeEnum.SET_TYPE_PREPARE,
       pos: i,
       zombie: false,
     });
 
     sets.push({
-      duration: getBHTimeForSet(tableType, i, baseMilliseconds),
+      duration: getBHTimeForSet(tableType, i, base),
       type: SetTypeEnum.SET_TYPE_HOLD,
       pos: i + 1,
       zombie: false,

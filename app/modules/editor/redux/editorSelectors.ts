@@ -12,9 +12,8 @@ const editorTypeSelector = createSelector(
 );
 export const useEditorTypeSelector = () => useAppSelector(editorTypeSelector);
 
-const editorBaseMilliseconds = createSelector(
+const editorBase = createSelector(
   [editorSelector],
-  state => state.trainingTable.baseMilliseconds,
+  state => state.trainingTable.base,
 );
-export const useEditorBaseMillisecondsSelector = () =>
-  useAppSelector(editorBaseMilliseconds);
+export const useEditorBaseSelector = () => useAppSelector(editorBase);

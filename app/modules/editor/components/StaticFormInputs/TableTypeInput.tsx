@@ -5,14 +5,14 @@ import { useAppDispatch } from '../../../../redux/hooks';
 import { TableTypeEnum } from '../../enums';
 import changeTableType from '../../redux/actions/composed/changeTableType';
 import {
-  useEditorBaseMillisecondsSelector,
+  useEditorBaseSelector,
   useEditorTypeSelector,
 } from '../../redux/editorSelectors';
 
 const TableTypeInput: FC = () => {
   const dispatch = useAppDispatch();
   const type = useEditorTypeSelector();
-  const base = useEditorBaseMillisecondsSelector();
+  const base = useEditorBaseSelector();
 
   const changeType = (newType: TableTypeEnum) => {
     if (type !== newType) {

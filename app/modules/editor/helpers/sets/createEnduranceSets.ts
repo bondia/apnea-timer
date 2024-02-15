@@ -1,7 +1,11 @@
 import { TableSetListType } from '../../editorTypes';
 import { SetTypeEnum } from '../../enums';
 
-const createEnduranceSets = (base = 5, baseBreaks = 5, laps = 16): TableSetListType => {
+const createEnduranceSets = (
+  base = 5,
+  baseBreaks = 5,
+  laps = 16,
+): TableSetListType => {
   const sets: TableSetListType = [];
 
   for (let i = 0; i < laps * 2; i += 2) {

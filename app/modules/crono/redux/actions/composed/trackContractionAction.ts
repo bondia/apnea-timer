@@ -1,4 +1,5 @@
 import { StoreThunkAction } from '../../../../../redux/types';
+import calculateSetCountdown from '../../../../../utils/crono/calculateSetCountdown';
 import { CronoSetType } from '../../../cronoTypes';
 import findRunningSet from '../../../helpers/findRunningSet';
 import replaceSetAction from '../replaceSetAction';
@@ -19,10 +20,8 @@ const trackContractionAction: TrackContractionType = () => {
       return;
     }
 
-    const {
-      duration,
-      running: { countdown },
-    } = current;
+    const { duration } = current;
+    const countdown = calculateSetCountdown(current);
     const contraction = duration - countdown;
 
     const newSet: CronoSetType = {

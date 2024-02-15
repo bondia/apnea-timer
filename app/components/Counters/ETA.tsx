@@ -17,7 +17,7 @@ const ETA: FC<ETAProps> = ({
   },
 }) => {
   const { colors } = useAppTheme();
-  const date = addMilliseconds(now(), totalTime * 1000);
+  const date = addMilliseconds(now(), totalTime);
   return (
     <InfoBlock
       label="ETA"

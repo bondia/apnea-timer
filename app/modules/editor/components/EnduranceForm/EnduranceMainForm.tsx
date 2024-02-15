@@ -8,7 +8,6 @@ import Typography, {
 import useAppTheme from '../../../../hooks/useAppTheme';
 import { useAppDispatch } from '../../../../redux/hooks';
 import millisecondsToTimeString from '../../../../utils/time/milisecondsToTimeString';
-import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
 import { EditorStateType, EnduranceTrainingTableType } from '../../editorTypes';
 import {
   ChangeEnduranceLapsType,
@@ -57,7 +56,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
 
   const {
     enduranceLaps,
-    baseMilliseconds,
+    base,
     baseBreaks,
     duration: totalTime,
   } = trainingTable as EnduranceTrainingTableType;
@@ -65,7 +64,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
   return (
     <Stack spaceAround grow={1}>
       <Typography type={TypographyType.H1} color={colors.primary900} centered>
-        {secondsToTimeString(totalTime)}
+        {millisecondsToTimeString(totalTime)}
       </Typography>
 
       <Stack>
@@ -101,28 +100,28 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
           headline="Dive Time"
           decrease={() =>
             actionHandler({
-              original: baseMilliseconds,
+              original: base,
               increase: -1000,
               action: changeTableBase,
             })
           }
           decreaseInterval={() =>
             actionHandler({
-              original: baseMilliseconds,
+              original: base,
               increase: -5000,
               action: changeTableBase,
             })
           }
           increase={() =>
             actionHandler({
-              original: baseMilliseconds,
+              original: base,
               increase: 1000,
               action: changeTableBase,
             })
           }
           increaseInterval={() =>
             actionHandler({
-              original: baseMilliseconds,
+              original: base,
               increase: 5000,
               action: changeTableBase,
             })
@@ -133,7 +132,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             color={colors.inverted900}
             centered
           >
-            {millisecondsToTimeString(baseMilliseconds)}
+            {millisecondsToTimeString(base)}
           </Typography>
         </NumericInput>
 
@@ -144,28 +143,28 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
           decrease={() =>
             actionHandler({
               original: baseBreaks,
-              increase: -1,
+              increase: -1000,
               action: changeTableBaseBreaks,
             })
           }
           decreaseInterval={() =>
             actionHandler({
               original: baseBreaks,
-              increase: -5,
+              increase: -5000,
               action: changeTableBaseBreaks,
             })
           }
           increase={() =>
             actionHandler({
               original: baseBreaks,
-              increase: 1,
+              increase: 1000,
               action: changeTableBaseBreaks,
             })
           }
           increaseInterval={() =>
             actionHandler({
               original: baseBreaks,
-              increase: 5,
+              increase: 5000,
               action: changeTableBaseBreaks,
             })
           }
@@ -175,7 +174,7 @@ const EditorEnduranceInputs: FC<EditorEnduranceProps> = props => {
             color={colors.inverted900}
             centered
           >
-            {secondsToTimeString(baseBreaks)}
+            {millisecondsToTimeString(baseBreaks)}
           </Typography>
         </NumericInput>
       </Stack>

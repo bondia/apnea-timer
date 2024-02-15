@@ -49,7 +49,7 @@ const LiveCounter: FC<LiveCounterProps> = ({ crono, set }) => {
           <Stack basis="30%">
             <InfoBlock
               label="Time Left"
-              miliseconds={totalTime * 1000}
+              miliseconds={totalTime}
               labelColor={colors.primary050}
               labelType={TypographyType.SUBTITLE_2}
               contentColor={colors.primary100}

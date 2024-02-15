@@ -10,19 +10,19 @@ export const changeTableBaseBreaks: ChangeTableBaseBreaksType =
   value => (dispatch, getState) => {
     const {
       editor: {
-        trainingTable: { baseMilliseconds, type: tableType },
+        trainingTable: { base, type: tableType },
         sets,
       },
     } = getState();
 
     // change table base breaks
-    const baseBreaks = value < 5 ? 5 : value;
+    const baseBreaks = value < 5000 ? 5000 : value;
     dispatch(setEditorTableBaseBreakAction(baseBreaks));
 
     // update sets with new base
     const newSets = updateSetsForTableType(
       [...sets],
-      baseMilliseconds / 1000,
+      base,
       baseBreaks,
       tableType,
     );
