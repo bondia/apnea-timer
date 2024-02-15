@@ -3,7 +3,7 @@ import Typography, {
   TypographyType,
 } from '../../../../components/Typography/Typography';
 import useAppTheme from '../../../../hooks/useAppTheme';
-import secondsToTimeString from '../../../../utils/time/secondsToTimeString';
+import millisecondsToTimeString from '../../../../utils/time/milisecondsToTimeString';
 import { CronoSetType } from '../../cronoTypes';
 
 type SetContractionsProps = {
@@ -17,7 +17,7 @@ const SetContractions: FC<SetContractionsProps> = ({
 }) => {
   const { colors } = useAppTheme();
   const contractionsText = useMemo(
-    () => secondsToTimeString(contraction),
+    () => millisecondsToTimeString(contraction),
     [contraction],
   );
   if (contraction <= 0) {
